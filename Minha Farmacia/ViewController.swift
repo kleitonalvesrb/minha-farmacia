@@ -12,26 +12,46 @@ import ParseFacebookUtilsV4
 class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var senha: UITextField!
+    @IBOutlet weak var scroll: UIScrollView!
+    @IBOutlet weak var btn: UIButton!
+    @IBOutlet weak var txt: UITextField!
     @IBOutlet weak var email: UITextField!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        scroll.scrollEnabled = false
+        scroll.contentSize = CGSizeMake(0, 0)
         /*Configuraçao para remover o teclado ao clicar fora do campo*/
-        self.senha.delegate = self
-        self.email.delegate = self
-        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-        /*Fim configuração teclado*/
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-     
+//        self.senha.delegate = self
+//        self.email.delegate = self
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
+//        view.addGestureRecognizer(tap)
+//        /*Fim configuração teclado*/
+       
+    }
+//    func dismissKeyboard()->Void{
+//        view.endEditing(true)
+//    }
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if (txt == textField){
+            scroll.scrollEnabled = true
+            scroll.setContentOffset(CGPointMake(0, 250), animated: true)
+            scroll.contentSize = CGSizeMake(0, 1000)
+
+        }
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    func textFieldDidEndEditing(textField: UITextField) {
+        scroll.setContentOffset(CGPointMake(0, 0), animated: true)
+      scroll.scrollEnabled = false
+
 
     }
-    func dismissKeyboard()->Void{
-        view.endEditing(true)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,21 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func registrar(sender: AnyObject) {
     }
     
-    func keyboardWillShow(notification: NSNotification) {
         
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-            self.view.frame.origin.y -= keyboardSize.height
-        }
-        
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
-//            self.view.frame.origin.y += keyboardSize.height
-//        }
-    }
-    
-    
     
     /* let permissions = ["public_profile"]
      PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) { (user: PFUser?, error: NSError?) in

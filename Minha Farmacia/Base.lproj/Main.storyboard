@@ -150,6 +150,9 @@
                                         <state key="normal" title="Facebook">
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="loginFacebook:" destination="TV0-dH-bEQ" eventType="touchUpInside" id="Zoq-Ql-Rnv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7on-Nr-dlF">
                                         <rect key="frame" x="251" y="388" width="98" height="30"/>
@@ -169,7 +172,7 @@
                                             <constraint firstAttribute="height" constant="36" id="ps3-7d-14S"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

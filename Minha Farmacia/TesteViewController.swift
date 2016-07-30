@@ -7,7 +7,9 @@
 //
 
 import UIKit
-class TesteViewController: UIViewController, UITextFieldDelegate {
+import ParseFacebookUtilsV4
+
+class TesteViewController: UIViewController, UITextFieldDelegate{
     
     
     @IBOutlet weak var scroll: UIScrollView!
@@ -17,8 +19,11 @@ class TesteViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnCadastrar: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
     
+  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         scroll.scrollEnabled = false
         self.senha.delegate = self
         self.email.delegate = self
@@ -86,7 +91,54 @@ class TesteViewController: UIViewController, UITextFieldDelegate {
         if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
             showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
         }else{
-            print("de boa")
+           fazLogin(email.text!, senha: senha.text!)
         }
     }
+    
+    @IBAction func loginFacebook(sender: AnyObject) {
+        let permission = ["public_profile"]
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(permission)
+        pegaDadosFacebook()
+        
+    }
+    /* Realiza login*/
+    func fazLogin(email:String, senha:String) -> Void{
+        PFUser.logInWithUsernameInBackground(email, password: senha) { (user, error) in
+            if error != nil{
+                if error?.code == 101{
+                    //buscar por email
+                 self.showAlert("Ops!", msg: "Usuário ou Senha Incorreto", titleBtn: "Ok")
+                }
+            }
+        }
+    }
+    
+    /*Pega os dados do facebook e salva no usuario corrente*/
+    func pegaDadosFacebook(){
+       
+        
+        let requisicao = FBSDKGraphRequest(graphPath: "me", parameters:["fields":"id, name, gender,age_range, email"])
+        requisicao.startWithCompletionHandler { (connection, result, error) in
+            if error != nil{
+                print(error)
+                
+            }else if let resultado = result{
+                let dados = resultado as! NSDictionary
+                let idade = dados["age_range"] as! NSDictionary
+                PFUser.currentUser()?["nome"] = dados["name"] as? String
+                PFUser.currentUser()?["sexo"] = dados["gender"] as? String
+                PFUser.currentUser()?.email = dados["email"] as? String
+                PFUser.currentUser()?["idade"] = idade["min"] as? Int
+                PFUser.currentUser()?.saveInBackgroundWithBlock({ (sucesso, error) in
+                    if sucesso{
+                        print("deu bom")
+                    }else{
+                        print(error?.userInfo["error"])
+                    }
+                })
+            }
+        }
+    }
+   
+    
 }

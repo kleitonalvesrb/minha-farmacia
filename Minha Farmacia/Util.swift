@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import ParseFacebookUtilsV4
 
 class Util: NSObject {
     
     func isVazio(txt : String) -> Bool{
             return txt == ""
     }
-    func valida(email:String, senha:String ) -> String{
-        return "\(email) e \(senha)"
-    }
+  
     
     
 }

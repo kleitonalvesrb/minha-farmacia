@@ -91,6 +91,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
             showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
         }else{
+            
            fazLogin(email.text!, senha: senha.text!)
         }
     }
@@ -98,7 +99,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     @IBAction func loginFacebook(sender: AnyObject) {
         let permission = ["public_profile"]
         PFFacebookUtils.logInInBackgroundWithReadPermissions(permission)
-        pegaDadosFacebook()
+        //pegaDadosFacebook()
         
     }
     /* Realiza login*/

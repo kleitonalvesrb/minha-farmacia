@@ -22,6 +22,9 @@
 		6393CA691D55190E003B3E71 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6393CA661D551904003B3E71 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6393CA6C1D55308F003B3E71 /* TelaPrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393CA6B1D55308F003B3E71 /* TelaPrincipalViewController.swift */; };
 		6393CA6E1D55312B003B3E71 /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393CA6D1D55312B003B3E71 /* Usuario.swift */; };
+		6393CA711D55B2A2003B3E71 /* homem.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA6F1D55B2A2003B3E71 /* homem.png */; };
+		6393CA721D55B2A2003B3E71 /* mulher.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA701D55B2A2003B3E71 /* mulher.png */; };
+		6393CA741D55B397003B3E71 /* indefinido.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA731D55B397003B3E71 /* indefinido.png */; };
 		63A4EB5B1D4ABFDB007C6B20 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB591D4ABFDB007C6B20 /* Bolts.framework */; };
 		63A4EB5C1D4ABFDB007C6B20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB5A1D4ABFDB007C6B20 /* Parse.framework */; };
 		63A4EB5F1D4AC116007C6B20 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB5E1D4AC116007C6B20 /* SystemConfiguration.framework */; };
@@ -62,6 +65,9 @@
 		6393CA661D551904003B3E71 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		6393CA6B1D55308F003B3E71 /* TelaPrincipalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaPrincipalViewController.swift; sourceTree = "<group>"; };
 		6393CA6D1D55312B003B3E71 /* Usuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
+		6393CA6F1D55B2A2003B3E71 /* homem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homem.png; sourceTree = "<group>"; };
+		6393CA701D55B2A2003B3E71 /* mulher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mulher.png; sourceTree = "<group>"; };
+		6393CA731D55B397003B3E71 /* indefinido.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indefinido.png; sourceTree = "<group>"; };
 		63A4EB591D4ABFDB007C6B20 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		63A4EB5A1D4ABFDB007C6B20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		63A4EB5E1D4AC116007C6B20 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -97,6 +103,9 @@
 		630C3C621D4AA5D800312CC5 = {
 			isa = PBXGroup;
 			children = (
+				6393CA6F1D55B2A2003B3E71 /* homem.png */,
+				6393CA701D55B2A2003B3E71 /* mulher.png */,
+				6393CA731D55B397003B3E71 /* indefinido.png */,
 				6393CA661D551904003B3E71 /* Alamofire.framework */,
 				63A4EB5D1D4ABFE7007C6B20 /* frameworks */,
 				630C3C6D1D4AA5D800312CC5 /* Minha Farmacia */,
@@ -209,6 +218,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				6308A1CD1D4C6AF00042BE2C /* Captura de Tela 2016-07-26 às 20.03.44.png in Resources */,
+				6393CA711D55B2A2003B3E71 /* homem.png in Resources */,
+				6393CA741D55B397003B3E71 /* indefinido.png in Resources */,
+				6393CA721D55B2A2003B3E71 /* mulher.png in Resources */,
 				630C3C7C1D4AA5D800312CC5 /* LaunchScreen.storyboard in Resources */,
 				630C3C791D4AA5D800312CC5 /* Assets.xcassets in Resources */,
 				630C3C741D4AA5D800312CC5 /* Main.storyboard in Resources */,

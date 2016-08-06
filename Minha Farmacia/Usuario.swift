@@ -15,7 +15,9 @@ class Usuario: NSObject {
     var senha:String!
     var idFacebook:String!
     var foto:UIImage!
+    var sexo:String!
     
+    static let sharedInstance = Usuario()
     
     func convertStringToImage(str: String) -> UIImage{
         let imageData = NSData(base64EncodedString: str, options: .IgnoreUnknownCharacters)

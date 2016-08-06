@@ -16,10 +16,24 @@ class TelaPrincipalViewController: UIViewController {
     @IBOutlet weak var sexoUsuario: UILabel!
     @IBOutlet weak var idadeUsuario: UILabel!
     @IBOutlet weak var idFacebook: UILabel!
+    var user:Usuario!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        user = Usuario.sharedInstance
         // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(animated: Bool) {
+        nomeUsuario.text = user.nome
+        emailUsuario.text = user.email
+        sexoUsuario.text = user.sexo
+        idadeUsuario.text = "\(user.idade)"
+        idFacebook.text = user.idFacebook
+        ImageUsuario.image = user.foto
+        ImageUsuario.layer.cornerRadius = ImageUsuario.frame.size.height / 2
+        //        ImageUsuario.layer.cornerRadius = 10
+        ImageUsuario.clipsToBounds = true
+        ImageUsuario.layer.borderWidth = 7
+        ImageUsuario.layer.borderColor = UIColor.blueColor().CGColor
     }
 
     override func didReceiveMemoryWarning() {

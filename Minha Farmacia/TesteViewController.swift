@@ -17,7 +17,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var btnFacebook: UIButton!
     @IBOutlet weak var btnCadastrar: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
+    let user = Usuario.sharedInstance
     
+
   
     
     override func viewDidLoad() {
@@ -96,7 +98,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     }
     
     @IBAction func loginFacebook(sender: AnyObject) {
-        let permission = ["public_profile"]
+        //let permission = ["public_profile"]
         //PFFacebookUtils.logInInBackgroundWithReadPermissions(permission)
         //pegaDadosFacebook()
         
@@ -104,42 +106,93 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{
         print("faz login email \(email)  e senha \(senha)")
-        let url = "http://localhost:8080/WebService/cliente/login/\(email)-\(senha)"
-        print(url)
+        let url = "http://192.168.0.12:8080/WebService/cliente/login/\(email)-\(senha)"
+        
         Alamofire.request(.GET, url).responseJSON { (response) in
             if let JSON = response.result.value{
                 if JSON.count != nil{
-                    let user = Usuario()
-                    user.nome = (JSON["nome"] != nil ? JSON["nome"] as! String : "")
-                    user.email = (JSON["email"] != nil ? JSON["email"] as! String : "")
-                    user.idFacebook = (JSON["idFacebook"] != nil ? JSON["idFacebook"] as! String : "Não informado")
-                    print("--> \(user.email) -> \(user.idFacebook)")
-                    
-//                    if JSON["idade"] != nil{
-//                        let idade:Int = Int(JSON["idade"] as! String)!
-//                        
-//                        print(idade)
-//                    }else{
-//                        print("sem idade")
-//                    }
-                    print(JSON)
+                   
+                    self.user.nome = (JSON["nome"] != nil ? JSON["nome"] as! String : "")
+                    self.user.email = (JSON["email"] != nil ? JSON["email"] as! String : "")
+                    //tratar dados idFacebook
+                    if let idFacebook:String = JSON["idFacebook"] as? String{
+                        self.user.idFacebook = idFacebook
+                    }else{
+                        self.user.idFacebook = "nao informado"
+                    }
+                    //trata idade
+                    if let idadeString:String = JSON["idade"] as? String{
+                        print(idadeString,"<--")
+                        self.user.idade = Int(idadeString)
+                    }else{
+                        self.user.idade = 0;
+                        print("nao conseguiu")
+                    }
+                    print(self.user.idade)
+                    self.user.senha = (JSON["senha"] != nil ? JSON["senha"] as! String : "")
+                    //trata sexo
+                    if let sexo:String = JSON["sexo"] as? String{
+                        self.user.sexo = sexo
+                    }else{
+                        self.user.sexo = "Não informado"
+                    }
+                    //trata imagem
+                    if let imgString:String = JSON["foto"] as? String{
+                        if imgString.characters.count > 10{
+                           self.user.foto = self.user.convertStringToImage(imgString)
+                        }else{
+                            if self.user.sexo.lowercaseString == "masculino"{
+                                self.user.foto = UIImage(named: "homem.png")
+                            }else if self.user.sexo.lowercaseString == "feminino"{
+                                self.user.foto = UIImage(named: "mulher.png")
+                            }else{
+                                self.user.foto = UIImage(named: "indefinido.png")
+                            }
+                        }
+                    }else{
+                        if self.user.sexo.lowercaseString == "masculino"{
+                            self.user.foto = UIImage(named: "homem.png")
+                        }else if self.user.sexo.lowercaseString == "feminino"{
+                            self.user.foto = UIImage(named: "mulher.png")
+                        }else{
+                            self.user.foto = UIImage(named: "indefinido.png")
+                        } //<-- adc um avatar de acordo com o sexo
+                    }
+                    self.performSegueWithIdentifier("loginEfetuado", sender: self)
                 }else{
-                    print("null")
+                    self.showAlert("Ops", msg: "Usuário ou Senha incorreto!", titleBtn: "ok")
                 }
-//                let nome = JSON["nome"] as? String
-//                print(JSON["foto"]!)
-//                
-//                let string: String = JSON["foto"] as! String
-//                print(string)
-//                //
-//                let imageData = NSData(base64EncodedString: string , options:.IgnoreUnknownCharacters)
-//                let imagePosterior = UIImage(data: imageData!)
-//                //self.imgResult.image = imagePosterior
-                
             }
-    }
+        }
+}
+  
+//        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//            if segue.identifier == "logoutMotorista"{
+//                navigationController?.setNavigationBarHidden(true, animated: false)
+//                PFUser.logOut()
+//            }else if segue.identifier == "verPedido"{
+//                if let destination = segue.destinationViewController as? RequestViewController{
+//                    destination.requestLocation = locations[(tableView.indexPathForSelectedRow?.row)!]
+//                    destination.requestUserName = userNames[(tableView.indexPathForSelectedRow?.row)!]
+//                }
+//            }
+//        }
     
-    /*Pega os dados do facebook e salva no usuario corrente*/
+    
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*Pega os dados do facebook e salva no usuario corrente*/
     func pegaDadosFacebook(){
        
         
@@ -167,4 +220,4 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     }
    
     
-}
+

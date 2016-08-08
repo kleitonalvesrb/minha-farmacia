@@ -17,6 +17,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var btnFacebook: UIButton!
     @IBOutlet weak var btnCadastrar: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
+    
+    
     let user = Usuario.sharedInstance
     
 
@@ -106,7 +108,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{
         print("faz login email \(email)  e senha \(senha)")
-        let url = "http://192.168.0.12:8080/WebService/cliente/login/\(email)-\(senha)"
+        let url = "http://172.16.2.134:8080/WebService/cliente/login/\(email)-\(senha)"
         
         Alamofire.request(.GET, url).responseJSON { (response) in
             if let JSON = response.result.value{

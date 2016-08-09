@@ -19,7 +19,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var btnLogin: UIButton!
     
     
-    let user = Usuario.sharedInstance
+    var user = Usuario.sharedInstance
     
 
   
@@ -35,6 +35,13 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         view.addGestureRecognizer(tap)
     }
 
+    override func viewDidAppear(animated: Bool) {
+        if user.nome != nil{
+            print("vai trocar")
+            user.nome = ""
+            print("trocou? ->\(user.nome)<-")
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -94,7 +101,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
             showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
         }else{
-            
+            print("redireciona")
            fazLogin(email.text!, senha: senha.text!)
         }
     }
@@ -107,13 +114,12 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     }
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{
-        print("faz login email \(email)  e senha \(senha)")
-        let url = "http://172.16.2.134:8080/WebService/cliente/login/\(email)-\(senha)"
-        
-        Alamofire.request(.GET, url).responseJSON { (response) in
+        let url = "http://192.168.0.12:8080/WebService/cliente/login/\(email)-\(senha)"
+        Alamofire.request(.GET, url).authenticate(user: email, password: senha).responseJSON { (response) in
             if let JSON = response.result.value{
+                
                 if JSON.count != nil{
-                   
+                    
                     self.user.nome = (JSON["nome"] != nil ? JSON["nome"] as! String : "")
                     self.user.email = (JSON["email"] != nil ? JSON["email"] as! String : "")
                     //tratar dados idFacebook
@@ -124,11 +130,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     }
                     //trata idade
                     if let idadeString:String = JSON["idade"] as? String{
-                        print(idadeString,"<--")
                         self.user.idade = Int(idadeString)
                     }else{
                         self.user.idade = 0;
-                        print("nao conseguiu")
                     }
                     print(self.user.idade)
                     self.user.senha = (JSON["senha"] != nil ? JSON["senha"] as! String : "")
@@ -141,7 +145,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     //trata imagem
                     if let imgString:String = JSON["foto"] as? String{
                         if imgString.characters.count > 10{
-                           self.user.foto = self.user.convertStringToImage(imgString)
+                            self.user.foto = self.user.convertStringToImage(imgString)
                         }else{
                             if self.user.sexo.lowercaseString == "masculino"{
                                 self.user.foto = UIImage(named: "homem.png")
@@ -160,13 +164,21 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                             self.user.foto = UIImage(named: "indefinido.png")
                         } //<-- adc um avatar de acordo com o sexo
                     }
-                    self.performSegueWithIdentifier("loginEfetuado", sender: self)
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    
+                    let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("login") as! TelaPrincipalViewController
+                    
+                    self.presentViewController(resultViewController, animated:true, completion:nil)
+
                 }else{
+                    
                     self.showAlert("Ops", msg: "Usuário ou Senha incorreto!", titleBtn: "ok")
                 }
             }
+
+            
         }
-}
+    }
   
 //        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //            if segue.identifier == "logoutMotorista"{
@@ -180,20 +192,83 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //            }
 //        }
     
+//
+    /*
+     Alamofire.request(.GET, url).responseJSON { (response) in
+     if let JSON = response.result.value{
+     if JSON.count != nil{
+     print("aki")
+     isAutenticado = true
+     
+     self.user.nome = (JSON["nome"] != nil ? JSON["nome"] as! String : "")
+     self.user.email = (JSON["email"] != nil ? JSON["email"] as! String : "")
+     //tratar dados idFacebook
+     if let idFacebook:String = JSON["idFacebook"] as? String{
+     self.user.idFacebook = idFacebook
+     }else{
+     self.user.idFacebook = "nao informado"
+     }
+     //trata idade
+     if let idadeString:String = JSON["idade"] as? String{
+     print(idadeString,"<--")
+     self.user.idade = Int(idadeString)
+     }else{
+     self.user.idade = 0;
+     print("nao conseguiu")
+     }
+     print(self.user.idade)
+     self.user.senha = (JSON["senha"] != nil ? JSON["senha"] as! String : "")
+     //trata sexo
+     if let sexo:String = JSON["sexo"] as? String{
+     self.user.sexo = sexo
+     }else{
+     self.user.sexo = "Não informado"
+     }
+     //trata imagem
+     if let imgString:String = JSON["foto"] as? String{
+     if imgString.characters.count > 10{
+     self.user.foto = self.user.convertStringToImage(imgString)
+     }else{
+     if self.user.sexo.lowercaseString == "masculino"{
+     self.user.foto = UIImage(named: "homem.png")
+     }else if self.user.sexo.lowercaseString == "feminino"{
+     self.user.foto = UIImage(named: "mulher.png")
+     }else{
+     self.user.foto = UIImage(named: "indefinido.png")
+     }
+     }
+     }else{
+     if self.user.sexo.lowercaseString == "masculino"{
+     self.user.foto = UIImage(named: "homem.png")
+     }else if self.user.sexo.lowercaseString == "feminino"{
+     self.user.foto = UIImage(named: "mulher.png")
+     }else{
+     self.user.foto = UIImage(named: "indefinido.png")
+     } //<-- adc um avatar de acordo com o sexo
+     }
+     //self.performSegueWithIdentifier("loginEfetuado", sender: self)
+     }else{
+     self.showAlert("Ops", msg: "Usuário ou Senha incorreto!", titleBtn: "ok")
+     }
+     }
+     if isAutenticado{
+     self.performSegueWithIdentifier("loginEfetuado", sender: self)
+     }
+     }
+*/
     
-        
-        
-        
     
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
         /*Pega os dados do facebook e salva no usuario corrente*/
     func pegaDadosFacebook(){
        
@@ -202,7 +277,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //        requisicao.startWithCompletionHandler { (connection, result, error) in
 //            if error != nil{
 //                print(error)
-//                
+//
 //            }else if let resultado = result{
 //                let dados = resultado as! NSDictionary
 //                let idade = dados["age_range"] as! NSDictionary

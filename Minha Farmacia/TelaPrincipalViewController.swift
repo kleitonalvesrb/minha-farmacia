@@ -20,9 +20,12 @@ class TelaPrincipalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         user = Usuario.sharedInstance
-        // Do any additional setup after loading the view.
+                // Do any additional setup after loading the view.
     }
+    
     override func viewDidAppear(animated: Bool) {
+      
+
         nomeUsuario.text = user.nome
         emailUsuario.text = user.email
         sexoUsuario.text = user.sexo
@@ -40,6 +43,7 @@ class TelaPrincipalViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
 
     /*

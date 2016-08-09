@@ -8,18 +8,35 @@
 
 import UIKit
 
-class CadastroViewController: UIViewController {
+class CadastroViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet weak var campoSexo: UITextField!
+    var pickerSexo = UIPickerView()
+    let arraySexo = ["Masculino","Feminino","Outro","Prefiro não Informar"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("OI")
-        // Do any additional setup after loading the view.
+        pickerSexo.delegate = self
+        pickerSexo.dataSource = self
+        campoSexo.inputView = pickerSexo
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return arraySexo.count
+    }
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return arraySexo[row]
+    }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        campoSexo.text = arraySexo[row]
+    }
+  
     
 
     /*

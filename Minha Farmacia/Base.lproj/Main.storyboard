@@ -215,7 +215,6 @@
                         <outlet property="email" destination="fbO-3H-gSa" id="iDp-It-gpQ"/>
                         <outlet property="scroll" destination="0FX-gX-cZV" id="YE0-gM-oTa"/>
                         <outlet property="senha" destination="Vud-HD-XN8" id="oUd-KJ-kAa"/>
-                        <segue destination="AIG-m8-hpf" kind="show" identifier="loginEfetuado" id="zwn-4g-D3p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMg-Hh-Agh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -269,68 +268,34 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbY-pE-Wbh">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbY-pE-Wbh">
                                         <rect key="frame" x="20" y="250" width="336" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
                                     </textField>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="blh-zQ-DYQ">
-                                        <rect key="frame" x="163" y="306" width="51" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="49" id="RKR-wD-4dY"/>
-                                            <constraint firstAttribute="height" constant="31" id="lVD-gh-4SF"/>
-                                        </constraints>
-                                    </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zUj-e6-28c">
-                                        <rect key="frame" x="163" y="357" width="51" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="0I7-UK-Lgn"/>
-                                            <constraint firstAttribute="width" constant="49" id="JFj-fd-RHX"/>
-                                        </constraints>
-                                    </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Homem" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYt-Tg-mhj">
-                                        <rect key="frame" x="20" y="306" width="61" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="i6a-MJ-ufo"/>
-                                            <constraint firstAttribute="width" constant="61" id="nUX-tx-GU8"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mulher" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocg-tu-w2u">
-                                        <rect key="frame" x="20" y="357" width="54" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="O2Y-lX-bqM"/>
-                                            <constraint firstAttribute="width" constant="54" id="rDp-9D-87D"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sexo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7O1-ua-AIC">
+                                        <rect key="frame" x="19" y="306" width="336" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="JZ2-6U-j9T" secondAttribute="trailing" constant="180" id="0Vr-4N-11t"/>
-                                    <constraint firstItem="blh-zQ-DYQ" firstAttribute="centerX" secondItem="IU4-dJ-Ao4" secondAttribute="centerX" id="2Pj-UT-5kk"/>
                                     <constraint firstItem="JZ2-6U-j9T" firstAttribute="centerX" secondItem="IU4-dJ-Ao4" secondAttribute="centerX" id="4sz-GY-NZo"/>
                                     <constraint firstItem="gbY-pE-Wbh" firstAttribute="leading" secondItem="o8Y-2W-oGe" secondAttribute="leading" id="5Et-xL-QPD"/>
                                     <constraint firstItem="gbY-pE-Wbh" firstAttribute="trailing" secondItem="o8Y-2W-oGe" secondAttribute="trailing" id="Hfm-2e-Z8Q"/>
                                     <constraint firstItem="o8Y-2W-oGe" firstAttribute="leading" secondItem="APY-fl-nf2" secondAttribute="leading" id="Nct-2f-9PH"/>
                                     <constraint firstItem="JZ2-6U-j9T" firstAttribute="top" secondItem="IU4-dJ-Ao4" secondAttribute="top" constant="60" id="Ve0-6a-GHE"/>
                                     <constraint firstItem="o8Y-2W-oGe" firstAttribute="top" secondItem="APY-fl-nf2" secondAttribute="bottom" constant="26" id="WJR-Sx-BPl"/>
-                                    <constraint firstItem="blh-zQ-DYQ" firstAttribute="top" secondItem="gbY-pE-Wbh" secondAttribute="bottom" constant="26" id="bEU-lv-uuA"/>
-                                    <constraint firstItem="zUj-e6-28c" firstAttribute="centerX" secondItem="IU4-dJ-Ao4" secondAttribute="centerX" id="cPh-bd-FzD"/>
                                     <constraint firstAttribute="bottom" secondItem="JZ2-6U-j9T" secondAttribute="bottom" constant="438" id="eRq-Ci-rOq"/>
                                     <constraint firstItem="APY-fl-nf2" firstAttribute="centerX" secondItem="JZ2-6U-j9T" secondAttribute="centerX" id="iB0-GL-VKw"/>
-                                    <constraint firstItem="zUj-e6-28c" firstAttribute="top" secondItem="blh-zQ-DYQ" secondAttribute="bottom" constant="20" id="jBr-IF-WgO"/>
                                     <constraint firstItem="APY-fl-nf2" firstAttribute="leading" secondItem="IU4-dJ-Ao4" secondAttribute="leading" constant="20" id="jXp-TB-sFB"/>
                                     <constraint firstItem="o8Y-2W-oGe" firstAttribute="trailing" secondItem="APY-fl-nf2" secondAttribute="trailing" id="k3V-HY-zpJ"/>
-                                    <constraint firstItem="ocg-tu-w2u" firstAttribute="top" secondItem="GYt-Tg-mhj" secondAttribute="bottom" constant="30" id="kll-Tt-trL"/>
                                     <constraint firstItem="gbY-pE-Wbh" firstAttribute="top" secondItem="o8Y-2W-oGe" secondAttribute="bottom" constant="26" id="nuJ-hd-9kY"/>
-                                    <constraint firstItem="ocg-tu-w2u" firstAttribute="leading" secondItem="IU4-dJ-Ao4" secondAttribute="leading" constant="20" id="wnS-3m-kRb"/>
+                                    <constraint firstItem="7O1-ua-AIC" firstAttribute="leading" secondItem="IU4-dJ-Ao4" secondAttribute="leading" constant="19" id="nyd-QY-JJD"/>
+                                    <constraint firstItem="7O1-ua-AIC" firstAttribute="top" secondItem="gbY-pE-Wbh" secondAttribute="bottom" constant="26" id="v8w-Uf-dKw"/>
+                                    <constraint firstItem="7O1-ua-AIC" firstAttribute="centerX" secondItem="JZ2-6U-j9T" secondAttribute="centerX" id="wzl-4g-jVb"/>
                                     <constraint firstItem="APY-fl-nf2" firstAttribute="top" secondItem="JZ2-6U-j9T" secondAttribute="bottom" constant="47" id="yXp-a2-ICC"/>
-                                    <constraint firstItem="GYt-Tg-mhj" firstAttribute="leading" secondItem="IU4-dJ-Ao4" secondAttribute="leading" constant="20" id="z1Z-MF-uKf"/>
-                                    <constraint firstItem="GYt-Tg-mhj" firstAttribute="top" secondItem="gbY-pE-Wbh" secondAttribute="bottom" constant="26" id="zUU-3R-W4I"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -346,6 +311,9 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="campoSexo" destination="7O1-ua-AIC" id="Jct-lm-Dkb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lwe-5M-w17" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -354,7 +322,7 @@
         <!--Tela Principal View Controller-->
         <scene sceneID="riZ-Ec-ZvT">
             <objects>
-                <viewController id="AIG-m8-hpf" customClass="TelaPrincipalViewController" customModule="Minha_Farmacia" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="login" id="AIG-m8-hpf" customClass="TelaPrincipalViewController" customModule="Minha_Farmacia" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jV9-YF-j0C"/>
                         <viewControllerLayoutGuide type="bottom" id="AQo-zb-mrl"/>
@@ -472,7 +440,7 @@
                                     <navigationItem title="Dados" id="lN8-Qw-alF">
                                         <barButtonItem key="leftBarButtonItem" title="Voltar" id="sn7-wv-9Yg">
                                             <connections>
-                                                <segue destination="TV0-dH-bEQ" kind="show" id="w2I-wr-JdM"/>
+                                                <segue destination="TV0-dH-bEQ" kind="show" identifier="voltar" id="w2I-wr-JdM"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -527,7 +495,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VoU-f1-NvV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="150.5" y="1093.5"/>
+            <point key="canvasLocation" x="220.5" y="1097.5"/>
         </scene>
     </scenes>
     <resources>

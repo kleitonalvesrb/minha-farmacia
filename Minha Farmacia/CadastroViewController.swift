@@ -8,21 +8,46 @@
 
 import UIKit
 
-class CadastroViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class CadastroViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var campoSexo: UITextField!
     var pickerSexo = UIPickerView()
     let arraySexo = ["Masculino","Feminino","Outro","Prefiro não Informar"]
+    
+    var scroll : UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        pickerSexo.delegate = self
-        pickerSexo.dataSource = self
-        campoSexo.inputView = pickerSexo
+//        pickerSexo.delegate = self
+//        pickerSexo.dataSource = self
+//        campoSexo.inputView = pickerSexo
+//        
+//        campoSexo.delegate = self
+        //scroll = UIScrollView(frame: CGRectMake(0,0,0,0))
+        scroll = UIScrollView()
+        scroll.scrollEnabled = false;
+        scroll.contentSize = CGSizeMake(0, self.view.frame.height + 1000) // coloca o scroll do tamanho da view + 90
+        view.addSubview(scroll)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(CadastroViewController.dismissKeyboard)))
+        
+    }
+    @IBAction func voltar(sender: AnyObject) {
+        print(": aki")
+        performSegueWithIdentifier("cancelar", sender: self)
+    }
+    override func viewWillLayoutSubviews()
+    {
+        super.viewWillLayoutSubviews();
+        
+        self.scroll.frame = self.view.bounds; // Instead of using auto layout
+        self.scroll.contentSize.height = 3000; // Or whatever you want it to be.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    func dismissKeyboard(){
+        self.view.endEditing(true)
     }
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1

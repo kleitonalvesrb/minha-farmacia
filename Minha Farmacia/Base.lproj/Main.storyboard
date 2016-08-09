@@ -165,7 +165,7 @@
                                             <color key="titleColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="QeA-4x-cdh" kind="show" id="fTe-Iw-EmV"/>
+                                            <segue destination="itE-OV-A8F" kind="show" id="SWW-Oj-0hE"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Minha Famárcia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lRl-Zj-yBy">
@@ -215,109 +215,109 @@
                         <outlet property="email" destination="fbO-3H-gSa" id="iDp-It-gpQ"/>
                         <outlet property="scroll" destination="0FX-gX-cZV" id="YE0-gM-oTa"/>
                         <outlet property="senha" destination="Vud-HD-XN8" id="oUd-KJ-kAa"/>
+                        <segue destination="AIG-m8-hpf" kind="show" identifier="login" id="oKu-Z7-Gli"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMg-Hh-Agh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="20.5" y="272.5"/>
         </scene>
-        <!--Cadastro View Controller-->
-        <scene sceneID="8oq-5g-KMo">
+        <!--Tela Cadastro View Controller-->
+        <scene sceneID="ndr-km-PpB">
             <objects>
-                <viewController id="QeA-4x-cdh" customClass="CadastroViewController" customModule="Minha_Farmacia" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="itE-OV-A8F" customClass="TelaCadastroViewController" customModule="Minha_Farmacia" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="1Sm-wr-KVc"/>
-                        <viewControllerLayoutGuide type="bottom" id="unr-dq-VqU"/>
+                        <viewControllerLayoutGuide type="top" id="jhp-3c-ukV"/>
+                        <viewControllerLayoutGuide type="bottom" id="cGs-pf-r65"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eOS-Ws-2I9">
+                    <view key="view" contentMode="scaleToFill" id="Xeb-fA-Xiv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUb-vv-sKF">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X6E-v7-LHX">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Cadastro" id="Qiy-X4-YqL">
-                                        <barButtonItem key="leftBarButtonItem" title="Voltar" id="rNc-WV-hRj">
+                                    <navigationItem title="Cadastro" id="bj7-6u-6Z6">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="j8E-is-iXJ">
                                             <connections>
-                                                <segue destination="TV0-dH-bEQ" kind="show" id="tWO-HV-Tft"/>
+                                                <segue destination="TV0-dH-bEQ" kind="showDetail" id="Xb1-7x-ivP"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IU4-dJ-Ao4">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minha Farmácia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ2-6U-j9T">
-                                        <rect key="frame" x="68" y="60" width="239" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="239" id="JrN-oq-t06"/>
-                                            <constraint firstAttribute="height" constant="31" id="m3z-et-Two"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="APY-fl-nf2">
-                                        <rect key="frame" x="20" y="138" width="336" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="o8Y-2W-oGe">
-                                        <rect key="frame" x="20" y="194" width="336" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gbY-pE-Wbh">
-                                        <rect key="frame" x="20" y="250" width="336" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sexo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7O1-ua-AIC">
-                                        <rect key="frame" x="19" y="306" width="336" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
-                                    </textField>
-                                </subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minha Farmácia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1V-h6-fee">
+                                <rect key="frame" x="69" y="102" width="236" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="JZ2-6U-j9T" secondAttribute="trailing" constant="180" id="0Vr-4N-11t"/>
-                                    <constraint firstItem="JZ2-6U-j9T" firstAttribute="centerX" secondItem="IU4-dJ-Ao4" secondAttribute="centerX" id="4sz-GY-NZo"/>
-                                    <constraint firstItem="gbY-pE-Wbh" firstAttribute="leading" secondItem="o8Y-2W-oGe" secondAttribute="leading" id="5Et-xL-QPD"/>
-                                    <constraint firstItem="gbY-pE-Wbh" firstAttribute="trailing" secondItem="o8Y-2W-oGe" secondAttribute="trailing" id="Hfm-2e-Z8Q"/>
-                                    <constraint firstItem="o8Y-2W-oGe" firstAttribute="leading" secondItem="APY-fl-nf2" secondAttribute="leading" id="Nct-2f-9PH"/>
-                                    <constraint firstItem="JZ2-6U-j9T" firstAttribute="top" secondItem="IU4-dJ-Ao4" secondAttribute="top" constant="60" id="Ve0-6a-GHE"/>
-                                    <constraint firstItem="o8Y-2W-oGe" firstAttribute="top" secondItem="APY-fl-nf2" secondAttribute="bottom" constant="26" id="WJR-Sx-BPl"/>
-                                    <constraint firstAttribute="bottom" secondItem="JZ2-6U-j9T" secondAttribute="bottom" constant="438" id="eRq-Ci-rOq"/>
-                                    <constraint firstItem="APY-fl-nf2" firstAttribute="centerX" secondItem="JZ2-6U-j9T" secondAttribute="centerX" id="iB0-GL-VKw"/>
-                                    <constraint firstItem="APY-fl-nf2" firstAttribute="leading" secondItem="IU4-dJ-Ao4" secondAttribute="leading" constant="20" id="jXp-TB-sFB"/>
-                                    <constraint firstItem="o8Y-2W-oGe" firstAttribute="trailing" secondItem="APY-fl-nf2" secondAttribute="trailing" id="k3V-HY-zpJ"/>
-                                    <constraint firstItem="gbY-pE-Wbh" firstAttribute="top" secondItem="o8Y-2W-oGe" secondAttribute="bottom" constant="26" id="nuJ-hd-9kY"/>
-                                    <constraint firstItem="7O1-ua-AIC" firstAttribute="leading" secondItem="IU4-dJ-Ao4" secondAttribute="leading" constant="19" id="nyd-QY-JJD"/>
-                                    <constraint firstItem="7O1-ua-AIC" firstAttribute="top" secondItem="gbY-pE-Wbh" secondAttribute="bottom" constant="26" id="v8w-Uf-dKw"/>
-                                    <constraint firstItem="7O1-ua-AIC" firstAttribute="centerX" secondItem="JZ2-6U-j9T" secondAttribute="centerX" id="wzl-4g-jVb"/>
-                                    <constraint firstItem="APY-fl-nf2" firstAttribute="top" secondItem="JZ2-6U-j9T" secondAttribute="bottom" constant="47" id="yXp-a2-ICC"/>
+                                    <constraint firstAttribute="height" constant="32" id="0w0-Lw-EgH"/>
+                                    <constraint firstAttribute="width" constant="236" id="sKy-MT-lFw"/>
                                 </constraints>
-                            </scrollView>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nome" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="keV-3r-trD">
+                                <rect key="frame" x="26" y="159" width="323" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rri-aw-OOX">
+                                <rect key="frame" x="26" y="215" width="323" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sCZ-G6-65P">
+                                <rect key="frame" x="26" y="271" width="323" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="sexo" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YJr-0P-50D">
+                                <rect key="frame" x="26" y="327" width="323" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data Nascimento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="62J-d0-hQd">
+                                <rect key="frame" x="26" y="383" width="323" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.086274509803921567" green="0.52549019607843139" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cUb-vv-sKF" firstAttribute="leading" secondItem="IU4-dJ-Ao4" secondAttribute="leading" id="4N8-op-V9M"/>
-                            <constraint firstAttribute="trailing" secondItem="cUb-vv-sKF" secondAttribute="trailing" id="9If-aQ-fKE"/>
-                            <constraint firstItem="cUb-vv-sKF" firstAttribute="top" secondItem="1Sm-wr-KVc" secondAttribute="bottom" id="cm2-9V-qqj"/>
-                            <constraint firstItem="IU4-dJ-Ao4" firstAttribute="bottom" secondItem="unr-dq-VqU" secondAttribute="top" id="pw9-QZ-9HY"/>
-                            <constraint firstItem="cUb-vv-sKF" firstAttribute="trailing" secondItem="IU4-dJ-Ao4" secondAttribute="trailing" id="sO4-sW-wdv"/>
-                            <constraint firstItem="cUb-vv-sKF" firstAttribute="leading" secondItem="eOS-Ws-2I9" secondAttribute="leading" id="tgc-MQ-szK"/>
-                            <constraint firstItem="IU4-dJ-Ao4" firstAttribute="top" secondItem="cUb-vv-sKF" secondAttribute="bottom" id="usy-fV-JxI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="62J-d0-hQd" secondAttribute="trailing" constant="10" id="0pG-hD-viA"/>
+                            <constraint firstItem="h1V-h6-fee" firstAttribute="top" secondItem="X6E-v7-LHX" secondAttribute="bottom" constant="38" id="6WI-nE-mlA"/>
+                            <constraint firstItem="X6E-v7-LHX" firstAttribute="centerX" secondItem="h1V-h6-fee" secondAttribute="centerX" id="7g2-by-1b5"/>
+                            <constraint firstItem="YJr-0P-50D" firstAttribute="leading" secondItem="Xeb-fA-Xiv" secondAttribute="leadingMargin" constant="10" id="CIx-t3-OvN"/>
+                            <constraint firstItem="rri-aw-OOX" firstAttribute="top" secondItem="keV-3r-trD" secondAttribute="bottom" constant="26" id="FuG-6t-7tt"/>
+                            <constraint firstItem="keV-3r-trD" firstAttribute="leading" secondItem="Xeb-fA-Xiv" secondAttribute="leadingMargin" constant="10" id="JZS-hK-6UM"/>
+                            <constraint firstItem="h1V-h6-fee" firstAttribute="centerX" secondItem="Xeb-fA-Xiv" secondAttribute="centerX" id="MiD-aZ-7et"/>
+                            <constraint firstItem="YJr-0P-50D" firstAttribute="top" secondItem="sCZ-G6-65P" secondAttribute="bottom" constant="26" id="NFK-PJ-T18"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rri-aw-OOX" secondAttribute="trailing" constant="10" id="OPY-iM-A60"/>
+                            <constraint firstItem="keV-3r-trD" firstAttribute="top" secondItem="h1V-h6-fee" secondAttribute="bottom" constant="25" id="SQM-hT-t1X"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sCZ-G6-65P" secondAttribute="trailing" constant="10" id="SmH-za-SVW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YJr-0P-50D" secondAttribute="trailing" constant="10" id="WXU-jd-XV6"/>
+                            <constraint firstItem="rri-aw-OOX" firstAttribute="leading" secondItem="Xeb-fA-Xiv" secondAttribute="leadingMargin" constant="10" id="eiE-nW-AgK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="keV-3r-trD" secondAttribute="trailing" constant="10" id="exS-hy-cdG"/>
+                            <constraint firstItem="62J-d0-hQd" firstAttribute="leading" secondItem="Xeb-fA-Xiv" secondAttribute="leadingMargin" constant="10" id="hyL-CR-QmM"/>
+                            <constraint firstItem="X6E-v7-LHX" firstAttribute="top" secondItem="jhp-3c-ukV" secondAttribute="bottom" id="lTG-Qe-Ot6"/>
+                            <constraint firstItem="sCZ-G6-65P" firstAttribute="top" secondItem="rri-aw-OOX" secondAttribute="bottom" constant="26" id="maM-cJ-TuQ"/>
+                            <constraint firstItem="62J-d0-hQd" firstAttribute="top" secondItem="YJr-0P-50D" secondAttribute="bottom" constant="26" id="oPE-dG-979"/>
+                            <constraint firstItem="sCZ-G6-65P" firstAttribute="leading" secondItem="Xeb-fA-Xiv" secondAttribute="leadingMargin" constant="10" id="vru-mP-04n"/>
+                            <constraint firstItem="X6E-v7-LHX" firstAttribute="leading" secondItem="Xeb-fA-Xiv" secondAttribute="leading" id="yhB-3Y-oJk"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="campoSexo" destination="7O1-ua-AIC" id="Jct-lm-Dkb"/>
+                        <outlet property="campoDataNascimento" destination="62J-d0-hQd" id="f7t-i8-zem"/>
+                        <outlet property="campoEmail" destination="rri-aw-OOX" id="qCR-OU-sMB"/>
+                        <outlet property="campoNome" destination="keV-3r-trD" id="Uwp-Pq-o7J"/>
+                        <outlet property="campoSenha" destination="sCZ-G6-65P" id="oab-WW-Zwy"/>
+                        <outlet property="campoSexo" destination="YJr-0P-50D" id="orV-AI-9gw"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lwe-5M-w17" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DQ6-Hu-W02" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="480.5" y="272.5"/>
+            <point key="canvasLocation" x="581.5" y="257.5"/>
         </scene>
         <!--Tela Principal View Controller-->
         <scene sceneID="riZ-Ec-ZvT">
@@ -495,13 +495,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VoU-f1-NvV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="220.5" y="1097.5"/>
+            <point key="canvasLocation" x="-52.5" y="1105.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="Captura de Tela 2016-07-26 às 20.03.44.png" width="1394" height="664"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="w2I-wr-JdM"/>
+        <segue reference="Xb1-7x-ivP"/>
     </inferredMetricsTieBreakers>
 </document>

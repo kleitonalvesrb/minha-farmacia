@@ -16,6 +16,7 @@
 		630C3C791D4AA5D800312CC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 630C3C781D4AA5D800312CC5 /* Assets.xcassets */; };
 		630C3C7C1D4AA5D800312CC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630C3C7A1D4AA5D800312CC5 /* LaunchScreen.storyboard */; };
 		631C142E1D4D1CE60041675F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631C142D1D4D1CE60041675F /* Util.swift */; };
+		6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */; };
 		6376121E1D4EA691004F3D6D /* CadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376121D1D4EA691004F3D6D /* CadastroViewController.swift */; };
 		6393CA671D551904003B3E71 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393CA661D551904003B3E71 /* Alamofire.framework */; };
 		6393CA681D55190E003B3E71 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393CA661D551904003B3E71 /* Alamofire.framework */; };
@@ -61,6 +62,7 @@
 		630C3C7B1D4AA5D800312CC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		630C3C7D1D4AA5D800312CC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		631C142D1D4D1CE60041675F /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaCadastroViewController.swift; sourceTree = "<group>"; };
 		6376121D1D4EA691004F3D6D /* CadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CadastroViewController.swift; sourceTree = "<group>"; };
 		6393CA661D551904003B3E71 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		6393CA6B1D55308F003B3E71 /* TelaPrincipalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaPrincipalViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				631C142D1D4D1CE60041675F /* Util.swift */,
 				630C3C701D4AA5D800312CC5 /* ViewController.swift */,
 				6376121D1D4EA691004F3D6D /* CadastroViewController.swift */,
+				6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */,
 				630C3C721D4AA5D800312CC5 /* Main.storyboard */,
 				6393CA6B1D55308F003B3E71 /* TelaPrincipalViewController.swift */,
 				6308A1CA1D4C66A10042BE2C /* TesteViewController.swift */,
@@ -242,6 +245,7 @@
 				630C3C771D4AA5D800312CC5 /* Minha_Farmacia.xcdatamodeld in Sources */,
 				630C3C6F1D4AA5D800312CC5 /* AppDelegate.swift in Sources */,
 				6393CA6C1D55308F003B3E71 /* TelaPrincipalViewController.swift in Sources */,
+				6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -238,7 +238,8 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Cadastro" id="bj7-6u-6Z6">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="j8E-is-iXJ">
+                                        <barButtonItem key="backBarButtonItem" title="Voltar" id="hvi-cj-Ps1"/>
+                                        <barButtonItem key="leftBarButtonItem" tag="1" title="Cancelar" style="plain" id="j8E-is-iXJ">
                                             <connections>
                                                 <segue destination="TV0-dH-bEQ" kind="showDetail" id="Xb1-7x-ivP"/>
                                             </connections>

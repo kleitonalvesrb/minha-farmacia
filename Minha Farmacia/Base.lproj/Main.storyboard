@@ -319,6 +319,9 @@
                                                 <include reference="Btx-Pn-fa3"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="escolherFoto:" destination="z8F-Fm-bM8" eventType="touchUpInside" id="Gum-3B-bPT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSV-S7-Asg">
                                         <rect key="frame" x="129" y="660" width="124" height="36"/>
@@ -340,6 +343,9 @@
                                                 <include reference="KHP-eO-OM2"/>
                                             </mask>
                                         </variation>
+                                        <connections>
+                                            <action selector="realizarCadastro:" destination="z8F-Fm-bM8" eventType="touchUpInside" id="Y5x-Q6-0wf"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -482,6 +488,14 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="950"/>
+                    <connections>
+                        <outlet property="campoDataNascimento" destination="0FJ-oN-WFi" id="A2Q-D5-DdA"/>
+                        <outlet property="campoEmail" destination="3IT-Za-n1t" id="bCl-i3-GgG"/>
+                        <outlet property="campoNome" destination="mNZ-oh-Qff" id="EcA-0M-Ysc"/>
+                        <outlet property="campoSenha" destination="7I8-FO-w0b" id="bbt-Rb-jIt"/>
+                        <outlet property="campoSexo" destination="HEw-al-JQa" id="d9s-cI-jFJ"/>
+                        <outlet property="fotoPerfil" destination="ph9-tj-8Qa" id="cMW-Uq-VRy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txO-ou-WRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

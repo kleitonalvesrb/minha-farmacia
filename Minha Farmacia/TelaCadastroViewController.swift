@@ -87,9 +87,28 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
 
     @IBAction func realizarCadastro(sender: AnyObject) {
     }
+    /*+2*/
     @IBAction func escolherFoto(sender: AnyObject) {
+        geraAlerta()
     }
 
-
+    func geraAlerta(){
+        let alerta = UIAlertController(title: "Escolher foto de Perfil", message: "", preferredStyle: .ActionSheet)
+        let takeApicture = UIAlertAction(title: "Câmera", style: .Default) { (alert: UIAlertAction!) in
+            print("tirar foto com a camera")
+        }
+        let chooseAPicutre = UIAlertAction(title: "Galeria", style: .Default) { (alert: UIAlertAction!) in
+            print("escolher foto da galeria")
+        }
+        let cancel = UIAlertAction(title: "Cancelar", style: .Cancel) { (alert: UIAlertAction!) in
+            print("cancelar acao")
+        }
+        alerta.addAction(takeApicture)
+        alerta.addAction(chooseAPicutre)
+        alerta.addAction(cancel)
+        
+        self.presentViewController(alerta, animated: true, completion: nil)
+        
+    }
 
 }

@@ -17,6 +17,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var btnFacebook: UIButton!
     @IBOutlet weak var btnCadastrar: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var info: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
     var user = Usuario.sharedInstance
@@ -27,8 +29,10 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 //        UIApplication.sharedApplication().statusBarStyle = .LightContent
-
+        info.hidden = true
         
+        activityIndicator.hidden = true
+        info.layer.cornerRadius = info.frame.size.height / 10
         scroll.scrollEnabled = false
         self.senha.delegate = self
         self.email.delegate = self
@@ -103,7 +107,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
             showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
         }else{
-            print("redireciona")
+            info.hidden = false
+            activityIndicator.hidden = false
+            activityIndicator.startAnimating()
            fazLogin(email.text!, senha: senha.text!)
         }
     }
@@ -116,7 +122,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     }
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{
-        let url = "http://192.168.0.12:8080/WebService/cliente/login/\(email)-\(senha)"
+        let url = "http://10.60.214.100:8080/WebService/cliente/login/\(email)-\(senha)"
         Alamofire.request(.GET, url).authenticate(user: email, password: senha).responseJSON { (response) in
             if let JSON = response.result.value{
                 
@@ -128,6 +134,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     if let idFacebook:String = JSON["idFacebook"] as? String{
                         self.user.idFacebook = idFacebook
                     }else{
+                        
                         self.user.idFacebook = "nao informado"
                     }
                     //trata idade
@@ -178,7 +185,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                 }
             }
 
-            
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.hidden = true
+                self.info.hidden = true
         }
     }
   

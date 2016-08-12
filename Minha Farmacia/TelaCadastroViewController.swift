@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var scroll: UIScrollView!
 
@@ -21,7 +21,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     @IBOutlet weak var campoNome: UITextField!
     var pickerSexo:UIPickerView = UIPickerView()
     
-
+    var user = Usuario.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -95,7 +95,10 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         campoSexo.text = arraySexo[row]
     }
-
+    
+    /*
+        Realiza o cadastro do usuario no servidor
+     */
     @IBAction func realizarCadastro(sender: AnyObject) {
         let valida = Util()
         
@@ -106,7 +109,20 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")
             
         }else{
-            geraAlerta("OK", mensagem: "ok, data de nascimento \(campoDataNascimento.text!)")
+            let url = "http://10.60.214.100:8080/WebService/cliente/inserir"
+            let usuario = ["nome": campoNome.text!,
+                           "email": campoEmail.text!,
+                           "senha": campoSenha.text!,
+                           "sexo":campoSexo.text!,
+                           "dataNascimento":campoDataNascimento.text!,
+                           "foto":user.convertImageToString(fotoPerfil.image!)]
+            Alamofire.request(.POST, url, parameters: usuario, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
+                print(response.result)
+                print(response.debugDescription)
+            })
+            
+            
+            
         }
     }
     /*+2*/

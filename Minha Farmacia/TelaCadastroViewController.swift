@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate {
+class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var scroll: UIScrollView!
 
     
@@ -24,6 +24,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+
 
         pickerSexo.dataSource = self
         pickerSexo.delegate = self
@@ -41,7 +43,12 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         
 
     }
-    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        
+    }
 
 
     override func didReceiveMemoryWarning() {
@@ -56,18 +63,22 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     func textFieldDidBeginEditing(textField: UITextField) {
         if textField == campoDataNascimento{
             let dataPickerView: UIDatePicker = UIDatePicker()
+            dataPickerView.maximumDate = NSDate()
+            
             dataPickerView.datePickerMode = UIDatePickerMode.Date
             campoDataNascimento.inputView = dataPickerView
+            
             dataPickerView.addTarget(self, action: #selector(TelaCadastroViewController.getValueDatePicker), forControlEvents: UIControlEvents.ValueChanged)
-        }else{
-            print("outro campo")
+        }else if textField == campoSexo{
+            print(campoSexo.text)
         }
     }
     /*Pegar o valor da data*/
     func getValueDatePicker(sender: UIDatePicker){
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+    
         campoDataNascimento.text = dateFormatter.stringFromDate(sender.date)
         
     }
@@ -86,22 +97,34 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     }
 
     @IBAction func realizarCadastro(sender: AnyObject) {
+        let valida = Util()
+        
+        if valida.isVazio(campoNome.text!) || valida.isVazio(campoEmail.text!) || valida.isVazio(campoSenha.text!) ||
+                        valida.isVazio(campoSexo.text!) || valida.isVazio(campoDataNascimento.text!){
+            
+            
+            geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")
+            
+        }else{
+            geraAlerta("OK", mensagem: "ok, data de nascimento \(campoDataNascimento.text!)")
+        }
     }
     /*+2*/
     @IBAction func escolherFoto(sender: AnyObject) {
-        geraAlerta()
+        formaDeCapturaFotoPerfil()
     }
 
-    func geraAlerta(){
+    func formaDeCapturaFotoPerfil(){
+        print("sexo \(campoSexo.text) e nome \(campoNome.text)")
         let alerta = UIAlertController(title: "Escolher foto de Perfil", message: "", preferredStyle: .ActionSheet)
         let takeApicture = UIAlertAction(title: "Câmera", style: .Default) { (alert: UIAlertAction!) in
-            print("tirar foto com a camera")
+            self.definirFoto(true)
         }
         let chooseAPicutre = UIAlertAction(title: "Galeria", style: .Default) { (alert: UIAlertAction!) in
-            print("escolher foto da galeria")
+            self.definirFoto(false)
         }
         let cancel = UIAlertAction(title: "Cancelar", style: .Cancel) { (alert: UIAlertAction!) in
-            print("cancelar acao")
+            self.geraAlerta("Foto de Perfil", mensagem: "Tudo bem, você poderá escolher uma foto mais tarde!")
         }
         alerta.addAction(takeApicture)
         alerta.addAction(chooseAPicutre)
@@ -110,5 +133,30 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         self.presentViewController(alerta, animated: true, completion: nil)
         
     }
-
+    func geraAlerta(title: String, mensagem: String){
+        let alerta = UIAlertController(title: title, message: mensagem, preferredStyle: .Alert)
+        alerta.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) in
+            //self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alerta, animated: true, completion: nil)
+        
+    }
+    
+    func definirFoto(camera : Bool){
+        let img = UIImagePickerController()
+        img.delegate = self
+        /*Define a forma que a foto será selecionada, camera ou galeria*/
+        if camera {
+            img.sourceType = UIImagePickerControllerSourceType.Camera
+        }else{
+            img.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        }
+        
+        img.allowsEditing = false
+        self.presentViewController(img, animated: true, completion: nil)
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        fotoPerfil.image = image
+    }
 }

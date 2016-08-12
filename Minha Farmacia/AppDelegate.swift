@@ -17,6 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+//        
+//        var navigationBarAppearace = UINavigationBar.appearance()
+//        
+//        navigationBarAppearace.tintColor = UIColor.init(red: 3, green: 155, blue: 229, alpha: 0.5)
+//        navigationBarAppearace.barTintColor = UIColor.init(red: 3, green: 155, blue: 229, alpha: 0.5)
+//        
+//        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+
+
+        
         let configuration = ParseClientConfiguration {
             $0.applicationId = "1zaDpgGLQxUz3UB9dXPF09ydYlDSZCaizpxib13K"
             $0.clientKey = "RdWVEZfhTAMy7UQNSeyZ5ju5FDbznypEmzw3jYrn"
@@ -62,6 +72,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+    }
+    
+    func uicolorFromHex(rgbValue:UInt32)->UIColor{
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
     }
     
     //--------------------------------------

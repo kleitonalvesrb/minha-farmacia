@@ -26,6 +26,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        UIApplication.sharedApplication().statusBarStyle = .LightContent
+
         
         scroll.scrollEnabled = false
         self.senha.delegate = self
@@ -91,7 +93,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     func showAlert(title: String, msg: String, titleBtn: String){
         let alerta = UIAlertController(title: title, message:msg, preferredStyle: .Alert)
         alerta.addAction(UIAlertAction(title: titleBtn, style: .Default, handler: { (action) in
-            self.dismissViewControllerAnimated(true, completion: nil)
+            //self.dismissViewControllerAnimated(true, completion: nil)
         }))
         self.presentViewController(alerta, animated: true, completion: nil)
     }

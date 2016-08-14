@@ -15,6 +15,8 @@
 		630C3C771D4AA5D800312CC5 /* Minha_Farmacia.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 630C3C751D4AA5D800312CC5 /* Minha_Farmacia.xcdatamodeld */; };
 		630C3C791D4AA5D800312CC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 630C3C781D4AA5D800312CC5 /* Assets.xcassets */; };
 		630C3C7C1D4AA5D800312CC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630C3C7A1D4AA5D800312CC5 /* LaunchScreen.storyboard */; };
+		631154DE1D60392A009C18DA /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 631154DC1D60392A009C18DA /* ok.png */; };
+		631154DF1D60392A009C18DA /* negado.png in Resources */ = {isa = PBXBuildFile; fileRef = 631154DD1D60392A009C18DA /* negado.png */; };
 		631C142E1D4D1CE60041675F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631C142D1D4D1CE60041675F /* Util.swift */; };
 		6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */; };
 		6376121E1D4EA691004F3D6D /* CadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6376121D1D4EA691004F3D6D /* CadastroViewController.swift */; };
@@ -61,6 +63,8 @@
 		630C3C781D4AA5D800312CC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		630C3C7B1D4AA5D800312CC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		630C3C7D1D4AA5D800312CC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		631154DC1D60392A009C18DA /* ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok.png; sourceTree = "<group>"; };
+		631154DD1D60392A009C18DA /* negado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = negado.png; sourceTree = "<group>"; };
 		631C142D1D4D1CE60041675F /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaCadastroViewController.swift; sourceTree = "<group>"; };
 		6376121D1D4EA691004F3D6D /* CadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CadastroViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 			children = (
 				6393CA6F1D55B2A2003B3E71 /* homem.png */,
 				6393CA701D55B2A2003B3E71 /* mulher.png */,
+				631154DC1D60392A009C18DA /* ok.png */,
+				631154DD1D60392A009C18DA /* negado.png */,
 				6393CA731D55B397003B3E71 /* indefinido.png */,
 				6393CA661D551904003B3E71 /* Alamofire.framework */,
 				63A4EB5D1D4ABFE7007C6B20 /* frameworks */,
@@ -223,6 +229,8 @@
 				6308A1CD1D4C6AF00042BE2C /* Captura de Tela 2016-07-26 às 20.03.44.png in Resources */,
 				6393CA711D55B2A2003B3E71 /* homem.png in Resources */,
 				6393CA741D55B397003B3E71 /* indefinido.png in Resources */,
+				631154DF1D60392A009C18DA /* negado.png in Resources */,
+				631154DE1D60392A009C18DA /* ok.png in Resources */,
 				6393CA721D55B2A2003B3E71 /* mulher.png in Resources */,
 				630C3C7C1D4AA5D800312CC5 /* LaunchScreen.storyboard in Resources */,
 				630C3C791D4AA5D800312CC5 /* Assets.xcassets in Resources */,

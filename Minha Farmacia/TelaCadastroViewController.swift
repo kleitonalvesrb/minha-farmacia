@@ -21,6 +21,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     @IBOutlet weak var campoNome: UITextField!
     var pickerSexo:UIPickerView = UIPickerView()
     
+    @IBOutlet weak var imgInfoEmail: UIImageView!
+    @IBOutlet weak var btnCadastrar: UIButton!
     var user = Usuario.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,9 +71,16 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             campoDataNascimento.inputView = dataPickerView
             
             dataPickerView.addTarget(self, action: #selector(TelaCadastroViewController.getValueDatePicker), forControlEvents: UIControlEvents.ValueChanged)
-        }else if textField == campoSexo{
-            print(campoSexo.text)
+        }else if textField != campoEmail && campoEmail.text! != ""{
+            print(campoEmail.text)
+            if !verificaDisponibilidadeEmail(campoEmail.text!){
+                btnCadastrar.userInteractionEnabled = false
+                imgInfoEmail.image = UIImage(named: "negado.png")
+            }
         }
+    }
+    func verificaDisponibilidadeEmail(email:String) -> Bool{
+        return false
     }
     /*Pegar o valor da data*/
     func getValueDatePicker(sender: UIDatePicker){
@@ -109,12 +118,14 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")
             
         }else{
-            let url = "http://10.60.214.100:8080/WebService/cliente/inserir"
+        
+            let url = "http://192.168.0.12:8080/WebService/cliente/inserir"
+            
             let usuario = ["nome": campoNome.text!,
                            "email": campoEmail.text!,
                            "senha": campoSenha.text!,
                            "sexo":campoSexo.text!,
-                           "dataNascimento":campoDataNascimento.text!,
+                           "dataNascimentoString":campoDataNascimento.text!,
                            "foto":user.convertImageToString(fotoPerfil.image!)]
             Alamofire.request(.POST, url, parameters: usuario, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
                 print(response.result)

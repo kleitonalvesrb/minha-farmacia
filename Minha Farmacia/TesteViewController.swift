@@ -39,6 +39,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TesteViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -122,12 +123,12 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     }
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{
-        let url = "http://10.60.214.100:8080/WebService/cliente/login/\(email)-\(senha)"
+        let url = "http://192.168.0.12:8080/WebService/cliente/login/\(email)-\(senha)"
         Alamofire.request(.GET, url).authenticate(user: email, password: senha).responseJSON { (response) in
             if let JSON = response.result.value{
-                
+                print("------->\(response.result.isSuccess) ")
                 if JSON.count != nil{
-                    
+                    print(JSON)
                     self.user.nome = (JSON["nome"] != nil ? JSON["nome"] as! String : "")
                     self.user.email = (JSON["email"] != nil ? JSON["email"] as! String : "")
                     //tratar dados idFacebook
@@ -143,7 +144,6 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     }else{
                         self.user.idade = 0;
                     }
-                    print(self.user.idade)
                     self.user.senha = (JSON["senha"] != nil ? JSON["senha"] as! String : "")
                     //trata sexo
                     if let sexo:String = JSON["sexo"] as? String{

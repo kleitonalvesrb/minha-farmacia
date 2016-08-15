@@ -138,7 +138,17 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                         
                         self.user.idFacebook = "nao informado"
                     }
+                    let strDate = JSON["dataNascimento"] as! String // "2015-10-06T15:42:34Z"
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    
                     //trata idade
+//                    
+//                    if let dataNascimento:String = JSON["dataNascimento"] as? String{
+//                        self.user.idade = dataNascimento;
+//                    }else{
+//                        self.user.i
+//                    }
                     if let idadeString:String = JSON["idade"] as? String{
                         self.user.idade = Int(idadeString)
                     }else{

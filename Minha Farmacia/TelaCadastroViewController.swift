@@ -66,27 +66,57 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         if textField == campoDataNascimento{
             let dataPickerView: UIDatePicker = UIDatePicker()
             dataPickerView.maximumDate = NSDate()
-            
+            dataPickerView.locale = NSLocale(localeIdentifier: "pt-BR")
             dataPickerView.datePickerMode = UIDatePickerMode.Date
+            
             campoDataNascimento.inputView = dataPickerView
             
             dataPickerView.addTarget(self, action: #selector(TelaCadastroViewController.getValueDatePicker), forControlEvents: UIControlEvents.ValueChanged)
         }else if textField != campoEmail && campoEmail.text! != ""{
             print(campoEmail.text)
-            if !verificaDisponibilidadeEmail(campoEmail.text!){
-                btnCadastrar.userInteractionEnabled = false
-                imgInfoEmail.image = UIImage(named: "negado.png")
-            }
+            verificaDisponibilidadeEmail(campoEmail.text!)
+           
         }
-    }
-    func verificaDisponibilidadeEmail(email:String) -> Bool{
-        return false
-    }
+    }/*
+        verifica a disponibilidade do email inserido, caso o email já tenha sido cadastrado
+        uma mensagem de email já utilizado irá aparecer e um x irá aparecer no campo de email
+        indicando que o mesmo está indisponivel, caso o email ainda não tenha sido cadastrado
+        uma imagem de ok será exibida no campo de email
+     */
+    func verificaDisponibilidadeEmail(email:String) -> Void{
+        let url = "http://192.168.0.12:8080/WebService/cliente/consulta-email/\(email)"
+        let emailDic = ["email":email]
+        
+        Alamofire.request(.GET, url, parameters: emailDic).responseJSON { (response) in
+            if let JSON = response.result.value{
+                if JSON.count != nil{
+                    if JSON["email"] as! String == ""{
+                            self.imgInfoEmail.image = UIImage(named: "ok.png")
+                            self.btnCadastrar.userInteractionEnabled = true
+                    }else{
+                        self.imgInfoEmail.image = UIImage(named: "negado.png")
+                        self.btnCadastrar.userInteractionEnabled = false
+//                        self.geraAlerta("Email já utilizado", mensagem: "Caso tenha perdido o a senha, vá em recuperar senha na tela de login!")
+                    }
+                    
+                }else{// else de verificacao do retorno diferente de nulo
+                    self.geraAlerta("Erro", mensagem: "Ocorreu um erro inesperado, tente novamente mais tarde!")
+                    EXIT_FAILURE
+                }
+            }else{// else verificacao da conversao para json
+                self.geraAlerta("Erro", mensagem: "Ocorreu um erro inesperado, tente novamente mais tarde!")
+                
+            }
+            
+        }//fim requisicao
+    }//fim da funcao
     /*Pegar o valor da data*/
     func getValueDatePicker(sender: UIDatePicker){
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "pt-BR")
     
         campoDataNascimento.text = dateFormatter.stringFromDate(sender.date)
         

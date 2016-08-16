@@ -31,8 +31,10 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //        UIApplication.sharedApplication().statusBarStyle = .LightContent
         info.hidden = true
         
+        
         activityIndicator.hidden = true
-        info.layer.cornerRadius = info.frame.size.height / 10
+        info.layer.masksToBounds = true
+        info.layer.cornerRadius = 20
         scroll.scrollEnabled = false
         self.senha.delegate = self
         self.email.delegate = self

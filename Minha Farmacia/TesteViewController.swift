@@ -140,8 +140,12 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     }
                     let strDate = JSON["dataNascimento"] as! String // "2015-10-06T15:42:34Z"
                     let dateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd"
                     
+                    dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+                    dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+                    dateFormatter.locale = NSLocale(localeIdentifier: "pt-BR")
+                    
+                    print(dateFormatter.dateFromString(strDate))
                     //trata idade
 //                    
 //                    if let dataNascimento:String = JSON["dataNascimento"] as? String{
@@ -199,6 +203,57 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                 self.activityIndicator.hidden = true
                 self.info.hidden = true
         }
+    }
+    
+    /**
+        Recuperar senha
+        O metodo irá gerar um alert que irá receber o email do usuario e posteriormente irá fazer uma requisição 
+      no ws pendido a recuperação da senha
+     */
+    @IBAction func recuperarSenha(sender: AnyObject) {
+        let alert = UIAlertController(title: "Recuperar Senha", message: "Digite o email cadastrado", preferredStyle: .Alert)
+        let recuperaSenha = UIAlertAction(title: "Recuperar", style: .Default) { (_) in
+            let emailText = alert.textFields![0] as UITextField
+                // realizar a requisição com o email informado
+                if emailText.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
+                    let dicEmail = ["email":emailText.text!]
+                    // apresenta o carregamento
+                    self.info.hidden = false
+                    self.activityIndicator.hidden = false
+                    self.activityIndicator.startAnimating()
+                    
+                    //Solicitar a requisição com email inforamdo
+                    Alamofire.request(.GET, "http://localhost:8080/WebService/cliente/recupera-senha/\(emailText.text!)",parameters: dicEmail ).responseJSON(completionHandler: { (response) in
+                        if let JSON = response.result.value{ // verifica se a responsta é valida
+                            if JSON.count != nil{ // verifica se possui conteudo
+                                if JSON["email"] as! String != ""{ // verifica se o servidor repondeu que encontrou o email
+                                    self.showAlert("Recuperação de Senha", msg: "Em instantes você receberá um e-mail com sua senha", titleBtn: "OK")
+                                }else{// não encontrou o email da mensagem de alerta
+                                    self.showAlert("Recuperação de Senha", msg: "O e-mail informado não está cadastrado", titleBtn: "OK")
+                                }
+                            }
+                        }
+                        // retira o carregamento da view
+                        self.info.hidden = true
+                        self.activityIndicator.hidden = true
+                        self.activityIndicator.stopAnimating()
+                    })
+                }
+        
+        
+        }
+        
+        
+        alert.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "E-mail"
+            textField.keyboardType = .EmailAddress
+        }
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .Destructive) { (_) in }
+        alert.addAction(recuperaSenha)
+        alert.addAction(cancelAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
   
 //        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

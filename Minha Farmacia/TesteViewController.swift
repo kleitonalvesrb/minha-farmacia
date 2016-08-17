@@ -29,19 +29,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let context: NSManagedObjectContext = appDel.managedObjectContext
-        
-        let teste = NSEntityDescription.insertNewObjectForEntityForName("Teste", inManagedObjectContext: context)
-        teste.setValue("Kleiton", forKey: "nome")
-        teste.setValue("kleiton@gmail.com", forKey: "email")
-        
-        do{
-            try context.save()
-        }catch{
-            print("erro ao salvar")
-        }
-        
+                
         
 //        UIApplication.sharedApplication().statusBarStyle = .LightContent
         info.hidden = true

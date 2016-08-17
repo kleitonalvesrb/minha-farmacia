@@ -12,10 +12,12 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
     var nomes = ["Kleiton","Dina","Thiago","Arnaldo","Franciele","Kelly", "Thaynara"]
+    var destination = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
         collectionView.dataSource = self
+        
         //configurando para a priemria imager ser um sinal de adicao
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
@@ -24,6 +26,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         
         grabPhotos()
         // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(animated: Bool) {
+        destination = 0
     }
     
     func grabPhotos(){
@@ -75,6 +80,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             cell.labelFundo.hidden = true
             cell.labelData.hidden = true
             cell.img.contentMode = .Center
+            
         }else{
             cell.img.image = imgArray[indexPath.row]
             cell.labelData.text = nomes[indexPath.row - 1]
@@ -83,11 +89,14 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row != 0{
-            print("vamos ver os dados do medicamento")
-            
+        if indexPath.row == 0{
+            print("primeiro")
+            destination = 1
         }else{
-            print("vamos adc um medicamento")
+            destination = 0
+           // performSegueWithIdentifier("cadastrarMedicamento", sender: self)
+
+           
         }
     }
     /**
@@ -115,6 +124,11 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1.0
     }
+  
+    /*if let destination = segue.destinationViewController as? RequestViewController{
+     destination.requestLocation = locations[(tableView.indexPathForSelectedRow?.row)!]
+     destination.requestUserName = userNames[(tableView.indexPathForSelectedRow?.row)!]
+     }*/
 
     /*
     // MARK: - Navigation

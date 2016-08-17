@@ -798,16 +798,17 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="collectionView" destination="I0x-vF-epu" id="NDL-KT-AU2"/>
+                        <segue destination="yEv-pj-dzz" kind="show" identifier="visualizarMedicamento" id="qjD-ao-LaG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gm2-li-pz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="501.5" y="1164.5"/>
         </scene>
-        <!--View Controller-->
+        <!--Cadastrar Medicamento View Controller-->
         <scene sceneID="SLn-iW-0r1">
             <objects>
-                <viewController id="yEv-pj-dzz" sceneMemberID="viewController">
+                <viewController id="yEv-pj-dzz" customClass="CadastrarMedicamentoViewController" customModule="Minha_Farmacia" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qmR-x4-G2e"/>
                         <viewControllerLayoutGuide type="bottom" id="jPG-O3-APe"/>
@@ -815,13 +816,36 @@
                     <view key="view" contentMode="scaleToFill" id="BZb-Fd-ayJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehS-I1-A7v">
+                                <rect key="frame" x="159" y="264" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="COO-kM-31T">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="u2o-Ud-Hze">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="xS1-sk-dkz">
+                                            <connections>
+                                                <segue destination="MKv-OB-zz1" kind="showDetail" id="j19-LP-ybL"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="lbl" destination="ehS-I1-A7v" id="Ww8-6i-5ca"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nVe-t1-Guw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="501.5" y="1951.5"/>
+            <point key="canvasLocation" x="570.5" y="2099.5"/>
         </scene>
     </scenes>
     <resources>
@@ -832,7 +856,8 @@
         <image name="receita.png" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0uu-3w-qyg"/>
+        <segue reference="oKu-Z7-Gli"/>
         <segue reference="w2I-wr-JdM"/>
+        <segue reference="j19-LP-ybL"/>
     </inferredMetricsTieBreakers>
 </document>

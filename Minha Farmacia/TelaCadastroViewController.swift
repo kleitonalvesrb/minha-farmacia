@@ -12,13 +12,18 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     @IBOutlet weak var scroll: UIScrollView!
 
     
-    let arraySexo = ["","Masculino", "Feminino", "Outro", "Prefiro não Informar"]
     @IBOutlet weak var fotoPerfil: UIImageView!
     @IBOutlet weak var campoDataNascimento: UITextField!
     @IBOutlet weak var campoSexo: UITextField!
     @IBOutlet weak var campoSenha: UITextField!
     @IBOutlet weak var campoEmail: UITextField!
     @IBOutlet weak var campoNome: UITextField!
+    let arraySexo = ["","Masculino", "Feminino", "Outro", "Prefiro não Informar"]
+//    @IBOutlet weak var campoDataNascimento: UITextField!
+//    @IBOutlet weak var campoSexo: UITextField!
+//    @IBOutlet weak var campoSenha: UITextField!
+//    @IBOutlet weak var campoEmail: UITextField!
+//    @IBOutlet weak var campoNome: UITextField!
     var pickerSexo:UIPickerView = UIPickerView()
     
     @IBOutlet weak var imgInfoEmail: UIImageView!
@@ -45,6 +50,10 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         
 
     }
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -138,6 +147,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     /*
         Realiza o cadastro do usuario no servidor
      */
+  
     @IBAction func realizarCadastro(sender: AnyObject) {
         let valida = Util()
         
@@ -167,6 +177,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         }
     }
     /*+2*/
+   
     @IBAction func escolherFoto(sender: AnyObject) {
         formaDeCapturaFotoPerfil()
     }

@@ -10,6 +10,7 @@ import UIKit
 
 class TelaPrincipalViewController: UIViewController {
 
+    @IBOutlet weak var btnMedicamento: UIBarButtonItem!
     @IBOutlet weak var ImageUsuario: UIImageView!
     @IBOutlet weak var nomeUsuario: UILabel!
     @IBOutlet weak var emailUsuario: UILabel!

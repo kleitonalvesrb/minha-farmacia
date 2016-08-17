@@ -1,5 +1,5 @@
 //
-//  MedicamentoViewController.swift
+//  ReceitaViewController.swift
 //  Farmácia
 //
 //  Created by Kleiton Batista on 17/08/16.
@@ -8,28 +8,28 @@
 
 import UIKit
 import Photos
-class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
+class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
-    var nomes = ["Kleiton","Anna","Meg","Dina","Arnaldo","Thiago","Franciele","Kelly", "Thaynara"]
-    var destination = 0
+    var nomes = ["Kleiton","Anna","Meg","Diná","Arnaldo"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.delegate = self
+        collectionView.delegate = self
         collectionView.dataSource = self
         
-        //configurando para a priemria imager ser um sinal de adicao
-        let imgPlus:UIImageView = UIImageView()
+        //Configurando a primeira imagem
+        let imgPlus = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
-        
-        
         grabPhotos()
-        // Do any additional setup after loading the view.
     }
-    override func viewDidAppear(animated: Bool) {
-        destination = 0
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
+    
     
     func grabPhotos(){
         let imgManager = PHImageManager.defaultManager()
@@ -53,60 +53,48 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+   
     /**
-        Números de sessoes no collection view
+     Números de sessoes no collection view
      */
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     /**
-        Numero de celulas
+     Numero de celulas
      */
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imgArray.count
     }
     /**
-        Configurar cada celula
+     Configurar cada celula
      */
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MedicamentoCollectionViewCell
-       
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ReceitaCollectionViewCell
+        
         if indexPath.row == 0{
             cell.img.image = imgArray[indexPath.row]
-            cell.labelFundo.hidden = true
-            cell.labelData.hidden = true
+            cell.lblData.hidden = true
+            cell.lblFundo.hidden = true
             cell.img.contentMode = .Center
-            
         }else{
             cell.img.image = imgArray[indexPath.row]
-            cell.labelData.text = nomes[indexPath.row - 1]
+            cell.lblData.text = nomes[indexPath.row - 1]
         }
+        
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0{
-            print("primeiro")
-            destination = 1
-        }else{
-            destination = 0
-           // performSegueWithIdentifier("cadastrarMedicamento", sender: self)
-
-           
-        }
     }
     /**
-        tirar a barra de status do iphone
+     tirar a barra de status do iphone
      */
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
     /**
-        Definir o tamanho das celulas e a quantidade
+     Definir o tamanho das celulas e a quantidade
      */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
@@ -116,7 +104,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         
     }
     /**
-        Definir o espacamento entre as celular
+     Definir o espacamento entre as celular
      */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1.0
@@ -124,20 +112,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1.0
     }
-  
-    /*if let destination = segue.destinationViewController as? RequestViewController{
-     destination.requestLocation = locations[(tableView.indexPathForSelectedRow?.row)!]
-     destination.requestUserName = userNames[(tableView.indexPathForSelectedRow?.row)!]
-     }*/
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 class TesteViewController: UIViewController, UITextFieldDelegate{
     
     
@@ -28,6 +29,20 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let context: NSManagedObjectContext = appDel.managedObjectContext
+        
+        let teste = NSEntityDescription.insertNewObjectForEntityForName("Teste", inManagedObjectContext: context)
+        teste.setValue("Kleiton", forKey: "nome")
+        teste.setValue("kleiton@gmail.com", forKey: "email")
+        
+        do{
+            try context.save()
+        }catch{
+            print("erro ao salvar")
+        }
+        
+        
 //        UIApplication.sharedApplication().statusBarStyle = .LightContent
         info.hidden = true
         
@@ -125,7 +140,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     }
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{
-        let url = "http://192.168.0.12:8080/WebService/cliente/login/\(email)-\(senha)"
+        let url = "http://localhost:8080/WebService/cliente/login/\(email)-\(senha)"
         Alamofire.request(.GET, url).authenticate(user: email, password: senha).responseJSON { (response) in
             if let JSON = response.result.value{
                 print("------->\(response.result.isSuccess) ")
@@ -189,11 +204,17 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                             self.user.foto = UIImage(named: "indefinido.png")
                         } //<-- adc um avatar de acordo com o sexo
                     }
+                    //inserir no core data
+                    let util = Util()
+                    util.salvaUsuarioCoreData(self.user)
+
+                    
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                     
                     let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("login") as! TelaPrincipalViewController
                     
                     self.presentViewController(resultViewController, animated:true, completion:nil)
+                    
 
                 }else{
                     
@@ -205,7 +226,35 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                 self.activityIndicator.hidden = true
                 self.info.hidden = true
         }
+    
+    
+   
+//        do{
+//            let results = try context.executeFetchRequest(request)
+//            if results.count > 0{
+//                for result in results as! [NSManagedObject]{
+//                    print("nome \(result.valueForKey("userName")!) Senha \(result.valueForKey("password")!)")
+//                }
+//                
+//                for result in results{
+//                    if let pass = result.password{
+//                        print(pass!)
+//                    }
+//                    if let nome = result.valueForKey("userName"){
+//                        print(nome)
+//                    }else{
+//                        print("nil")
+//                    }
+//                }
+//            }
+//        }catch{
+//            print("erro ao buscar")
+//        }
+        
     }
+
+
+
     
     /**
         Recuperar senha

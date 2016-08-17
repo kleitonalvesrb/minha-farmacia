@@ -19,7 +19,9 @@ class TelaPrincipalViewController: UIViewController {
     var user:Usuario!
     override func viewDidLoad() {
         super.viewDidLoad()
-        user = Usuario.sharedInstance
+        //user = Usuario.sharedInstance
+        let util = Util()
+        user = util.buscarCoreData()
                 // Do any additional setup after loading the view.
     }
     

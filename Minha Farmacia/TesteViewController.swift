@@ -30,8 +30,6 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
 //        UIApplication.sharedApplication().statusBarStyle = .LightContent
         info.hidden = true
-        
-        
         activityIndicator.hidden = true
         info.layer.masksToBounds = true
         info.layer.cornerRadius = 20
@@ -44,13 +42,15 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 
     }
 
-    override func viewDidAppear(animated: Bool) {
-        if user.nome != nil{
-            print("vai trocar")
-            user.nome = ""
-            print("trocou? ->\(user.nome)<-")
-        }
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.hidden = true
+
+    
     }
+//    override func viewDidAppear(animated: Bool) {
+//        self.navigationController?.navigationBar.hidden = true
+//
+//    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -189,12 +189,17 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                             self.user.foto = UIImage(named: "indefinido.png")
                         } //<-- adc um avatar de acordo com o sexo
                     }
+                    
+                   
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                     
                     let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("login") as! TelaPrincipalViewController
                     
+                    let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
+                    self.presentViewController(navController, animated:true, completion: nil)
                     
-                    self.presentViewController(resultViewController, animated:true, completion:nil)
+                    
+//                    self.presentViewController(resultViewController, animated:true, completion:nil)
 
                 }else{
                     

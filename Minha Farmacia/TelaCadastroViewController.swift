@@ -31,7 +31,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     var user = Usuario.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        self.navigationController?.navigationBar.hidden = false
+        self.navigationController?.navigationBar.tintColor = UIColor.redColor()
 
 
         pickerSexo.dataSource = self
@@ -50,9 +51,18 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         
 
     }
-    override func prefersStatusBarHidden() -> Bool {
-        return true
+    override func viewDidAppear(animated: Bool) {
+        // 1
+        // 2
+//        nav ? .barStyle = UIBarStyle .Black
+//        nav ? .tintColor = UIColor .yellowColor ()
+//        // 3
+//        let  imageView = UIImageView ( frame : CGRect ( x : 0 , y : 0 , width : 40 , height : 40 ))
+//        imageView .contentMode = .ScaleAspectFit
     }
+//    override func prefersStatusBarHidden() -> Bool {
+//        return true
+//    }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)

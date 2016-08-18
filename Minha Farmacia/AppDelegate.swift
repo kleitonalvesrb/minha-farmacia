@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        
 //        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
 
-
+        UINavigationBar.appearance().tintColor = UIColor.blueColor()
         
         let configuration = ParseClientConfiguration {
             $0.applicationId = "1zaDpgGLQxUz3UB9dXPF09ydYlDSZCaizpxib13K"

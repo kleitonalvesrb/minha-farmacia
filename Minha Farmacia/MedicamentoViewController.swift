@@ -18,6 +18,12 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.collectionView.delegate = self
         collectionView.dataSource = self
         
+        
+        //let backButton = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MedicamentoViewController.goBack))
+        
+//        let backButton = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:nil)
+//        
+//        navigationItem.leftBarButtonItem = backButton
         //configurando para a priemria imager ser um sinal de adicao
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
@@ -26,6 +32,13 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         
         grabPhotos()
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(animated: Bool) {
+        self.navigationItem.title = "Medicamentos"
+//        self.navigationController?.navigationBar.topItem?.backBarButtonItem?.title = "voltar"
+    }
+    func goBack(){
+        dismissViewControllerAnimated(true, completion: nil)
     }
     override func viewDidAppear(animated: Bool) {
         destination = 0

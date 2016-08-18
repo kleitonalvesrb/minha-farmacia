@@ -90,15 +90,23 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0{
-            print("primeiro")
-            destination = 1
-        }else{
-            destination = 0
-           // performSegueWithIdentifier("cadastrarMedicamento", sender: self)
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+            let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("cadastrarMedicamento") as! CadastrarMedicamentoViewController
+            
+                resultViewController.str = "deve cadastrar"
+            
+            self.presentViewController(resultViewController, animated:true, completion:nil)
 
-           
+        }else{
+            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            let result = storyBoard.instantiateViewControllerWithIdentifier("cadastrarMedicamento") as! CadastrarMedicamentoViewController
+                result.str = "apenas vizualizar"
+            self.presentViewController(result, animated:true, completion:nil)
         }
     }
+   
     /**
         tirar a barra de status do iphone
      */

@@ -193,6 +193,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     
                     let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("login") as! TelaPrincipalViewController
                     
+                    
                     self.presentViewController(resultViewController, animated:true, completion:nil)
 
                 }else{

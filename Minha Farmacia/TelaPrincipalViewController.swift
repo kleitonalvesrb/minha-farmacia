@@ -34,7 +34,6 @@ class TelaPrincipalViewController: UIViewController {
         idFacebook.text = user.idFacebook
         ImageUsuario.image = user.foto
         ImageUsuario.layer.cornerRadius = ImageUsuario.frame.size.height / 2
-        //        ImageUsuario.layer.cornerRadius = 10
         ImageUsuario.clipsToBounds = true
         ImageUsuario.layer.borderWidth = 7
         ImageUsuario.layer.borderColor = UIColor.blueColor().CGColor

@@ -23,7 +23,22 @@ class CadastrarMedicamentoViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.hidden = false
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+
+        
+        self.navigationItem.title = "Cadastro"
+        
+        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
+        button.image = UIImage(named: "back.png")
+        self.navigationItem.leftBarButtonItem = button
+        self.navigationItem.leftBarButtonItem?.style
+    }
+    func goBack(){
+        performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
+
+    }
 
     /*
     // MARK: - Navigation

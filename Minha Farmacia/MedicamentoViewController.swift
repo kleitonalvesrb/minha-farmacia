@@ -17,14 +17,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         super.viewDidLoad()
         self.collectionView.delegate = self
         collectionView.dataSource = self
-        
-        
-        //let backButton = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MedicamentoViewController.goBack))
-        
-//        let backButton = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:nil)
-//        
-//        navigationItem.leftBarButtonItem = backButton
-        //configurando para a priemria imager ser um sinal de adicao
+    
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
@@ -34,15 +27,16 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.hidden = false
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+
         self.navigationItem.title = "Medicamentos"
 //        self.navigationController?.navigationBar.topItem?.backBarButtonItem?.title = "voltar"
     }
     func goBack(){
         dismissViewControllerAnimated(true, completion: nil)
     }
-    override func viewDidAppear(animated: Bool) {
-        destination = 0
-    }
+   
     
     func grabPhotos(){
         let imgManager = PHImageManager.defaultManager()
@@ -103,13 +97,17 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0{
+            
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             
             let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("cadastrarMedicamento") as! CadastrarMedicamentoViewController
+        
+            resultViewController.str = "deve cadastrar"
             
-                resultViewController.str = "deve cadastrar"
+            let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
             
-            self.presentViewController(resultViewController, animated:true, completion:nil)
+            self.presentViewController(navController, animated:true, completion: nil)
+
 
         }else{
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -124,7 +122,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         tirar a barra de status do iphone
      */
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
     }
     /**
         Definir o tamanho das celulas e a quantidade

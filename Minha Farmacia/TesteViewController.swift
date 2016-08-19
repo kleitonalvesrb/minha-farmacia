@@ -23,7 +23,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     var user = Usuario.sharedInstance
     
-
+    // padrao da url
+    let urlPadrao = UrlWS()
   
     
     override func viewDidLoad() {
@@ -44,6 +45,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.hidden = true
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        
+
 
     
     }
@@ -125,7 +129,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     }
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{
-        let url = "http://192.168.0.12:8080/WebService/cliente/login/\(email)-\(senha)"
+        
+        let url = urlPadrao.urlRealizaLogin(email, senha: senha)
         Alamofire.request(.GET, url).authenticate(user: email, password: senha).responseJSON { (response) in
             if let JSON = response.result.value{
                 print("------->\(response.result.isSuccess) ")
@@ -199,7 +204,6 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     self.presentViewController(navController, animated:true, completion: nil)
                     
                     
-//                    self.presentViewController(resultViewController, animated:true, completion:nil)
 
                 }else{
                     
@@ -231,7 +235,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     self.activityIndicator.startAnimating()
                     
                     //Solicitar a requisição com email inforamdo
-                    Alamofire.request(.GET, "http://localhost:8080/WebService/cliente/recupera-senha/\(emailText.text!)",parameters: dicEmail ).responseJSON(completionHandler: { (response) in
+                    Alamofire.request(.GET,self.urlPadrao.urlRecuperarSenha(emailText.text!),parameters: dicEmail ).responseJSON(completionHandler: { (response) in
                         if let JSON = response.result.value{ // verifica se a responsta é valida
                             if JSON.count != nil{ // verifica se possui conteudo
                                 if JSON["email"] as! String != ""{ // verifica se o servidor repondeu que encontrou o email

@@ -26,13 +26,16 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
 //    @IBOutlet weak var campoNome: UITextField!
     var pickerSexo:UIPickerView = UIPickerView()
     
+    //url padrao
+    let urlPadrao = UrlWS()
+    
+    
     @IBOutlet weak var imgInfoEmail: UIImageView!
     @IBOutlet weak var btnCadastrar: UIButton!
     var user = Usuario.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.hidden = false
-        self.navigationController?.navigationBar.tintColor = UIColor.redColor()
 
 
         pickerSexo.dataSource = self
@@ -51,15 +54,31 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         
 
     }
-    override func viewDidAppear(animated: Bool) {
-        // 1
-        // 2
-//        nav ? .barStyle = UIBarStyle .Black
-//        nav ? .tintColor = UIColor .yellowColor ()
-//        // 3
-//        let  imageView = UIImageView ( frame : CGRect ( x : 0 , y : 0 , width : 40 , height : 40 ))
-//        imageView .contentMode = .ScaleAspectFit
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.hidden = false
+     
+
+        self.navigationItem.title = "Cadastro"
+
+        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
+        button.image = UIImage(named: "back.png")
+        self.navigationItem.leftBarButtonItem = button
+        self.navigationItem.leftBarButtonItem?.style 
     }
+    /*
+     override func viewDidLoad() {
+     super.viewDidLoad()
+     
+     var button = UIBarButtonItem(title: "YourTitle", style: UIBarButtonItemStyle.Bordered, target: self, action: "goBack")
+     self.navigationItem.leftBarButtonItem = button
+     
+     }
+     */
+     func goBack(){
+        performSegueWithIdentifier("voltarInicio", sender: self)
+     }
+ 
+
 //    override func prefersStatusBarHidden() -> Bool {
 //        return true
 //    }
@@ -103,10 +122,10 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         uma imagem de ok será exibida no campo de email
      */
     func verificaDisponibilidadeEmail(email:String) -> Void{
-        let url = "http://192.168.0.12:8080/WebService/cliente/consulta-email/\(email)"
+    
         let emailDic = ["email":email]
         
-        Alamofire.request(.GET, url, parameters: emailDic).responseJSON { (response) in
+        Alamofire.request(.GET, urlPadrao.urlConsultaDisponibilidadeEmail(email), parameters: emailDic).responseJSON { (response) in
             if let JSON = response.result.value{
                 if JSON.count != nil{
                     if JSON["email"] as! String == ""{
@@ -169,7 +188,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             
         }else{
         
-            let url = "http://192.168.0.12:8080/WebService/cliente/inserir"
+            let url = urlPadrao.urlCadastrarUsuario()
+            print("-----------> \(url)")
             
             let usuario = ["nome": campoNome.text!,
                            "email": campoEmail.text!,

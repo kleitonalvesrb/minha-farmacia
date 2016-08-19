@@ -30,6 +30,12 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        
+        self.navigationItem.title = "Receitas"
+        
+    }
     
     func grabPhotos(){
         let imgManager = PHImageManager.defaultManager()
@@ -53,7 +59,6 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
         }
     }
 
-   
     /**
      Números de sessoes no collection view
      */
@@ -91,7 +96,7 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
      tirar a barra de status do iphone
      */
     override func prefersStatusBarHidden() -> Bool {
-        return true
+        return false
     }
     /**
      Definir o tamanho das celulas e a quantidade

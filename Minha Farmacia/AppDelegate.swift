@@ -17,15 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//        
-//        var navigationBarAppearace = UINavigationBar.appearance()
-//        
-//        navigationBarAppearace.tintColor = UIColor.init(red: 3, green: 155, blue: 229, alpha: 0.5)
-//        navigationBarAppearace.barTintColor = UIColor.init(red: 3, green: 155, blue: 229, alpha: 0.5)
+        
+//        navigationController?.navigationBar.translucent = false
+//        UINavigationBar.appearance().barTintColor = UIColor(red: 23.0/255.0, green: 27.0/255.0, blue: 113.0/255.0, alpha: 1.0)
+////        
+       let navigationBarAppearace = UINavigationBar.appearance()
+        //self.navigationController?.navigationBar.translucent = false
+
+        navigationBarAppearace.translucent = false
+        //navigationBarAppearace.tintColor = UIColor(red: 23.0/255.0, green: 27.0/255.0, blue: 113.0/255.0, alpha: 1.0)
+
+        navigationBarAppearace.barTintColor = UIColor(red: 23.0/255.0, green: 27.0/255.0, blue: 113.0/255.0, alpha: 1.0)
+
 //        
 //        navigationBarAppearace.titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
 
-        UINavigationBar.appearance().tintColor = UIColor.blueColor()
+            //   UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         
         let configuration = ParseClientConfiguration {
             $0.applicationId = "1zaDpgGLQxUz3UB9dXPF09ydYlDSZCaizpxib13K"

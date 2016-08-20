@@ -63,7 +63,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
         button.image = UIImage(named: "back.png")
         self.navigationItem.leftBarButtonItem = button
-        self.navigationItem.leftBarButtonItem?.style 
+        self.navigationItem.leftBarButtonItem?.style
     }
     /*
      override func viewDidLoad() {
@@ -139,14 +139,13 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
                     
                 }else{// else de verificacao do retorno diferente de nulo
                     self.geraAlerta("Erro", mensagem: "Ocorreu um erro inesperado, tente novamente mais tarde!")
-                    EXIT_FAILURE
                 }
             }else{// else verificacao da conversao para json
                 self.geraAlerta("Erro", mensagem: "Ocorreu um erro inesperado, tente novamente mais tarde!")
-                
+                    print(response.timeline.latency)
             }
             
-        }//fim requisicao
+        }//fim requisica
     }//fim da funcao
     /*Pegar o valor da data*/
     func getValueDatePicker(sender: UIDatePicker){
@@ -187,9 +186,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")
             
         }else{
-        
+            btnCadastrar.userInteractionEnabled = false
             let url = urlPadrao.urlCadastrarUsuario()
-            print("-----------> \(url)")
             
             let usuario = ["nome": campoNome.text!,
                            "email": campoEmail.text!,
@@ -198,13 +196,33 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
                            "dataNascimentoString":campoDataNascimento.text!,
                            "foto":user.convertImageToString(fotoPerfil.image!)]
             Alamofire.request(.POST, url, parameters: usuario, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
+                
+                if response.result.isSuccess{
+                    
+                    //self.geraAlerta("Sucesso", mensagem: "Cadastro realizado com Sucesso")
+                 self.populaUsuario()
+                 self.performSegueWithIdentifier("cadastroTelaPrincipal", sender: self)
+                    
+
+                }else{
+                    self.geraAlerta("Falha", mensagem: "Não foi possível completar o cadastro, tente novamente mais tarde!")
+                }
+                self.btnCadastrar.userInteractionEnabled = true 
                 print(response.result)
-                print(response.debugDescription)
+                print(response.result.value)
             })
             
             
             
         }
+    }
+    func populaUsuario(){
+        user.nome = campoNome.text!
+        user.email = campoEmail.text!
+        user.sexo = campoSexo.text!
+        user.idFacebook = ""
+        user.foto = fotoPerfil.image!
+        
     }
     /*+2*/
    
@@ -213,7 +231,6 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     }
 
     func formaDeCapturaFotoPerfil(){
-        print("sexo \(campoSexo.text) e nome \(campoNome.text)")
         let alerta = UIAlertController(title: "Escolher foto de Perfil", message: "", preferredStyle: .ActionSheet)
         let takeApicture = UIAlertAction(title: "Câmera", style: .Default) { (alert: UIAlertAction!) in
             self.definirFoto(true)

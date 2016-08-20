@@ -16,6 +16,7 @@ class Usuario: NSObject {
     var idFacebook:String!
     var foto:UIImage!
     var sexo:String!
+    var medicamento = [Medicamento]()
     
     static let sharedInstance = Usuario()
     

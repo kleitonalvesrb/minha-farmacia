@@ -9,13 +9,15 @@
 import UIKit
 
 class CadastrarMedicamentoViewController: UIViewController {
-
+    var user = Usuario.sharedInstance
     @IBOutlet weak var lbl: UILabel!
     var str:String = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         lbl.text = str
-
+        let medica = Medicamento()
+        medica.fotoMedicamento = UIImage(named: "remedio.png")
+        user.medicamento.append(medica)
         // Do any additional setup after loading the view.
     }
 
@@ -37,6 +39,7 @@ class CadastrarMedicamentoViewController: UIViewController {
     }
     func goBack(){
         performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
+        
 
     }
 

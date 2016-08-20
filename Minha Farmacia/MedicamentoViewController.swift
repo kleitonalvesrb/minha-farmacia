@@ -12,7 +12,8 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
     var nomes = ["Kleiton","Anna","Meg","Dina","Arnaldo","Thiago","Franciele","Kelly", "Thaynara"]
-    var destination = 0
+    
+    var user = Usuario.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
@@ -21,8 +22,11 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
-        
-        
+        // caso o usuario ja tenha medicamento cadastra, acrecentar no array
+        if user.medicamento.count != 0{
+            imgArray.append(user.medicamento[0].fotoMedicamento)
+            
+        }
         grabPhotos()
         // Do any additional setup after loading the view.
     }
@@ -101,7 +105,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             
             let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("cadastrarMedicamento") as! CadastrarMedicamentoViewController
-        
+            
             resultViewController.str = "deve cadastrar"
             
             let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.

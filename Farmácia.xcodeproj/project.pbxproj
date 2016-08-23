@@ -21,11 +21,16 @@
 		631136F71D68C92B004BA4B8 /* TelaLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631136F61D68C92B004BA4B8 /* TelaLoginViewController.swift */; };
 		631154DE1D60392A009C18DA /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 631154DC1D60392A009C18DA /* ok.png */; };
 		631154DF1D60392A009C18DA /* negado.png in Resources */ = {isa = PBXBuildFile; fileRef = 631154DD1D60392A009C18DA /* negado.png */; };
+		6318397A1D693D4F008BBB18 /* barcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 631839791D693D4F008BBB18 /* barcode.png */; };
 		631C142E1D4D1CE60041675F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631C142D1D4D1CE60041675F /* Util.swift */; };
 		632726691D64EAB800580E18 /* medicamento.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726661D64EAB800580E18 /* medicamento.png */; };
 		6327266A1D64EAB800580E18 /* perfil.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726671D64EAB800580E18 /* perfil.png */; };
 		6327266B1D64EAB800580E18 /* receita.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726681D64EAB800580E18 /* receita.png */; };
 		6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */; };
+		637384CA1D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637384C91D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf */; };
+		637384CC1D6BCF7600DAB413 /* Catherine de Beaumont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637384CB1D6BCF7600DAB413 /* Catherine de Beaumont.ttf */; };
+		637384CE1D6BE74E00DAB413 /* icone1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 637384CD1D6BE74E00DAB413 /* icone1024.png */; };
+		637384D01D6BE80E00DAB413 /* relogio.png in Resources */ = {isa = PBXBuildFile; fileRef = 637384CF1D6BE80E00DAB413 /* relogio.png */; };
 		6382F0CA1D64EEC900958E54 /* MedicamentoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0C91D64EEC900958E54 /* MedicamentoCollectionViewCell.swift */; };
 		6382F0CC1D64EF7E00958E54 /* MedicamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0CB1D64EF7E00958E54 /* MedicamentoViewController.swift */; };
 		6382F0CE1D64F6C200958E54 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 6382F0CD1D64F6C200958E54 /* plus.png */; };
@@ -82,11 +87,16 @@
 		631136F61D68C92B004BA4B8 /* TelaLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TelaLoginViewController.swift; path = ../TelaLoginViewController.swift; sourceTree = "<group>"; };
 		631154DC1D60392A009C18DA /* ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok.png; sourceTree = "<group>"; };
 		631154DD1D60392A009C18DA /* negado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = negado.png; sourceTree = "<group>"; };
+		631839791D693D4F008BBB18 /* barcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barcode.png; sourceTree = "<group>"; };
 		631C142D1D4D1CE60041675F /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		632726661D64EAB800580E18 /* medicamento.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medicamento.png; sourceTree = "<group>"; };
 		632726671D64EAB800580E18 /* perfil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfil.png; sourceTree = "<group>"; };
 		632726681D64EAB800580E18 /* receita.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receita.png; sourceTree = "<group>"; };
 		6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaCadastroViewController.swift; sourceTree = "<group>"; };
+		637384C91D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Casablanca Noir Personal Use.ttf"; sourceTree = "<group>"; };
+		637384CB1D6BCF7600DAB413 /* Catherine de Beaumont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Catherine de Beaumont.ttf"; sourceTree = "<group>"; };
+		637384CD1D6BE74E00DAB413 /* icone1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icone1024.png; sourceTree = "<group>"; };
+		637384CF1D6BE80E00DAB413 /* relogio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = relogio.png; sourceTree = "<group>"; };
 		6382F0C91D64EEC900958E54 /* MedicamentoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedicamentoCollectionViewCell.swift; path = ../MedicamentoCollectionViewCell.swift; sourceTree = "<group>"; };
 		6382F0CB1D64EF7E00958E54 /* MedicamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicamentoViewController.swift; sourceTree = "<group>"; };
 		6382F0CD1D64F6C200958E54 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
@@ -135,6 +145,10 @@
 		630C3C621D4AA5D800312CC5 = {
 			isa = PBXGroup;
 			children = (
+				637384CB1D6BCF7600DAB413 /* Catherine de Beaumont.ttf */,
+				637384CF1D6BE80E00DAB413 /* relogio.png */,
+				637384CD1D6BE74E00DAB413 /* icone1024.png */,
+				637384C91D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf */,
 				6382F0D61D651B4700958E54 /* Imagens */,
 				63A4EB5D1D4ABFE7007C6B20 /* frameworks */,
 				630C3C6D1D4AA5D800312CC5 /* Minha Farmacia */,
@@ -224,6 +238,7 @@
 				6393CA6F1D55B2A2003B3E71 /* homem.png */,
 				6393CA701D55B2A2003B3E71 /* mulher.png */,
 				6382F0CD1D64F6C200958E54 /* plus.png */,
+				631839791D693D4F008BBB18 /* barcode.png */,
 				6382F0CF1D64F96800958E54 /* plus2.png */,
 				631154DC1D60392A009C18DA /* ok.png */,
 				632726661D64EAB800580E18 /* medicamento.png */,
@@ -321,6 +336,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				637384D01D6BE80E00DAB413 /* relogio.png in Resources */,
+				637384CA1D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf in Resources */,
 				631136F51D68BD42004BA4B8 /* minhaf.png in Resources */,
 				6393CA711D55B2A2003B3E71 /* homem.png in Resources */,
 				6327266A1D64EAB800580E18 /* perfil.png in Resources */,
@@ -330,12 +347,15 @@
 				631154DF1D60392A009C18DA /* negado.png in Resources */,
 				631154DE1D60392A009C18DA /* ok.png in Resources */,
 				6382F0CE1D64F6C200958E54 /* plus.png in Resources */,
+				6318397A1D693D4F008BBB18 /* barcode.png in Resources */,
 				6393CA721D55B2A2003B3E71 /* mulher.png in Resources */,
 				6327266B1D64EAB800580E18 /* receita.png in Resources */,
+				637384CE1D6BE74E00DAB413 /* icone1024.png in Resources */,
 				630C3C7C1D4AA5D800312CC5 /* LaunchScreen.storyboard in Resources */,
 				630C3C791D4AA5D800312CC5 /* Assets.xcassets in Resources */,
 				632726691D64EAB800580E18 /* medicamento.png in Resources */,
 				631136F31D681F84004BA4B8 /* remedio.png in Resources */,
+				637384CC1D6BCF7600DAB413 /* Catherine de Beaumont.ttf in Resources */,
 				630C3C741D4AA5D800312CC5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

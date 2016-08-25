@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Alamofire
 class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  AVCaptureMetadataOutputObjectsDelegate  {
     
     var captureSession:AVCaptureSession?
@@ -78,6 +79,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         preenche um novo medicamento e o adc na lista de medicamentos do usuario
      */
     @IBAction func salvar(sender: AnyObject) {
+        let util = Util()
         let medicamento = Medicamento()
         medicamento.apresentacao = campoApresentacao.text
         medicamento.classeTerapeutica = campoClasseTerapeutica.text
@@ -87,7 +89,21 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         medicamento.principioAtivo = campoPrincipioAtivo.text
         medicamento.fotoMedicamento = imgRemedio.image
         user.medicamento.append(medicamento)
-        performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
+        let dicMedicamento = ["codigoBarras":campoCodBarras.text!,
+                           "nomeProduto": campoProduto.text!,
+                           "principioAtivo":campoPrincipioAtivo.text!,
+                           "apresentacao":campoApresentacao.text!,
+                           "laboratorio":campoLaboratorio.text!,
+                           "classeTerapeutica":campoClasseTerapeutica.text!,
+                           "fotoMedicamentoString":util.convertImageToString(imgRemedio.image!)]
+        
+        let url = UrlWS()
+        print(url.urlAtualizarDados(user.email))
+        Alamofire.request(.PUT, url.urlAtualizarDados(user.email), parameters: dicMedicamento, encoding: .JSON, headers: nil).responseJSON { (response) in
+            print(response)
+        }
+        /*Enviar pro servidor*/
+      //  performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
     
     }
     
@@ -129,12 +145,12 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         self.dismissViewControllerAnimated(true, completion: nil)
         imgRemedio.image = image
     }
+    
     /**
         Ler código de barras
      */
     
     func lerCodigoBarras(){
-        // topLabel.text = ""
         
         // Get an instance of the AVCaptureDevice class to initialize a device object and provide the video
         // as the media type parameter.
@@ -169,11 +185,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
             view.layer.addSublayer(videoPreviewLayer!)
             // Start video capture
             captureSession?.startRunning()
-            
-            // Move the message label to the top view
-//            view.bringSubviewToFront(messageLabel)
-            //view.bringSubviewToFront(topLabel)
-            
+   
             // Initialize QR Code Frame to highlight the QR code
             qrCodeFrameView = UIView()
             view.bringSubviewToFront(qrCodeFrameView!)
@@ -190,6 +202,9 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
             return
         }
     }
+    /**
+        Método responsável por realizar a leitura do código de barras do medicamento
+     */
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
         // Check if the metadataObjects array is not nil and it contains at least one object.
@@ -206,26 +221,18 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         // Instead of hardcoding the AVMetadataObjectTypeQRCode, we check if the type
         // can be found in the array of supported bar codes.
         if supportedBarCodes.contains(metadataObj.type) {
-            //        if metadataObj.type == AVMetadataObjectTypeQRCode {
-            // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
+                      // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
             let barCodeObject = videoPreviewLayer?.transformedMetadataObjectForMetadataObject(metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
-              //  messageLabel.text = metadataObj.stringValue
-               // print("--> \(metadataObj.stringValue) <---")
-                //topLabel.text = "Concluido"
+            
                 captureSession?.stopRunning()
-//                videoPreviewLayer?.animationDidStop(nil, finished: true)
-               // self.performSegueWithIdentifier("buscaRemedio", sender: metadataObj)
-              //  Medicamento.barCode = metadataObj.stringValue
-               // print("aki na view ---> \(Medicamento.barCode)")
-                //self.dismissViewControllerAnimated(true, completion: nil)
+            
 
-           videoPreviewLayer?.hidden = true
-            qrCodeFrameView?.hidden = true
-            //videoPreviewLayer?.finalize()
-                //self.view.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
+                videoPreviewLayer?.hidden = true
+                qrCodeFrameView?.hidden = true
+          
                 campoCodBarras.text = metadataObj.stringValue
 
                 buscarMedicamentoNet(metadataObj.stringValue)
@@ -235,58 +242,61 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
             }
         }
     }
-
+/**
+        método responsavel por buscar o medicamento na base de dados e preencher os campos que serão apresentados para o usuário 
+     tem como entrada o número de código de barras que recebe do método que realiza a leitura
+*/
     func buscarMedicamentoNet (barCode: String) -> Void{
-        //   print("entrou")
-        //let url = NSURL(string: "http://mobile-aceite.tcu.gov.br:80/mapa-da-saude/rest/remedios?codBarraEan=\(barCode)")
-        let url = NSURL(string:"http://mobile-aceite.tcu.gov.br/mapa-da-saude/rest/remedios?codBarraEan=\(barCode)&quantidade=1")!
         
-        //  let urlbase = "http://mobile-aceite.tcu.gov.br/mapa-da-saude/rest/remedios?codBarraEan=\(barCode)"
-        //print("url --> \(barCode)")
-        //let url = NSURL(string: urlbase)
+        let url = NSURL(string:"http://mobile-aceite.tcu.gov.br/mapa-da-saude/rest/remedios?codBarraEan=\(barCode)&quantidade=1")!
+      
         let task = NSURLSession.sharedSession().dataTaskWithURL(url){(data, response, error) in
             if let urlContent = data{
                 
                 do{
                     let resultado = try NSJSONSerialization.JSONObjectWithData(urlContent, options: NSJSONReadingOptions.MutableContainers)
                     
-                    //print(resultado["classeTerapeutica"]!)
-                    // print(resultado.length)
-                    //print(resultado.count)
-                    //print("-------->")
                     
                     let res:NSArray = (resultado as! NSArray)
-                    
+                    if res.count != 0 { // verifica se encontrou algo na base de dados
                     //treahd
                     
-                    let qualityOfServiceClass = QOS_CLASS_BACKGROUND
+                        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
                     
-                    let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
-                    dispatch_async(backgroundQueue, {
-                        print("This is run on the background queue")
-                        print("fazer aqui a validação")
+                        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+                        dispatch_async(backgroundQueue, {
+                            print("This is run on the background queue")
+                            print("fazer aqui a validação")
                         
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.campoApresentacao.text = res[0]["apresentacao"] as? String
-                            //                    self.laboratorio.reloadInputViews()
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.campoApresentacao.text = res[0]["apresentacao"] as? String
                             
-                            self.campoClasseTerapeutica.text = res[0]["classeTerapeutica"] as? String
-                            self.campoLaboratorio.text = res[0]["laboratorio"] as? String
-                            self.campoPrincipioAtivo.text = res[0]["principioAtivo"] as? String
-                            self.campoProduto.text = res[0]["produto"] as? String
+                                self.campoClasseTerapeutica.text = res[0]["classeTerapeutica"] as? String
+                                self.campoLaboratorio.text = res[0]["laboratorio"] as? String
+                                self.campoPrincipioAtivo.text = res[0]["principioAtivo"] as? String
+                                self.campoProduto.text = res[0]["produto"] as? String
                             
+                            })
                         })
-                    })
-                    
-                   // print(res[0]["apresentacao"] as! String)
+
+                    }else{//se nao encontrou nada na base de dados deve apresentar uma msg ao usuário
+                        self.showAlert("Não encontrado", msg: "Produto não encontrado na base", titleBtn: "OK")
+                    }
                    
                     
                 }catch{
-                    print(error)
+                    print("nao encontrado")
                 }
             }
         }
         task.resume()
+    }
+    func showAlert(title: String, msg: String, titleBtn: String){
+        let alerta = UIAlertController(title: title, message:msg, preferredStyle: .Alert)
+        alerta.addAction(UIAlertAction(title: titleBtn, style: .Default, handler: { (action) in
+            //self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alerta, animated: true, completion: nil)
     }
 
     /*

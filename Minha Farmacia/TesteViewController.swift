@@ -149,7 +149,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
             if let JSON = response.result.value{
                 print("------->\(response.result.isSuccess) ")
                 if JSON.count != nil{
-                    self.t(JSON)
+                   // self.t(JSON)
                     
 //                    if (JSON["medicamentos"] == nil){
 //                        	print("vazio")

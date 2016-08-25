@@ -12,12 +12,20 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     
     @IBOutlet weak var scroll: UIScrollView!
+   // @IBOutlet weak var senha: UITextField!
     @IBOutlet weak var senha: UITextField!
+   // @IBOutlet weak var email: UITextField!
     @IBOutlet weak var email: UITextField!
+    //@IBOutlet weak var btnFacebook: UIButton!
+    //@IBOutlet weak var btnFacebook: UIButton!
     @IBOutlet weak var btnFacebook: UIButton!
+    //@IBOutlet weak var btnCadastrar: UIButton!
     @IBOutlet weak var btnCadastrar: UIButton!
+    //@IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
+   // @IBOutlet weak var info: UILabel!
     @IBOutlet weak var info: UILabel!
+    //@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
@@ -30,11 +38,13 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
 //        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        btnLogin.layer.cornerRadius = 5
+        btnFacebook.layer.cornerRadius = 5
         info.hidden = true
         activityIndicator.hidden = true
         info.layer.masksToBounds = true
         info.layer.cornerRadius = 20
-        scroll.scrollEnabled = false
+       // scroll.scrollEnabled = false
         self.senha.delegate = self
         self.email.delegate = self
         
@@ -60,7 +70,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         // Dispose of any resources that can be recreated.
     }
     func textFieldDidBeginEditing(textField: UITextField) {
-        
+        /*
          /*Verifica se é o tamanho de tela do Iphone 5 / 5s / SE*/
         if self.view.frame.height == 568{
             scroll.scrollEnabled = true // habilita o scroll
@@ -77,7 +87,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
             if senha == textField{
                 scroll.setContentOffset(CGPointMake(0, 150), animated: true)
             }
-        }
+        }*/
     }
 
     func dismissKeyboard() ->Void{
@@ -85,8 +95,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        scroll.setContentOffset(CGPointMake(0, 0), animated: true)
-        scroll.scrollEnabled = false
+        //scroll.setContentOffset(CGPointMake(0, 0), animated: true)
+        //scroll.scrollEnabled = false
     }
   
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -108,7 +118,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         }))
         self.presentViewController(alerta, animated: true, completion: nil)
     }
- 
+//
+//    @IBAction func login(sender: AnyObject) {
+//    }
     @IBAction func login(sender: AnyObject) {
         let util = Util()
         if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
@@ -121,6 +133,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         }
     }
     
+//    @IBAction func loginFacebook(sender: AnyObject) {
+//    }
     @IBAction func loginFacebook(sender: AnyObject) {
         //let permission = ["public_profile"]
         //PFFacebookUtils.logInInBackgroundWithReadPermissions(permission)
@@ -135,7 +149,17 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
             if let JSON = response.result.value{
                 print("------->\(response.result.isSuccess) ")
                 if JSON.count != nil{
-                    print(JSON)
+                    self.t(JSON)
+                    
+//                    if (JSON["medicamentos"] == nil){
+//                        	print("vazio")
+//                    }else{
+//                        print(JSON["medicamentos"])
+//                    }
+                    if let res:NSArray = (JSON["medicamentos"] as? NSArray){
+                        print(res)
+                    }
+
                     self.user.nome = (JSON["nome"] != nil ? JSON["nome"] as! String : "")
                     self.user.email = (JSON["email"] != nil ? JSON["email"] as! String : "")
                     //tratar dados idFacebook
@@ -216,12 +240,17 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                 self.info.hidden = true
         }
     }
-    
+    func t (i: AnyObject){
+        
+        print(i)
+    }
     /**
         Recuperar senha
         O metodo irá gerar um alert que irá receber o email do usuario e posteriormente irá fazer uma requisição 
       no ws pendido a recuperação da senha
      */
+//    @IBAction func recuperarSenha(sender: AnyObject) {
+//    }
     @IBAction func recuperarSenha(sender: AnyObject) {
         let alert = UIAlertController(title: "Recuperar Senha", message: "Digite o email cadastrado", preferredStyle: .Alert)
         let recuperaSenha = UIAlertAction(title: "Recuperar", style: .Default) { (_) in

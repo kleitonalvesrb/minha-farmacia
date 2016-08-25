@@ -11,7 +11,7 @@ import Photos
 class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
-    var nomes = ["Kleiton","Anna","Meg","Dina","Arnaldo","Thiago","Franciele","Kelly", "Thaynara"]
+    var nomes = [String]() //["Kleiton","Anna","Meg","Dina","Arnaldo","Thiago","Franciele","Kelly", "Thaynara"]
     
     var user = Usuario.sharedInstance
     override func viewDidLoad() {
@@ -22,15 +22,23 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
-        // caso o usuario ja tenha medicamento cadastra, acrecentar no array
-        if user.medicamento.count != 0{
-            imgArray.append(user.medicamento[0].fotoMedicamento)
-            
+        for remedio in user.medicamento{
+            print(remedio.nome)
+            imgArray.append(remedio.fotoMedicamento)
+            nomes.append(remedio.nome)
         }
-        grabPhotos()
+        // caso o usuario ja tenha medicamento cadastra, acrecentar no array
+        //grabPhotos()
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
+        let navigationBarAppearace = UINavigationBar.appearance()
+        //self.navigationController?.navigationBar.translucent = false
+        
+        navigationBarAppearace.translucent = false
+        //navigationBarAppearace.tintColor = UIColor(red: 23.0/255.0, green: 27.0/255.0, blue: 113.0/255.0, alpha: 1.0)
+        
+        navigationBarAppearace.barTintColor = UIColor(red: 53.0/255.0, green: 168.0/255.0, blue: 176.0/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.hidden = false
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
 

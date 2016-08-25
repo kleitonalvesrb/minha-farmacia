@@ -10,7 +10,7 @@ import UIKit
 
 class UrlWS: NSObject {
     
-    private let host = "localhost"
+    private let host = "192.168.0.12"
     private let porta = "8080"
     private let rota = "/WebService/cliente/"
  

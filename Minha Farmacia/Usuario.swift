@@ -23,6 +23,7 @@ class Usuario: NSObject {
     func convertStringToImage(str: String) -> UIImage{
         let imageData = NSData(base64EncodedString: str, options: .IgnoreUnknownCharacters)
         let imageConvertida = UIImage(data:imageData!)
+        
         return imageConvertida!
     }
    

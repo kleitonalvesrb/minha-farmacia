@@ -10,4 +10,10 @@ import UIKit
 
 class Medicamento: NSObject {
     var fotoMedicamento: UIImage!
+    var codBarras:String!
+    var nome:String!
+    var principioAtivo:String!
+    var apresentacao:String!
+    var laboratorio:String!
+    var classeTerapeutica:String!
 }

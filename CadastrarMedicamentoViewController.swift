@@ -98,8 +98,8 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
                            "fotoMedicamentoString":util.convertImageToString(imgRemedio.image!)]
         
         let url = UrlWS()
-        print(url.urlAtualizarDados(user.email))
-        Alamofire.request(.PUT, url.urlAtualizarDados(user.email), parameters: dicMedicamento, encoding: .JSON, headers: nil).responseJSON { (response) in
+        print(url.urlInsereMedicamentoUsuario(user.email))
+        Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters: dicMedicamento, encoding: .JSON, headers: nil).responseJSON { (response) in
             print(response)
         }
         /*Enviar pro servidor*/

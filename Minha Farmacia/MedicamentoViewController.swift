@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import Alamofire
 class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
@@ -19,6 +20,12 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.collectionView.delegate = self
         collectionView.dataSource = self
     
+        
+        /*
+            teste busca dos medicamentos
+         */
+        buscaMedicamentos()
+        /* fim do teste*/
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
@@ -48,7 +55,28 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     func goBack(){
         dismissViewControllerAnimated(true, completion: nil)
     }
-   
+    /**
+        O método irá buscar os dados do medicamento que estão na base de dados
+     */
+    func buscaMedicamentos(){
+        let url = UrlWS()
+        Alamofire.request(.GET, url.urlBuscaMedicamentoUsuario(user.email)).responseJSON { (response) in
+            if let JSON = response.result.value{
+                if JSON.count != nil{
+                   // print(JSON)
+                    if let medicamentos:NSArray = (JSON["medicamento"] as? NSArray){
+                       // print(medicamentos)
+                       print(medicamentos[0]["apresentacao"])
+                        for i in medicamentos{
+                            print(i["apresentacao"])
+                        }
+                    }
+                }else{
+                    print("nao tem medicamentos")
+                }
+            }
+        }
+    }
     
     func grabPhotos(){
         let imgManager = PHImageManager.defaultManager()

@@ -13,12 +13,19 @@ class UrlWS: NSObject {
     private let host = "192.168.0.12"
     private let porta = "8080"
     private let rota = "/WebService/cliente/"
+    private let rotaMedicamento = "/WebService/medicamento/"
     /**
         url para atualizar dados do usuario
      
      */
-    func urlAtualizarDados(email: String) -> String{
-            return "http://\(host):\(porta)\(rota)atualizar/\(email)"
+    func urlInsereMedicamentoUsuario(email: String) -> String{
+            return "http://\(host):\(porta)\(rotaMedicamento)atualizar/\(email)"
+    }
+    /**
+        http://localhost:8080/WebService/medicamento/busca-medicamento/user-email/kleiton@gmail.com
+     */
+    func urlBuscaMedicamentoUsuario(email: String) -> String{
+        return "http://\(host):\(porta)\(rotaMedicamento)busca-medicamento/user-email/\(email)"
     }
     
     /**

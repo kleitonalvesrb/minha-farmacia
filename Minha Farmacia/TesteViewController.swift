@@ -157,9 +157,12 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //                        print(JSON["medicamentos"])
 //                    }
                     if let res:NSArray = (JSON["medicamentos"] as? NSArray){
-                        print(res)
+                        
                     }
-
+                    //recebe o id do usuario
+                    if let idUsuario = JSON["idUsuario"] as? String{
+                        self.user.id = Int(idUsuario)
+                    }
                     self.user.nome = (JSON["nome"] != nil ? JSON["nome"] as! String : "")
                     self.user.email = (JSON["email"] != nil ? JSON["email"] as! String : "")
                     //tratar dados idFacebook
@@ -176,7 +179,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
                     dateFormatter.locale = NSLocale(localeIdentifier: "pt-BR")
                     
-                    print(dateFormatter.dateFromString(strDate))
+                    print(dateFormatter.dateFromString(strDate),"<--- data")
                     //trata idade
 //                    
 //                    if let dataNascimento:String = JSON["dataNascimento"] as? String{

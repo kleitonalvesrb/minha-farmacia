@@ -26,7 +26,6 @@ class TelaPrincipalViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
       
-
         nomeUsuario.text = user.nome
         emailUsuario.text = user.email
         sexoUsuario.text = user.sexo

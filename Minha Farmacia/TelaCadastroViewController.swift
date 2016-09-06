@@ -111,7 +111,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             
             dataPickerView.addTarget(self, action: #selector(TelaCadastroViewController.getValueDatePicker), forControlEvents: UIControlEvents.ValueChanged)
         }else if textField != campoEmail && campoEmail.text! != ""{
-            print(campoEmail.text)
+//            print(campoEmail.text)
             verificaDisponibilidadeEmail(campoEmail.text!)
            
         }
@@ -195,9 +195,11 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
                            "sexo":campoSexo.text!,
                            "dataNascimentoString":campoDataNascimento.text!,
                            "foto":user.convertImageToString(fotoPerfil.image!)]
+            
             Alamofire.request(.POST, url, parameters: usuario, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
-                
+                print("---->",response.result,"<-----")
                 if response.result.isSuccess{
+                    
                     
                     //self.geraAlerta("Sucesso", mensagem: "Cadastro realizado com Sucesso")
                  self.populaUsuario()
@@ -205,12 +207,36 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
                     
 
                 }else{
+                    print(response.description,"<-------")
                     self.geraAlerta("Falha", mensagem: "Não foi possível completar o cadastro, tente novamente mais tarde!")
                 }
                 self.btnCadastrar.userInteractionEnabled = true 
                 print(response.result)
                 print(response.result.value)
             })
+        
+                
+            
+            
+            
+//            Alamofire.request(.POST, "http://minhafarmacia-env.us-west-2.elasticbeanstalk.com/cliente/inserir", parameters: usuario, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
+//                
+//                if response.result.isSuccess{
+//                    
+//                    //self.geraAlerta("Sucesso", mensagem: "Cadastro realizado com Sucesso")
+//                    self.populaUsuario()
+//                    self.performSegueWithIdentifier("cadastroTelaPrincipal", sender: self)
+//                    
+//                    
+//                }else{
+//                    print(response.description,"<-------")
+//                    self.geraAlerta("Falha", mensagem: "Não foi possível completar o cadastro, tente novamente mais tarde!")
+//                }
+//                self.btnCadastrar.userInteractionEnabled = true
+//                print(response.result)
+//                print(response.result.value)
+//            })
+
             
             
             

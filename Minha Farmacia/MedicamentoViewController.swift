@@ -13,7 +13,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
     var nomes = [String]() //["Kleiton","Anna","Meg","Dina","Arnaldo","Thiago","Franciele","Kelly", "Thaynara"]
-    
+    let util = Util()
     var user = Usuario.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,24 +21,21 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         collectionView.dataSource = self
     
         
-        /*
-            teste busca dos medicamentos
-         */
-        buscaMedicamentos()
-        /* fim do teste*/
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
-        for remedio in user.medicamento{
+        /*for remedio in user.medicamento{
             print(remedio.nome)
             imgArray.append(remedio.fotoMedicamento)
             nomes.append(remedio.nome)
-        }
+        }*/
         // caso o usuario ja tenha medicamento cadastra, acrecentar no array
         //grabPhotos()
         // Do any additional setup after loading the view.
     }
+    
     override func viewWillAppear(animated: Bool) {
+        buscaMedicamentos()
         let navigationBarAppearace = UINavigationBar.appearance()
         //self.navigationController?.navigationBar.translucent = false
         
@@ -63,18 +60,57 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         Alamofire.request(.GET, url.urlBuscaMedicamentoUsuario(user.email)).responseJSON { (response) in
             if let JSON = response.result.value{
                 if JSON.count != nil{
-                   // print(JSON)
+                    print(JSON)
                     if let medicamentos:NSArray = (JSON["medicamento"] as? NSArray){
                        // print(medicamentos)
-                       print(medicamentos[0]["apresentacao"])
+                       //print(medicamentos[0]["apresentacao"])
                         for i in medicamentos{
-                            print(i["apresentacao"])
-                        }
+                            //fotoMedicamento, codBarras, nome, principioAtivo, apresentacao, laboratorio, classeTerapeutica
+                            let medicamentoAux = Medicamento()
+                            
+                            if let apresentacao = i["apresentacao"] as? String{
+                                medicamentoAux.apresentacao = apresentacao
+                            }
+                            if let codBarras = i["codigoBarras"] as? String{
+                                medicamentoAux.codBarras = codBarras
+                            }
+                            if let nome = i["nomeProduto"] as? String{
+                                medicamentoAux.nome = nome
+                            }
+                            if let principioAtivo = i["principioAtivo"] as? String{
+                                medicamentoAux.principioAtivo = principioAtivo
+                            }
+                            if let laboratorio = i["laboratorio"] as? String{
+                                medicamentoAux.laboratorio = laboratorio
+                            }
+                            if let classeTerapeutica = i["classeTerapeutica"] as? String{
+                                medicamentoAux.classeTerapeutica = classeTerapeutica
+                            }
+                            if let fotoString = i["fotoMedicamentoString"] as? String{
+                                var img = UIImage();
+                                img = self.util.convertStringToImage(fotoString)
+                                medicamentoAux.fotoMedicamento = img
+                                
+                            }
+                            self.user.medicamento.append(medicamentoAux)
+                            
+                            
+                        }//fecha o for
                     }
+//                    print(self.user.medicamento[0].apresentacao)
+                    for remedio in self.user.medicamento{
+                        print(remedio.nome)
+                        self.imgArray.append(remedio.fotoMedicamento)
+                        self.nomes.append(remedio.nome)
+                    }
+                    self.collectionView.reloadData()
+                    
                 }else{
                     print("nao tem medicamentos")
                 }
+                
             }
+           
         }
     }
     

@@ -10,15 +10,17 @@ import UIKit
 
 class UrlWS: NSObject {
     
-    private let host = "192.168.0.12"
-    private let porta = "8080"
-    private let rota = "/WebService/cliente/"
-    private let rotaMedicamento = "/WebService/medicamento/"
+    private let host = "minhafarmacia-env.us-west-2.elasticbeanstalk.com"
+    //private let host = "localhost"
+    private let porta = "80"
+    private let rota = "/cliente/"
+    private let rotaMedicamento = "/medicamento/"
     /**
         url para atualizar dados do usuario
      
      */
     func urlInsereMedicamentoUsuario(email: String) -> String{
+        
             return "http://\(host):\(porta)\(rotaMedicamento)atualizar/\(email)"
     }
     /**

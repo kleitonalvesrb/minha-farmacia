@@ -34,6 +34,9 @@ class Util: NSObject {
         let base64String = image.base64EncodedStringWithOptions([])
         return base64String
     }
+    
+  
+    
 
     
 }

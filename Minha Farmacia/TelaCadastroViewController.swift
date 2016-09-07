@@ -18,12 +18,9 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     @IBOutlet weak var campoSenha: UITextField!
     @IBOutlet weak var campoEmail: UITextField!
     @IBOutlet weak var campoNome: UITextField!
+    @IBOutlet weak var btnEscolherImg: UIButton!
     let arraySexo = ["","Masculino", "Feminino", "Outro", "Prefiro não Informar"]
-//    @IBOutlet weak var campoDataNascimento: UITextField!
-//    @IBOutlet weak var campoSexo: UITextField!
-//    @IBOutlet weak var campoSenha: UITextField!
-//    @IBOutlet weak var campoEmail: UITextField!
-//    @IBOutlet weak var campoNome: UITextField!
+
     var pickerSexo:UIPickerView = UIPickerView()
     
     //url padrao
@@ -36,7 +33,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        btnCadastrar.layer.cornerRadius = 5
+        btnEscolherImg.layer.cornerRadius = 5
 
         pickerSexo.dataSource = self
         pickerSexo.delegate = self
@@ -51,29 +49,25 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     
 
 
-        
+        configuracaoNavBar()
 
     }
-    override func viewWillAppear(animated: Bool) {
+    func configuracaoNavBar(){
         self.navigationController?.navigationBar.hidden = false
-     
-
+        
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         self.navigationItem.title = "Cadastro"
-
-        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
-        button.image = UIImage(named: "back.png")
-        self.navigationItem.leftBarButtonItem = button
-        self.navigationItem.leftBarButtonItem?.style
+//        //
+//        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
+//        button.image = UIImage(named: "back.png")
+//        self.navigationItem.leftBarButtonItem = button
+//        self.navigationItem.leftBarButtonItem?.style
     }
-    /*
-     override func viewDidLoad() {
-     super.viewDidLoad()
-     
-     var button = UIBarButtonItem(title: "YourTitle", style: UIBarButtonItemStyle.Bordered, target: self, action: "goBack")
-     self.navigationItem.leftBarButtonItem = button
-     
-     }
-     */
+    
+    override func viewWillAppear(animated: Bool) {
+        configuracaoNavBar()
+    }
+
      func goBack(){
         performSegueWithIdentifier("voltarInicio", sender: self)
      }
@@ -83,13 +77,6 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
 //        return true
 //    }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
-        
-    }
-
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

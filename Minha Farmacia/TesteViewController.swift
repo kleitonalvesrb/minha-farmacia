@@ -12,20 +12,12 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     
     @IBOutlet weak var scroll: UIScrollView!
-   // @IBOutlet weak var senha: UITextField!
     @IBOutlet weak var senha: UITextField!
-   // @IBOutlet weak var email: UITextField!
     @IBOutlet weak var email: UITextField!
-    //@IBOutlet weak var btnFacebook: UIButton!
-    //@IBOutlet weak var btnFacebook: UIButton!
     @IBOutlet weak var btnFacebook: UIButton!
-    //@IBOutlet weak var btnCadastrar: UIButton!
     @IBOutlet weak var btnCadastrar: UIButton!
-    //@IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnLogin: UIButton!
-   // @IBOutlet weak var info: UILabel!
     @IBOutlet weak var info: UILabel!
-    //@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     
@@ -37,7 +29,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        
+        configuraNavBar()
+        
         btnLogin.layer.cornerRadius = 5
         btnFacebook.layer.cornerRadius = 5
         info.hidden = true
@@ -54,12 +48,13 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     }
 
     override func viewWillAppear(animated: Bool) {
+        configuraNavBar()
+    }
+    
+    func configuraNavBar(){
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
         self.navigationController?.navigationBar.hidden = true
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
-        
-
-
-    
     }
 //    override func viewDidAppear(animated: Bool) {
 //        self.navigationController?.navigationBar.hidden = true
@@ -110,7 +105,16 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         return true
     }
   
+    /**
+        Botão cadastro, acao que leva para tela de cadastro
+     */
+    @IBAction func Cadastrar(sender: AnyObject) {
+        performSegueWithIdentifier("cadastrar", sender: self)
+    }
     
+    /**
+     Apresenta alerta na tela
+     */
     func showAlert(title: String, msg: String, titleBtn: String){
         let alerta = UIAlertController(title: title, message:msg, preferredStyle: .Alert)
         alerta.addAction(UIAlertAction(title: titleBtn, style: .Default, handler: { (action) in
@@ -186,13 +190,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     dateFormatter.locale = NSLocale(localeIdentifier: "pt-BR")
                     
                     print(dateFormatter.dateFromString(strDate),"<--- data")
-                    //trata idade
-//                    
-//                    if let dataNascimento:String = JSON["dataNascimento"] as? String{
-//                        self.user.idade = dataNascimento;
-//                    }else{
-//                        self.user.i
-//                    }
+
                     if let idadeString:String = JSON["idade"] as? String{
                         self.user.idade = Int(idadeString)
                     }else{
@@ -258,8 +256,6 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         O metodo irá gerar um alert que irá receber o email do usuario e posteriormente irá fazer uma requisição 
       no ws pendido a recuperação da senha
      */
-//    @IBAction func recuperarSenha(sender: AnyObject) {
-//    }
     @IBAction func recuperarSenha(sender: AnyObject) {
         let alert = UIAlertController(title: "Recuperar Senha", message: "Digite o email cadastrado", preferredStyle: .Alert)
         let recuperaSenha = UIAlertAction(title: "Recuperar", style: .Default) { (_) in
@@ -305,95 +301,6 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         self.presentViewController(alert, animated: true, completion: nil)
         
     }
-  
-//        override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//            if segue.identifier == "logoutMotorista"{
-//                navigationController?.setNavigationBarHidden(true, animated: false)
-//                PFUser.logOut()
-//            }else if segue.identifier == "verPedido"{
-//                if let destination = segue.destinationViewController as? RequestViewController{
-//                    destination.requestLocation = locations[(tableView.indexPathForSelectedRow?.row)!]
-//                    destination.requestUserName = userNames[(tableView.indexPathForSelectedRow?.row)!]
-//                }
-//            }
-//        }
-    
-//
-    /*
-     Alamofire.request(.GET, url).responseJSON { (response) in
-     if let JSON = response.result.value{
-     if JSON.count != nil{
-     print("aki")
-     isAutenticado = true
-     
-     self.user.nome = (JSON["nome"] != nil ? JSON["nome"] as! String : "")
-     self.user.email = (JSON["email"] != nil ? JSON["email"] as! String : "")
-     //tratar dados idFacebook
-     if let idFacebook:String = JSON["idFacebook"] as? String{
-     self.user.idFacebook = idFacebook
-     }else{
-     self.user.idFacebook = "nao informado"
-     }
-     //trata idade
-     if let idadeString:String = JSON["idade"] as? String{
-     print(idadeString,"<--")
-     self.user.idade = Int(idadeString)
-     }else{
-     self.user.idade = 0;
-     print("nao conseguiu")
-     }
-     print(self.user.idade)
-     self.user.senha = (JSON["senha"] != nil ? JSON["senha"] as! String : "")
-     //trata sexo
-     if let sexo:String = JSON["sexo"] as? String{
-     self.user.sexo = sexo
-     }else{
-     self.user.sexo = "Não informado"
-     }
-     //trata imagem
-     if let imgString:String = JSON["foto"] as? String{
-     if imgString.characters.count > 10{
-     self.user.foto = self.user.convertStringToImage(imgString)
-     }else{
-     if self.user.sexo.lowercaseString == "masculino"{
-     self.user.foto = UIImage(named: "homem.png")
-     }else if self.user.sexo.lowercaseString == "feminino"{
-     self.user.foto = UIImage(named: "mulher.png")
-     }else{
-     self.user.foto = UIImage(named: "indefinido.png")
-     }
-     }
-     }else{
-     if self.user.sexo.lowercaseString == "masculino"{
-     self.user.foto = UIImage(named: "homem.png")
-     }else if self.user.sexo.lowercaseString == "feminino"{
-     self.user.foto = UIImage(named: "mulher.png")
-     }else{
-     self.user.foto = UIImage(named: "indefinido.png")
-     } //<-- adc um avatar de acordo com o sexo
-     }
-     //self.performSegueWithIdentifier("loginEfetuado", sender: self)
-     }else{
-     self.showAlert("Ops", msg: "Usuário ou Senha incorreto!", titleBtn: "ok")
-     }
-     }
-     if isAutenticado{
-     self.performSegueWithIdentifier("loginEfetuado", sender: self)
-     }
-     }
-*/
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
         /*Pega os dados do facebook e salva no usuario corrente*/
     func pegaDadosFacebook(){

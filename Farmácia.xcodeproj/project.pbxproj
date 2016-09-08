@@ -31,6 +31,11 @@
 		637384CC1D6BCF7600DAB413 /* Catherine de Beaumont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637384CB1D6BCF7600DAB413 /* Catherine de Beaumont.ttf */; };
 		637384CE1D6BE74E00DAB413 /* icone1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 637384CD1D6BE74E00DAB413 /* icone1024.png */; };
 		637384D01D6BE80E00DAB413 /* relogio.png in Resources */ = {isa = PBXBuildFile; fileRef = 637384CF1D6BE80E00DAB413 /* relogio.png */; };
+		637622E11D7FC8A400666F58 /* remedio_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 637622E01D7FC8A400666F58 /* remedio_2.png */; };
+		637622E31D7FCA2E00666F58 /* medical-prescription.png in Resources */ = {isa = PBXBuildFile; fileRef = 637622E21D7FCA2E00666F58 /* medical-prescription.png */; };
+		637622E51D7FCB3D00666F58 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 637622E41D7FCB3C00666F58 /* user.png */; };
+		637622E71D7FCD3A00666F58 /* user1.png in Resources */ = {isa = PBXBuildFile; fileRef = 637622E61D7FCD3A00666F58 /* user1.png */; };
+		637622EB1D7FCEF200666F58 /* user2.png in Resources */ = {isa = PBXBuildFile; fileRef = 637622EA1D7FCEF200666F58 /* user2.png */; };
 		6382F0CA1D64EEC900958E54 /* MedicamentoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0C91D64EEC900958E54 /* MedicamentoCollectionViewCell.swift */; };
 		6382F0CC1D64EF7E00958E54 /* MedicamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0CB1D64EF7E00958E54 /* MedicamentoViewController.swift */; };
 		6382F0CE1D64F6C200958E54 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 6382F0CD1D64F6C200958E54 /* plus.png */; };
@@ -97,6 +102,11 @@
 		637384CB1D6BCF7600DAB413 /* Catherine de Beaumont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Catherine de Beaumont.ttf"; sourceTree = "<group>"; };
 		637384CD1D6BE74E00DAB413 /* icone1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icone1024.png; sourceTree = "<group>"; };
 		637384CF1D6BE80E00DAB413 /* relogio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = relogio.png; sourceTree = "<group>"; };
+		637622E01D7FC8A400666F58 /* remedio_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remedio_2.png; sourceTree = "<group>"; };
+		637622E21D7FCA2E00666F58 /* medical-prescription.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medical-prescription.png"; sourceTree = "<group>"; };
+		637622E41D7FCB3C00666F58 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		637622E61D7FCD3A00666F58 /* user1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user1.png; sourceTree = "<group>"; };
+		637622EA1D7FCEF200666F58 /* user2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user2.png; sourceTree = "<group>"; };
 		6382F0C91D64EEC900958E54 /* MedicamentoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedicamentoCollectionViewCell.swift; path = ../MedicamentoCollectionViewCell.swift; sourceTree = "<group>"; };
 		6382F0CB1D64EF7E00958E54 /* MedicamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicamentoViewController.swift; sourceTree = "<group>"; };
 		6382F0CD1D64F6C200958E54 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
@@ -147,7 +157,12 @@
 			children = (
 				637384CB1D6BCF7600DAB413 /* Catherine de Beaumont.ttf */,
 				637384CF1D6BE80E00DAB413 /* relogio.png */,
+				637622E21D7FCA2E00666F58 /* medical-prescription.png */,
 				637384CD1D6BE74E00DAB413 /* icone1024.png */,
+				637622EA1D7FCEF200666F58 /* user2.png */,
+				637622E61D7FCD3A00666F58 /* user1.png */,
+				637622E01D7FC8A400666F58 /* remedio_2.png */,
+				637622E41D7FCB3C00666F58 /* user.png */,
 				637384C91D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf */,
 				6382F0D61D651B4700958E54 /* Imagens */,
 				63A4EB5D1D4ABFE7007C6B20 /* frameworks */,
@@ -338,8 +353,10 @@
 			files = (
 				637384D01D6BE80E00DAB413 /* relogio.png in Resources */,
 				637384CA1D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf in Resources */,
+				637622E51D7FCB3D00666F58 /* user.png in Resources */,
 				631136F51D68BD42004BA4B8 /* minhaf.png in Resources */,
 				6393CA711D55B2A2003B3E71 /* homem.png in Resources */,
+				637622E11D7FC8A400666F58 /* remedio_2.png in Resources */,
 				6327266A1D64EAB800580E18 /* perfil.png in Resources */,
 				6393CA741D55B397003B3E71 /* indefinido.png in Resources */,
 				6382F0D01D64F96800958E54 /* plus2.png in Resources */,
@@ -349,12 +366,15 @@
 				6382F0CE1D64F6C200958E54 /* plus.png in Resources */,
 				6318397A1D693D4F008BBB18 /* barcode.png in Resources */,
 				6393CA721D55B2A2003B3E71 /* mulher.png in Resources */,
+				637622E71D7FCD3A00666F58 /* user1.png in Resources */,
+				637622E31D7FCA2E00666F58 /* medical-prescription.png in Resources */,
 				6327266B1D64EAB800580E18 /* receita.png in Resources */,
 				637384CE1D6BE74E00DAB413 /* icone1024.png in Resources */,
 				630C3C7C1D4AA5D800312CC5 /* LaunchScreen.storyboard in Resources */,
 				630C3C791D4AA5D800312CC5 /* Assets.xcassets in Resources */,
 				632726691D64EAB800580E18 /* medicamento.png in Resources */,
 				631136F31D681F84004BA4B8 /* remedio.png in Resources */,
+				637622EB1D7FCEF200666F58 /* user2.png in Resources */,
 				637384CC1D6BCF7600DAB413 /* Catherine de Beaumont.ttf in Resources */,
 				630C3C741D4AA5D800312CC5 /* Main.storyboard in Resources */,
 			);

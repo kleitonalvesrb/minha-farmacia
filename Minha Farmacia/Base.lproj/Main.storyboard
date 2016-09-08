@@ -98,7 +98,7 @@
                                     <action selector="loginFacebook:" destination="SY7-62-NQY" eventType="touchUpInside" id="Lls-FK-NJA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Minha    armácia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weK-qg-cz2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minha    armácia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weK-qg-cz2">
                                 <rect key="frame" x="57" y="30" width="261" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="3TY-vI-oP4"/>
@@ -108,7 +108,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-tV-tkM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-tV-tkM">
                                 <rect key="frame" x="173" y="24" width="53" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="5SJ-FZ-xTh"/>
@@ -453,7 +453,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="820"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YFF-XG-Vaq">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YFF-XG-Vaq">
                                 <rect key="frame" x="-4" y="21" width="383" height="799"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hd-YV-IXP">
@@ -536,7 +536,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Z4j-Yv-xrq" secondAttribute="trailing" constant="20" id="0Eg-jE-Tdf"/>
                                     <constraint firstItem="VUP-zu-kk9" firstAttribute="top" secondItem="enL-Ep-UWt" secondAttribute="bottom" constant="29" id="1dd-fY-1Ob"/>
@@ -728,16 +728,19 @@
                                     <constraint firstAttribute="height" constant="44" id="W51-kN-4Yx"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem image="perfil.png" id="AUf-Yf-rvd"/>
+                                    <barButtonItem image="user2.png" id="AUf-Yf-rvd">
+                                        <color key="tintColor" red="0.08235294118" green="0.66274509800000003" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fqt-kV-p17"/>
-                                    <barButtonItem title="Item" image="receita.png" id="uHX-o7-May">
-                                        <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <barButtonItem image="medical-prescription.png" id="uHX-o7-May">
+                                        <color key="tintColor" red="0.08235294118" green="0.66274509800000003" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="SSW-3T-phx" kind="show" id="UBC-Rq-b0M"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="5x3-6j-uhS"/>
-                                    <barButtonItem image="medicamento.png" id="SF8-3t-MLR">
+                                    <barButtonItem image="remedio_2.png" id="SF8-3t-MLR">
+                                        <color key="tintColor" red="0.08235294118" green="0.66274509800000003" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="MKv-OB-zz1" kind="show" identifier="medicamento" id="hOk-Bn-UlL"/>
                                         </connections>
@@ -1158,14 +1161,14 @@
     </scenes>
     <resources>
         <image name="barcode.png" width="48" height="48"/>
-        <image name="medicamento.png" width="22" height="22"/>
+        <image name="medical-prescription.png" width="24" height="24"/>
         <image name="mulher.png" width="128" height="128"/>
-        <image name="perfil.png" width="22" height="22"/>
-        <image name="receita.png" width="22" height="22"/>
         <image name="remedio.png" width="206" height="245"/>
+        <image name="remedio_2.png" width="24" height="24"/>
+        <image name="user2.png" width="24" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="t5D-l8-woa"/>
-        <segue reference="hOk-Bn-UlL"/>
+        <segue reference="M0R-0X-4DL"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -152,9 +152,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         
         
         
-        //let url = urlPadrao.urlRealizaLogin(email, senha: senha)
-        let url = "http://minhafarmacia-env.us-west-2.elasticbeanstalk.com:80/cliente/login/\(email)-\(senha)"
-        
+        let url = urlPadrao.urlRealizaLogin(email, senha: senha)
+        //let url = "http://minhafarmacia-env.us-west-2.elasticbeanstalk.com:80/cliente/login/\(email)-\(senha)"
+        print(url)
         Alamofire.request(.GET,  url).authenticate(user: email, password: senha).responseJSON { (response) in
             if let JSON = response.result.value{
                 print("------->\(response.result.isSuccess) ")

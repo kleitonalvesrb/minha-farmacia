@@ -101,6 +101,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         print(url.urlInsereMedicamentoUsuario(user.email))
         Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters: dicMedicamento, encoding: .JSON, headers: nil).responseJSON { (response) in
             print(response)
+            self.performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
         }
         /*Enviar pro servidor*/
       //  performSegueWithIdentifier("voltarListaMedicamentos", sender: self)

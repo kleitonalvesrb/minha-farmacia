@@ -15,57 +15,48 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     var nomes = [String]() //["Kleiton","Anna","Meg","Dina","Arnaldo","Thiago","Franciele","Kelly", "Thaynara"]
     let util = Util()
     var user = Usuario.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.delegate = self
         collectionView.dataSource = self
-    
+        buscaMedicamentos()
         
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
-        /*for remedio in user.medicamento{
-            print(remedio.nome)
-            imgArray.append(remedio.fotoMedicamento)
-            nomes.append(remedio.nome)
-        }*/
-        // caso o usuario ja tenha medicamento cadastra, acrecentar no array
-        //grabPhotos()
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(animated: Bool) {
-        buscaMedicamentos()
         let navigationBarAppearace = UINavigationBar.appearance()
-        //self.navigationController?.navigationBar.translucent = false
         
         navigationBarAppearace.translucent = false
-        //navigationBarAppearace.tintColor = UIColor(red: 23.0/255.0, green: 27.0/255.0, blue: 113.0/255.0, alpha: 1.0)
+        
         
         navigationBarAppearace.barTintColor = UIColor(red: 53.0/255.0, green: 168.0/255.0, blue: 176.0/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.hidden = false
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
 
         self.navigationItem.title = "Medicamentos"
-//        self.navigationController?.navigationBar.topItem?.backBarButtonItem?.title = "voltar"
     }
     func goBack(){
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
     /**
         O método irá buscar os dados do medicamento que estão na base de dados
      */
     func buscaMedicamentos(){
+        user.medicamento.removeAll()
         let url = UrlWS()
         Alamofire.request(.GET, url.urlBuscaMedicamentoUsuario(user.email)).responseJSON { (response) in
             if let JSON = response.result.value{
                 if JSON.count != nil{
-                    print(JSON)
+                    print(JSON.count,"<-----")
                     if let medicamentos:NSArray = (JSON["medicamento"] as? NSArray){
-                       // print(medicamentos)
-                       //print(medicamentos[0]["apresentacao"])
+                       print("tem medicamento")
                         for i in medicamentos{
-                            //fotoMedicamento, codBarras, nome, principioAtivo, apresentacao, laboratorio, classeTerapeutica
+                          print("dentro do for")
                             let medicamentoAux = Medicamento()
                             
                             if let apresentacao = i["apresentacao"] as? String{
@@ -97,7 +88,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                             
                         }//fecha o for
                     }
-//                    print(self.user.medicamento[0].apresentacao)
                     for remedio in self.user.medicamento{
                         print(remedio.nome)
                         self.imgArray.append(remedio.fotoMedicamento)

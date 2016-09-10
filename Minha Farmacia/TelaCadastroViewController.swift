@@ -19,6 +19,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     @IBOutlet weak var campoEmail: UITextField!
     @IBOutlet weak var campoNome: UITextField!
     @IBOutlet weak var btnEscolherImg: UIButton!
+    
     let arraySexo = ["","Masculino", "Feminino", "Outro", "Prefiro não Informar"]
 
     var pickerSexo:UIPickerView = UIPickerView()
@@ -93,7 +94,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             dataPickerView.maximumDate = NSDate()
             dataPickerView.locale = NSLocale(localeIdentifier: "pt-BR")
             dataPickerView.datePickerMode = UIDatePickerMode.Date
-            
+//            let dataPickerView: UIDatePicker = UIDatePicker()
+
             campoDataNascimento.inputView = dataPickerView
             
             dataPickerView.addTarget(self, action: #selector(TelaCadastroViewController.getValueDatePicker), forControlEvents: UIControlEvents.ValueChanged)

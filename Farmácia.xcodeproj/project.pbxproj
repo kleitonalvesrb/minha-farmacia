@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		63046D501D82EC79003E1A5D /* DosagemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63046D4F1D82EC79003E1A5D /* DosagemViewController.swift */; };
+		63046D521D83B9E8003E1A5D /* DosagemMedicamento.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63046D511D83B9E8003E1A5D /* DosagemMedicamento.swift */; };
 		6308A1CB1D4C66A10042BE2C /* TesteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6308A1CA1D4C66A10042BE2C /* TesteViewController.swift */; };
 		630C3C6F1D4AA5D800312CC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630C3C6E1D4AA5D800312CC5 /* AppDelegate.swift */; };
 		630C3C741D4AA5D800312CC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 630C3C721D4AA5D800312CC5 /* Main.storyboard */; };
@@ -78,6 +79,7 @@
 
 /* Begin PBXFileReference section */
 		63046D4F1D82EC79003E1A5D /* DosagemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DosagemViewController.swift; sourceTree = "<group>"; };
+		63046D511D83B9E8003E1A5D /* DosagemMedicamento.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DosagemMedicamento.swift; sourceTree = "<group>"; };
 		6308A1CA1D4C66A10042BE2C /* TesteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesteViewController.swift; sourceTree = "<group>"; };
 		630C3C6B1D4AA5D800312CC5 /* Minha Farmacia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Minha Farmacia.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		630C3C6E1D4AA5D800312CC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				6393CA6D1D55312B003B3E71 /* Usuario.swift */,
 				631136F01D681C00004BA4B8 /* Medicamento.swift */,
+				63046D511D83B9E8003E1A5D /* DosagemMedicamento.swift */,
 			);
 			name = Objetos;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				631C142E1D4D1CE60041675F /* Util.swift in Sources */,
 				630C3C771D4AA5D800312CC5 /* Minha_Farmacia.xcdatamodeld in Sources */,
 				630C3C6F1D4AA5D800312CC5 /* AppDelegate.swift in Sources */,
+				63046D521D83B9E8003E1A5D /* DosagemMedicamento.swift in Sources */,
 				6393CA6C1D55308F003B3E71 /* TelaPrincipalViewController.swift in Sources */,
 				6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */,
 				6382F0DB1D652B5700958E54 /* ReceitaViewController.swift in Sources */,

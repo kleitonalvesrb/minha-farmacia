@@ -10,6 +10,8 @@ import UIKit
 
 class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    var medicamento: Medicamento = Medicamento()
+    
     @IBOutlet weak var btnSalvar: UIButton!
     @IBOutlet weak var scroll: UIScrollView!
     
@@ -32,14 +34,17 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                            "1 1/4", "1 1/3", "1 1/2", "2",
                            "2 1/4", "2 1/3", "2 1/2", "3",
                            "3 1/4", "3 1/3", "3 1/2", "4"]
-    
-    var dicComprimido = ["1/4":"Um quarto do comprimido","1/3": "Um terço do comprimido", "1/2":"Metade do comprimido","1":"Um comprimido", "1 1/4":"Um comprimido e um quarto"]
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDeleganteFields()
         configuraPicker()
         populaArray()
+        imgMedicamento.image = medicamento.fotoMedicamento
+        
+        self.navigationController?.navigationBar.hidden = true
+        
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(DosagemViewController.dismissKeyboard)))
         
         

@@ -16,5 +16,6 @@ class Medicamento: NSObject {
     var apresentacao:String!
     var laboratorio:String!
     var classeTerapeutica:String!
+    var dosagemMedicamento: DosagemMedicamento!
     
 }

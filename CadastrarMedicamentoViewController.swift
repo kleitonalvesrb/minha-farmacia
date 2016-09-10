@@ -97,12 +97,21 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
                            "classeTerapeutica":campoClasseTerapeutica.text!,
                            "fotoMedicamentoString":util.convertImageToString(imgRemedio.image!)]
         
-        let url = UrlWS()
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("dose") as! DosagemViewController
+        
+        resultViewController.medicamento = medicamento
+        
+        let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
+        self.presentViewController(navController, animated:true, completion: nil)
+        
+       /* let url = UrlWS()
         print(url.urlInsereMedicamentoUsuario(user.email))
         Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters: dicMedicamento, encoding: .JSON, headers: nil).responseJSON { (response) in
             print(response)
             self.performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
-        }
+        }*/
         /*Enviar pro servidor*/
       //  performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
     

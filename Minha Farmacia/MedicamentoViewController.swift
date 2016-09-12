@@ -47,12 +47,15 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         O método irá buscar os dados do medicamento que estão na base de dados
      */
     func buscaMedicamentos(){
-        user.medicamento.removeAll()
+        print("aki na busca")
+       // user.medicamento.removeAll()
         let url = UrlWS()
         Alamofire.request(.GET, url.urlBuscaMedicamentoUsuario(user.email)).responseJSON { (response) in
             if let JSON = response.result.value{
+                print("entrou")
                 if JSON.count != nil{
-                    print(JSON.count,"<-----")
+                    print("tem alguma coisa no json")
+                    print(JSON.count,"<---.--")
                     if let medicamentos:NSArray = (JSON["medicamento"] as? NSArray){
                        print("tem medicamento")
                         for i in medicamentos{

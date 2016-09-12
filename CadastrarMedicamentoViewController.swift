@@ -106,14 +106,14 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
         self.presentViewController(navController, animated:true, completion: nil)
         
-       /* let url = UrlWS()
-        print(url.urlInsereMedicamentoUsuario(user.email))
-        Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters: dicMedicamento, encoding: .JSON, headers: nil).responseJSON { (response) in
-            print(response)
-            self.performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
-        }*/
-        /*Enviar pro servidor*/
-      //  performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
+//        let url = UrlWS()
+//        print(url.urlInsereMedicamentoUsuario(user.email))
+//        Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters: dicMedicamento, encoding: .JSON, headers: nil).responseJSON { (response) in
+//            print(response)
+//            self.performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
+//        }
+//        /*Enviar pro servidor*/
+//       performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
     
     }
     

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var medicamento: Medicamento = Medicamento()
@@ -80,6 +80,75 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     }
     
     @IBAction func salvar(sender: AnyObject) {
+        let util = Util()
+        if util.isVazio(campoIntervalo.text!) || util.isVazio(campoPeriodo.text!) || util.isVazio(campoDataInicio.text!) || util.isVazio(campoDosagem.text!){
+            geraAlerta("Ops", mensagem: "Todos os campos devem ser informado!")
+        }else{
+            salvarMedicamentoDosagemServidor()
+        }
+        
+    }
+    /**
+        Salva medicamento e dosagem no servidor Web
+     */
+    func salvarMedicamentoDosagemServidor(){
+        let url = UrlWS()
+        let user = Usuario.sharedInstance
+        Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters:criaDicMedicamento() as? [String : AnyObject] , encoding: .JSON, headers: nil).responseJSON { (response) in
+                      // print("---Response----->",response)
+                       //print("---->",response.result)
+//            print("---->",response.response!.statusCode)
+            if response.response?.statusCode == 200{
+                self.geraAlerta("OK", mensagem: "Dados do medicamento salvo com sucesso!")
+            }else{
+                self.geraAlerta("Ops", mensagem: "Deu ruim :(")
+            }
+
+            
+            //            self.performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
+        }
+    
+    }
+    /**
+        Cria dicionario de medicamentos
+     */
+    func criaDicMedicamento() -> NSDictionary{
+        let util = Util()
+        let dicMedicamento = ["codigoBarras":medicamento.codBarras,
+                              "nomeProduto": medicamento.nome,
+                              "principioAtivo":medicamento.principioAtivo,
+                              "apresentacao":medicamento.apresentacao,
+                              "laboratorio":medicamento.laboratorio,
+                              "classeTerapeutica":medicamento.classeTerapeutica,
+                              "fotoMedicamentoString":util.convertImageToString(medicamento.fotoMedicamento),
+                              "dosagem": criaDicDosagem()]
+        
+        return dicMedicamento
+    }
+    /**
+        Cria dicionario de dosagem
+     */
+    func criaDicDosagem() -> NSDictionary{
+        let util = Util()
+        let qtdDosagem = tipoDosagemSwitch.on ? util.valorQuantidadeDoseComprimido(campoDosagem.text!) : util.valorQuantidadeDoseMl(campoDosagem.text!)
+        
+        let dicDosagem = ["quantidade":qtdDosagem,
+                          "tipo": tipoDosagemSwitch.on ? "Comprimido" : "Xarope",
+                          "dataInicio":campoDataInicio.text!,
+                          "periodo":util.valorTempoDias(campoPeriodo.text!),
+                          "intervalo":util.valorIntervalo(campoIntervalo.text!)]
+        
+        return dicDosagem;
+    }
+    /**
+        gera alerta
+     */
+    func geraAlerta(title: String, mensagem: String){
+        let alerta = UIAlertController(title: title, message: mensagem, preferredStyle: .Alert)
+        alerta.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) in
+            //self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alerta, animated: true, completion: nil)
         
     }
     // alterar o tipo de dosagem, alterar de ML para MG

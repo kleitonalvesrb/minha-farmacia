@@ -13,5 +13,6 @@ class DosagemMedicamento: NSObject {
     var dosagem: String!
     var intervaloDose: Int!
     var periodoTratamento: Int!
+    var quantidade:Double!
 
 }

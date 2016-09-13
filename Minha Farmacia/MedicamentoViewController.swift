@@ -90,14 +90,20 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                             
                             
                         }//fecha o for
+                    }else{
+                        print("nao consigo")
                     }
+                    print("--->Antes do For <---")
                     for remedio in self.user.medicamento{
+                        print("--->dentro do For <---")
+
                         print(remedio.nome)
                         self.imgArray.append(remedio.fotoMedicamento)
                         self.nomes.append(remedio.nome)
                     }
                     self.collectionView.reloadData()
-                    
+                    print("--->depois do For <---")
+
                 }else{
                     print("nao tem medicamentos")
                 }
@@ -106,7 +112,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
            
         }
     }
-    
+    func populaMedicamento(){
+        
+    }
     func grabPhotos(){
         let imgManager = PHImageManager.defaultManager()
         let requestOptions = PHImageRequestOptions()

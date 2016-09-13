@@ -169,6 +169,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     if let res:NSArray = (JSON["medicamentos"] as? NSArray){
                         
                     }
+//                    print(JSON)
                     //recebe o id do usuario
                     if let idUsuario = JSON["idUsuario"] as? String{
                         self.user.id = Int(idUsuario)

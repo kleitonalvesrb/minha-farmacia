@@ -47,73 +47,66 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         O método irá buscar os dados do medicamento que estão na base de dados
      */
     func buscaMedicamentos(){
-        print("aki na busca")
-       // user.medicamento.removeAll()
+       // print("aki na busca")
+       user.medicamento.removeAll()
         let url = UrlWS()
+        
         Alamofire.request(.GET, url.urlBuscaMedicamentoUsuario(user.email)).responseJSON { (response) in
             if let JSON = response.result.value{
-                print("entrou")
                 if JSON.count != nil{
-                    print("tem alguma coisa no json")
-                    print(JSON.count,"<---.--")
                     if let medicamentos:NSArray = (JSON["medicamento"] as? NSArray){
-                       print("tem medicamento")
+                        
                         for i in medicamentos{
-                          print("dentro do for")
-                            let medicamentoAux = Medicamento()
-                            
-                            if let apresentacao = i["apresentacao"] as? String{
-                                medicamentoAux.apresentacao = apresentacao
-                            }
-                            if let codBarras = i["codigoBarras"] as? String{
-                                medicamentoAux.codBarras = codBarras
-                            }
-                            if let nome = i["nomeProduto"] as? String{
-                                medicamentoAux.nome = nome
-                            }
-                            if let principioAtivo = i["principioAtivo"] as? String{
-                                medicamentoAux.principioAtivo = principioAtivo
-                            }
-                            if let laboratorio = i["laboratorio"] as? String{
-                                medicamentoAux.laboratorio = laboratorio
-                            }
-                            if let classeTerapeutica = i["classeTerapeutica"] as? String{
-                                medicamentoAux.classeTerapeutica = classeTerapeutica
-                            }
-                            if let fotoString = i["fotoMedicamentoString"] as? String{
-                                var img = UIImage();
-                                img = self.util.convertStringToImage(fotoString)
-                                medicamentoAux.fotoMedicamento = img
-                                
-                            }
-                            self.user.medicamento.append(medicamentoAux)
-                            
-                            
+                            self.user.medicamento.append(self.populaMedicamento(i))
                         }//fecha o for
                     }else{
-                        print("nao consigo")
+                        let dic = JSON["medicamento"]!
+                        self.user.medicamento.append(self.populaMedicamento(dic!))
                     }
-                    print("--->Antes do For <---")
                     for remedio in self.user.medicamento{
-                        print("--->dentro do For <---")
-
                         print(remedio.nome)
                         self.imgArray.append(remedio.fotoMedicamento)
                         self.nomes.append(remedio.nome)
                     }
                     self.collectionView.reloadData()
-                    print("--->depois do For <---")
-
                 }else{
-                    print("nao tem medicamentos")
+                    print("deu ruim em algo")
                 }
                 
             }
            
         }
-    }
-    func populaMedicamento(){
-        
+    }/**
+        popula Medicamento quando vem de um array
+     */
+    func populaMedicamento(medicamento: AnyObject)  -> Medicamento{
+        let medicamentoAux = Medicamento()
+        if let apresentacao = medicamento["apresentacao"] as? String{
+            medicamentoAux.apresentacao = apresentacao
+        }
+        if let codBarras = medicamento["codigoBarras"] as? String{
+            medicamentoAux.codBarras = codBarras
+        }
+        if let nome = medicamento["nomeProduto"] as? String{
+            medicamentoAux.nome = nome
+        }
+        if let principioAtivo = medicamento["principioAtivo"] as? String{
+            medicamentoAux.principioAtivo = principioAtivo
+        }
+        if let laboratorio = medicamento["laboratorio"] as? String{
+            medicamentoAux.laboratorio = laboratorio
+        }
+        if let classeTerapeutica = medicamento["classeTerapeutica"] as? String{
+            medicamentoAux.classeTerapeutica = classeTerapeutica
+        }
+        if let fotoString = medicamento["fotoMedicamentoString"] as? String{
+            var img = UIImage();
+            img = self.util.convertStringToImage(fotoString)
+            medicamentoAux.fotoMedicamento = img
+            
+        }
+        return medicamentoAux
+
     }
     func grabPhotos(){
         let imgManager = PHImageManager.defaultManager()

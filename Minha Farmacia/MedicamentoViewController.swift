@@ -15,9 +15,18 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     var nomes = [String]() //["Kleiton","Anna","Meg","Dina","Arnaldo","Thiago","Franciele","Kelly", "Thaynara"]
     let util = Util()
     var user = Usuario.sharedInstance
+    var flagNovoMedicamento = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if flagNovoMedicamento == true{
+            print("Devo mostrar a alerta agora <--------")
+            flagNovoMedicamento = false
+            geraAlerta("Sucesso", mensagem: "Novo Medicamento cadastrado com sucesso!")
+        }else{
+            print("Nao devo mostrar a alerta agora <--------")
+
+        }
         self.collectionView.delegate = self
         collectionView.dataSource = self
         buscaMedicamentos()
@@ -43,6 +52,18 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    /**
+     gera alerta
+     */
+    func geraAlerta(title: String, mensagem: String){
+        let alerta = UIAlertController(title: title, message: mensagem, preferredStyle: .Alert)
+        alerta.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) in
+            //self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alerta, animated: true, completion: nil)
+        
+    }
+
     /**
         O método irá buscar os dados do medicamento que estão na base de dados
      */

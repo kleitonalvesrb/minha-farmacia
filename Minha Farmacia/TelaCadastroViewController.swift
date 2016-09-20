@@ -192,7 +192,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
                     
                     //self.geraAlerta("Sucesso", mensagem: "Cadastro realizado com Sucesso")
                  self.populaUsuario()
-                 self.performSegueWithIdentifier("cadastroTelaPrincipal", sender: self)
+                 self.performSegueWithIdentifier("CadastroTelaMedicamento", sender: self)
                     
 
                 }else{

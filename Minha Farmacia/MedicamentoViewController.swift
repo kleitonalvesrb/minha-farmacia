@@ -19,6 +19,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if flagNovoMedicamento == true{
             print("Devo mostrar a alerta agora <--------")
             flagNovoMedicamento = false

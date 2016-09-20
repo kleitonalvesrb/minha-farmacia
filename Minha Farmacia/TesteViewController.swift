@@ -230,7 +230,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                    
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                     
-                    let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("login") as! TelaPrincipalViewController
+                    let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("ListaMedicamentos") as! MedicamentoViewController
                     
                     let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
                     self.presentViewController(navController, animated:true, completion: nil)

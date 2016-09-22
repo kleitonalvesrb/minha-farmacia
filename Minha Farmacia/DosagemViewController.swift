@@ -14,6 +14,9 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     
     @IBOutlet weak var btnSalvar: UIButton!
     @IBOutlet weak var scroll: UIScrollView!
+   // @IBOutlet weak var campoTipoMedicamento: UITextField!
+    @IBOutlet weak var campoSwitchMedicamento: UITextField!
+    //@IBOutlet weak var campoTipoMedicamento: UITextField!
     
     @IBOutlet weak var campoPeriodo: UITextField!
     @IBOutlet weak var campoIntervalo: UITextField!
@@ -26,7 +29,11 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     var pickerIntervalo: UIPickerView = UIPickerView() // 1
     var pickerPeriodo: UIPickerView = UIPickerView() // 2
     var pickerDosagemComprimido: UIPickerView = UIPickerView()//3
+    var pickerTipoMedicamento: UIPickerView = UIPickerView()//4
+    var pickerQtdGotas : UIPickerView = UIPickerView()//5
     
+    var arrayTipoMedicamento = ["","Xarope","Comprimido","Gotas"]
+    var arrayGotas = [String]()
     var arrayDosage = [String]()
     var arrayIntervalo = [String]()
     var arrayPeriodo = [String]()
@@ -36,11 +43,17 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                            "3 1/4", "3 1/3", "3 1/2", "4"]
    
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         setDeleganteFields()
         configuraPicker()
         populaArray()
+        
+        campoSwitchMedicamento.addTarget(self, action: #selector(DosagemViewController.definiTipo), forControlEvents: UIControlEvents.EditingChanged)
+      //  textField.addTarget(self, action: #selector(YourViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
+
+        
         imgMedicamento.image = medicamento.fotoMedicamento
         
         self.navigationController?.navigationBar.hidden = true
@@ -51,6 +64,9 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
 
         // Do any additional setup after loading the view.
     }
+    func definiTipo(){
+        print(campoSwitchMedicamento.text)
+    }
     func configuraPicker(){
         pickerDosagem.delegate = self
         pickerDosagem.dataSource = self
@@ -59,17 +75,24 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         pickerPeriodo.delegate = self
         pickerPeriodo.dataSource = self
         pickerDosagemComprimido.delegate = self
+        pickerTipoMedicamento.dataSource = self
+        pickerTipoMedicamento.delegate = self
         pickerDosagemComprimido.dataSource = self
+        
+        pickerQtdGotas.delegate = self
+        pickerQtdGotas.dataSource = self
         
         campoDosagem.inputView = pickerDosagemComprimido
         campoIntervalo.inputView = pickerIntervalo
         campoPeriodo.inputView = pickerPeriodo
-        
+        campoSwitchMedicamento.inputView = pickerTipoMedicamento
         
         pickerDosagem.tag = 0
         pickerIntervalo.tag = 1
         pickerPeriodo.tag = 2
         pickerDosagemComprimido.tag = 3
+        pickerTipoMedicamento.tag = 4
+        pickerQtdGotas.tag = 5
         
     }
     func setDeleganteFields(){
@@ -77,6 +100,8 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         campoIntervalo.delegate = self
         campoDataInicio.delegate = self
         campoDosagem.delegate = self
+        campoSwitchMedicamento.delegate = self
+        
     }
     
     @IBAction func salvar(sender: AnyObject) {
@@ -195,6 +220,11 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         for i in 1...24{
             arrayIntervalo.append("\(i) Horas")
         }
+        // popula array gotas
+        arrayGotas.append("")
+        for i in 1...99{
+            arrayGotas.append("\(i) Gotas")
+        }
         
     }
     func dismissKeyboard(){
@@ -227,6 +257,10 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         }else if pickerView.tag == 3{
             return arrayComprimido.count
 //            return dicComprimido.count
+        }else if pickerView.tag == 4{
+            return arrayTipoMedicamento.count
+        }else if pickerView.tag == 5{
+            return arrayGotas.count
         }
         return 1
     }
@@ -240,6 +274,10 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         }else if pickerView.tag == 3{
             return arrayComprimido[row]
 //            return Array(dicComprimido.keys)[row]
+        }else if pickerView.tag == 4{
+            return arrayTipoMedicamento[row]
+        }else if pickerView.tag == 5{
+            return arrayGotas[row]
         }
         return "Deu ruim"
     }
@@ -252,7 +290,10 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             campoPeriodo.text = arrayPeriodo[row]
         }else if pickerView.tag == 3{
            campoDosagem.text = arrayComprimido[row]
-           
+        }else if pickerView.tag == 4{
+            campoSwitchMedicamento.text = arrayTipoMedicamento[row]
+        }else if pickerView.tag == 5{
+            campoDosagem.text = arrayGotas[row]
         }
         
         //  campoSexo.text = arraySexo[row]
@@ -262,7 +303,27 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         
        configuraPosicionamentoScroll(textField)
        selecionaDataInicio(textField)
+        defineTipoDosagemMedicamento(textField)
       
+    }
+    /**
+        Define qual o carrosseu sera apresentado com as dosagens devidas, isso contará com qual 
+     o tipo de medicamento o usuário selecionou
+     */
+    func defineTipoDosagemMedicamento(textfield: UITextField){
+        
+        if textfield == campoDosagem{
+            
+            if campoSwitchMedicamento.text! == "Xarope"{
+                campoDosagem.inputView = pickerDosagem
+            }else if campoSwitchMedicamento.text! == "Comprimido"{
+                campoDosagem.inputView = pickerDosagemComprimido
+            }else if campoSwitchMedicamento.text! == "Gotas"{
+                campoDosagem.inputView = pickerQtdGotas
+            }else{
+                geraAlerta("", mensagem: "O tipo de medicamento deve ser informado!")
+            }
+        }
     }
     func selecionaDataInicio(textField: UITextField){
         if textField == campoDataInicio{

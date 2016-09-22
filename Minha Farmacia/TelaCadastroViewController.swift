@@ -20,7 +20,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     @IBOutlet weak var campoNome: UITextField!
     @IBOutlet weak var btnEscolherImg: UIButton!
     
-    let arraySexo = ["","Masculino", "Feminino", "Outro", "Prefiro não Informar"]
+    let arraySexo = ["","Masculino", "Feminino"]
 
     var pickerSexo:UIPickerView = UIPickerView()
     

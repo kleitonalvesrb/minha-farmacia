@@ -1190,38 +1190,8 @@
                                             <constraint firstAttribute="width" constant="253" id="vsg-JW-Ciq"/>
                                         </constraints>
                                     </imageView>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SqI-wm-pkw">
-                                        <rect key="frame" x="157" y="264" width="51" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="eoS-Oz-wuU"/>
-                                            <constraint firstAttribute="width" constant="49" id="lUI-0K-iOF"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="switchTipoDosagem:" destination="f5K-mR-Bjd" eventType="valueChanged" id="Ig8-4c-BuQ"/>
-                                        </connections>
-                                    </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Líquido" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X6q-n1-yRM">
-                                        <rect key="frame" x="55" y="264" width="71" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="gQW-eR-9jd"/>
-                                            <constraint firstAttribute="width" constant="71" id="sWI-Cd-ars"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comprimido" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o6Z-E5-Ygi">
-                                        <rect key="frame" x="230" y="264" width="111" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="111" id="FeG-YK-x3Z"/>
-                                            <constraint firstAttribute="height" constant="21" id="t7h-bD-l0v"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dosagem" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S3S-hm-sT7">
-                                        <rect key="frame" x="20" y="325" width="323" height="30"/>
+                                        <rect key="frame" x="20" y="319" width="323" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Y2u-lO-7D8"/>
                                         </constraints>
@@ -1229,7 +1199,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Data Inicio" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rek-mb-7Tr">
-                                        <rect key="frame" x="20" y="380" width="323" height="30"/>
+                                        <rect key="frame" x="20" y="374" width="323" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="lb9-h9-vcJ"/>
                                         </constraints>
@@ -1237,7 +1207,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Intervalo entre consumo ex: 8Hrs" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OZV-3g-koO">
-                                        <rect key="frame" x="20" y="435" width="323" height="30"/>
+                                        <rect key="frame" x="20" y="429" width="323" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="xK2-RS-mIH"/>
                                         </constraints>
@@ -1245,7 +1215,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Período de tratamento Ex: 10 Dias" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pnh-CS-bgf">
-                                        <rect key="frame" x="20" y="490" width="323" height="30"/>
+                                        <rect key="frame" x="20" y="484" width="323" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="TTB-9E-1gx"/>
                                         </constraints>
@@ -1253,7 +1223,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ew-cQ-Evw">
-                                        <rect key="frame" x="10" y="545" width="343" height="33"/>
+                                        <rect key="frame" x="10" y="539" width="343" height="33"/>
                                         <color key="backgroundColor" red="0.20784313730000001" green="0.6588235294" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="n5O-cx-0Qn"/>
@@ -1266,18 +1236,23 @@
                                             <action selector="salvar:" destination="f5K-mR-Bjd" eventType="touchUpInside" id="8QW-3M-R3l"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tipo de Medicamento" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OKK-Bx-00h">
+                                        <rect key="frame" x="20" y="264" width="323" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="MT8-x4-GTw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="6ew-cQ-Evw" secondAttribute="trailing" constant="10" id="1JF-D9-zyS"/>
-                                    <constraint firstItem="o6Z-E5-Ygi" firstAttribute="leading" secondItem="SqI-wm-pkw" secondAttribute="trailing" constant="24" id="3ep-B6-NUS"/>
-                                    <constraint firstItem="siG-3u-kbf" firstAttribute="leading" secondItem="X6q-n1-yRM" secondAttribute="leading" id="5s4-uW-Apa"/>
                                     <constraint firstItem="6ew-cQ-Evw" firstAttribute="top" secondItem="Pnh-CS-bgf" secondAttribute="bottom" constant="25" id="8T6-SZ-5El"/>
+                                    <constraint firstItem="OKK-Bx-00h" firstAttribute="centerX" secondItem="siG-3u-kbf" secondAttribute="centerX" id="BmH-wp-owV"/>
                                     <constraint firstItem="6ew-cQ-Evw" firstAttribute="leading" secondItem="VbZ-Im-fzT" secondAttribute="leading" constant="10" id="CTG-GT-gFS"/>
-                                    <constraint firstItem="X6q-n1-yRM" firstAttribute="top" secondItem="siG-3u-kbf" secondAttribute="bottom" constant="35" id="FYL-Nd-D8o"/>
                                     <constraint firstItem="S3S-hm-sT7" firstAttribute="leading" secondItem="rek-mb-7Tr" secondAttribute="leading" id="Gw4-yq-G4X"/>
-                                    <constraint firstItem="X6q-n1-yRM" firstAttribute="top" secondItem="SqI-wm-pkw" secondAttribute="top" id="I3G-Nu-KEW"/>
-                                    <constraint firstItem="X6q-n1-yRM" firstAttribute="baseline" secondItem="o6Z-E5-Ygi" secondAttribute="baseline" id="Jpo-mh-dVh"/>
-                                    <constraint firstItem="S3S-hm-sT7" firstAttribute="top" secondItem="SqI-wm-pkw" secondAttribute="bottom" constant="30" id="Ke3-Vi-53F"/>
+                                    <constraint firstItem="S3S-hm-sT7" firstAttribute="top" secondItem="OKK-Bx-00h" secondAttribute="bottom" constant="25" id="QrF-xt-s6W"/>
+                                    <constraint firstItem="OKK-Bx-00h" firstAttribute="leading" secondItem="VbZ-Im-fzT" secondAttribute="leading" constant="20" id="SOb-ID-jqV"/>
                                     <constraint firstAttribute="bottom" secondItem="Pnh-CS-bgf" secondAttribute="bottom" constant="109" id="VVT-ta-7ET"/>
                                     <constraint firstItem="S3S-hm-sT7" firstAttribute="leading" secondItem="VbZ-Im-fzT" secondAttribute="leading" constant="20" id="bi4-pL-MJk"/>
                                     <constraint firstItem="Pnh-CS-bgf" firstAttribute="top" secondItem="OZV-3g-koO" secondAttribute="bottom" constant="25" id="c5a-if-7e7"/>
@@ -1285,14 +1260,14 @@
                                     <constraint firstItem="rek-mb-7Tr" firstAttribute="top" secondItem="S3S-hm-sT7" secondAttribute="bottom" constant="25" id="cvj-FJ-dj6"/>
                                     <constraint firstItem="siG-3u-kbf" firstAttribute="top" secondItem="VbZ-Im-fzT" secondAttribute="top" constant="20" id="d7v-GK-aNf"/>
                                     <constraint firstItem="S3S-hm-sT7" firstAttribute="trailing" secondItem="rek-mb-7Tr" secondAttribute="trailing" id="gFU-el-Ggp"/>
+                                    <constraint firstAttribute="trailing" secondItem="OKK-Bx-00h" secondAttribute="trailing" constant="20" id="gI9-b4-Gqd"/>
                                     <constraint firstItem="rek-mb-7Tr" firstAttribute="trailing" secondItem="OZV-3g-koO" secondAttribute="trailing" id="kLo-mM-mzf"/>
-                                    <constraint firstItem="siG-3u-kbf" firstAttribute="centerX" secondItem="SqI-wm-pkw" secondAttribute="centerX" id="noB-xP-g5v"/>
+                                    <constraint firstItem="OKK-Bx-00h" firstAttribute="top" secondItem="siG-3u-kbf" secondAttribute="bottom" constant="35" id="mgL-IF-5f4"/>
                                     <constraint firstItem="siG-3u-kbf" firstAttribute="centerX" secondItem="VbZ-Im-fzT" secondAttribute="centerX" id="rjE-5c-VZW"/>
                                     <constraint firstItem="OZV-3g-koO" firstAttribute="top" secondItem="rek-mb-7Tr" secondAttribute="bottom" constant="25" id="sI2-MM-wd1"/>
                                     <constraint firstItem="OZV-3g-koO" firstAttribute="leading" secondItem="Pnh-CS-bgf" secondAttribute="leading" id="tgM-dN-PuI"/>
                                     <constraint firstItem="rek-mb-7Tr" firstAttribute="leading" secondItem="OZV-3g-koO" secondAttribute="leading" id="uhI-o8-GeU"/>
                                     <constraint firstItem="OZV-3g-koO" firstAttribute="trailing" secondItem="Pnh-CS-bgf" secondAttribute="trailing" id="yst-QR-bZq"/>
-                                    <constraint firstItem="SqI-wm-pkw" firstAttribute="centerX" secondItem="S3S-hm-sT7" secondAttribute="centerX" id="zmS-MV-gy7"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -1312,9 +1287,9 @@
                         <outlet property="campoDosagem" destination="S3S-hm-sT7" id="Jel-dp-KJw"/>
                         <outlet property="campoIntervalo" destination="OZV-3g-koO" id="SKT-53-tsI"/>
                         <outlet property="campoPeriodo" destination="Pnh-CS-bgf" id="ttT-4V-cyY"/>
+                        <outlet property="campoSwitchMedicamento" destination="OKK-Bx-00h" id="bT7-lc-ErX"/>
                         <outlet property="imgMedicamento" destination="siG-3u-kbf" id="HOO-uX-2mh"/>
                         <outlet property="scroll" destination="VbZ-Im-fzT" id="nnM-Z8-iZ5"/>
-                        <outlet property="tipoDosagemSwitch" destination="SqI-wm-pkw" id="aHS-e8-TKN"/>
                         <segue destination="MKv-OB-zz1" kind="show" identifier="voltarListaMedicamentos" id="zI3-vR-sEW"/>
                     </connections>
                 </viewController>
@@ -1335,6 +1310,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="t5D-l8-woa"/>
-        <segue reference="JeN-wk-zVo"/>
+        <segue reference="zI3-vR-sEW"/>
     </inferredMetricsTieBreakers>
 </document>

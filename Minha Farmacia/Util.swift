@@ -37,7 +37,7 @@ class Util: NSObject {
     /**
         Retorna o valor real em ML
      */
-    func valorQuantidadeDoseMl(qtd: String) -> Double{
+    func valorQuantidadeDoseMlAndGotas(qtd: String) -> Double{
         return Double(qtd.componentsSeparatedByString(" ")[0])!
     }
     /**

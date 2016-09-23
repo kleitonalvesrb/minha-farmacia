@@ -109,8 +109,32 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         if util.isVazio(campoIntervalo.text!) || util.isVazio(campoPeriodo.text!) || util.isVazio(campoDataInicio.text!) || util.isVazio(campoDosagem.text!){
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informado!")
         }else{
+            populaMedicamentoWithDosagem()
             salvarMedicamentoDosagemServidor()
         }
+        
+    }
+    /**
+        Atribui os dados da dosagem do medicamento ao medicamento cadastrado na tela anterior
+     */
+    func populaMedicamentoWithDosagem(){
+        let util = Util()
+        let dosagem:DosagemMedicamento = DosagemMedicamento()
+        dosagem.dosagem = campoSwitchMedicamento.text!
+        dosagem.intervaloDose = util.valorIntervalo(campoIntervalo.text!)
+        dosagem.periodoTratamento = util.valorTempoDias(campoPeriodo.text!)
+        dosagem.tipoMedicamento = campoSwitchMedicamento.text!
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MMM/yyyy HH:mm"
+        dateFormatter.timeZone = NSTimeZone(name: "UTC")
+        let date = dateFormatter.dateFromString(campoDataInicio.text!)
+        dosagem.dataInicio = date
+        
+        dosagem.quantidade = trataQtdDosagemMedicamento(campoDosagem.text!, util: util)
+        medicamento.dosagemMedicamento = dosagem
+        
+//        dosagem.quantidade
         
     }
     /**
@@ -172,16 +196,28 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
      */
     func criaDicDosagem() -> NSDictionary{
         let util = Util()
-        let qtdDosagem = tipoDosagemSwitch.on ? util.valorQuantidadeDoseComprimido(campoDosagem.text!) : util.valorQuantidadeDoseMl(campoDosagem.text!)
         
         print(campoDataInicio.text!,"<------")
-        let dicDosagem = ["quantidade":qtdDosagem,
-                          "tipo": tipoDosagemSwitch.on ? "Comprimido" : "Xarope",
+        print("Dosagem ---> ",trataQtdDosagemMedicamento(campoDosagem.text!, util: util))
+        let dicDosagem = ["quantidade":trataQtdDosagemMedicamento(campoDosagem.text!, util: util),
+                          "tipo": campoSwitchMedicamento.text!,
                           "dataInicio":campoDataInicio.text!,
                           "periodo":util.valorTempoDias(campoPeriodo.text!),
                           "intervalo":util.valorIntervalo(campoIntervalo.text!)]
         
         return dicDosagem;
+    }
+    /**
+        Método responsavel por indentificar qual o tipo de dose (comprimido, gotas ou xarope) e retornar o valor correspondente
+     */
+    func trataQtdDosagemMedicamento(valor: String, util: Util) -> Double{
+        if campoSwitchMedicamento.text! == "Xarope"{
+            return util.valorQuantidadeDoseMlAndGotas(campoDosagem.text!)
+        }else if campoSwitchMedicamento.text! == "Comprimido"{
+            return util.valorQuantidadeDoseComprimido(campoDosagem.text!)
+        }else{
+            return util.valorQuantidadeDoseMlAndGotas(campoDosagem.text!)
+        }
     }
     /**
         gera alerta

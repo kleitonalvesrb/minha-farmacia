@@ -53,6 +53,7 @@
 		6393CA711D55B2A2003B3E71 /* homem.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA6F1D55B2A2003B3E71 /* homem.png */; };
 		6393CA721D55B2A2003B3E71 /* mulher.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA701D55B2A2003B3E71 /* mulher.png */; };
 		6393CA741D55B397003B3E71 /* indefinido.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA731D55B397003B3E71 /* indefinido.png */; };
+		639DEFCB1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DEFCA1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift */; };
 		63A4EB5B1D4ABFDB007C6B20 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB591D4ABFDB007C6B20 /* Bolts.framework */; };
 		63A4EB5C1D4ABFDB007C6B20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB5A1D4ABFDB007C6B20 /* Parse.framework */; };
 		63A4EB5F1D4AC116007C6B20 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB5E1D4AC116007C6B20 /* SystemConfiguration.framework */; };
@@ -124,6 +125,7 @@
 		6393CA6F1D55B2A2003B3E71 /* homem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homem.png; sourceTree = "<group>"; };
 		6393CA701D55B2A2003B3E71 /* mulher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mulher.png; sourceTree = "<group>"; };
 		6393CA731D55B397003B3E71 /* indefinido.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indefinido.png; sourceTree = "<group>"; };
+		639DEFCA1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalhamentoMedicamentoViewController.swift; sourceTree = "<group>"; };
 		63A4EB591D4ABFDB007C6B20 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		63A4EB5A1D4ABFDB007C6B20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		63A4EB5E1D4AC116007C6B20 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -227,6 +229,7 @@
 				6382F0C91D64EEC900958E54 /* MedicamentoCollectionViewCell.swift */,
 				6382F0D11D65008F00958E54 /* CadastrarMedicamentoViewController.swift */,
 				63046D4F1D82EC79003E1A5D /* DosagemViewController.swift */,
+				639DEFCA1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift */,
 			);
 			name = Medicamento;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				6382F0CC1D64EF7E00958E54 /* MedicamentoViewController.swift in Sources */,
 				631C142E1D4D1CE60041675F /* Util.swift in Sources */,
 				630C3C771D4AA5D800312CC5 /* Minha_Farmacia.xcdatamodeld in Sources */,
+				639DEFCB1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift in Sources */,
 				630C3C6F1D4AA5D800312CC5 /* AppDelegate.swift in Sources */,
 				63046D521D83B9E8003E1A5D /* DosagemMedicamento.swift in Sources */,
 				6393CA6C1D55308F003B3E71 /* TelaPrincipalViewController.swift in Sources */,

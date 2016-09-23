@@ -54,7 +54,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         self.navigationItem.leftBarButtonItem?.style
     }
     func goBack(){
-        performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
+        performSegueWithIdentifier("cadatroVoltaListaMediacmentos", sender: self)
     }
     
     @IBOutlet weak var btnEscolherImgRemedio: UIButton!

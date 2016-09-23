@@ -43,9 +43,11 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         navigationBarAppearace.translucent = false
         
         
+        
         navigationBarAppearace.barTintColor = UIColor(red: 53.0/255.0, green: 168.0/255.0, blue: 176.0/255.0, alpha: 1.0)
         self.navigationController?.navigationBar.hidden = false
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        self.navigationItem.hidesBackButton = true
 
         self.navigationItem.title = "Medicamentos"
     }
@@ -78,7 +80,14 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                 if JSON.count != nil{
                     if let medicamentos:NSArray = (JSON["medicamento"] as? NSArray){
                         
+
                         for i in medicamentos{
+//                            print("-----------------------------------------------------")
+//                            
+//                            print(i["dosagem"])
+//                        print("-----------------------------------------------------")
+//
+                            
                             self.user.medicamento.append(self.populaMedicamento(i))
                         }//fecha o for
                     }else{
@@ -86,7 +95,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                         self.user.medicamento.append(self.populaMedicamento(dic!))
                     }
                     for remedio in self.user.medicamento{
-                        print(remedio.nome)
                         self.imgArray.append(remedio.fotoMedicamento)
                         self.nomes.append(remedio.nome)
                     }
@@ -99,7 +107,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
            
         }
     }/**
-        popula Medicamento quando vem de um array
+        popula Medicamento com os dados do Servidor
      */
     func populaMedicamento(medicamento: AnyObject)  -> Medicamento{
         let medicamentoAux = Medicamento()
@@ -127,8 +135,33 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             medicamentoAux.fotoMedicamento = img
             
         }
+        
+        let dicDosagem = medicamento["dosagem"]!
+        medicamentoAux.dosagemMedicamento = populaDosagemMedicamento(dicDosagem!)
         return medicamentoAux
 
+    }
+    /**
+        Popula uma entidade Dosagem com os dados que vem do Servidor
+     */
+    func populaDosagemMedicamento(dosagem: AnyObject) -> DosagemMedicamento{
+        let dosagemAux = DosagemMedicamento()
+        if let intervalo = Int((dosagem["intervalo"] as? String)!){
+            dosagemAux.intervaloDose = intervalo
+        }
+        if let periodo = Int((dosagem["periodo"] as? String)!){
+            dosagemAux.periodoTratamento = periodo
+        }
+        if let quantidade = Double((dosagem["quantidade"] as? String)!){
+            dosagemAux.quantidade = quantidade
+        }
+        if let tipo = dosagem["tipo"] as? String{
+            dosagemAux.tipoMedicamento = tipo
+        }
+        print("FALTA ACERTAR A DATA NO SERVIDOR E BANCO DE DADOS")
+        print("----------")
+      
+        return dosagemAux
     }
     func grabPhotos(){
         let imgManager = PHImageManager.defaultManager()
@@ -203,10 +236,14 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
 
         }else{
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("DetalhamentoMedicamento") as! DetalhamentoMedicamentoViewController
+            let medicamento = user.medicamento[Int(indexPath.row) - 1]
+            //print(medicamento.dosagemMedicamento.periodoTratamento)
+            resultViewController.medicamento = user.medicamento[Int(indexPath.row) - 1]
             
-            let result = storyBoard.instantiateViewControllerWithIdentifier("cadastrarMedicamento") as! CadastrarMedicamentoViewController
-                result.str = "apenas vizualizar"
-            self.presentViewController(result, animated:true, completion:nil)
+            let navController = UINavigationController(rootViewController: resultViewController)
+            
+            self.presentViewController(navController, animated: true, completion: nil)
         }
     }
    

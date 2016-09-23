@@ -14,5 +14,6 @@ class DosagemMedicamento: NSObject {
     var intervaloDose: Int!
     var periodoTratamento: Int!
     var quantidade:Double!
+    var dataInicio:NSDate!
 
 }

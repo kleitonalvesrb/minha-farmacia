@@ -11,10 +11,14 @@ import UIKit
 class DetalhamentoMedicamentoViewController: UIViewController {
 
     @IBOutlet weak var imgMedicamento: UIImageView!
-    @IBOutlet weak var campoDataInicioTratamento: UITextField!
+   // @IBOutlet weak var campoDataInicioTratamento: UITextField!
     @IBOutlet weak var campoIntervaloEntreDose: UITextField!
+    @IBOutlet weak var campoDataInicioTratamento: UITextField!
+   // @IBOutlet weak var campoIntervaloEntreDose: UITextField!
+    //@IBOutlet weak var campoDosagem: UITextField!
     @IBOutlet weak var campoDosagem: UITextField!
     @IBOutlet weak var campoDuracaoTratamento: UITextField!
+    //@IBOutlet weak var campoDuracaoTratamento: UITextField!
     
     var medicamento:Medicamento = Medicamento()
     override func viewDidLoad() {

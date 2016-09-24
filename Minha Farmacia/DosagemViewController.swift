@@ -201,7 +201,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         print("Dosagem ---> ",trataQtdDosagemMedicamento(campoDosagem.text!, util: util))
         let dicDosagem = ["quantidade":trataQtdDosagemMedicamento(campoDosagem.text!, util: util),
                           "tipo": campoSwitchMedicamento.text!,
-                          "dataInicio":campoDataInicio.text!,
+                          "dataInicioString":campoDataInicio.text!,
                           "periodo":util.valorTempoDias(campoPeriodo.text!),
                           "intervalo":util.valorIntervalo(campoIntervalo.text!)]
         

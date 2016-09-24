@@ -236,7 +236,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
 
         }else{
             let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("DetalhamentoMedicamento") as! DetalhamentoMedicamentoViewController
+            let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("DetalhamentoMedicamento") as! DetalhamentoMedicamentoTableViewController
             let medicamento = user.medicamento[Int(indexPath.row) - 1]
             //print(medicamento.dosagemMedicamento.periodoTratamento)
             resultViewController.medicamento = user.medicamento[Int(indexPath.row) - 1]

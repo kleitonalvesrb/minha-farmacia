@@ -38,6 +38,7 @@
 		637622E51D7FCB3D00666F58 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 637622E41D7FCB3C00666F58 /* user.png */; };
 		637622E71D7FCD3A00666F58 /* user1.png in Resources */ = {isa = PBXBuildFile; fileRef = 637622E61D7FCD3A00666F58 /* user1.png */; };
 		637622EB1D7FCEF200666F58 /* user2.png in Resources */ = {isa = PBXBuildFile; fileRef = 637622EA1D7FCEF200666F58 /* user2.png */; };
+		637F16DA1D962B05004017FE /* DetalhamentoMedicamentoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637F16D91D962B05004017FE /* DetalhamentoMedicamentoTableViewController.swift */; };
 		6382F0CA1D64EEC900958E54 /* MedicamentoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0C91D64EEC900958E54 /* MedicamentoCollectionViewCell.swift */; };
 		6382F0CC1D64EF7E00958E54 /* MedicamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0CB1D64EF7E00958E54 /* MedicamentoViewController.swift */; };
 		6382F0CE1D64F6C200958E54 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 6382F0CD1D64F6C200958E54 /* plus.png */; };
@@ -112,6 +113,7 @@
 		637622E41D7FCB3C00666F58 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		637622E61D7FCD3A00666F58 /* user1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user1.png; sourceTree = "<group>"; };
 		637622EA1D7FCEF200666F58 /* user2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user2.png; sourceTree = "<group>"; };
+		637F16D91D962B05004017FE /* DetalhamentoMedicamentoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalhamentoMedicamentoTableViewController.swift; sourceTree = "<group>"; };
 		6382F0C91D64EEC900958E54 /* MedicamentoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MedicamentoCollectionViewCell.swift; path = ../MedicamentoCollectionViewCell.swift; sourceTree = "<group>"; };
 		6382F0CB1D64EF7E00958E54 /* MedicamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicamentoViewController.swift; sourceTree = "<group>"; };
 		6382F0CD1D64F6C200958E54 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				6382F0D11D65008F00958E54 /* CadastrarMedicamentoViewController.swift */,
 				63046D4F1D82EC79003E1A5D /* DosagemViewController.swift */,
 				639DEFCA1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift */,
+				637F16D91D962B05004017FE /* DetalhamentoMedicamentoTableViewController.swift */,
 			);
 			name = Medicamento;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				6393CA6E1D55312B003B3E71 /* Usuario.swift in Sources */,
 				6382F0D21D65008F00958E54 /* CadastrarMedicamentoViewController.swift in Sources */,
 				631136F11D681C00004BA4B8 /* Medicamento.swift in Sources */,
+				637F16DA1D962B05004017FE /* DetalhamentoMedicamentoTableViewController.swift in Sources */,
 				6382F0CA1D64EEC900958E54 /* MedicamentoCollectionViewCell.swift in Sources */,
 				631136EC1D66223E004BA4B8 /* UrlWS.swift in Sources */,
 				63046D501D82EC79003E1A5D /* DosagemViewController.swift in Sources */,

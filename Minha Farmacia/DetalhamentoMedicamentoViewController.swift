@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetalhamentoMedicamentoViewController: UIViewController {
+class DetalhamentoMedicamentoViewController: UIViewController,  UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var imgMedicamento: UIImageView!
    // @IBOutlet weak var campoDataInicioTratamento: UITextField!
@@ -20,6 +20,10 @@ class DetalhamentoMedicamentoViewController: UIViewController {
     @IBOutlet weak var campoDuracaoTratamento: UITextField!
     //@IBOutlet weak var campoDuracaoTratamento: UITextField!
     
+    
+    let atrasos = ["23/10/2016 ás 12:30",
+                                          "24/10/2014 ás 00:30",
+                           "24/10/2016 ás 12:30"]
     var medicamento:Medicamento = Medicamento()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +49,18 @@ class DetalhamentoMedicamentoViewController: UIViewController {
         }else{
             return " Comprimido"
         }
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return atrasos.count
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        cell.textLabel?.text = atrasos[indexPath.row]
+        return cell
     }
     /*
     // MARK: - Navigation

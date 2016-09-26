@@ -110,7 +110,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informado!")
         }else{
             populaMedicamentoWithDosagem()
-            salvarMedicamentoDosagemServidor()
+           // salvarMedicamentoDosagemServidor()
         }
         
     }
@@ -125,11 +125,39 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         dosagem.periodoTratamento = util.valorTempoDias(campoPeriodo.text!)
         dosagem.tipoMedicamento = campoSwitchMedicamento.text!
         
+        // Initialize Date string
+        let dateString2 = campoDataInicio.text!
+        //let dateString2 = "26 de set de 2016 01:09"
+        
+        var dateStr4 = dateString2.stringByReplacingOccurrencesOfString(" de ", withString: " ")
+        dateStr4 = dateStr4.stringByReplacingOccurrencesOfString("  ", withString: " ")
+//        dateStr4 = dateStr4.stringByReplacingOccurrencesOfString("set", withString: "sep")
+        print("data tratada --> ",dateStr4)
+        
+        
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd/MMM/yyyy HH:mm"
-        dateFormatter.timeZone = NSTimeZone(name: "UTC")
-        let date = dateFormatter.dateFromString(campoDataInicio.text!)
-        dosagem.dataInicio = date
+        dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
+        dateFormatter.locale = NSLocale.currentLocale()
+        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+        let date2 = dateFormatter.dateFromString(dateStr4)
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        if let unwrappedDate = date2 {
+            print(dateFormatter.stringFromDate(unwrappedDate))
+        }
+        
+        
+        
+        
+        
+        
+//        let dataString = campoDataInicio.text!.stringByReplacingOccurrencesOfString("de", withString:"")
+//        
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+//        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+//        //let date = dateFormatter.dateFromString(dataString)
+//        dosagem.dataInicio = date
+//        print("------>",date)
         
         dosagem.quantidade = trataQtdDosagemMedicamento(campoDosagem.text!, util: util)
         medicamento.dosagemMedicamento = dosagem
@@ -197,8 +225,8 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     func criaDicDosagem() -> NSDictionary{
         let util = Util()
         
-        print(campoDataInicio.text!,"<------")
-        print("Dosagem ---> ",trataQtdDosagemMedicamento(campoDosagem.text!, util: util))
+//        print(campoDataInicio.text!,"<------")
+//        print("Dosagem ---> ",trataQtdDosagemMedicamento(campoDosagem.text!, util: util))
         let dicDosagem = ["quantidade":trataQtdDosagemMedicamento(campoDosagem.text!, util: util),
                           "tipo": campoSwitchMedicamento.text!,
                           "dataInicioString":campoDataInicio.text!,

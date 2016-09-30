@@ -139,32 +139,79 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         dateFormatter.dateFormat = "dd MMM yyyy HH:mm"
         dateFormatter.locale = NSLocale.currentLocale()
         dateFormatter.timeZone = NSTimeZone.localTimeZone()
-        let date2 = dateFormatter.dateFromString(dateStr4)
+        let date2:NSDate!
+            date2 = dateFormatter.dateFromString(dateStr4)
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        
         if let unwrappedDate = date2 {
+            
             print(dateFormatter.stringFromDate(unwrappedDate))
+            print("--->",unwrappedDate)
+            criaNotificacoes(dateStr4,comFormato: dateFormatter, comIntervalo: util.valorIntervalo(campoIntervalo.text!), totalDias: util.valorTempoDias(campoPeriodo.text!))
+        }else{
+            print("tratar erro ")
         }
-        
-        
-        
-        
-        
-        
-//        let dataString = campoDataInicio.text!.stringByReplacingOccurrencesOfString("de", withString:"")
-//        
-//        let dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
-//        dateFormatter.timeZone = NSTimeZone.localTimeZone()
-//        //let date = dateFormatter.dateFromString(dataString)
-//        dosagem.dataInicio = date
-//        print("------>",date)
-        
         dosagem.quantidade = trataQtdDosagemMedicamento(campoDosagem.text!, util: util)
         medicamento.dosagemMedicamento = dosagem
         
-//        dosagem.quantidade
+    }/**
+        Cria as notificaçoes com base na data de inicio, intervalo entre as doses e o periodo total de tratamento
+     */
+    func criaNotificacoes(dataInicio: String,comFormato dateFormatter: NSDateFormatter, comIntervalo intervalo:Int, totalDias qtdDias:Int){
+       
+        var arrayDataNotificacao = [NSDate]()
+        var dateCriada = dateFormatter.dateFromString(dataInicio)
+        let qtdDoses = calculaQtdVezes(qtdDias, comIntervalo: intervalo)
+        for i in 1 ... qtdDoses{
+            
+            let theDate = dateFormatter.dateFromString(dataInicio)
+            let dateCom = NSDateComponents()
+            dateCom.second = 60 * 60 * intervalo * i
+            
+            if i != 1{
+                
+                theDate!.dateByAddingTimeInterval(60*60*Double(intervalo) * Double(i))
+            }
+            
+            let cal = NSCalendar.currentCalendar()
+            let fireDate:NSDate = cal.dateByAddingComponents(dateCom, toDate: theDate!, options: NSCalendarOptions())!
+            
+            let notification:UILocalNotification = UILocalNotification()
+            notification.alertBody = "Está na Hora de visitar sua farmácia! "
+            notification.fireDate = fireDate
+            notification.soundName = UILocalNotificationDefaultSoundName;
+            notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+            arrayDataNotificacao.append(fireDate)
+            
+             UIApplication.sharedApplication().scheduleLocalNotification(notification)
+            // print("cal -> \(cal)")
+            //        print("dateCom  -> \(dateCom)")
+            //        print("fireDate -> \(fireDate)")
+            //        print("data \(NSDate())")
+        }
+        for d in arrayDataNotificacao{
+            print("-> \(d)")
+        }
+        print("Quantidade de notificacao por remedio ->",arrayDataNotificacao.count)
+        
         
     }
+    /**
+        Realiza calculo para saber a quantidade de vezes a pessoa deverá tomar o medicamento, com isso
+     possibilitará a criação das notificações nos horarios corretos
+     */
+    func calculaQtdVezes(qtdDias:Int, comIntervalo intervalo:Int) -> Int{
+        var qtdInt:Int = (qtdDias * 24)/intervalo
+        let qtdDouble:Double = (Double(qtdDias) * 24)/Double(intervalo)
+        if Double(qtdInt) == qtdDouble{
+            return qtdInt
+        }else{
+            qtdInt += 1
+            return qtdInt
+        }
+    }
+
+    
     /**
         Salva medicamento e dosagem no servidor Web
      */

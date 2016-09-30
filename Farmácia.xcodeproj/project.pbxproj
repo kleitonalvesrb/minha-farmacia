@@ -190,6 +190,7 @@
 		630C3C6D1D4AA5D800312CC5 /* Minha Farmacia */ = {
 			isa = PBXGroup;
 			children = (
+				63F27D131D99D8270082B7A3 /* Dosagem */,
 				631136F61D68C92B004BA4B8 /* TelaLoginViewController.swift */,
 				631136EF1D681BEC004BA4B8 /* Objetos */,
 				631136EA1D662222004BA4B8 /* Utlidades */,
@@ -230,9 +231,7 @@
 				6382F0CB1D64EF7E00958E54 /* MedicamentoViewController.swift */,
 				6382F0C91D64EEC900958E54 /* MedicamentoCollectionViewCell.swift */,
 				6382F0D11D65008F00958E54 /* CadastrarMedicamentoViewController.swift */,
-				63046D4F1D82EC79003E1A5D /* DosagemViewController.swift */,
 				639DEFCA1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift */,
-				637F16D91D962B05004017FE /* DetalhamentoMedicamentoTableViewController.swift */,
 			);
 			name = Medicamento;
 			sourceTree = "<group>";
@@ -301,6 +300,15 @@
 				63A4EB5A1D4ABFDB007C6B20 /* Parse.framework */,
 			);
 			name = frameworks;
+			sourceTree = "<group>";
+		};
+		63F27D131D99D8270082B7A3 /* Dosagem */ = {
+			isa = PBXGroup;
+			children = (
+				637F16D91D962B05004017FE /* DetalhamentoMedicamentoTableViewController.swift */,
+				63046D4F1D82EC79003E1A5D /* DosagemViewController.swift */,
+			);
+			name = Dosagem;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

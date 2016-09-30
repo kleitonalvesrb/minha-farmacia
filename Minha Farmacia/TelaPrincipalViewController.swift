@@ -77,34 +77,73 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
         return cell
         
     }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if titulos[indexPath.row].lowercaseString == "Nome".lowercaseString{
-            let alerta = UIAlertController(title: "Informe o novo nome", message: nil, preferredStyle: .Alert)
-            let trocaNome = UIAlertAction(title: "Salvar", style: .Default, handler: { (_) in
-                let nome = alerta.textFields![0] as UITextField
-                if nome.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
-                    self.conteudo[indexPath.row] = nome.text!
-                    self.tableView.reloadData()
-                }else{
-                    print("nao pode trocar")
-                }
-
-            })
-            
-            
-            alerta.addTextFieldWithConfigurationHandler { (textField) in
-                textField.placeholder = "Nome"
-                textField.keyboardType = .EmailAddress
-            }
-            let cancelAction = UIAlertAction(title: "Cancelar", style: .Destructive) { (_) in }
-            alerta.addAction(trocaNome)
-            alerta.addAction(cancelAction)
-            
-            self.presentViewController(alerta, animated: true, completion: nil)
-            
+            alteraNomeUsuario(indexPath.row)
         }else if titulos[indexPath.row].lowercaseString == "Sexo".lowercaseString{
             print("alterar Sexo")
         }
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let more = UITableViewRowAction(style: .Normal, title: "Alterar") { action, index in
+            self.alteraNomeUsuario(indexPath.row)
+        }
+        more.backgroundColor = UIColor.blueColor()
+        
+        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+            print("favorite button tapped")
+        }
+        favorite.backgroundColor = UIColor.orangeColor()
+        
+        let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
+            print("share button tapped")
+        }
+        share.backgroundColor = UIColor.lightGrayColor()
+        
+        return [share, favorite, more]
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        // the cells you would like the actions to appear needs to be editable
+        return true
+    }
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        print("Entrou nesse método estranho")
+        self.tableView.reloadData()
+        // you need to implement this method too or you can't swipe to display the actions
+    }
+    /**
+        Método responsavel por gerar uma caixa de dialogo com o usuário afim de trocar o nome,
+     atualiza a tabela e devera alterar os dados no servidor
+     */
+    func alteraNomeUsuario(index:Int){
+        let alerta = UIAlertController(title: "Informe o novo nome", message: nil, preferredStyle: .Alert)
+        let trocaNome = UIAlertAction(title: "Salvar", style: .Default, handler: { (_) in
+            let nome = alerta.textFields![0] as UITextField
+            if nome.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
+                self.conteudo[index] = nome.text!
+                self.tableView.reloadData()
+            }else{
+                print("nao pode trocar")
+            }
+            
+        })
+        
+        
+        alerta.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Nome"
+            textField.keyboardType = .Default
+        }
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .Destructive) { (_) in }
+        alerta.addAction(trocaNome)
+        alerta.addAction(cancelAction)
+        
+        self.presentViewController(alerta, animated: true, completion: nil)
+        
+
     }
 //    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PostCell
 //    imageFiles[indexPath.row].getDataInBackgroundWithBlock { (data, error) in

@@ -110,7 +110,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informado!")
         }else{
             populaMedicamentoWithDosagem()
-           // salvarMedicamentoDosagemServidor()
+            salvarMedicamentoDosagemServidor()
         }
         
     }

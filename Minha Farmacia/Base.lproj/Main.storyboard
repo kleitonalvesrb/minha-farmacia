@@ -719,6 +719,7 @@
                     <connections>
                         <outlet property="ImageUsuario" destination="DVq-iz-8m9" id="Lqm-UD-LIM"/>
                         <outlet property="btnMedicamento" destination="SF8-3t-MLR" id="dDG-TS-Ijw"/>
+                        <outlet property="tableView" destination="qdI-E2-DmG" id="KtL-Gg-kLr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VoU-f1-NvV" userLabel="First Responder" sceneMemberID="firstResponder"/>

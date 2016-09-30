@@ -12,6 +12,7 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
 
     @IBOutlet weak var btnMedicamento: UIBarButtonItem!
     @IBOutlet weak var ImageUsuario: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
  
     var user:Usuario!
     var titulos = [String]()
@@ -78,7 +79,29 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if titulos[indexPath.row].lowercaseString == "Nome".lowercaseString{
-            print("Alterar Nome")
+            let alerta = UIAlertController(title: "Informe o novo nome", message: nil, preferredStyle: .Alert)
+            let trocaNome = UIAlertAction(title: "Salvar", style: .Default, handler: { (_) in
+                let nome = alerta.textFields![0] as UITextField
+                if nome.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
+                    self.conteudo[indexPath.row] = nome.text!
+                    self.tableView.reloadData()
+                }else{
+                    print("nao pode trocar")
+                }
+
+            })
+            
+            
+            alerta.addTextFieldWithConfigurationHandler { (textField) in
+                textField.placeholder = "Nome"
+                textField.keyboardType = .EmailAddress
+            }
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .Destructive) { (_) in }
+            alerta.addAction(trocaNome)
+            alerta.addAction(cancelAction)
+            
+            self.presentViewController(alerta, animated: true, completion: nil)
+            
         }else if titulos[indexPath.row].lowercaseString == "Sexo".lowercaseString{
             print("alterar Sexo")
         }

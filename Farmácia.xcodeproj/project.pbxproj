@@ -63,6 +63,7 @@
 		63A4EB661D4AC2A7007C6B20 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB641D4AC2A7007C6B20 /* FBSDKCoreKit.framework */; };
 		63A4EB671D4AC2A7007C6B20 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB651D4AC2A7007C6B20 /* FBSDKLoginKit.framework */; };
 		63A4EB6A1D4AC48F007C6B20 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB691D4AC48F007C6B20 /* ParseFacebookUtilsV4.framework */; };
+		63AA4CCB1D9E09170068C16C /* PerfilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AA4CCA1D9E09170068C16C /* PerfilTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,6 +138,7 @@
 		63A4EB651D4AC2A7007C6B20 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Frameworks/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		63A4EB681D4AC3C6007C6B20 /* ParseStarterProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParseStarterProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		63A4EB691D4AC48F007C6B20 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		63AA4CCA1D9E09170068C16C /* PerfilTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 				6308A1CA1D4C66A10042BE2C /* TesteViewController.swift */,
 				6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */,
 				6393CA6B1D55308F003B3E71 /* TelaPrincipalViewController.swift */,
+				63AA4CCA1D9E09170068C16C /* PerfilTableViewCell.swift */,
 			);
 			name = Usuario;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 				631C142E1D4D1CE60041675F /* Util.swift in Sources */,
 				630C3C771D4AA5D800312CC5 /* Minha_Farmacia.xcdatamodeld in Sources */,
 				639DEFCB1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift in Sources */,
+				63AA4CCB1D9E09170068C16C /* PerfilTableViewCell.swift in Sources */,
 				630C3C6F1D4AA5D800312CC5 /* AppDelegate.swift in Sources */,
 				63046D521D83B9E8003E1A5D /* DosagemMedicamento.swift in Sources */,
 				6393CA6C1D55308F003B3E71 /* TelaPrincipalViewController.swift in Sources */,

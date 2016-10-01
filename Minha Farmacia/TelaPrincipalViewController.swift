@@ -87,12 +87,14 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let alterar = UITableViewRowAction(style: .Normal, title: "Alterar") { action, index in
-            self.alteraNomeUsuario(indexPath.row)
-        }
-        alterar.backgroundColor = UIColor.blueColor()
+        if titulos[indexPath.row].lowercaseString == "Nome".lowercaseString{
+            let alterar = UITableViewRowAction(style: .Normal, title: "Alterar") { action, index in
+                self.alteraNomeUsuario(indexPath.row)
+            }
+            alterar.backgroundColor = UIColor.blueColor()
+            return [alterar]
         
-//        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+        }//        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
 //            print("favorite button tapped")
 //        }
 //        favorite.backgroundColor = UIColor.orangeColor()
@@ -101,13 +103,18 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
 //            print("share button tapped")
 //        }
 //        share.backgroundColor = UIColor.lightGrayColor()
-        return [alterar]
+        
         //return [share, favorite, more]
+        return nil
+        
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if titulos[indexPath.row].lowercaseString == "Nome".lowercaseString{
+            return true
+        }
         // the cells you would like the actions to appear needs to be editable
-        return true
+        return false
     }
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         

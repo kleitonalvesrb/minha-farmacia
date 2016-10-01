@@ -10,15 +10,21 @@ import UIKit
 
 class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var btnMedicamento: UIBarButtonItem!
     @IBOutlet weak var ImageUsuario: UIImageView!
     @IBOutlet weak var tableView: UITableView!
- 
+ //667
     var user:Usuario!
     var titulos = [String]()
     var conteudo = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if self.view.frame.height > 665{
+            scroll.scrollEnabled = false
+        }
         user = Usuario.sharedInstance
         ImageUsuario.image = user.foto
         

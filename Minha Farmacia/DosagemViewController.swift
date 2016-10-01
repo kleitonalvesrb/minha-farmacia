@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    @IBOutlet weak var lblInfor: UILabel!
+    @IBOutlet weak var activityInfo: UIActivityIndicatorView!
 
     var medicamento: Medicamento = Medicamento()
     
@@ -46,6 +48,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        configuraLabelInfo()
         setDeleganteFields()
         configuraPicker()
         populaArray()
@@ -63,6 +66,16 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         
 
         // Do any additional setup after loading the view.
+    }
+    /**
+        Configura label de apresentacao
+     */
+    func configuraLabelInfo(){
+        lblInfor.hidden = true
+        activityInfo.hidden = true
+        lblInfor.layer.masksToBounds = true
+        lblInfor.layer.cornerRadius = 20
+        
     }
     func definiTipo(){
         print(campoSwitchMedicamento.text)
@@ -109,6 +122,9 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         if util.isVazio(campoIntervalo.text!) || util.isVazio(campoPeriodo.text!) || util.isVazio(campoDataInicio.text!) || util.isVazio(campoDosagem.text!){
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informado!")
         }else{
+            lblInfor.hidden = false
+            activityInfo.hidden = false
+            activityInfo.startAnimating()
             populaMedicamentoWithDosagem()
             salvarMedicamentoDosagemServidor()
         }
@@ -219,20 +235,17 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         let url = UrlWS()
         let user = Usuario.sharedInstance
         Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters:criaDicMedicamento() as? [String : AnyObject] , encoding: .JSON, headers: nil).responseJSON { (response) in
-                      // print("---Response----->",response)
-                       //print("---->",response.result)
-//            print("---->",response.response!.statusCode)
+            
             if response.response?.statusCode == 200{
-                //self.geraAlerta("OK", mensagem: "Dados do medicamento salvo com sucesso!")
                
-                
+                self.lblInfor.hidden = true
+                self.activityInfo.hidden = true
+                self.activityInfo.stopAnimating()
                 self.redirecionTelaMedicamentos()
             }else{
-                self.geraAlerta("Ops", mensagem: "Deu ruim :(")
+                self.geraAlerta("Ops", mensagem: "Não foi possível cadastrar o medicamento, tente novamente mais tarde")
             }
 
-            
-            //            self.performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
         }
     
     }

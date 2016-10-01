@@ -12,22 +12,42 @@ import Alamofire
 class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
-    var nomes = [String]() //["Kleiton","Anna","Meg","Dina","Arnaldo","Thiago","Franciele","Kelly", "Thaynara"]
+    var nomes = [String]() //nomes dos medicamentos
     let util = Util()
     var user = Usuario.sharedInstance
     var flagNovoMedicamento = false
     
+    var labeli:UILabel = UILabel()
+    
+    @IBOutlet weak var activityInfo: UIActivityIndicatorView!
+    @IBOutlet weak var lblInfo: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configuraLabelInfo()
+   
+        configuracaoTableView()
+        configuraLabelInfo()
+        apresentacaoAlertaNovoMedicamento()
+    }
+    func apresentacaoAlertaNovoMedicamento(){
         if flagNovoMedicamento == true{
-            print("Devo mostrar a alerta agora <--------")
             flagNovoMedicamento = false
             geraAlerta("Sucesso", mensagem: "Novo Medicamento cadastrado com sucesso!")
-        }else{
-            print("Nao devo mostrar a alerta agora <--------")
-
         }
+    }
+    
+    func configuraLabelInfo(){
+        lblInfo.hidden = false
+        activityInfo.hidden = false
+        lblInfo.layer.masksToBounds = true
+
+        lblInfo.layer.cornerRadius = 20
+        activityInfo.startAnimating()
+    }
+    func configuracaoTableView(){
         self.collectionView.delegate = self
         collectionView.dataSource = self
         buscaMedicamentos()
@@ -35,6 +55,28 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
+    }
+    
+    
+    
+    
+    func loading(){
+        let y = self.view.frame.height / 2 - 100
+        let x = self.view.frame.width / 2
+        let label = UILabel(frame: CGRectMake(0, 0, 200, 200))
+        label.center = CGPointMake(CGFloat(x), CGFloat(y))
+        label.textAlignment = NSTextAlignment.Center
+        label.backgroundColor = UIColor.redColor()
+       
+        
+        var myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        myActivityIndicator.center = CGPointMake(CGFloat(x),CGFloat(y))
+        myActivityIndicator.startAnimating()
+        label.addSubview(myActivityIndicator)
+      
+//        view.addSubview(activityIndicator)
+        self.view.addSubview(label)
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -82,12 +124,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                         
 
                         for i in medicamentos{
-//                            print("-----------------------------------------------------")
-//                            
-//                            print(i["dosagem"])
-//                        print("-----------------------------------------------------")
-//
-                            
                             self.user.medicamento.append(self.populaMedicamento(i))
                         }//fecha o for
                     }else{
@@ -104,7 +140,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                 }
                 
             }
-           
+         self.lblInfo.hidden = true
+         self.activityInfo.stopAnimating()
+         self.activityInfo.hidden = true
         }
     }/**
         popula Medicamento com os dados do Servidor

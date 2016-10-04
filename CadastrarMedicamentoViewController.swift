@@ -82,6 +82,9 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         if isPowerFlash{
             btnFlash(sender)
         }
+        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
+
+        apresentaBarraNavegacao(false)
 
         videoPreviewLayer?.hidden = true
         qrCodeFrameView?.hidden = true
@@ -132,6 +135,9 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         desabilidaInteracaoUsuarioBotoes(interatividade: false)
         habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: true, comInvisibilidade: false)
         apresentaBarraNavegacao(true)
+        
+        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
+
         lerCodigoBarras()
     }
     /**
@@ -330,6 +336,8 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
                 buscarMedicamentoNet(metadataObj.stringValue)
                 
                 apresentaBarraNavegacao(false)
+                navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
+
                 habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
                 desabilidaInteracaoUsuarioBotoes(interatividade: true)
                 

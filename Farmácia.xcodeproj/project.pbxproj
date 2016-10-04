@@ -64,6 +64,9 @@
 		63A4EB671D4AC2A7007C6B20 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB651D4AC2A7007C6B20 /* FBSDKLoginKit.framework */; };
 		63A4EB6A1D4AC48F007C6B20 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB691D4AC48F007C6B20 /* ParseFacebookUtilsV4.framework */; };
 		63AA4CCB1D9E09170068C16C /* PerfilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AA4CCA1D9E09170068C16C /* PerfilTableViewCell.swift */; };
+		63D507331DA33601008FB1C3 /* delete26.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D507301DA33601008FB1C3 /* delete26.png */; };
+		63D507341DA33601008FB1C3 /* flash26.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D507311DA33601008FB1C3 /* flash26.png */; };
+		63D507351DA33601008FB1C3 /* pintado26.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D507321DA33601008FB1C3 /* pintado26.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -139,6 +142,9 @@
 		63A4EB681D4AC3C6007C6B20 /* ParseStarterProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParseStarterProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		63A4EB691D4AC48F007C6B20 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		63AA4CCA1D9E09170068C16C /* PerfilTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilTableViewCell.swift; sourceTree = "<group>"; };
+		63D507301DA33601008FB1C3 /* delete26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete26.png; sourceTree = "<group>"; };
+		63D507311DA33601008FB1C3 /* flash26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash26.png; sourceTree = "<group>"; };
+		63D507321DA33601008FB1C3 /* pintado26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pintado26.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,9 @@
 				637384CF1D6BE80E00DAB413 /* relogio.png */,
 				637622E21D7FCA2E00666F58 /* medical-prescription.png */,
 				637384CD1D6BE74E00DAB413 /* icone1024.png */,
+				63D507301DA33601008FB1C3 /* delete26.png */,
+				63D507311DA33601008FB1C3 /* flash26.png */,
+				63D507321DA33601008FB1C3 /* pintado26.png */,
 				637622EA1D7FCEF200666F58 /* user2.png */,
 				637622E61D7FCD3A00666F58 /* user1.png */,
 				637622E01D7FC8A400666F58 /* remedio_2.png */,
@@ -382,7 +391,10 @@
 				637622E11D7FC8A400666F58 /* remedio_2.png in Resources */,
 				6327266A1D64EAB800580E18 /* perfil.png in Resources */,
 				6393CA741D55B397003B3E71 /* indefinido.png in Resources */,
+				63D507341DA33601008FB1C3 /* flash26.png in Resources */,
+				63D507331DA33601008FB1C3 /* delete26.png in Resources */,
 				6382F0D01D64F96800958E54 /* plus2.png in Resources */,
+				63D507351DA33601008FB1C3 /* pintado26.png in Resources */,
 				631136EE1D666EBE004BA4B8 /* back.png in Resources */,
 				631154DF1D60392A009C18DA /* negado.png in Resources */,
 				631154DE1D60392A009C18DA /* ok.png in Resources */,

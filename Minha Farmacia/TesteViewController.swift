@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AVFoundation
 class TesteViewController: UIViewController, UITextFieldDelegate{
     
     
@@ -25,7 +26,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     // padrao da url
     let urlPadrao = UrlWS()
-  
+    let utilidades = Util()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,10 +35,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         
         btnLogin.layer.cornerRadius = 5
         btnFacebook.layer.cornerRadius = 5
-        info.hidden = true
-        activityIndicator.hidden = true
-        info.layer.masksToBounds = true
-        info.layer.cornerRadius = 20
+        utilidades.configuraLabelInformacao(info, comInvisibilidade: true, comIndicador: activityIndicator, comInvisibilidade: true, comAnimacao: false)
+//        utilidades.configuraLabelInformacao(info, comVisibilidade: true, comIndicador: activityIndicator, comVisibilidade: true, comStatus: false)
+    
        // scroll.scrollEnabled = false
         self.senha.delegate = self
         self.email.delegate = self
@@ -130,9 +130,10 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
             showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
         }else{
-            info.hidden = false
-            activityIndicator.hidden = false
-            activityIndicator.startAnimating()
+            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
+            utilidades.configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade: false, comAnimacao: true)
+
            fazLogin(email.text!, senha: senha.text!)
         }
     }
@@ -140,7 +141,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //    @IBAction func loginFacebook(sender: AnyObject) {
 //    }
     @IBAction func loginFacebook(sender: AnyObject) {
-        //let permission = ["public_profile"]
+               //let permission = ["public_profile"]
         //PFFacebookUtils.logInInBackgroundWithReadPermissions(permission)
         //pegaDadosFacebook()
         
@@ -226,7 +227,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                             self.user.foto = UIImage(named: "indefinido.png")
                         } //<-- adc um avatar de acordo com o sexo
                     }
-                    
+                    self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
+                    UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
                    
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                     
@@ -243,9 +246,9 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                 }
             }
 
-                self.activityIndicator.stopAnimating()
-                self.activityIndicator.hidden = true
-                self.info.hidden = true
+               self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
+            UIApplication.sharedApplication().endIgnoringInteractionEvents()
+
         }
     }
     func t (i: AnyObject){

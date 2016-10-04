@@ -14,7 +14,21 @@ class Util: NSObject {
     func isVazio(txt : String) -> Bool{
             return txt == ""
     }
-  
+    /**
+        Configura label de informação que será apresentada no momento que o usuario interagir com o app
+     */
+    func configuraLabelInformacao(label: UILabel, comInvisibilidade visibilidadeLabel:Bool, comIndicador indicador:UIActivityIndicatorView, comInvisibilidade visibilidadeIndicator:Bool, comAnimacao animacao:Bool){
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 20
+        label.hidden = visibilidadeLabel
+        indicador.hidden = visibilidadeIndicator
+        if animacao {
+            indicador.startAnimating()
+        }else{
+            indicador.stopAnimating()
+        }
+        
+    }
     /**
         Converte uma string base64 em uma imagem
      */

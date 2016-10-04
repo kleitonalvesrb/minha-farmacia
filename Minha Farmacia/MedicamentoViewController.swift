@@ -40,12 +40,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     }
     
     func configuraLabelInfo(){
-        lblInfo.hidden = false
-        activityInfo.hidden = false
-        lblInfo.layer.masksToBounds = true
-
-        lblInfo.layer.cornerRadius = 20
-        activityInfo.startAnimating()
+       util.configuraLabelInformacao(lblInfo, comInvisibilidade: false , comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
     }
     func configuracaoTableView(){
         self.collectionView.delegate = self
@@ -60,24 +55,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     
     
     
-    func loading(){
-        let y = self.view.frame.height / 2 - 100
-        let x = self.view.frame.width / 2
-        let label = UILabel(frame: CGRectMake(0, 0, 200, 200))
-        label.center = CGPointMake(CGFloat(x), CGFloat(y))
-        label.textAlignment = NSTextAlignment.Center
-        label.backgroundColor = UIColor.redColor()
-       
-        
-        var myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        myActivityIndicator.center = CGPointMake(CGFloat(x),CGFloat(y))
-        myActivityIndicator.startAnimating()
-        label.addSubview(myActivityIndicator)
-      
-//        view.addSubview(activityIndicator)
-        self.view.addSubview(label)
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-    }
+ 
     
     override func viewWillAppear(animated: Bool) {
         let navigationBarAppearace = UINavigationBar.appearance()
@@ -140,9 +118,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                 }
                 
             }
-         self.lblInfo.hidden = true
-         self.activityInfo.stopAnimating()
-         self.activityInfo.hidden = true
+         self.util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
         }
     }/**
         popula Medicamento com os dados do Servidor

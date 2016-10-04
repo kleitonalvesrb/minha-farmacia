@@ -18,43 +18,98 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     //@IBOutlet weak var messageLabel: UILabel!
     // Added to support different barcodes
     let supportedBarCodes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code, AVMetadataObjectTypeCode39Code, AVMetadataObjectTypeCode93Code, AVMetadataObjectTypeUPCECode, AVMetadataObjectTypePDF417Code, AVMetadataObjectTypeEAN13Code, AVMetadataObjectTypeAztecCode]
-    
+    //para poder ligar e desligar o flash
+    let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
 
-    
-    
+
+    var isPowerFlash = false
+    @IBOutlet weak var btnVoltar: UIButton!
+    @IBOutlet weak var btnFlash: UIButton!
     var user = Usuario.sharedInstance
     @IBOutlet weak var lbl: UILabel!
     var str:String = String()
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         btnSalvar.layer.cornerRadius = 5
         btnLerCodBarras.layer.cornerRadius = 5
         btnEscolherImgRemedio.layer.cornerRadius = 5
-//        //lbl.text = str
-//        let medica = Medicamento()
-//        medica.fotoMedicamento = UIImage(named: "remedio.png")
-//        user.medicamento.append(medica)
-//        // Do any additional setup after loading the view.
+        isPowerFlash = false
+       
+        habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
+
     }
 
+    @IBAction func btnFlash(sender: AnyObject) {
+        alteraImagemBotaoFlash(imagem: "pintado26.png")
+        if !isPowerFlash{
+            isPowerFlash = true
+        }else{
+            isPowerFlash = false
+        }
+        if (device.hasTorch) {
+            do {
+                try device.lockForConfiguration()
+                if (device.torchMode == AVCaptureTorchMode.On) {
+                    alteraImagemBotaoFlash(imagem: "flash26.png")
+
+                    device.torchMode = AVCaptureTorchMode.Off
+                } else {
+                    do {
+                        try device.setTorchModeOnWithLevel(1.0)
+                    } catch {
+                        print(error)
+                    }
+                }
+                device.unlockForConfiguration()
+            } catch {
+                print(error)
+            }
+        }
+    }
+    func alteraImagemBotaoFlash(imagem imgName:String){
+        if let img = UIImage(named: imgName){
+            btnFlash.setImage(img, forState: .Normal)
+        }
+    }
+    /**
+        Botão voltar, responsavel por retirar a os botoes de voltar e flah da tela, cancelar
+     a captura de imagem
+     */
+    @IBAction func btnVoltar(sender: AnyObject) {
+        if isPowerFlash{
+            btnFlash(sender)
+        }
+
+        videoPreviewLayer?.hidden = true
+        qrCodeFrameView?.hidden = true
+        habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
+        desabilidaInteracaoUsuarioBotoes(interatividade: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBar.hidden = false
+        apresentaBarraNavegacao(false)
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
 
         
         self.navigationItem.title = "Cadastro"
         
-        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
+        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(CadastrarMedicamentoViewController.goBack))
         button.image = UIImage(named: "back.png")
         self.navigationItem.leftBarButtonItem = button
         self.navigationItem.leftBarButtonItem?.style
     }
     func goBack(){
         performSegueWithIdentifier("cadatroVoltaListaMediacmentos", sender: self)
+    }
+    func apresentaBarraNavegacao(invisivel: Bool)->Void{
+        self.navigationController?.navigationBar.hidden = invisivel
+
     }
     
     @IBOutlet weak var btnEscolherImgRemedio: UIButton!
@@ -72,9 +127,38 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         escolherImg()
     }
     @IBAction func lerCodBarras(sender: AnyObject) {
-        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+       // UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        alteraImagemBotaoFlash(imagem: "flash26.png")
+        desabilidaInteracaoUsuarioBotoes(interatividade: false)
+        habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: true, comInvisibilidade: false)
+        apresentaBarraNavegacao(true)
         lerCodigoBarras()
     }
+    /**
+        Método responsável por controlar a interatividade do usuario com os botos 
+        ler codigo de barras e escolher foto medicamento
+     */
+    func desabilidaInteracaoUsuarioBotoes(interatividade interativo:Bool){
+        btnEscolherImgRemedio.userInteractionEnabled = interativo
+        btnLerCodBarras.userInteractionEnabled = interativo
+    }
+    
+    /**
+     
+        hábilitar interação do usuario com os botoes de flash e voltar
+     */
+    func habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade interativo:Bool, comInvisibilidade invisibilidade:Bool){
+        btnVoltar.userInteractionEnabled = interativo
+        btnFlash.userInteractionEnabled = interativo
+        
+        btnFlash.hidden = invisibilidade
+        btnVoltar.hidden = invisibilidade
+        
+        // tirar a tela de captura de remedio
+        
+        
+    }
+    
     /**
         preenche um novo medicamento e o adc na lista de medicamentos do usuario
      */
@@ -105,15 +189,6 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         
         let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
         self.presentViewController(navController, animated:true, completion: nil)
-        
-//        let url = UrlWS()
-//        print(url.urlInsereMedicamentoUsuario(user.email))
-//        Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters: dicMedicamento, encoding: .JSON, headers: nil).responseJSON { (response) in
-//            print(response)
-//            self.performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
-//        }
-//        /*Enviar pro servidor*/
-//       performSegueWithIdentifier("voltarListaMedicamentos", sender: self)
     
     }
     
@@ -193,7 +268,13 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
             //            videoPreviewLayer?.frame = CGRectMake(20, 20, 350 ,350)
             
             view.layer.addSublayer(videoPreviewLayer!)
-            // Start video capture
+            view.layer.addSublayer(btnFlash.layer)
+            view.layer.addSublayer(btnVoltar.layer)
+            
+            
+            //  let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
+           
+            
             captureSession?.startRunning()
    
             // Initialize QR Code Frame to highlight the QR code
@@ -212,6 +293,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
             return
         }
     }
+  
     /**
         Método responsável por realizar a leitura do código de barras do medicamento
      */
@@ -247,8 +329,10 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
 
                 buscarMedicamentoNet(metadataObj.stringValue)
                 
-                UIApplication.sharedApplication().endIgnoringInteractionEvents()
-   
+                apresentaBarraNavegacao(false)
+                habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
+                desabilidaInteracaoUsuarioBotoes(interatividade: true)
+                
             }
         }
     }
@@ -308,7 +392,9 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         }))
         self.presentViewController(alerta, animated: true, completion: nil)
     }
-
+    override func prefersStatusBarHidden() -> Bool {
+        return false
+    }
     /*
     // MARK: - Navigation
 

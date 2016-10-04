@@ -11,6 +11,8 @@ import Alamofire
 class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var scroll: UIScrollView!
 
+    @IBOutlet weak var lblInfo: UILabel!
+    @IBOutlet weak var ActiviInfo: UIActivityIndicatorView!
     
     @IBOutlet weak var fotoPerfil: UIImageView!
     @IBOutlet weak var campoDataNascimento: UITextField!
@@ -31,7 +33,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     @IBOutlet weak var imgInfoEmail: UIImageView!
     @IBOutlet weak var btnCadastrar: UIButton!
     var user = Usuario.sharedInstance
-    
+    let utilidade = Util()
     override func viewDidLoad() {
         super.viewDidLoad()
         btnCadastrar.layer.cornerRadius = 5
@@ -48,7 +50,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         campoDataNascimento.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard)))
     
-
+        utilidade.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: ActiviInfo, comInvisibilidade: true, comAnimacao: false)
+//        utilidade.configuraLabelInformacao(lblInfo, comVisibilidade: false, comIndicador: ActiviInfo, comVisibilidade: false, comStatus: false)
 
         configuracaoNavBar()
 
@@ -123,7 +126,6 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
                     }else{
                         self.imgInfoEmail.image = UIImage(named: "negado.png")
                         self.btnCadastrar.userInteractionEnabled = false
-//                        self.geraAlerta("Email já utilizado", mensagem: "Caso tenha perdido o a senha, vá em recuperar senha na tela de login!")
                     }
                     
                 }else{// else de verificacao do retorno diferente de nulo
@@ -175,6 +177,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")
             
         }else{
+            utilidade.configuraLabelInformacao(lblInfo, comInvisibilidade: false, comIndicador: ActiviInfo, comInvisibilidade: false, comAnimacao: true)
+//            utilidade.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: ActiviInfo, comIvisibilidade: true, comStatus: true)
             btnCadastrar.userInteractionEnabled = false
             let url = urlPadrao.urlCadastrarUsuario()
             
@@ -186,22 +190,17 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
                            "foto":user.convertImageToString(fotoPerfil.image!)]
             
             Alamofire.request(.POST, url, parameters: usuario, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
-                print("---->",response.result,"<-----")
                 if response.result.isSuccess{
                     
-                    
-                    //self.geraAlerta("Sucesso", mensagem: "Cadastro realizado com Sucesso")
                  self.populaUsuario()
                  self.performSegueWithIdentifier("CadastroTelaMedicamento", sender: self)
-                    
-
+                 
+//                self.utilidade.configuraLabelInformacao(self.lblInfo, comVisibilidade: false, comIndicador: self.ActiviInfo, comVisibilidade: false, comStatus: false)
                 }else{
-                    print(response.description,"<-------")
                     self.geraAlerta("Falha", mensagem: "Não foi possível completar o cadastro, tente novamente mais tarde!")
                 }
                 self.btnCadastrar.userInteractionEnabled = true 
-                print(response.result)
-                print(response.result.value)
+                self.utilidade.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.ActiviInfo, comInvisibilidade: true, comAnimacao: false)
             })
         
                 

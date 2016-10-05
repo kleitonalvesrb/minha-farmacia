@@ -310,28 +310,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     func pegaDadosFacebook(){
        
         
-//        let requisicao = FBSDKGraphRequest(graphPath: "me", parameters:["fields":"id, name, gender,age_range, email"])
-//        requisicao.startWithCompletionHandler { (connection, result, error) in
-//            if error != nil{
-//                print(error)
-//
-//            }else if let resultado = result{
-//                let dados = resultado as! NSDictionary
-//                let idade = dados["age_range"] as! NSDictionary
-//                PFUser.currentUser()?["nome"] = dados["name"] as? String
-//                PFUser.currentUser()?["sexo"] = dados["gender"] as? String
-//                PFUser.currentUser()?.email = dados["email"] as? String
-//                PFUser.currentUser()?["idade"] = idade["min"] as? Int
-//                PFUser.currentUser()?.saveInBackgroundWithBlock({ (sucesso, error) in
-//                    if sucesso{
-//                        print("deu bom")
-//                    }else{
-//                        print(error?.userInfo["error"])
-//                    }
-//                })
-//            }
-        }
     }
+}
    
     
 

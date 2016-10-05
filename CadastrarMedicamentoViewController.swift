@@ -27,6 +27,17 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     @IBOutlet weak var btnFlash: UIButton!
     var user = Usuario.sharedInstance
     @IBOutlet weak var lbl: UILabel!
+    @IBOutlet weak var btnEscolherImgRemedio: UIButton!
+    @IBOutlet weak var imgRemedio: UIImageView!
+    @IBOutlet weak var campoCodBarras: UITextField!
+    @IBOutlet weak var campoProduto: UITextField!
+    @IBOutlet weak var campoPrincipioAtivo: UITextField!
+    @IBOutlet weak var campoApresentacao: UITextField!
+    @IBOutlet weak var campoLaboratorio: UITextField!
+    @IBOutlet weak var campoClasseTerapeutica: UITextField!
+    @IBOutlet weak var btnLerCodBarras: UIButton!
+    @IBOutlet weak var btnSalvar: UIButton!
+    
     var str:String = String()
     
     
@@ -39,7 +50,6 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         isPowerFlash = false
        
         habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
-
     }
 
     @IBAction func btnFlash(sender: AnyObject) {
@@ -69,6 +79,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
             }
         }
     }
+    
     func alteraImagemBotaoFlash(imagem imgName:String){
         if let img = UIImage(named: imgName){
             btnFlash.setImage(img, forState: .Normal)
@@ -102,8 +113,9 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         
         self.navigationItem.title = "Cadastro"
         
-        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(CadastrarMedicamentoViewController.goBack))
-        button.image = UIImage(named: "back.png")
+        let button = UIBarButtonItem(title:"", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(CadastrarMedicamentoViewController.goBack))
+        
+        button.image = UIImage(named: "arrow-back2.png")
         self.navigationItem.leftBarButtonItem = button
         self.navigationItem.leftBarButtonItem?.style
     }
@@ -115,16 +127,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
 
     }
     
-    @IBOutlet weak var btnEscolherImgRemedio: UIButton!
-    @IBOutlet weak var imgRemedio: UIImageView!
-    @IBOutlet weak var campoCodBarras: UITextField!
-    @IBOutlet weak var campoProduto: UITextField!
-    @IBOutlet weak var campoPrincipioAtivo: UITextField!
-    @IBOutlet weak var campoApresentacao: UITextField!
-    @IBOutlet weak var campoLaboratorio: UITextField!
-    @IBOutlet weak var campoClasseTerapeutica: UITextField!
-    @IBOutlet weak var btnLerCodBarras: UIButton!
-    @IBOutlet weak var btnSalvar: UIButton!
+
     
     @IBAction func escolherImgRemedio(sender: AnyObject) {
         escolherImg()

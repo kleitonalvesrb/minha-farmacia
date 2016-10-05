@@ -11,11 +11,19 @@ import UIKit
 class UrlWS: NSObject {
     
 //    private let host = "minhafarmacia-env.us-west-2.elasticbeanstalk.com"
-    private let host = "localhost"
+    private let host = "192.168.15.6"
     private let porta = "8080/WebService"
 //    private let porta = "80"
     private let rota = "/cliente/"
     private let rotaMedicamento = "/medicamento/"
+    
+    /**
+        Url para verificar id de facebook já utilizado
+     
+    */
+    func urlVerificaIdFacebook(idFacebook: String) ->String{
+        return "http://\(host):\(porta)\(rota)consulta-id-facebook/\(idFacebook)"
+    }
     /**
         url para atualizar dados do usuario
      

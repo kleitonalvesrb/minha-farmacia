@@ -8,11 +8,59 @@
 
 import UIKit
 import ParseFacebookUtilsV4
-
+import Alamofire
 class Util: NSObject {
     
     func isVazio(txt : String) -> Bool{
             return txt == ""
+    }
+    /**
+        Método responsável por realizar login pelo facebook
+     */
+    func loginFacebook(){
+        let permission = ["public_profile"]
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(permission)
+        let requisicao = FBSDKGraphRequest(graphPath: "me", parameters:["fields":"id, name, gender,age_range, email"])
+        requisicao.startWithCompletionHandler { (connection, result, error) in
+            if error != nil{
+                print(error)
+                
+            } else if ((result.isCancelled) != nil)
+            {
+                
+                print("Cancelled");
+            } else
+            {
+                print("Logged in");
+               print("Result=",result);
+            }
+//            }else if let resultado = result{
+//                let dados = resultado as! NSDictionary
+//                let idade = dados["age_range"] as! NSDictionary
+//                print(dados)
+////               self.verificaExistenciaLoginFacebook((dados["id"] as? String)!)
+//               // self.verificaExistenciaLoginFacebook("facebook1234")
+//            }
+//            if(FBSDKAccessToken.currentAccessToken() == nil) {
+//                print("entrou aqui")
+//            }
+
+            
+        }
+
+    }
+    private func verificaExistenciaLoginFacebook(idFacebook: String){
+        let dicIdFacebook = ["idFacebook":idFacebook]
+        let url = UrlWS()
+        Alamofire.request(.GET, url.urlVerificaIdFacebook(idFacebook),parameters: dicIdFacebook).responseJSON { (response) in
+            if let statusCode = response.response?.statusCode{
+                if statusCode == 200{
+                    print("ok, pode entrar")
+                }else{
+                    print("deve cadastrar")
+                }
+            }
+        }
     }
   
     /**

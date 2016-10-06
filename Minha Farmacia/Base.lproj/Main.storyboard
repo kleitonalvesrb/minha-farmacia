@@ -98,7 +98,7 @@
                                     <action selector="loginFacebook:" destination="SY7-62-NQY" eventType="touchUpInside" id="Lls-FK-NJA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minha    armácia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weK-qg-cz2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Minha    armácia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weK-qg-cz2">
                                 <rect key="frame" x="57" y="30" width="261" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="3TY-vI-oP4"/>
@@ -108,7 +108,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-tV-tkM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-tV-tkM">
                                 <rect key="frame" x="173" y="24" width="53" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="5SJ-FZ-xTh"/>
@@ -1500,11 +1500,12 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imgMedicamento" destination="RHr-Zn-3TX" id="Rqh-im-RQj"/>
+                        <segue destination="MKv-OB-zz1" kind="show" identifier="dadosGoToMedicamentos" id="3Vs-lk-9rW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="woq-Q2-bpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1531.5" y="-746.5"/>
+            <point key="canvasLocation" x="635.5" y="213.5"/>
         </scene>
         <!--Dosagem View Controller-->
         <scene sceneID="vez-Sy-bsj">
@@ -1675,7 +1676,7 @@
         <image name="user2.png" width="24" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="3Vs-lk-9rW"/>
         <segue reference="TpU-pa-CLQ"/>
-        <segue reference="dOO-5s-eTn"/>
     </inferredMetricsTieBreakers>
 </document>

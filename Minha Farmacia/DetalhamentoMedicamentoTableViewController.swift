@@ -27,6 +27,7 @@ class DetalhamentoMedicamentoTableViewController: UIViewController, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        barraNavegacao()
         
         let arrayAtrasos = ["23/10/2016 ás 12:30",
                             "24/10/2014 ás 00:30",
@@ -46,6 +47,25 @@ class DetalhamentoMedicamentoTableViewController: UIViewController, UITableViewD
                   
                      items.append(arrayAtrasos)
 
+    }
+    func barraNavegacao(){
+        self.navigationController?.navigationBar.hidden = false
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        
+        
+        self.navigationItem.title = "Dados Medicamento"
+        
+        let button = UIBarButtonItem(title:"", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(CadastrarMedicamentoViewController.goBack))
+        
+        button.image = UIImage(named: "arrow-back2.png")
+        self.navigationItem.leftBarButtonItem = button
+        self.navigationItem.leftBarButtonItem?.style
+    }
+  
+
+
+    func goBack(){
+        performSegueWithIdentifier("dadosGoToMedicamentos", sender: self)
     }
     
     func tipoMedicamentoApresentacaoDosagem(tipo: String) -> String{

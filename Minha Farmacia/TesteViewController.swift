@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import AVFoundation
+import ParseFacebookUtilsV4
 class TesteViewController: UIViewController, UITextFieldDelegate{
     
     
@@ -160,73 +161,38 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
             if let JSON = response.result.value{
                 print("------->\(response.result.isSuccess) ")
                 if JSON.count != nil{
-                   // self.t(JSON)
                     
-//                    if (JSON["medicamentos"] == nil){
-//                        	print("vazio")
-//                    }else{
-//                        print(JSON["medicamentos"])
-//                    }
-                    if let res:NSArray = (JSON["medicamentos"] as? NSArray){
+                    if let idUsuario = JSON.objectForKey("idUsuario") as? String{
+                        self.user.id = Int(idUsuario)
                         
                     }
-//                    print(JSON)
-                    //recebe o id do usuario
-                    if let idUsuario = JSON["idUsuario"] as? String{
-                        self.user.id = Int(idUsuario)
+                    if let nomeUsuario = JSON.objectForKey("nome") as? String{
+                        self.user.nome = nomeUsuario
                     }
-                    self.user.nome = (JSON["nome"] != nil ? JSON["nome"] as! String : "")
-                    self.user.email = (JSON["email"] != nil ? JSON["email"] as! String : "")
-                    //tratar dados idFacebook
-                    if let idFacebook:String = JSON["idFacebook"] as? String{
+                    if let email = JSON.objectForKey("email") as? String{
+                        self.user.email = email
+                    }
+                    if let idFacebook = JSON.objectForKey("idFacebook") as? String{
                         self.user.idFacebook = idFacebook
                     }else{
-                        
-                        self.user.idFacebook = "nao informado"
+                        self.user.idFacebook = "Não Informado"
                     }
-                    let strDate = JSON["dataNascimento"] as! String // "2015-10-06T15:42:34Z"
-                    let dateFormatter = NSDateFormatter()
-                    
-                    dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-                    dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
-                    dateFormatter.locale = NSLocale(localeIdentifier: "pt-BR")
-                    
-                    print(dateFormatter.dateFromString(strDate),"<--- data")
-
-                    if let idadeString:String = JSON["idade"] as? String{
-                        self.user.idade = Int(idadeString)
-                    }else{
-                        self.user.idade = 0;
+                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
+                        //            trataData(dataString)
+                        print("acertar a data de nascimento")
                     }
-                    self.user.senha = (JSON["senha"] != nil ? JSON["senha"] as! String : "")
-                    //trata sexo
-                    if let sexo:String = JSON["sexo"] as? String{
+                    if let senha = JSON.objectForKey("senha") as? String{
+                        self.user.senha = senha
+                    }
+                    if let sexo = JSON.objectForKey("sexo") as? String{
                         self.user.sexo = sexo
-                    }else{
-                        self.user.sexo = "Não informado"
                     }
-                    //trata imagem
-                    if let imgString:String = JSON["foto"] as? String{
-                        if imgString.characters.count > 10{
-                            self.user.foto = self.user.convertStringToImage(imgString)
-                        }else{
-                            if self.user.sexo.lowercaseString == "masculino"{
-                                self.user.foto = UIImage(named: "homem.png")
-                            }else if self.user.sexo.lowercaseString == "feminino"{
-                                self.user.foto = UIImage(named: "mulher.png")
-                            }else{
-                                self.user.foto = UIImage(named: "indefinido.png")
-                            }
-                        }
+                    if let fotoString = JSON.objectForKey("foto") as? String{
+                        self.user.foto = self.tratarImagemUsuario(fotoString)
                     }else{
-                        if self.user.sexo.lowercaseString == "masculino"{
-                            self.user.foto = UIImage(named: "homem.png")
-                        }else if self.user.sexo.lowercaseString == "feminino"{
-                            self.user.foto = UIImage(named: "mulher.png")
-                        }else{
-                            self.user.foto = UIImage(named: "indefinido.png")
-                        } //<-- adc um avatar de acordo com o sexo
+                        self.user.foto = UIImage(named: "homem.png")
                     }
+
                     self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
@@ -255,6 +221,31 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         
         print(i)
     }
+   
+    func tratarImagemUsuario(imgStr: String)-> UIImage{
+        var image = UIImage()
+        let util = Util()
+        if imgStr.characters.count > 10{
+            image = util.convertStringToImage(imgStr)
+        }else{
+            image = UIImage(named: "homem.png")!
+        }
+        return image
+    }
+    
+    func trataData(dataString:String) ->NSDate{
+        let strDate = dataString //"2015-10-06T15:42:34Z"
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        dateFormatter.locale = NSLocale(localeIdentifier: "pt-BR")
+        var date = NSDate()
+        date = dateFormatter.dateFromString(strDate)!
+        print(date)
+        return date
+    }
+
     /**
         Recuperar senha
         O metodo irá gerar um alert que irá receber o email do usuario e posteriormente irá fazer uma requisição 
@@ -276,7 +267,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     Alamofire.request(.GET,self.urlPadrao.urlRecuperarSenha(emailText.text!),parameters: dicEmail ).responseJSON(completionHandler: { (response) in
                         if let JSON = response.result.value{ // verifica se a responsta é valida
                             if JSON.count != nil{ // verifica se possui conteudo
-                                if JSON["email"] as! String != ""{ // verifica se o servidor repondeu que encontrou o email
+                                if JSON.objectForKey("email") as! String != ""{ // verifica se o servidor repondeu que encontrou o email
                                     self.showAlert("Recuperação de Senha", msg: "Em instantes você receberá um e-mail com sua senha", titleBtn: "OK")
                                 }else{// não encontrou o email da mensagem de alerta
                                     self.showAlert("Recuperação de Senha", msg: "O e-mail informado não está cadastrado", titleBtn: "OK")

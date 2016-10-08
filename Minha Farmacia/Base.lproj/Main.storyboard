@@ -732,16 +732,96 @@
                                             <outlet property="delegate" destination="AIG-m8-hpf" id="wa7-dI-Eah"/>
                                         </connections>
                                     </tableView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l8j-Bu-DXX">
+                                        <rect key="frame" x="60" y="152" width="303" height="200"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trocar Senha" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbS-hw-ZDf">
+                                                <rect key="frame" x="77" y="8" width="132" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="132" id="dkL-V4-QFZ"/>
+                                                    <constraint firstAttribute="height" constant="21" id="exF-9k-0uj"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nova Senha" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hqb-nv-jEX">
+                                                <rect key="frame" x="17" y="78" width="269" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="Jn6-Ht-jp0"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bwv-MQ-bRb">
+                                                <rect key="frame" x="17" y="116" width="269" height="30"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="8ZQ-Es-grR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Trocar Senha">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="trocarSenha:" destination="AIG-m8-hpf" eventType="touchUpInside" id="ewD-EK-mP8"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAn-5h-NzQ">
+                                                <rect key="frame" x="17" y="162" width="269" height="30"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="5qW-SM-zdT"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                <state key="normal" title="Cancelar">
+                                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="cancelar:" destination="AIG-m8-hpf" eventType="touchUpInside" id="63i-sH-9Jw"/>
+                                                </connections>
+                                            </button>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Senha Antiga" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QVe-yR-YQ7">
+                                                <rect key="frame" x="17" y="38" width="269" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="heX-jo-p0x"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" secureTextEntry="YES"/>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.24313725489999999" green="0.70980392160000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="kAn-5h-NzQ" firstAttribute="leading" secondItem="l8j-Bu-DXX" secondAttribute="leadingMargin" constant="9" id="6ro-jk-Non"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Bwv-MQ-bRb" secondAttribute="trailing" constant="9" id="7HS-c5-kCj"/>
+                                            <constraint firstItem="kAn-5h-NzQ" firstAttribute="top" secondItem="Bwv-MQ-bRb" secondAttribute="bottom" constant="16" id="C0n-6Y-FcN"/>
+                                            <constraint firstItem="QVe-yR-YQ7" firstAttribute="leading" secondItem="l8j-Bu-DXX" secondAttribute="leadingMargin" constant="9" id="HnP-ja-EdL"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="kAn-5h-NzQ" secondAttribute="trailing" constant="9" id="IDs-yK-W7R"/>
+                                            <constraint firstItem="Bwv-MQ-bRb" firstAttribute="top" secondItem="Hqb-nv-jEX" secondAttribute="bottom" constant="8" id="Nwc-fe-nob"/>
+                                            <constraint firstItem="Hqb-nv-jEX" firstAttribute="top" secondItem="QVe-yR-YQ7" secondAttribute="bottom" constant="10" id="TSd-Q6-d3y"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="Hqb-nv-jEX" secondAttribute="trailing" constant="9" id="awF-OR-B7j"/>
+                                            <constraint firstAttribute="height" constant="200" id="cB4-Qx-FmH"/>
+                                            <constraint firstItem="nbS-hw-ZDf" firstAttribute="centerX" secondItem="l8j-Bu-DXX" secondAttribute="centerX" constant="-8.5" id="dig-sq-xOV"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="QVe-yR-YQ7" secondAttribute="trailing" constant="9" id="mhi-Y3-Taf"/>
+                                            <constraint firstItem="Bwv-MQ-bRb" firstAttribute="leading" secondItem="l8j-Bu-DXX" secondAttribute="leadingMargin" constant="9" id="nUS-ZB-AMv"/>
+                                            <constraint firstItem="Hqb-nv-jEX" firstAttribute="leading" secondItem="l8j-Bu-DXX" secondAttribute="leadingMargin" constant="9" id="oxr-xU-S0A"/>
+                                            <constraint firstItem="QVe-yR-YQ7" firstAttribute="top" secondItem="nbS-hw-ZDf" secondAttribute="bottom" constant="9" id="wlk-bt-Nhe"/>
+                                            <constraint firstItem="nbS-hw-ZDf" firstAttribute="top" secondItem="l8j-Bu-DXX" secondAttribute="topMargin" id="xKK-oV-uwV"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="qdI-E2-DmG" firstAttribute="leading" secondItem="yBX-JD-TV9" secondAttribute="leading" constant="20" id="684-4I-N4Q"/>
                                     <constraint firstAttribute="trailing" secondItem="qdI-E2-DmG" secondAttribute="trailing" constant="20" id="Ane-3Q-9V8"/>
                                     <constraint firstAttribute="bottom" secondItem="qdI-E2-DmG" secondAttribute="bottom" constant="10" id="F0c-fC-Jkf"/>
                                     <constraint firstItem="DVq-iz-8m9" firstAttribute="leading" secondItem="yBX-JD-TV9" secondAttribute="leading" constant="96" id="JEi-xd-sf4"/>
+                                    <constraint firstItem="l8j-Bu-DXX" firstAttribute="top" secondItem="yBX-JD-TV9" secondAttribute="top" constant="152" id="T1F-Pl-bxs"/>
                                     <constraint firstItem="qdI-E2-DmG" firstAttribute="top" secondItem="DVq-iz-8m9" secondAttribute="bottom" constant="35" id="ZUH-um-Seq"/>
                                     <constraint firstItem="DVq-iz-8m9" firstAttribute="centerX" secondItem="qdI-E2-DmG" secondAttribute="centerX" id="iac-kc-VYZ"/>
                                     <constraint firstItem="DVq-iz-8m9" firstAttribute="top" secondItem="yBX-JD-TV9" secondAttribute="top" constant="21" id="n3d-nr-kOQ"/>
+                                    <constraint firstItem="l8j-Bu-DXX" firstAttribute="leading" secondItem="yBX-JD-TV9" secondAttribute="leading" constant="60" id="uqW-i0-8jO"/>
                                     <constraint firstItem="DVq-iz-8m9" firstAttribute="centerX" secondItem="yBX-JD-TV9" secondAttribute="centerX" id="x6x-m1-VO6"/>
+                                    <constraint firstAttribute="trailing" secondItem="l8j-Bu-DXX" secondAttribute="trailing" constant="60" id="xrl-O6-Xxw"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -759,9 +839,14 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="ImageUsuario" destination="DVq-iz-8m9" id="Lqm-UD-LIM"/>
+                        <outlet property="btnCancelar" destination="kAn-5h-NzQ" id="FWv-5r-fXK"/>
                         <outlet property="btnMedicamento" destination="SF8-3t-MLR" id="dDG-TS-Ijw"/>
+                        <outlet property="btnTrocarSenha" destination="Bwv-MQ-bRb" id="ghL-wP-75Y"/>
                         <outlet property="scroll" destination="yBX-JD-TV9" id="HVB-2h-rmO"/>
                         <outlet property="tableView" destination="qdI-E2-DmG" id="KtL-Gg-kLr"/>
+                        <outlet property="textNovaSenha" destination="Hqb-nv-jEX" id="LTo-yB-4fs"/>
+                        <outlet property="textSenhaAntiga" destination="QVe-yR-YQ7" id="XCI-8n-pBB"/>
+                        <outlet property="viewTrocarSenha" destination="l8j-Bu-DXX" id="hzc-Gb-wgE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VoU-f1-NvV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -932,7 +1017,7 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUp-rp-zxk">
-                                <rect key="frame" x="106.5" y="277.5" width="162" height="112"/>
+                                <rect key="frame" x="107" y="278" width="162" height="112"/>
                                 <color key="backgroundColor" red="0.08235294118" green="0.66274509800000003" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="112" id="LRk-RJ-ckd"/>
@@ -1676,7 +1761,7 @@
         <image name="user2.png" width="24" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="3Vs-lk-9rW"/>
         <segue reference="TpU-pa-CLQ"/>
+        <segue reference="hOk-Bn-UlL"/>
     </inferredMetricsTieBreakers>
 </document>

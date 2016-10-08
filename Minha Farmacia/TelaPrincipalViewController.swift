@@ -15,12 +15,20 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var ImageUsuario: UIImageView!
     @IBOutlet weak var tableView: UITableView!
  //667
+    @IBOutlet weak var viewTrocarSenha: UIView!
+    @IBOutlet weak var textSenhaAntiga: UITextField!
+    @IBOutlet weak var textNovaSenha: UITextField!
+    @IBOutlet weak var btnTrocarSenha: UIButton!
+    @IBOutlet weak var btnCancelar: UIButton!
     var user:Usuario!
     var titulos = [String]()
     var conteudo = [String]()
+    var senha:String = String()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configuraLayoutViewTrocarSenha()
         
         if self.view.frame.height > 665{
             scroll.scrollEnabled = false
@@ -31,10 +39,21 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
         populaArrayTitulos()
         populaConteudo()
     }
+    func configuraLayoutViewTrocarSenha(){
+        viewTrocarSenha.hidden = true
+        viewTrocarSenha.layer.masksToBounds = true
+        viewTrocarSenha.layer.cornerRadius = 5
+        
+        btnCancelar.layer.masksToBounds = true
+        btnCancelar.layer.cornerRadius = 5
+        btnTrocarSenha.layer.masksToBounds = true
+        btnTrocarSenha.layer.cornerRadius = 5
+    }
 
     func populaArrayTitulos(){
         titulos.append("Nome")
         titulos.append("Email")
+        titulos.append("Senha")
         titulos.append("Sexo")
         titulos.append("Idade")
         titulos.append("Facebook")
@@ -42,11 +61,24 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
     func populaConteudo(){
      conteudo.append(user.nome)
      conteudo.append(user.email)
+     conteudo.append("******")
      conteudo.append(user.sexo)
      conteudo.append("idade")
      conteudo.append("facebook")
     }
     
+    @IBAction func cancelar(sender: AnyObject) {
+        print("cancelar")
+        self.tableView.reloadData()
+        viewTrocarSenha.hidden = true
+        self.tableView.userInteractionEnabled = true
+
+    }
+    @IBAction func trocarSenha(sender: AnyObject) {
+        print("Trocar a senha")
+        self.tableView.userInteractionEnabled = true
+        self.tableView.reloadData()
+    }
     override func viewDidAppear(animated: Bool) {
         let navigationBarAppearace = UINavigationBar.appearance()
         
@@ -100,7 +132,19 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
             alterar.backgroundColor = UIColor.blueColor()
             return [alterar]
         
-        }//        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+        }else if titulos[indexPath.row].lowercaseString == "Senha".lowercaseString{
+            let alterarSenha = UITableViewRowAction(style: .Normal,title: "Alterar Senha"){action, index in
+//                self.alteraSenhaUsuario(indexPath.row)
+                self.tableView.userInteractionEnabled = false
+                self.viewTrocarSenha.hidden = false
+            }
+            alterarSenha.backgroundColor = UIColor.redColor()
+            return [alterarSenha]
+            
+        }
+        
+        
+        //        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
 //            print("favorite button tapped")
 //        }
 //        favorite.backgroundColor = UIColor.orangeColor()
@@ -118,6 +162,8 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         if titulos[indexPath.row].lowercaseString == "Nome".lowercaseString{
             return true
+        }else if titulos[indexPath.row].lowercaseString == "Senha".lowercaseString{
+            return true
         }
         // the cells you would like the actions to appear needs to be editable
         return false
@@ -128,6 +174,51 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
         self.tableView.reloadData()
         // you need to implement this method too or you can't swipe to display the actions
     }
+    /**
+     Método responsavel por gerar uma caixa de dialogo com o usuário afim de trocar a sua senha,
+     atualiza a tabela e devera alterar os dados no servidor
+     */
+    func alteraSenhaUsuario(index:Int){
+        let alerta = UIAlertController(title: "Alterar Senha", message: nil, preferredStyle: .Alert)
+        let trocarSenha = UIAlertAction(title: "Alterar", style: .Default, handler: { (_) in
+            let senhaAtual = alerta.textFields![0] as UITextField
+            let novaSenha = alerta.textFields![1] as UITextField
+            senhaAtual.tag =  1
+            novaSenha.tag = 2
+            
+            if senhaAtual.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "" &&
+               novaSenha.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
+                if senhaAtual.text! == self.user.senha{
+                    if senhaAtual.text! != novaSenha.text{
+                        self.conteudo[index] = novaSenha.text!
+                        self.tableView.reloadData()
+                    }else{
+                        self.geraAlerta("Ops!", mensagem: "Você não pode utilizar a mesma senha")
+                    }
+                }else{
+                    self.geraAlerta("Ops!", mensagem: "Você deve informar a senha atual!")
+                }
+            }else{
+                self.geraAlerta("Ops!", mensagem: "Todos os campos devem ser preenchidos")
+            }
+    })
+    alerta.addTextFieldWithConfigurationHandler { (texteField) in
+        if texteField.tag == 1{
+           texteField.placeholder = "Senha Atual"
+        }else if texteField.tag == 2{
+            texteField.placeholder = "Nova Senha"
+        }
+        texteField.secureTextEntry = true
+        texteField.keyboardType = .Default
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .Destructive) { (_) in }
+        alerta.addAction(trocarSenha)
+        alerta.addAction(cancelAction)
+        self.presentViewController(alerta, animated: true, completion: nil)
+    }
+}
+    
+   
+        
     /**
         Método responsavel por gerar uma caixa de dialogo com o usuário afim de trocar o nome,
      atualiza a tabela e devera alterar os dados no servidor
@@ -158,6 +249,15 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
         
 
     }
+    func geraAlerta(title: String, mensagem: String){
+        let alerta = UIAlertController(title: title, message: mensagem, preferredStyle: .Alert)
+        alerta.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) in
+            //self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alerta, animated: true, completion: nil)
+        
+    }
+}
 //    let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! PostCell
 //    imageFiles[indexPath.row].getDataInBackgroundWithBlock { (data, error) in
 //    if let imgDown = UIImage(data: data!){
@@ -179,4 +279,4 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
 //    }
 
 
-}
+

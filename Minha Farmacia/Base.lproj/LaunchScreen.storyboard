@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -22,19 +22,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="relogio.png" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-sD-rzl">
-                                <rect key="frame" x="91" y="245" width="180" height="137"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="175" id="lnh-Sn-DqG"/>
-                                    <constraint firstAttribute="width" constant="207" id="oSw-Ca-3Qq"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Minha Farmácia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRi-NS-DKO">
                                 <rect key="frame" x="64" y="160" width="248" height="63"/>
                                 <fontDescription key="fontDescription" name="CasablancaNoirPersonalUse-Regul" family="Casablanca Noir Personal Use" pointSize="42"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_mf_transparente.png" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-sD-rzl">
+                                <rect key="frame" x="63" y="293" width="249" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="lnh-Sn-DqG"/>
+                                    <constraint firstAttribute="width" constant="249" id="oSw-Ca-3Qq"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.24313725489999999" green="0.70980392160000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -50,6 +50,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="relogio.png" width="518" height="581"/>
+        <image name="logo_mf_transparente.png" width="362" height="136"/>
     </resources>
 </document>

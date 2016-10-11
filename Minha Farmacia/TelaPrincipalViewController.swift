@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var btnMedicamento: UIBarButtonItem!
@@ -28,6 +28,7 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         configuraLayoutViewTrocarSenha()
         
         if self.view.frame.height > 665{
@@ -39,14 +40,73 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
         populaArrayTitulos()
         populaConteudo()
         
+//        let tapFoto: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("trocaFoto"))
+//        ImageUsuario.addGestureRecognizer(tapFoto)
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        ImageUsuario.userInteractionEnabled = true
+        ImageUsuario.addGestureRecognizer(tapGestureRecognizer)
+        
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TesteViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
       
+    }
+    func imageTapped(img: AnyObject)
+    {
+        alterarFotoPerfil()
     }
     func dismissKeyboard() ->Void{
         print("sai daki teclado")
         self.view.endEditing(true)
     }
+    /**
+        Da as alterantivas para trocar a foto do perfil do usuario, tirar nova foto, escolher da galeria
+        e retirar foto
+     
+     */
+    func alterarFotoPerfil(){
+        let alertaEscolha = UIAlertController(title: "Trocar foto", message: nil, preferredStyle: .ActionSheet)
+        let camera = UIAlertAction(title: "Câmera", style: .Default) { (_) in
+            self.definirFoto(true)
+        }
+        let galeria = UIAlertAction(title: "Galeria", style: .Default) { (_) in
+            self.definirFoto(false)
+        }
+        let remover = UIAlertAction(title: "Remover Foto", style: .Destructive) { (_) in
+            self.ImageUsuario.image = UIImage(named: "homem.png")
+        }
+        let cancelar = UIAlertAction(title: "Cancelar", style: .Cancel) { (_) in
+            print("cancelar")
+            
+        }
+        alertaEscolha.addAction(camera)
+        alertaEscolha.addAction(galeria)
+        alertaEscolha.addAction(remover)
+        alertaEscolha.addAction(cancelar)
+        self.presentViewController(alertaEscolha, animated: true, completion: nil)
+    }
+    /**
+     #A foram de definir a foto depende da escolha#
+     Irá definir a imagem correta da maneira que o usuario escolheu
+     **/
+    func definirFoto(camera : Bool){
+        let img = UIImagePickerController()
+        img.delegate = self
+        /*Define a forma que a foto será selecionada, camera ou galeria*/
+        if camera {
+            img.sourceType = UIImagePickerControllerSourceType.Camera
+        }else{
+            img.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        }
+        
+        img.allowsEditing = false
+        self.presentViewController(img, animated: true, completion: nil)
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        ImageUsuario.image = image
+    }
+    
+    
     func configuraLayoutViewTrocarSenha(){
         viewTrocarSenha.hidden = true
         viewTrocarSenha.layer.masksToBounds = true

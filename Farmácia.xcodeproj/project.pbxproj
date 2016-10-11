@@ -25,6 +25,7 @@
 		631154DF1D60392A009C18DA /* negado.png in Resources */ = {isa = PBXBuildFile; fileRef = 631154DD1D60392A009C18DA /* negado.png */; };
 		6318397A1D693D4F008BBB18 /* barcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 631839791D693D4F008BBB18 /* barcode.png */; };
 		631C142E1D4D1CE60041675F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631C142D1D4D1CE60041675F /* Util.swift */; };
+		631CDDBB1DAD6F8400564BD8 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 631CDDBA1DAD6F8400564BD8 /* camera.png */; };
 		632726691D64EAB800580E18 /* medicamento.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726661D64EAB800580E18 /* medicamento.png */; };
 		6327266A1D64EAB800580E18 /* perfil.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726671D64EAB800580E18 /* perfil.png */; };
 		6327266B1D64EAB800580E18 /* receita.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726681D64EAB800580E18 /* receita.png */; };
@@ -108,6 +109,7 @@
 		631154DD1D60392A009C18DA /* negado.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = negado.png; sourceTree = "<group>"; };
 		631839791D693D4F008BBB18 /* barcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barcode.png; sourceTree = "<group>"; };
 		631C142D1D4D1CE60041675F /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		631CDDBA1DAD6F8400564BD8 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		632726661D64EAB800580E18 /* medicamento.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medicamento.png; sourceTree = "<group>"; };
 		632726671D64EAB800580E18 /* perfil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfil.png; sourceTree = "<group>"; };
 		632726681D64EAB800580E18 /* receita.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receita.png; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				63D507311DA33601008FB1C3 /* flash26.png */,
 				63D507321DA33601008FB1C3 /* pintado26.png */,
 				637622EA1D7FCEF200666F58 /* user2.png */,
+				631CDDBA1DAD6F8400564BD8 /* camera.png */,
 				637622E61D7FCD3A00666F58 /* user1.png */,
 				637622E01D7FC8A400666F58 /* remedio_2.png */,
 				637622E41D7FCB3C00666F58 /* user.png */,
@@ -413,6 +416,7 @@
 				631154DF1D60392A009C18DA /* negado.png in Resources */,
 				631154DE1D60392A009C18DA /* ok.png in Resources */,
 				6382F0CE1D64F6C200958E54 /* plus.png in Resources */,
+				631CDDBB1DAD6F8400564BD8 /* camera.png in Resources */,
 				6318397A1D693D4F008BBB18 /* barcode.png in Resources */,
 				6393CA721D55B2A2003B3E71 /* mulher.png in Resources */,
 				637622E71D7FCD3A00666F58 /* user1.png in Resources */,

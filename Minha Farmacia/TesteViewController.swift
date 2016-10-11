@@ -45,6 +45,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TesteViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
 
     }
 

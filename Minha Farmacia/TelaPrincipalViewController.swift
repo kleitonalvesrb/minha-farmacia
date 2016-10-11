@@ -38,6 +38,14 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
         
         populaArrayTitulos()
         populaConteudo()
+        
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TesteViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+      
+    }
+    func dismissKeyboard() ->Void{
+        print("sai daki teclado")
+        self.view.endEditing(true)
     }
     func configuraLayoutViewTrocarSenha(){
         viewTrocarSenha.hidden = true
@@ -75,9 +83,37 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
 
     }
     @IBAction func trocarSenha(sender: AnyObject) {
+        trocarSenhaUsuario(senhaAtual: textSenhaAntiga.text!, novaSenha: textNovaSenha.text!)
+       dismissKeyboard()
         print("Trocar a senha")
         self.tableView.userInteractionEnabled = true
         self.tableView.reloadData()
+    }
+    func trocarSenhaUsuario(senhaAtual senhaAtual:String,  novaSenha:String) -> Void{
+        let util = Util()
+        
+        if !util.isVazio(senhaAtual.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())) && //
+            !util.isVazio(novaSenha.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())){ //verifica se os campos estao vazios
+            // os campos estão preenchidos
+            if senhaAtual == user.senha{ // verifica se foi informado a senha atual
+                if novaSenha != user.senha{ // verifica se a nova senha é igual a senha atual
+                    if novaSenha.characters.count >= 6 { // verifica se a senha possui mais de 6 letras
+                        geraAlerta("Ok", mensagem: "Sua senha foi alterada com sucesso!")// msg de sucesso
+                        dismissKeyboard()
+                        viewTrocarSenha.hidden = true
+                    }else{
+                        geraAlerta("Ops!", mensagem: "A senha deve ter no mínimo 6 caracters") // acusa erro caso a senha tenha menos de 6 carcter
+                    }
+                }else{
+                    geraAlerta("Ops!", mensagem: "Para trocar a senha a nova senha deve ser diferente da senha atual") // acusa erro caso a nova senha seja igual a senha atual
+                }
+            }else{
+                geraAlerta("Ops", mensagem: "A senha atual deve ser informada") // acusa erro caso a senha atual nao tenha sido informada
+            }
+        }else{
+            geraAlerta("Ops!", mensagem: "Todos os campos deve ser preenchidos") // acusa erro casa no tenha preenchido todos os campos
+        }
+        
     }
     override func viewDidAppear(animated: Bool) {
         let navigationBarAppearace = UINavigationBar.appearance()

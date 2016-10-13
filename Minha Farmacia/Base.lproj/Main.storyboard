@@ -1038,42 +1038,16 @@
                                 </constraints>
                                 <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8le-tC-2Tn">
-                                <rect key="frame" x="-4" y="623" width="383" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="r6G-bP-WX9"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem image="user1.png" id="Wdj-oj-xqM">
-                                        <color key="tintColor" red="0.24313725489999999" green="0.70980392160000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="LY3-6g-V5L"/>
-                                    <barButtonItem tag="1" image="medical-prescription.png" id="JG6-jl-YhO">
-                                        <color key="tintColor" red="0.24313725489999999" green="0.70980392160000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="rr5-tM-oLs"/>
-                                    <barButtonItem tag="2" image="remedio_2.png" id="F61-wO-rzY">
-                                        <color key="tintColor" red="0.24313725489999999" green="0.70980392160000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="odP-fs-QH0"/>
-                                    <barButtonItem tag="3" systemItem="add" id="Pe4-yA-HLM">
-                                        <color key="tintColor" red="0.24313725489999999" green="0.70980392160000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eUp-rp-zxk" firstAttribute="centerX" secondItem="iR3-7m-Ccn" secondAttribute="centerX" id="11Z-hQ-ftQ"/>
                             <constraint firstItem="gP7-2i-TRe" firstAttribute="centerY" secondItem="iR3-7m-Ccn" secondAttribute="centerY" id="3xZ-bM-aAY"/>
                             <constraint firstItem="gP7-2i-TRe" firstAttribute="centerX" secondItem="iR3-7m-Ccn" secondAttribute="centerX" id="6td-Ny-njc"/>
-                            <constraint firstItem="8le-tC-2Tn" firstAttribute="leading" secondItem="iR3-7m-Ccn" secondAttribute="leadingMargin" constant="-20" id="IzU-oj-LgE"/>
                             <constraint firstItem="9So-Q5-qac" firstAttribute="top" secondItem="I0x-vF-epu" secondAttribute="bottom" constant="-13" id="PlN-df-6wI"/>
-                            <constraint firstItem="9So-Q5-qac" firstAttribute="top" secondItem="8le-tC-2Tn" secondAttribute="bottom" id="RSC-0o-HBR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="I0x-vF-epu" secondAttribute="trailing" constant="-20" id="WDG-kN-KPz"/>
                             <constraint firstItem="I0x-vF-epu" firstAttribute="leading" secondItem="iR3-7m-Ccn" secondAttribute="leadingMargin" constant="-20" id="ab8-Xw-VgV"/>
                             <constraint firstItem="eUp-rp-zxk" firstAttribute="centerY" secondItem="iR3-7m-Ccn" secondAttribute="centerY" id="ai9-rj-Ohl"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8le-tC-2Tn" secondAttribute="trailing" constant="-20" id="l2w-Dg-WjQ"/>
                             <constraint firstItem="I0x-vF-epu" firstAttribute="top" secondItem="kVc-Lp-dcG" secondAttribute="bottom" constant="1" id="sey-9w-5Kc"/>
                         </constraints>
                     </view>
@@ -1776,12 +1750,11 @@
         <image name="mulher.png" width="128" height="128"/>
         <image name="remedio.png" width="206" height="245"/>
         <image name="remedio_2.png" width="24" height="24"/>
-        <image name="user1.png" width="20" height="32"/>
         <image name="user2.png" width="24" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hOk-Bn-UlL"/>
         <segue reference="t5D-l8-woa"/>
-        <segue reference="UBC-Rq-b0M"/>
+        <segue reference="94u-Gb-e6h"/>
+        <segue reference="dOO-5s-eTn"/>
     </inferredMetricsTieBreakers>
 </document>

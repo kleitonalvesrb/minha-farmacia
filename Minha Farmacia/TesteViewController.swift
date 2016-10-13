@@ -197,13 +197,14 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
-                   
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    
-                    let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("ListaMedicamentos") as! MedicamentoViewController
-                    
-                    let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
-                    self.presentViewController(navController, animated:true, completion: nil)
+                    self.performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
+//                   
+//                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//                    
+//                    let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("ListaMedicamentos") as! MedicamentoViewController
+//                    
+//                    let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
+//                    self.presentViewController(navController, animated:true, completion: nil)
                     
                     
 

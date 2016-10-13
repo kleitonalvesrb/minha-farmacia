@@ -46,6 +46,7 @@ class UrlWS: NSObject {
     }
     
     /**
+        minhafarmacia-env.us-west-2.elasticbeanstalk.com:80/cliente/consulta-email/kleiton.a.batista@gmail.com
         http://192.168.0.12:8080/WebService/cliente/consulta-email/\(email)
      */
     func urlConsultaDisponibilidadeEmail(email: String) ->String{

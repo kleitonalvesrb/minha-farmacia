@@ -253,15 +253,17 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         Redireciona para a tela de listagem de medicamentos após cadastrar os respectivos dados no servidor
      */
     func redirecionTelaMedicamentos() -> Void {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("ListaMedicamentos") as! MedicamentoViewController
-        resultViewController.flagNovoMedicamento = true
-        
-        //resultViewController.medicamento = medicamento
-        
-        let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
-        self.presentViewController(navController, animated:true, completion: nil)
+        performSegueWithIdentifier("segueTabRemedio", sender: self)
+//        self.geraAlerta("Acerta", mensagem: "Acertar aforma que ira voltar para a tela de medicamentos mantendo a tabbar")
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        
+//        let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("navRemedios") as! MedicamentoViewController
+//        resultViewController.flagNovoMedicamento = true
+//        
+//        //resultViewController.medicamento = medicamento
+//        
+//        let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
+//        self.presentViewController(navController, animated:true, completion: nil)
     }
     /**
         Cria dicionario de medicamentos

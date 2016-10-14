@@ -20,7 +20,7 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
     @IBOutlet weak var textNovaSenha: UITextField!
     @IBOutlet weak var btnTrocarSenha: UIButton!
     @IBOutlet weak var btnCancelar: UIButton!
-    var user:Usuario!
+    var user = Usuario.sharedInstance
     var titulos = [String]()
     var conteudo = [String]()
     var senha:String = String()
@@ -34,8 +34,7 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
         if self.view.frame.height > 665{
             scroll.scrollEnabled = false
         }
-        user = Usuario.sharedInstance
-        ImageUsuario.image = user.foto
+        
         
         populaArrayTitulos()
         populaConteudo()
@@ -49,6 +48,10 @@ class TelaPrincipalViewController: UIViewController, UITableViewDataSource, UITa
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TesteViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
       
+    }
+    override func viewWillAppear(animated: Bool) {
+        
+        ImageUsuario.image = user.foto
     }
     func imageTapped(img: AnyObject)
     {

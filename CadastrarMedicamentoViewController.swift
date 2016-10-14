@@ -106,22 +106,22 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func viewWillAppear(animated: Bool) {
-        apresentaBarraNavegacao(false)
-        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
-
-        
-        self.navigationItem.title = "Cadastro"
-        
-        let button = UIBarButtonItem(title:"", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(CadastrarMedicamentoViewController.goBack))
-        
-        button.image = UIImage(named: "arrow-back2.png")
-        self.navigationItem.leftBarButtonItem = button
-        self.navigationItem.leftBarButtonItem?.style
-    }
-    func goBack(){
-        performSegueWithIdentifier("cadatroVoltaListaMediacmentos", sender: self)
-    }
+//    override func viewWillAppear(animated: Bool) {
+//        apresentaBarraNavegacao(false)
+//        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+//
+//        
+//        self.navigationItem.title = "Cadastro"
+//        
+//        let button = UIBarButtonItem(title:"", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(CadastrarMedicamentoViewController.goBack))
+//        
+//        button.image = UIImage(named: "arrow-back2.png")
+//        self.navigationItem.leftBarButtonItem = button
+//        self.navigationItem.leftBarButtonItem?.style
+//    }
+//    func goBack(){
+//        performSegueWithIdentifier("cadatroVoltaListaMediacmentos", sender: self)
+//    }
     func apresentaBarraNavegacao(invisivel: Bool)->Void{
         self.navigationController?.navigationBar.hidden = invisivel
 

@@ -12,8 +12,8 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     @IBOutlet weak var lblInfor: UILabel!
     @IBOutlet weak var activityInfo: UIActivityIndicatorView!
 
-    var medicamento: Medicamento = Medicamento()
-    
+    var medicamento = Medicamento.medicamentoSharedInstance
+
     @IBOutlet weak var btnSalvar: UIButton!
     @IBOutlet weak var scroll: UIScrollView!
    // @IBOutlet weak var campoTipoMedicamento: UITextField!
@@ -52,14 +52,13 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         setDeleganteFields()
         configuraPicker()
         populaArray()
-        
         campoSwitchMedicamento.addTarget(self, action: #selector(DosagemViewController.definiTipo), forControlEvents: UIControlEvents.EditingChanged)
       //  textField.addTarget(self, action: #selector(YourViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
 
         
         imgMedicamento.image = medicamento.fotoMedicamento
         
-        self.navigationController?.navigationBar.hidden = true
+//        self.navigationController?.navigationBar.hidden = true
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(DosagemViewController.dismissKeyboard)))
         
@@ -67,6 +66,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
 
         // Do any additional setup after loading the view.
     }
+  
     /**
         Configura label de apresentacao
      */
@@ -253,7 +253,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         Redireciona para a tela de listagem de medicamentos após cadastrar os respectivos dados no servidor
      */
     func redirecionTelaMedicamentos() -> Void {
-        performSegueWithIdentifier("segueTabRemedio", sender: self)
+        performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
 //        self.geraAlerta("Acerta", mensagem: "Acertar aforma que ira voltar para a tela de medicamentos mantendo a tabbar")
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 //        

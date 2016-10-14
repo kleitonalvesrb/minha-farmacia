@@ -14,7 +14,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     var imgArray = [UIImage]()
     var nomes = [String]() //nomes dos medicamentos
     let util = Util()
+    
     var user = Usuario.sharedInstance
+    
     var flagNovoMedicamento = false
     
     var labeli:UILabel = UILabel()

@@ -41,7 +41,8 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     var str:String = String()
     
     
-    
+    var medicamento = Medicamento.medicamentoSharedInstance
+
     override func viewDidLoad() {
         super.viewDidLoad()
         btnSalvar.layer.cornerRadius = 5
@@ -173,7 +174,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
      */
     @IBAction func salvar(sender: AnyObject) {
         let util = Util()
-        let medicamento = Medicamento()
+       
         medicamento.apresentacao = campoApresentacao.text
         medicamento.classeTerapeutica = campoClasseTerapeutica.text
         medicamento.codBarras = campoCodBarras.text
@@ -190,14 +191,19 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
                            "classeTerapeutica":campoClasseTerapeutica.text!,
                            "fotoMedicamentoString":util.convertImageToString(imgRemedio.image!)]
         
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
-        let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("dose") as! DosagemViewController
+        print("--------> Pegou a Açao do botao <-------")
         
-        resultViewController.medicamento = medicamento
         
-        let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
-        self.presentViewController(navController, animated:true, completion: nil)
+//        performSegueWithIdentifier("cadastrarDosagem", sender: self)
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        
+//        let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("dose") as! DosagemViewController
+//        
+//        resultViewController.medicamento = medicamento
+//        
+//        let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
+//        self.presentViewController(navController, animated:true, completion: nil)
     
     }
     

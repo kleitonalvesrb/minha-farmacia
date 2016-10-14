@@ -30,6 +30,26 @@
 		6327266A1D64EAB800580E18 /* perfil.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726671D64EAB800580E18 /* perfil.png */; };
 		6327266B1D64EAB800580E18 /* receita.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726681D64EAB800580E18 /* receita.png */; };
 		6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */; };
+		63737CAF1DB16A880020E2C4 /* 1476235384_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737C9C1DB16A880020E2C4 /* 1476235384_more.png */; };
+		63737CB01DB16A880020E2C4 /* 1476235384_more3030.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737C9D1DB16A880020E2C4 /* 1476235384_more3030.png */; };
+		63737CB11DB16A880020E2C4 /* 1476235388_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737C9E1DB16A880020E2C4 /* 1476235388_more.png */; };
+		63737CB21DB16A880020E2C4 /* more_preenchido_3030.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737C9F1DB16A880020E2C4 /* more_preenchido_3030.png */; };
+		63737CB31DB16A880020E2C4 /* 1476235582_Doctors_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA01DB16A880020E2C4 /* 1476235582_Doctors_2.png */; };
+		63737CB41DB16A880020E2C4 /* remedio_3030.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA11DB16A880020E2C4 /* remedio_3030.png */; };
+		63737CB51DB16A880020E2C4 /* 1476235589_Doctors_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA21DB16A880020E2C4 /* 1476235589_Doctors_1.png */; };
+		63737CB61DB16A880020E2C4 /* medicamento_borda_3030.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA31DB16A880020E2C4 /* medicamento_borda_3030.png */; };
+		63737CB71DB16A880020E2C4 /* 1476236532_Error_Symbol.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA41DB16A880020E2C4 /* 1476236532_Error_Symbol.png */; };
+		63737CB81DB16A880020E2C4 /* 1476236643_Yes.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA51DB16A880020E2C4 /* 1476236643_Yes.png */; };
+		63737CB91DB16A880020E2C4 /* Circled User Male Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA61DB16A880020E2C4 /* Circled User Male Filled-50.png */; };
+		63737CBA1DB16A880020E2C4 /* perfil_preenchido_3030.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA71DB16A880020E2C4 /* perfil_preenchido_3030.png */; };
+		63737CBB1DB16A880020E2C4 /* Circled User Male-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA81DB16A880020E2C4 /* Circled User Male-50.png */; };
+		63737CBC1DB16A880020E2C4 /* perfil_borda_3030.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CA91DB16A880020E2C4 /* perfil_borda_3030.png */; };
+		63737CBD1DB16A880020E2C4 /* drugs.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CAA1DB16A880020E2C4 /* drugs.png */; };
+		63737CBE1DB16A880020E2C4 /* Treatment Plan Filled-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CAB1DB16A880020E2C4 /* Treatment Plan Filled-50.png */; };
+		63737CBF1DB16A880020E2C4 /* receitasPreenchido_3030.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CAC1DB16A880020E2C4 /* receitasPreenchido_3030.png */; };
+		63737CC01DB16A880020E2C4 /* Treatment Plan-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CAD1DB16A880020E2C4 /* Treatment Plan-50.png */; };
+		63737CC11DB16A880020E2C4 /* receitas_3030.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CAE1DB16A880020E2C4 /* receitas_3030.png */; };
+		63737CC31DB178AB0020E2C4 /* more_borda_3030.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737CC21DB178AB0020E2C4 /* more_borda_3030.png */; };
 		637384CA1D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637384C91D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf */; };
 		637384CC1D6BCF7600DAB413 /* Catherine de Beaumont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637384CB1D6BCF7600DAB413 /* Catherine de Beaumont.ttf */; };
 		637384CE1D6BE74E00DAB413 /* icone1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 637384CD1D6BE74E00DAB413 /* icone1024.png */; };
@@ -114,6 +134,26 @@
 		632726671D64EAB800580E18 /* perfil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfil.png; sourceTree = "<group>"; };
 		632726681D64EAB800580E18 /* receita.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receita.png; sourceTree = "<group>"; };
 		6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaCadastroViewController.swift; sourceTree = "<group>"; };
+		63737C9C1DB16A880020E2C4 /* 1476235384_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1476235384_more.png; sourceTree = "<group>"; };
+		63737C9D1DB16A880020E2C4 /* 1476235384_more3030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1476235384_more3030.png; sourceTree = "<group>"; };
+		63737C9E1DB16A880020E2C4 /* 1476235388_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1476235388_more.png; sourceTree = "<group>"; };
+		63737C9F1DB16A880020E2C4 /* more_preenchido_3030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_preenchido_3030.png; sourceTree = "<group>"; };
+		63737CA01DB16A880020E2C4 /* 1476235582_Doctors_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1476235582_Doctors_2.png; sourceTree = "<group>"; };
+		63737CA11DB16A880020E2C4 /* remedio_3030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remedio_3030.png; sourceTree = "<group>"; };
+		63737CA21DB16A880020E2C4 /* 1476235589_Doctors_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1476235589_Doctors_1.png; sourceTree = "<group>"; };
+		63737CA31DB16A880020E2C4 /* medicamento_borda_3030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medicamento_borda_3030.png; sourceTree = "<group>"; };
+		63737CA41DB16A880020E2C4 /* 1476236532_Error_Symbol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1476236532_Error_Symbol.png; sourceTree = "<group>"; };
+		63737CA51DB16A880020E2C4 /* 1476236643_Yes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1476236643_Yes.png; sourceTree = "<group>"; };
+		63737CA61DB16A880020E2C4 /* Circled User Male Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Circled User Male Filled-50.png"; sourceTree = "<group>"; };
+		63737CA71DB16A880020E2C4 /* perfil_preenchido_3030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfil_preenchido_3030.png; sourceTree = "<group>"; };
+		63737CA81DB16A880020E2C4 /* Circled User Male-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Circled User Male-50.png"; sourceTree = "<group>"; };
+		63737CA91DB16A880020E2C4 /* perfil_borda_3030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfil_borda_3030.png; sourceTree = "<group>"; };
+		63737CAA1DB16A880020E2C4 /* drugs.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drugs.png; sourceTree = "<group>"; };
+		63737CAB1DB16A880020E2C4 /* Treatment Plan Filled-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Treatment Plan Filled-50.png"; sourceTree = "<group>"; };
+		63737CAC1DB16A880020E2C4 /* receitasPreenchido_3030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receitasPreenchido_3030.png; sourceTree = "<group>"; };
+		63737CAD1DB16A880020E2C4 /* Treatment Plan-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Treatment Plan-50.png"; sourceTree = "<group>"; };
+		63737CAE1DB16A880020E2C4 /* receitas_3030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receitas_3030.png; sourceTree = "<group>"; };
+		63737CC21DB178AB0020E2C4 /* more_borda_3030.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = more_borda_3030.png; sourceTree = "<group>"; };
 		637384C91D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Casablanca Noir Personal Use.ttf"; sourceTree = "<group>"; };
 		637384CB1D6BCF7600DAB413 /* Catherine de Beaumont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Catherine de Beaumont.ttf"; sourceTree = "<group>"; };
 		637384CD1D6BE74E00DAB413 /* icone1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icone1024.png; sourceTree = "<group>"; };
@@ -181,6 +221,7 @@
 		630C3C621D4AA5D800312CC5 = {
 			isa = PBXGroup;
 			children = (
+				63737C9B1DB16A880020E2C4 /* ícones_prontos */,
 				637384CB1D6BCF7600DAB413 /* Catherine de Beaumont.ttf */,
 				637384CF1D6BE80E00DAB413 /* relogio.png */,
 				637622E21D7FCA2E00666F58 /* medical-prescription.png */,
@@ -249,6 +290,33 @@
 				63046D511D83B9E8003E1A5D /* DosagemMedicamento.swift */,
 			);
 			name = Objetos;
+			sourceTree = "<group>";
+		};
+		63737C9B1DB16A880020E2C4 /* ícones_prontos */ = {
+			isa = PBXGroup;
+			children = (
+				63737CC21DB178AB0020E2C4 /* more_borda_3030.png */,
+				63737C9C1DB16A880020E2C4 /* 1476235384_more.png */,
+				63737C9D1DB16A880020E2C4 /* 1476235384_more3030.png */,
+				63737C9E1DB16A880020E2C4 /* 1476235388_more.png */,
+				63737C9F1DB16A880020E2C4 /* more_preenchido_3030.png */,
+				63737CA01DB16A880020E2C4 /* 1476235582_Doctors_2.png */,
+				63737CA11DB16A880020E2C4 /* remedio_3030.png */,
+				63737CA21DB16A880020E2C4 /* 1476235589_Doctors_1.png */,
+				63737CA31DB16A880020E2C4 /* medicamento_borda_3030.png */,
+				63737CA41DB16A880020E2C4 /* 1476236532_Error_Symbol.png */,
+				63737CA51DB16A880020E2C4 /* 1476236643_Yes.png */,
+				63737CA61DB16A880020E2C4 /* Circled User Male Filled-50.png */,
+				63737CA71DB16A880020E2C4 /* perfil_preenchido_3030.png */,
+				63737CA81DB16A880020E2C4 /* Circled User Male-50.png */,
+				63737CA91DB16A880020E2C4 /* perfil_borda_3030.png */,
+				63737CAA1DB16A880020E2C4 /* drugs.png */,
+				63737CAB1DB16A880020E2C4 /* Treatment Plan Filled-50.png */,
+				63737CAC1DB16A880020E2C4 /* receitasPreenchido_3030.png */,
+				63737CAD1DB16A880020E2C4 /* Treatment Plan-50.png */,
+				63737CAE1DB16A880020E2C4 /* receitas_3030.png */,
+			);
+			path = "ícones_prontos";
 			sourceTree = "<group>";
 		};
 		6382F0D31D650ACB00958E54 /* Medicamento */ = {
@@ -399,11 +467,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				637384D01D6BE80E00DAB413 /* relogio.png in Resources */,
+				63737CC01DB16A880020E2C4 /* Treatment Plan-50.png in Resources */,
+				63737CC31DB178AB0020E2C4 /* more_borda_3030.png in Resources */,
+				63737CBD1DB16A880020E2C4 /* drugs.png in Resources */,
 				637384CA1D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf in Resources */,
+				63737CB61DB16A880020E2C4 /* medicamento_borda_3030.png in Resources */,
+				63737CBE1DB16A880020E2C4 /* Treatment Plan Filled-50.png in Resources */,
 				637622E51D7FCB3D00666F58 /* user.png in Resources */,
 				63DF3B3B1DA6FA3E00896F34 /* logo_mf_transparente.png in Resources */,
 				631136F51D68BD42004BA4B8 /* minhaf.png in Resources */,
+				63737CBF1DB16A880020E2C4 /* receitasPreenchido_3030.png in Resources */,
 				6393CA711D55B2A2003B3E71 /* homem.png in Resources */,
+				63737CB81DB16A880020E2C4 /* 1476236643_Yes.png in Resources */,
+				63737CB71DB16A880020E2C4 /* 1476236532_Error_Symbol.png in Resources */,
+				63737CBB1DB16A880020E2C4 /* Circled User Male-50.png in Resources */,
 				637622E11D7FC8A400666F58 /* remedio_2.png in Resources */,
 				6327266A1D64EAB800580E18 /* perfil.png in Resources */,
 				63B5640F1DA45C0600AF99C8 /* arrow-back2.png in Resources */,
@@ -419,19 +496,30 @@
 				631CDDBB1DAD6F8400564BD8 /* camera.png in Resources */,
 				6318397A1D693D4F008BBB18 /* barcode.png in Resources */,
 				6393CA721D55B2A2003B3E71 /* mulher.png in Resources */,
+				63737CB01DB16A880020E2C4 /* 1476235384_more3030.png in Resources */,
+				63737CB31DB16A880020E2C4 /* 1476235582_Doctors_2.png in Resources */,
+				63737CBC1DB16A880020E2C4 /* perfil_borda_3030.png in Resources */,
 				637622E71D7FCD3A00666F58 /* user1.png in Resources */,
 				637622E31D7FCA2E00666F58 /* medical-prescription.png in Resources */,
 				6327266B1D64EAB800580E18 /* receita.png in Resources */,
 				637384CE1D6BE74E00DAB413 /* icone1024.png in Resources */,
+				63737CB91DB16A880020E2C4 /* Circled User Male Filled-50.png in Resources */,
 				630C3C7C1D4AA5D800312CC5 /* LaunchScreen.storyboard in Resources */,
 				630C3C791D4AA5D800312CC5 /* Assets.xcassets in Resources */,
 				632726691D64EAB800580E18 /* medicamento.png in Resources */,
+				63737CB11DB16A880020E2C4 /* 1476235388_more.png in Resources */,
 				631136F31D681F84004BA4B8 /* remedio.png in Resources */,
+				63737CBA1DB16A880020E2C4 /* perfil_preenchido_3030.png in Resources */,
 				637622EB1D7FCEF200666F58 /* user2.png in Resources */,
 				63F950101DA4B4A200E8AA85 /* medicamento-voltar.png in Resources */,
 				637384CC1D6BCF7600DAB413 /* Catherine de Beaumont.ttf in Resources */,
 				63B5640D1DA45A5300AF99C8 /* arrow-back.png in Resources */,
 				630C3C741D4AA5D800312CC5 /* Main.storyboard in Resources */,
+				63737CAF1DB16A880020E2C4 /* 1476235384_more.png in Resources */,
+				63737CB41DB16A880020E2C4 /* remedio_3030.png in Resources */,
+				63737CB51DB16A880020E2C4 /* 1476235589_Doctors_1.png in Resources */,
+				63737CB21DB16A880020E2C4 /* more_preenchido_3030.png in Resources */,
+				63737CC11DB16A880020E2C4 /* receitas_3030.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

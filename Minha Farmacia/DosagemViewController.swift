@@ -255,7 +255,8 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         Redireciona para a tela de listagem de medicamentos após cadastrar os respectivos dados no servidor
      */
     func redirecionTelaMedicamentos() -> Void {
-        performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
+        self.tabBarController?.tabBar.hidden = true
+        performSegueWithIdentifier("segueTabRemedio", sender: self)
 //        self.geraAlerta("Acerta", mensagem: "Acertar aforma que ira voltar para a tela de medicamentos mantendo a tabbar")
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 //        

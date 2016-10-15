@@ -56,8 +56,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     }
     
     
-    
-    
+   
  
     
     override func viewWillAppear(animated: Bool) {

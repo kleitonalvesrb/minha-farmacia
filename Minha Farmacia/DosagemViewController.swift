@@ -52,6 +52,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         setDeleganteFields()
         configuraPicker()
         populaArray()
+        self.title = "Dosagem"
         campoSwitchMedicamento.addTarget(self, action: #selector(DosagemViewController.definiTipo), forControlEvents: UIControlEvents.EditingChanged)
       //  textField.addTarget(self, action: #selector(YourViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
 

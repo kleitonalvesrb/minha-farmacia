@@ -49,12 +49,13 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         btnLerCodBarras.layer.cornerRadius = 5
         btnEscolherImgRemedio.layer.cornerRadius = 5
         isPowerFlash = false
+        self.title = "Cadastro"
        
         habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
     }
 
     @IBAction func btnFlash(sender: AnyObject) {
-        alteraImagemBotaoFlash(imagem: "pintado26.png")
+        alteraImagemBotaoFlash(imagem: "flash_preenchido.png")
         if !isPowerFlash{
             isPowerFlash = true
         }else{
@@ -64,7 +65,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
             do {
                 try device.lockForConfiguration()
                 if (device.torchMode == AVCaptureTorchMode.On) {
-                    alteraImagemBotaoFlash(imagem: "flash26.png")
+                    alteraImagemBotaoFlash(imagem: "flash_borda.png")
 
                     device.torchMode = AVCaptureTorchMode.Off
                 } else {
@@ -107,22 +108,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-//    override func viewWillAppear(animated: Bool) {
-//        apresentaBarraNavegacao(false)
-//        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
-//
-//        
-//        self.navigationItem.title = "Cadastro"
-//        
-//        let button = UIBarButtonItem(title:"", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(CadastrarMedicamentoViewController.goBack))
-//        
-//        button.image = UIImage(named: "arrow-back2.png")
-//        self.navigationItem.leftBarButtonItem = button
-//        self.navigationItem.leftBarButtonItem?.style
-//    }
-//    func goBack(){
-//        performSegueWithIdentifier("cadatroVoltaListaMediacmentos", sender: self)
-//    }
+  
     func apresentaBarraNavegacao(invisivel: Bool)->Void{
         self.navigationController?.navigationBar.hidden = invisivel
 

@@ -76,6 +76,8 @@
 		6393CA721D55B2A2003B3E71 /* mulher.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA701D55B2A2003B3E71 /* mulher.png */; };
 		6393CA741D55B397003B3E71 /* indefinido.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA731D55B397003B3E71 /* indefinido.png */; };
 		639DEFCB1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DEFCA1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift */; };
+		63A0EECC1DB1AC8000398056 /* flash_preenchido.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A0EECA1DB1AC8000398056 /* flash_preenchido.png */; };
+		63A0EECD1DB1AC8000398056 /* flash_borda.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A0EECB1DB1AC8000398056 /* flash_borda.png */; };
 		63A4EB5B1D4ABFDB007C6B20 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB591D4ABFDB007C6B20 /* Bolts.framework */; };
 		63A4EB5C1D4ABFDB007C6B20 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB5A1D4ABFDB007C6B20 /* Parse.framework */; };
 		63A4EB5F1D4AC116007C6B20 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB5E1D4AC116007C6B20 /* SystemConfiguration.framework */; };
@@ -178,6 +180,8 @@
 		6393CA701D55B2A2003B3E71 /* mulher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mulher.png; sourceTree = "<group>"; };
 		6393CA731D55B397003B3E71 /* indefinido.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indefinido.png; sourceTree = "<group>"; };
 		639DEFCA1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalhamentoMedicamentoViewController.swift; sourceTree = "<group>"; };
+		63A0EECA1DB1AC8000398056 /* flash_preenchido.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash_preenchido.png; sourceTree = "<group>"; };
+		63A0EECB1DB1AC8000398056 /* flash_borda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash_borda.png; sourceTree = "<group>"; };
 		63A4EB591D4ABFDB007C6B20 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		63A4EB5A1D4ABFDB007C6B20 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		63A4EB5E1D4AC116007C6B20 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -295,6 +299,8 @@
 		63737C9B1DB16A880020E2C4 /* ícones_prontos */ = {
 			isa = PBXGroup;
 			children = (
+				63A0EECA1DB1AC8000398056 /* flash_preenchido.png */,
+				63A0EECB1DB1AC8000398056 /* flash_borda.png */,
 				63737CC21DB178AB0020E2C4 /* more_borda_3030.png */,
 				63737C9C1DB16A880020E2C4 /* 1476235384_more.png */,
 				63737C9D1DB16A880020E2C4 /* 1476235384_more3030.png */,
@@ -469,9 +475,11 @@
 				637384D01D6BE80E00DAB413 /* relogio.png in Resources */,
 				63737CC01DB16A880020E2C4 /* Treatment Plan-50.png in Resources */,
 				63737CC31DB178AB0020E2C4 /* more_borda_3030.png in Resources */,
+				63A0EECC1DB1AC8000398056 /* flash_preenchido.png in Resources */,
 				63737CBD1DB16A880020E2C4 /* drugs.png in Resources */,
 				637384CA1D6BCF6300DAB413 /* Casablanca Noir Personal Use.ttf in Resources */,
 				63737CB61DB16A880020E2C4 /* medicamento_borda_3030.png in Resources */,
+				63A0EECD1DB1AC8000398056 /* flash_borda.png in Resources */,
 				63737CBE1DB16A880020E2C4 /* Treatment Plan Filled-50.png in Resources */,
 				637622E51D7FCB3D00666F58 /* user.png in Resources */,
 				63DF3B3B1DA6FA3E00896F34 /* logo_mf_transparente.png in Resources */,

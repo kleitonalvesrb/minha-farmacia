@@ -56,7 +56,8 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         campoSwitchMedicamento.addTarget(self, action: #selector(DosagemViewController.definiTipo), forControlEvents: UIControlEvents.EditingChanged)
       //  textField.addTarget(self, action: #selector(YourViewController.textFieldDidChange(_:)), forControlEvents: UIControlEvents.EditingChanged)
 
-        
+        btnSalvar.layer.masksToBounds = true
+        btnSalvar.layer.cornerRadius = 5
         imgMedicamento.image = medicamento.fotoMedicamento
         
 //        self.navigationController?.navigationBar.hidden = true

@@ -93,6 +93,7 @@
 		63D507341DA33601008FB1C3 /* flash26.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D507311DA33601008FB1C3 /* flash26.png */; };
 		63D507351DA33601008FB1C3 /* pintado26.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D507321DA33601008FB1C3 /* pintado26.png */; };
 		63DF3B3B1DA6FA3E00896F34 /* logo_mf_transparente.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DF3B3A1DA6FA3E00896F34 /* logo_mf_transparente.png */; };
+		63E111481DB2D30C005D319D /* TrocaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E111471DB2D30C005D319D /* TrocaViewController.swift */; };
 		63F950101DA4B4A200E8AA85 /* medicamento-voltar.png in Resources */ = {isa = PBXBuildFile; fileRef = 63F9500F1DA4B4A200E8AA85 /* medicamento-voltar.png */; };
 /* End PBXBuildFile section */
 
@@ -198,6 +199,7 @@
 		63D507311DA33601008FB1C3 /* flash26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash26.png; sourceTree = "<group>"; };
 		63D507321DA33601008FB1C3 /* pintado26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pintado26.png; sourceTree = "<group>"; };
 		63DF3B3A1DA6FA3E00896F34 /* logo_mf_transparente.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_mf_transparente.png; sourceTree = "<group>"; };
+		63E111471DB2D30C005D319D /* TrocaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrocaViewController.swift; sourceTree = "<group>"; };
 		63F9500F1DA4B4A200E8AA85 /* medicamento-voltar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "medicamento-voltar.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,6 +263,7 @@
 		630C3C6D1D4AA5D800312CC5 /* Minha Farmacia */ = {
 			isa = PBXGroup;
 			children = (
+				63E111461DB2D2F2005D319D /* Outros */,
 				63F27D131D99D8270082B7A3 /* Dosagem */,
 				631136F61D68C92B004BA4B8 /* TelaLoginViewController.swift */,
 				631136EF1D681BEC004BA4B8 /* Objetos */,
@@ -401,6 +404,14 @@
 				63A4EB5A1D4ABFDB007C6B20 /* Parse.framework */,
 			);
 			name = frameworks;
+			sourceTree = "<group>";
+		};
+		63E111461DB2D2F2005D319D /* Outros */ = {
+			isa = PBXGroup;
+			children = (
+				63E111471DB2D30C005D319D /* TrocaViewController.swift */,
+			);
+			name = Outros;
 			sourceTree = "<group>";
 		};
 		63F27D131D99D8270082B7A3 /* Dosagem */ = {
@@ -556,6 +567,7 @@
 				63046D521D83B9E8003E1A5D /* DosagemMedicamento.swift in Sources */,
 				6393CA6C1D55308F003B3E71 /* TelaPrincipalViewController.swift in Sources */,
 				6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */,
+				63E111481DB2D30C005D319D /* TrocaViewController.swift in Sources */,
 				6382F0DB1D652B5700958E54 /* ReceitaViewController.swift in Sources */,
 				6382F0D91D652AF300958E54 /* ReceitaCollectionViewCell.swift in Sources */,
 			);

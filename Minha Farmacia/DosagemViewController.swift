@@ -255,18 +255,26 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         Redireciona para a tela de listagem de medicamentos após cadastrar os respectivos dados no servidor
      */
     func redirecionTelaMedicamentos() -> Void {
-        self.tabBarController?.tabBar.hidden = true
-        performSegueWithIdentifier("segueTabRemedio", sender: self)
-//        self.geraAlerta("Acerta", mensagem: "Acertar aforma que ira voltar para a tela de medicamentos mantendo a tabbar")
+        
+        print("-------------AKI-------------")
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("nextView") as! TrocaViewController
+        self.presentViewController(nextViewController, animated:false, completion:nil)
+        
+//        //        self.tabBarController?.tabBar.hidden = true
+//        //performSegueWithIdentifier("segueTabRemedio", sender: self)
+////        self.geraAlerta("Acerta", mensagem: "Acertar aforma que ira voltar para a tela de medicamentos mantendo a tabbar")
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        
-//        let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("navRemedios") as! MedicamentoViewController
-//        resultViewController.flagNovoMedicamento = true
-//        
-//        //resultViewController.medicamento = medicamento
-//        
-//        let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
-//        self.presentViewController(navController, animated:true, completion: nil)
+////
+//        let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("trocaview") as! TrocaViewController
+////        resultViewController.flagNovoMedicamento = true
+////        
+////        //resultViewController.medicamento = medicamento
+////        
+////        let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
+//       self.presentViewController(resultViewController, animated:true, completion: nil)
     }
     /**
         Cria dicionario de medicamentos

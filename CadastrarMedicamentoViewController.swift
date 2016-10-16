@@ -96,11 +96,13 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
             btnFlash(sender)
         }
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
-
+        retiraTabBar(false)
         apresentaBarraNavegacao(false)
 
         videoPreviewLayer?.hidden = true
         qrCodeFrameView?.hidden = true
+        
+        
         habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
         desabilidaInteracaoUsuarioBotoes(interatividade: true)
     }
@@ -113,8 +115,13 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         self.navigationController?.navigationBar.hidden = invisivel
 
     }
-    
+    /**
+        Método responsavel por retirar ou apresentar a tabbar
+     */
+    func retiraTabBar(inivisivel: Bool){
+        self.tabBarController?.tabBar.hidden = inivisivel
 
+    }
     
     @IBAction func escolherImgRemedio(sender: AnyObject) {
         escolherImg()
@@ -123,6 +130,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
        // UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         alteraImagemBotaoFlash(imagem: "flash26.png")
         desabilidaInteracaoUsuarioBotoes(interatividade: false)
+        retiraTabBar(true)
         habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: true, comInvisibilidade: false)
         apresentaBarraNavegacao(true)
         
@@ -334,6 +342,8 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
                 navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
 
                 habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
+                retiraTabBar(false)
+
                 desabilidaInteracaoUsuarioBotoes(interatividade: true)
                 
             }

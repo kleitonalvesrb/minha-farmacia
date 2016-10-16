@@ -70,7 +70,6 @@
 		6393CA671D551904003B3E71 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393CA661D551904003B3E71 /* Alamofire.framework */; };
 		6393CA681D55190E003B3E71 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393CA661D551904003B3E71 /* Alamofire.framework */; };
 		6393CA691D55190E003B3E71 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6393CA661D551904003B3E71 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6393CA6C1D55308F003B3E71 /* TelaPrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393CA6B1D55308F003B3E71 /* TelaPrincipalViewController.swift */; };
 		6393CA6E1D55312B003B3E71 /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6393CA6D1D55312B003B3E71 /* Usuario.swift */; };
 		6393CA711D55B2A2003B3E71 /* homem.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA6F1D55B2A2003B3E71 /* homem.png */; };
 		6393CA721D55B2A2003B3E71 /* mulher.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA701D55B2A2003B3E71 /* mulher.png */; };
@@ -86,7 +85,6 @@
 		63A4EB661D4AC2A7007C6B20 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB641D4AC2A7007C6B20 /* FBSDKCoreKit.framework */; };
 		63A4EB671D4AC2A7007C6B20 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB651D4AC2A7007C6B20 /* FBSDKLoginKit.framework */; };
 		63A4EB6A1D4AC48F007C6B20 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63A4EB691D4AC48F007C6B20 /* ParseFacebookUtilsV4.framework */; };
-		63AA4CCB1D9E09170068C16C /* PerfilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AA4CCA1D9E09170068C16C /* PerfilTableViewCell.swift */; };
 		63B5640D1DA45A5300AF99C8 /* arrow-back.png in Resources */ = {isa = PBXBuildFile; fileRef = 63B5640C1DA45A5300AF99C8 /* arrow-back.png */; };
 		63B5640F1DA45C0600AF99C8 /* arrow-back2.png in Resources */ = {isa = PBXBuildFile; fileRef = 63B5640E1DA45C0600AF99C8 /* arrow-back2.png */; };
 		63D507331DA33601008FB1C3 /* delete26.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D507301DA33601008FB1C3 /* delete26.png */; };
@@ -177,7 +175,6 @@
 		6382F0D81D652AF300958E54 /* ReceitaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceitaCollectionViewCell.swift; sourceTree = "<group>"; };
 		6382F0DA1D652B5700958E54 /* ReceitaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceitaViewController.swift; sourceTree = "<group>"; };
 		6393CA661D551904003B3E71 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		6393CA6B1D55308F003B3E71 /* TelaPrincipalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaPrincipalViewController.swift; sourceTree = "<group>"; };
 		6393CA6D1D55312B003B3E71 /* Usuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
 		6393CA6F1D55B2A2003B3E71 /* homem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homem.png; sourceTree = "<group>"; };
 		6393CA701D55B2A2003B3E71 /* mulher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mulher.png; sourceTree = "<group>"; };
@@ -194,7 +191,6 @@
 		63A4EB651D4AC2A7007C6B20 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../Frameworks/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		63A4EB681D4AC3C6007C6B20 /* ParseStarterProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ParseStarterProject-Bridging-Header.h"; sourceTree = "<group>"; };
 		63A4EB691D4AC48F007C6B20 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
-		63AA4CCA1D9E09170068C16C /* PerfilTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilTableViewCell.swift; sourceTree = "<group>"; };
 		63B5640C1DA45A5300AF99C8 /* arrow-back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-back.png"; sourceTree = "<group>"; };
 		63B5640E1DA45C0600AF99C8 /* arrow-back2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-back2.png"; sourceTree = "<group>"; };
 		63D507301DA33601008FB1C3 /* delete26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete26.png; sourceTree = "<group>"; };
@@ -348,8 +344,6 @@
 			children = (
 				6308A1CA1D4C66A10042BE2C /* TesteViewController.swift */,
 				6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */,
-				6393CA6B1D55308F003B3E71 /* TelaPrincipalViewController.swift */,
-				63AA4CCA1D9E09170068C16C /* PerfilTableViewCell.swift */,
 				63E111491DB312E7005D319D /* PerfilViewController.swift */,
 				63E1114B1DB31B58005D319D /* CellPerfilTableViewCell.swift */,
 			);
@@ -570,10 +564,8 @@
 				631C142E1D4D1CE60041675F /* Util.swift in Sources */,
 				630C3C771D4AA5D800312CC5 /* Minha_Farmacia.xcdatamodeld in Sources */,
 				639DEFCB1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift in Sources */,
-				63AA4CCB1D9E09170068C16C /* PerfilTableViewCell.swift in Sources */,
 				630C3C6F1D4AA5D800312CC5 /* AppDelegate.swift in Sources */,
 				63046D521D83B9E8003E1A5D /* DosagemMedicamento.swift in Sources */,
-				6393CA6C1D55308F003B3E71 /* TelaPrincipalViewController.swift in Sources */,
 				6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */,
 				63E111481DB2D30C005D319D /* TrocaViewController.swift in Sources */,
 				6382F0DB1D652B5700958E54 /* ReceitaViewController.swift in Sources */,

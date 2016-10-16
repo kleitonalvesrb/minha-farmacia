@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class PerfilViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var scroll: UIScrollView!
@@ -338,6 +338,8 @@ class PerfilViewController: UIViewController, UITableViewDataSource, UITableView
             let nome = alerta.textFields![0] as UITextField
             if nome.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
                 self.conteudo[index] = nome.text!
+                self.geraAlerta("Tirar espaco em branco", mensagem: "Tirar espaco em branco e tratar no servidor")
+                self.atualizaNomeUsuarioServidor(nome.text!, email: self.user.email)
                 self.tableView.reloadData()
             }else{
                 print("nao pode trocar")
@@ -357,6 +359,43 @@ class PerfilViewController: UIViewController, UITableViewDataSource, UITableView
         self.presentViewController(alerta, animated: true, completion: nil)
         
         
+    }
+    /**
+        Método responsavel por atualizar o nome do usuario no servidor, recebe o email
+        que servira como identificador no servidor e o novo nome do usuario
+     */
+    func atualizaNomeUsuarioServidor(nome: String, email: String){
+        let dicTrocaNome = ["email":email,
+                            "novoNome":nome]
+        let url = UrlWS()
+        print(url.urlAtualizarNomeUsuario(email, comNovoNome: nome))
+        Alamofire.request(.PUT, url.urlAtualizarNomeUsuario(email, comNovoNome: nome), parameters:dicTrocaNome , encoding: .JSON, headers: nil).responseJSON { (response) in
+            
+            if response.response?.statusCode == 200{
+                print("200")
+                 self.geraAlerta("Sucesso", mensagem: "Nome alterado com sucesso")
+                self.user.nome = nome
+            }else if response.response?.statusCode == 404{
+                print("404")
+                self.geraAlerta("Ops!", mensagem: "Houve um erro, não conseguimos encontra-lo na base, tente novamente mais tarde")
+             }else if response.response?.statusCode == 400{
+                print("400")
+                self.geraAlerta("Ops!", mensagem: "Houve um erro interno, tente novamente mais tarde")
+             }
+            
+        }
+
+        
+//        Alamofire.request(.PUT, url.urlAtualizarNomeUsuario(email, comNovoNome: nome),parameters:dicTrocaNome,encoding: .JSON, headers: nil ).responseJSON { (response) in
+//            if response.response?.statusCode == 200{
+//                    self.geraAlerta("Sucesso", mensagem: "Nome alterado com sucesso")
+//                    self.user.nome = nome
+//            }else if response.response?.statusCode == 404{
+//                self.geraAlerta("Ops!", mensagem: "Houve um erro, não conseguimos encontra-lo na base, tente novamente mais tarde")
+//            }else if response.response?.statusCode == 400{
+//                self.geraAlerta("Ops!", mensagem: "Houve um erro interno, tente novamente mais tarde")
+//            }
+//        }
     }
     func geraAlerta(title: String, mensagem: String){
         let alerta = UIAlertController(title: title, message: mensagem, preferredStyle: .Alert)

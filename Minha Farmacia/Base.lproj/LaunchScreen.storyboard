@@ -3,12 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="Casablanca Noir Personal Use.ttf">
-            <string>CasablancaNoirPersonalUse-Regul</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -22,24 +18,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Minha Farmácia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRi-NS-DKO">
-                                <rect key="frame" x="64" y="160" width="248" height="63"/>
-                                <fontDescription key="fontDescription" name="CasablancaNoirPersonalUse-Regul" family="Casablanca Noir Personal Use" pointSize="42"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_mf_transparente.png" translatesAutoresizingMaskIntoConstraints="NO" id="6kA-sD-rzl">
-                                <rect key="frame" x="63" y="293" width="249" height="82"/>
+                                <rect key="frame" x="-4" y="277.5" width="383" height="112"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="82" id="lnh-Sn-DqG"/>
-                                    <constraint firstAttribute="width" constant="249" id="oSw-Ca-3Qq"/>
+                                    <constraint firstAttribute="height" constant="112" id="RVr-eC-QLd"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.24313725489999999" green="0.70980392160000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="6kA-sD-rzl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="D7t-Eg-A7u"/>
-                            <constraint firstItem="6kA-sD-rzl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="M1T-68-9XB"/>
+                            <constraint firstItem="6kA-sD-rzl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-20" id="6V8-FR-v1V"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6kA-sD-rzl" secondAttribute="trailing" constant="-20" id="Otd-xa-lRh"/>
+                            <constraint firstItem="6kA-sD-rzl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="UBS-lW-n61"/>
+                            <constraint firstItem="6kA-sD-rzl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="dz6-q2-ySr"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>

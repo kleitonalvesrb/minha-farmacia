@@ -825,7 +825,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QWP-Ep-Xlq">
                                 <rect key="frame" x="-24" y="20" width="423" height="618"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9b2-Zx-brT">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9b2-Zx-brT">
                                         <rect key="frame" x="111" y="20" width="200" height="200"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="RkX-57-MWx"/>

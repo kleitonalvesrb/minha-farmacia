@@ -25,6 +25,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view did load perfil")
         
         
         
@@ -48,6 +49,12 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TesteViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+    }
+   
+    override func viewDidDisappear(animated: Bool) {
+        geraAlerta("teste", mensagem: "testando no desapear")
+        print("view did desappear perfil")
+
     }
 
     override func didReceiveMemoryWarning() {

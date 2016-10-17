@@ -27,6 +27,8 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         self.title = "Remédios"
         self.navigationController?.navigationBar.topItem?.title = "Remédios"
         configuraLabelInfo()
@@ -127,6 +129,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
      */
     func populaMedicamento(medicamento: AnyObject)  -> Medicamento{
         let medicamentoAux = Medicamento()
+        
         if let apresentacao = medicamento["apresentacao"] as? String{
             medicamentoAux.apresentacao = apresentacao
         }

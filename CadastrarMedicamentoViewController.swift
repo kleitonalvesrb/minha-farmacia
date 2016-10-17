@@ -39,7 +39,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     @IBOutlet weak var btnSalvar: UIButton!
     
     var str:String = String()
-    
+    let i = 0
     
     var medicamento = Medicamento.medicamentoSharedInstance
 

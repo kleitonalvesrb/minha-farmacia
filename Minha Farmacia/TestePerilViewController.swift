@@ -67,11 +67,15 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         let chooseAPicutre = UIAlertAction(title: "Galeria", style: .Default) { (alert: UIAlertAction!) in
             self.definirFoto(false)
         }
+        let remover = UIAlertAction(title: "Remover Foto", style: .Destructive) { (_) in
+            self.fotoPerfil.image = UIImage(named: "homem.png")
+        }
         let cancel = UIAlertAction(title: "Cancelar", style: .Cancel) { (alert: UIAlertAction!) in
-            self.geraAlerta("Foto de Perfil", mensagem: "Tudo bem, você poderá escolher uma foto mais tarde!")
+            //self.geraAlerta("Foto de Perfil", mensagem: "Tudo bem, você poderá escolher uma foto mais tarde!")
         }
         alerta.addAction(takeApicture)
         alerta.addAction(chooseAPicutre)
+        alerta.addAction(remover)
         alerta.addAction(cancel)
         
         self.presentViewController(alerta, animated: true, completion: nil)

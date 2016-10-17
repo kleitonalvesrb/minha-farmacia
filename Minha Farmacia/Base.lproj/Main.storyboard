@@ -1978,11 +1978,11 @@
             </objects>
             <point key="canvasLocation" x="-1577.5" y="1223.5"/>
         </scene>
-        <!--Item-->
+        <!--Perfil1-->
         <scene sceneID="sbW-PT-ctY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AZE-dz-s33" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="SHd-7V-Uma"/>
+                    <tabBarItem key="tabBarItem" title="Perfil1" image="perfil_borda_3030.png" selectedImage="perfil_preenchido_3030.png" id="SHd-7V-Uma"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DT1-Jx-p3P">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

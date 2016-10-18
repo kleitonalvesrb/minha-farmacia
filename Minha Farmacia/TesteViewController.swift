@@ -111,7 +111,12 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         Botão cadastro, acao que leva para tela de cadastro
      */
     @IBAction func Cadastrar(sender: AnyObject) {
-        performSegueWithIdentifier("cadastrar", sender: self)
+        let verificaConexao = VerificarConexao()
+        if verificaConexao.isConnectedToNetwork(){
+            performSegueWithIdentifier("cadastrar", sender: self)
+        }else{
+            showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
+        }
     }
     
     /**
@@ -128,15 +133,20 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //    @IBAction func login(sender: AnyObject) {
 //    }
     @IBAction func login(sender: AnyObject) {
-        let util = Util()
-        if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
-            showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
+        let verficaConexao = VerificarConexao()
+        if verficaConexao.isConnectedToNetwork(){
+            let util = Util()
+            if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
+                showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
+            }else{
+                UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
+                utilidades.configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade: false, comAnimacao: true)
+                
+                fazLogin(email.text!, senha: senha.text!)
+            }
         }else{
-            UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-
-            utilidades.configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade: false, comAnimacao: true)
-
-           fazLogin(email.text!, senha: senha.text!)
+            showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
         }
     }
     

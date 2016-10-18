@@ -11,6 +11,9 @@ import Alamofire
 class TestePerilViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     @IBOutlet weak var fotoPerfil: UIImageView!
     var user = Usuario.sharedInstance
+    @IBOutlet weak var activityInfo: UIActivityIndicatorView!
+    @IBOutlet weak var lblInfo: UILabel!
+    
     var titulos = [String]()
     var conteudo = [String]()
     var senha:String = String()
@@ -22,13 +25,13 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     @IBOutlet weak var textNovaSenha: UITextField!
     @IBOutlet weak var btnTrocarSenha: UIButton!
     @IBOutlet weak var btnCancelar: UIButton!
-
+    
     var novoNome:String = ""
     var atualizarNome:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view did load perfil")
-        
+        let util = Util()
+        util.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: activityInfo, comInvisibilidade: true, comAnimacao: false)
         
         
         configuraLayoutViewTrocarSenha()
@@ -56,7 +59,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     override func viewDidDisappear(animated: Bool) {
         if atualizarNome{
             print("atualizar nome")
-            self.atualizaNomeUsuarioServidor(novoNome, email: self.user.email)
+           // self.atualizaNomeUsuarioServidor(novoNome, email: self.user.email)
             print("terminou de atualizar")
         }
 
@@ -127,11 +130,17 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         Método responsavel por alterar foto de perfil do usuario
      */
     func altraFotoPerfilServidor(image: UIImage, email:String){
+        let util = Util()
+        util.configuraLabelInformacao(lblInfo, comInvisibilidade: false, comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
+        fotoPerfil.userInteractionEnabled = false
+        
+        
         let usuario = ["email":email,
                        "foto":user.convertImageToString(image)]
         let url = UrlWS();
         Alamofire.request(.POST, url.urlAlterarFotoPerfil(), parameters: usuario,encoding: .JSON,headers: nil).responseJSON(completionHandler: { (response) in
             if response.response?.statusCode == 200{
+                self.fotoPerfil.image = image
                 print("200")
                 self.geraAlerta("Sucesso", mensagem: "Foto alterado com sucesso")
                 self.user.foto = image
@@ -143,6 +152,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
                 self.geraAlerta("Ops!", mensagem: "Houve um erro interno, tente novamente mais tarde")
             }
 
+            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
+                self.fotoPerfil.userInteractionEnabled = true
             
         })
         
@@ -283,7 +294,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
                 let util = Util()
                 self.novoNome = util.trocaEspacoBranco(nome.text!, trocarPor: "+")
                 self.atualizarNome = true
-//                self.atualizaNomeUsuarioServidor(nome.text!, email: self.user.email)
+                self.tableView.userInteractionEnabled = false
+                self.atualizaNomeUsuarioServidor(nome.text!, email: self.user.email)
                 self.tableView.reloadData()
             }else{
                 print("nao pode trocar")
@@ -311,8 +323,9 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     func atualizaNomeUsuarioServidor(nome: String, email: String){
         let dicTrocaNome = ["email":email,
                             "novoNome":nome]
-        print("nome--->\(nome)")
-        print("email --->\(email)")
+        
+//        let util = Util()
+//        util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: false, comIndicador: self.activityInfo, comInvisibilidade: false, comAnimacao: true)
         let url = UrlWS()
         print(url.urlAtualizarNomeUsuario(email, comNovoNome: nome))
         Alamofire.request(.PUT, url.urlAtualizarNomeUsuario(email, comNovoNome: nome), parameters:dicTrocaNome , encoding: .JSON, headers: nil).responseJSON { (response) in
@@ -328,6 +341,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
                 print("400")
                 self.geraAlerta("Ops!", mensagem: "Houve um erro interno, tente novamente mais tarde")
             }
+//            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
+//            self.tableView.userInteractionEnabled = true
             
         }
     }
@@ -392,6 +407,9 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
                 if novaSenha != user.senha{ // verifica se a nova senha é igual a senha atual
                     if novaSenha.characters.count >= 6 { // verifica se a senha possui mais de 6 letras
                        //Aki
+                        self.tableView.userInteractionEnabled = false
+                        util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: false, comIndicador: self.activityInfo, comInvisibilidade: false, comAnimacao: true)
+                        
                         self.alteraSenhaUsuarioServidor(self.user.email, comNovaSenha: novaSenha)
                         dismissKeyboard()
                         viewTrocaSenha.hidden = true
@@ -429,8 +447,9 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
                 print("400")
                 self.geraAlerta("Ops!", mensagem: "Houve um erro interno, tente novamente mais tarde")
             }
-
-            
+            let util = Util()
+            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
+            self.tableView.userInteractionEnabled = true
         }
     }
     override func viewDidAppear(animated: Bool) {

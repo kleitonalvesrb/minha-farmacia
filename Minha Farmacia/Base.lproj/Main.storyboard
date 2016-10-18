@@ -886,7 +886,7 @@
                                         </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmX-FM-eDD">
-                                        <rect key="frame" x="61.5" y="187" width="300" height="200"/>
+                                        <rect key="frame" x="61" y="187" width="300" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trocar Senha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqA-BK-RQr">
                                                 <rect key="frame" x="84" y="8" width="131" height="21"/>
@@ -976,21 +976,47 @@
                                     <constraint firstItem="fmX-FM-eDD" firstAttribute="centerX" secondItem="QWP-Ep-Xlq" secondAttribute="centerX" id="ybs-Zf-JpT"/>
                                 </constraints>
                             </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENz-Gj-Tuf">
+                                <rect key="frame" x="106" y="278" width="162" height="112"/>
+                                <color key="backgroundColor" red="0.08235294118" green="0.66274509800000003" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="YMM-YM-Oge"/>
+                                    <constraint firstAttribute="width" constant="162" id="YwV-6x-mxP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Fx8-4s-tJ7">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="PIB-fS-Ezh"/>
+                                    <constraint firstAttribute="width" constant="37" id="URl-nm-3uM"/>
+                                </constraints>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="ENz-Gj-Tuf" firstAttribute="centerY" secondItem="V6Z-EG-3PT" secondAttribute="centerY" id="1uQ-CI-1aO"/>
                             <constraint firstItem="QWP-Ep-Xlq" firstAttribute="top" secondItem="S2g-8N-NSm" secondAttribute="bottom" id="Ki0-Dc-Zph"/>
+                            <constraint firstItem="Fx8-4s-tJ7" firstAttribute="centerY" secondItem="V6Z-EG-3PT" secondAttribute="centerY" id="PBk-gm-Q0R"/>
+                            <constraint firstItem="ENz-Gj-Tuf" firstAttribute="centerX" secondItem="V6Z-EG-3PT" secondAttribute="centerX" id="cm0-mj-mnb"/>
                             <constraint firstAttribute="bottomMargin" secondItem="QWP-Ep-Xlq" secondAttribute="bottom" constant="29" id="eD3-au-tyP"/>
                             <constraint firstItem="QWP-Ep-Xlq" firstAttribute="centerX" secondItem="V6Z-EG-3PT" secondAttribute="centerX" id="jz5-3U-xu9"/>
                             <constraint firstItem="QWP-Ep-Xlq" firstAttribute="leading" secondItem="V6Z-EG-3PT" secondAttribute="leadingMargin" constant="-40" id="mEU-A8-Rf5"/>
+                            <constraint firstItem="Fx8-4s-tJ7" firstAttribute="centerX" secondItem="V6Z-EG-3PT" secondAttribute="centerX" id="uoo-5c-IgL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S9i-lQ-xMy"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activityInfo" destination="Fx8-4s-tJ7" id="bK6-eu-Iyt"/>
                         <outlet property="btnCancelar" destination="ftK-iH-7Hg" id="qfx-Hi-gNu"/>
                         <outlet property="btnTrocarSenha" destination="YVe-Jg-NS1" id="fWJ-m6-Wcc"/>
                         <outlet property="fotoPerfil" destination="9b2-Zx-brT" id="3EX-nv-NBV"/>
+                        <outlet property="lblInfo" destination="ENz-Gj-Tuf" id="OoH-yc-8FM"/>
                         <outlet property="scroll" destination="QWP-Ep-Xlq" id="9kT-N3-fDt"/>
                         <outlet property="tableView" destination="61L-9m-CkL" id="lmh-DV-RzU"/>
                         <outlet property="textNovaSenha" destination="cuf-mv-nns" id="MSi-7F-wDD"/>
@@ -1995,6 +2021,6 @@
         <image name="remedio_3030.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ukv-95-uiy"/>
+        <segue reference="HqM-wA-IY4"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -11,6 +11,7 @@ import UIKit
 class Usuario: NSObject {
     var id:Int!
     var idade:Int!
+    var dataNascimento:NSDate!
     var email:String!
     var nome:String!
     var senha:String!

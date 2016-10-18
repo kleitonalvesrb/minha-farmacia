@@ -293,6 +293,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
                 self.conteudo[index] = nome.text!
                 let util = Util()
                 self.novoNome = util.trocaEspacoBranco(nome.text!, trocarPor: "+")
+              //  self.novoNome = util.trocaCaracterInvalido(nome.text!, retirar: " ", trocarPor: "+")
                 self.atualizarNome = true
                 self.tableView.userInteractionEnabled = false
                 self.atualizaNomeUsuarioServidor(self.novoNome, email: self.user.email)
@@ -362,23 +363,25 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         titulos.append("Email")
         titulos.append("Senha")
         titulos.append("Sexo")
-        titulos.append("Idade")
+        titulos.append("Data Nascimento")
         titulos.append("Facebook")
         titulos.append("Logout")
-        titulos.append("Idade")
         
         
         titulos.append("")
     }
     func populaConteudo(){
+        let util = Util()
+        let dataNascimento:NSDate!
+        dataNascimento = user.dataNascimento
+        let qtdDias = util.qtdDiasEntreDuasDatas(user.dataNascimento, ate: NSDate())
         conteudo.append(user.nome)
         conteudo.append(user.email)
         conteudo.append("******")
         conteudo.append(user.sexo)
-        conteudo.append("idade")
+        conteudo.append(util.formataDataPadrao(dataNascimento)+" \(qtdDias/365) Anos")
         conteudo.append("facebook")
         conteudo.append("Logout")
-        conteudo.append("21")
         
         conteudo.append("")
     }

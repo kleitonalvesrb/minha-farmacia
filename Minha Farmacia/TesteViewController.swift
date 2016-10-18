@@ -179,8 +179,15 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                         self.user.idFacebook = "Não Informado"
                     }
                     if let dataString = JSON.objectForKey("dataNascimento") as? String{
-                        //            trataData(dataString)
-                        print("acertar a data de nascimento")
+                       print("---------> dataString \(dataString)")
+                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")
+                        print("---------> tratado \(dateString)")
+
+                        let dateFormatter = NSDateFormatter() //Instância do date Formatter
+                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                        let date:NSDate
+                        date = dateFormatter.dateFromString(dateString)!
+                        self.user.dataNascimento = date
                     }
                     if let senha = JSON.objectForKey("senha") as? String{
                         self.user.senha = senha
@@ -193,7 +200,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     }else{
                         self.user.foto = UIImage(named: "homem.png")
                     }
-
+                   
                     self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
@@ -223,7 +230,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         
         print(i)
     }
-   
+    
+
     func tratarImagemUsuario(imgStr: String)-> UIImage{
         var image = UIImage()
         let util = Util()

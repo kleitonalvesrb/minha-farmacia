@@ -10,7 +10,9 @@ import UIKit
 import ParseFacebookUtilsV4
 
 class Util: NSObject {
-    
+    func trocaEspacoBranco(str: String, trocarPor caracter:String)->String{
+        return str.stringByReplacingOccurrencesOfString(" ", withString: caracter)
+    }
     func isVazio(txt : String) -> Bool{
             return txt == ""
     }

@@ -17,6 +17,9 @@ class UrlWS: NSObject {
     private let rota = "/cliente/"
     private let rotaMedicamento = "/medicamento/"
     
+    func urlAtualizarSenhaUsuario(email:String, comNovaSenha senha:String)->String{
+        return "http://\(host):\(porta)\(rota)atualizar-senha/\(email)-\(senha)"
+    }
     func urlAtualizarNomeUsuario(email:String, comNovoNome nome:String) -> String{
         
         return "http://\(host):\(porta)\(rota)atualizar-nome/\(email)-\(nome)"
@@ -62,5 +65,8 @@ class UrlWS: NSObject {
      */
     func urlCadastrarUsuario()->String{
         return "http://\(host):\(porta)\(rota)inserir"
+    }
+    func urlAlterarFotoPerfil()->String{
+        return "http://\(host):\(porta)\(rota)atualizar-foto"
     }
 }

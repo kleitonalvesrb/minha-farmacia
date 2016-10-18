@@ -23,6 +23,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     @IBOutlet weak var btnTrocarSenha: UIButton!
     @IBOutlet weak var btnCancelar: UIButton!
 
+    var novoNome:String = ""
+    var atualizarNome:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         print("view did load perfil")
@@ -52,8 +54,11 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     }
    
     override func viewDidDisappear(animated: Bool) {
-        geraAlerta("teste", mensagem: "testando no desapear")
-        print("view did desappear perfil")
+        if atualizarNome{
+            print("atualizar nome")
+            self.atualizaNomeUsuarioServidor(novoNome, email: self.user.email)
+            print("terminou de atualizar")
+        }
 
     }
 
@@ -75,7 +80,11 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             self.definirFoto(false)
         }
         let remover = UIAlertAction(title: "Remover Foto", style: .Destructive) { (_) in
-            self.fotoPerfil.image = UIImage(named: "homem.png")
+            if let novaFotoPerfil = UIImage(named: "homem.png"){
+                self.altraFotoPerfilServidor(novaFotoPerfil, email: self.user.email)
+            }else{
+                self.geraAlerta("Ops!", mensagem: "Desculpe, houve um erro ao remover a foto do perfil")
+            }
         }
         let cancel = UIAlertAction(title: "Cancelar", style: .Cancel) { (alert: UIAlertAction!) in
             //self.geraAlerta("Foto de Perfil", mensagem: "Tudo bem, você poderá escolher uma foto mais tarde!")
@@ -112,8 +121,33 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         self.dismissViewControllerAnimated(true, completion: nil)
-        fotoPerfil.image = image
+        self.altraFotoPerfilServidor(image, email: user.email)
     }
+    /**
+        Método responsavel por alterar foto de perfil do usuario
+     */
+    func altraFotoPerfilServidor(image: UIImage, email:String){
+        let usuario = ["email":email,
+                       "foto":user.convertImageToString(image)]
+        let url = UrlWS();
+        Alamofire.request(.POST, url.urlAlterarFotoPerfil(), parameters: usuario,encoding: .JSON,headers: nil).responseJSON(completionHandler: { (response) in
+            if response.response?.statusCode == 200{
+                print("200")
+                self.geraAlerta("Sucesso", mensagem: "Foto alterado com sucesso")
+                self.user.foto = image
+            }else if response.response?.statusCode == 404{
+                print("404")
+                self.geraAlerta("Ops!", mensagem: "Houve um erro, não conseguimos encontra-lo na base, tente novamente mais tarde")
+            }else if response.response?.statusCode == 400{
+                print("400")
+                self.geraAlerta("Ops!", mensagem: "Houve um erro interno, tente novamente mais tarde")
+            }
+
+            
+        })
+        
+    }
+ 
 
     
     
@@ -246,8 +280,10 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             let nome = alerta.textFields![0] as UITextField
             if nome.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
                 self.conteudo[index] = nome.text!
-                self.geraAlerta("Tirar espaco em branco", mensagem: "Tirar espaco em branco e tratar no servidor")
-                self.atualizaNomeUsuarioServidor(nome.text!, email: self.user.email)
+                let util = Util()
+                self.novoNome = util.trocaEspacoBranco(nome.text!, trocarPor: "+")
+                self.atualizarNome = true
+//                self.atualizaNomeUsuarioServidor(nome.text!, email: self.user.email)
                 self.tableView.reloadData()
             }else{
                 print("nao pode trocar")
@@ -275,6 +311,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     func atualizaNomeUsuarioServidor(nome: String, email: String){
         let dicTrocaNome = ["email":email,
                             "novoNome":nome]
+        print("nome--->\(nome)")
+        print("email --->\(email)")
         let url = UrlWS()
         print(url.urlAtualizarNomeUsuario(email, comNovoNome: nome))
         Alamofire.request(.PUT, url.urlAtualizarNomeUsuario(email, comNovoNome: nome), parameters:dicTrocaNome , encoding: .JSON, headers: nil).responseJSON { (response) in
@@ -353,7 +391,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             if senhaAtual == user.senha{ // verifica se foi informado a senha atual
                 if novaSenha != user.senha{ // verifica se a nova senha é igual a senha atual
                     if novaSenha.characters.count >= 6 { // verifica se a senha possui mais de 6 letras
-                        geraAlerta("Ok", mensagem: "Sua senha foi alterada com sucesso!")// msg de sucesso
+                       //Aki
+                        self.alteraSenhaUsuarioServidor(self.user.email, comNovaSenha: novaSenha)
                         dismissKeyboard()
                         viewTrocaSenha.hidden = true
                     }else{
@@ -369,6 +408,30 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             geraAlerta("Ops!", mensagem: "Todos os campos deve ser preenchidos") // acusa erro casa no tenha preenchido todos os campos
         }
         
+    }
+    /**
+        Método responsavel por alterar a senha do usuario no servidor, recebe o email para 
+     verificar o usuairo e a nova senha
+     */
+    func alteraSenhaUsuarioServidor(email: String, comNovaSenha novaSenha:String){
+        let dicTrocaSenha = ["email":email,
+                             "novaSenha":novaSenha]
+        let url = UrlWS()
+        Alamofire.request(.PUT,url.urlAtualizarSenhaUsuario(email, comNovaSenha: novaSenha), parameters: dicTrocaSenha, encoding: .JSON, headers: nil).responseJSON { (response) in
+            if response.response?.statusCode == 200{
+                print("200")
+                self.geraAlerta("Sucesso", mensagem: "Senha alterado com sucesso")
+                self.user.senha = novaSenha
+            }else if response.response?.statusCode == 404{
+                print("404")
+                self.geraAlerta("Ops!", mensagem: "Houve um erro, não conseguimos encontra-lo na base, tente novamente mais tarde")
+            }else if response.response?.statusCode == 400{
+                print("400")
+                self.geraAlerta("Ops!", mensagem: "Houve um erro interno, tente novamente mais tarde")
+            }
+
+            
+        }
     }
     override func viewDidAppear(animated: Bool) {
         let navigationBarAppearace = UINavigationBar.appearance()

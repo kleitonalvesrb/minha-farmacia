@@ -856,7 +856,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WlT-Kn-QeC">
-                                                            <rect key="frame" x="8" y="25" width="367" height="21"/>
+                                                            <rect key="frame" x="8" y="21" width="367" height="21"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="21" id="6X3-wM-qRO"/>
                                                             </constraints>
@@ -871,7 +871,7 @@
                                                         <constraint firstItem="6w4-pQ-5QN" firstAttribute="trailing" secondItem="zin-8q-Owa" secondAttribute="trailingMargin" id="GKH-Za-w0r"/>
                                                         <constraint firstItem="6w4-pQ-5QN" firstAttribute="top" secondItem="zin-8q-Owa" secondAttribute="topMargin" constant="-10" id="Mnt-nR-DqM"/>
                                                         <constraint firstItem="6w4-pQ-5QN" firstAttribute="leading" secondItem="zin-8q-Owa" secondAttribute="leadingMargin" id="g6o-Jk-kGW"/>
-                                                        <constraint firstItem="WlT-Kn-QeC" firstAttribute="top" secondItem="6w4-pQ-5QN" secondAttribute="bottom" constant="4" id="qeo-Qa-Ngf"/>
+                                                        <constraint firstItem="WlT-Kn-QeC" firstAttribute="top" secondItem="6w4-pQ-5QN" secondAttribute="bottom" id="qeo-Qa-Ngf"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
@@ -885,8 +885,8 @@
                                             <outlet property="delegate" destination="fKt-7A-RP4" id="lfg-3W-PuT"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fmX-FM-eDD">
-                                        <rect key="frame" x="61" y="209" width="300" height="200"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmX-FM-eDD">
+                                        <rect key="frame" x="61.5" y="187" width="300" height="200"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trocar Senha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqA-BK-RQr">
                                                 <rect key="frame" x="84" y="8" width="131" height="21"/>

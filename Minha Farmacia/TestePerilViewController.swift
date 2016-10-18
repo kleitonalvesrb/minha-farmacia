@@ -206,6 +206,13 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             alterarSenha.backgroundColor = UIColor.redColor()
             return [alterarSenha]
             
+        }else if titulos[indexPath.row].lowercaseString == "Logout".lowercaseString{
+            let logout = UITableViewRowAction(style: .Normal,title: "Logout"){action, index in
+                //UIControl().sendAction(Selector("suspend"), to: UIApplication.sharedApplication(), forEvent: nil)
+                exit(EXIT_SUCCESS)
+            }
+            logout.backgroundColor = UIColor.redColor()
+            return [logout]
         }
         
         
@@ -228,6 +235,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         if titulos[indexPath.row].lowercaseString == "Nome".lowercaseString{
             return true
         }else if titulos[indexPath.row].lowercaseString == "Senha".lowercaseString{
+            return true
+        }else if titulos[indexPath.row].lowercaseString == "Logout".lowercaseString{
             return true
         }
         // the cells you would like the actions to appear needs to be editable

@@ -143,6 +143,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //    @IBAction func loginFacebook(sender: AnyObject) {
 //    }
     @IBAction func loginFacebook(sender: AnyObject) {
+
                //let permission = ["public_profile"]
         //PFFacebookUtils.logInInBackgroundWithReadPermissions(permission)
         //pegaDadosFacebook()

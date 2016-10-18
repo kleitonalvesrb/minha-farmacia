@@ -24,6 +24,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     @IBOutlet weak var activityInfo: UIActivityIndicatorView!
     @IBOutlet weak var lblInfo: UILabel!
     
+    var medicamento = Medicamento.medicamentoSharedInstance
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -242,34 +245,14 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0{
             performSegueWithIdentifier("cadastrarMedicamento", sender: self)
-//            let cadastroView:CadastrarMedicamentoViewController = CadastrarMedicamentoViewController()
-//            
-//            self.presentViewController(cadastroView, animated: true, completion: nil)
-
-            
-//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//            
-//            let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("cadastrarMedicamento") as! CadastrarMedicamentoViewController
-//            
-//            resultViewController.str = "deve cadastrar"
-//            
-//            let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
-//            
-//            self.presentViewController(navController, animated:true, completion: nil)
 
 
         }else{
-            self.geraAlerta("Acertar", mensagem: "Acertar a forma que irá levar o medicamento para ser detalhado!")
+            let userDefautls = NSUserDefaults.standardUserDefaults()
+            userDefautls.setInteger((indexPath.row) - 1, forKey: "posicaoMedicamento")
+            medicamento = user.medicamento[(indexPath.row) - 1]
             performSegueWithIdentifier("detalhamentoRemedio", sender: self)
-//            let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("DetalhamentoMedicamento") as! DetalhamentoMedicamentoTableViewController
-//            let medicamento = user.medicamento[Int(indexPath.row) - 1]
-//            //print(medicamento.dosagemMedicamento.periodoTratamento)
-//            resultViewController.medicamento = user.medicamento[Int(indexPath.row) - 1]
-//            
-//            let navController = UINavigationController(rootViewController: resultViewController)
-//            
-//            self.presentViewController(navController, animated: true, completion: nil)
+
         }
     }
    

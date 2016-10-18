@@ -14,7 +14,7 @@ class DetalhamentoMedicamentoTableViewController: UIViewController, UITableViewD
 //  
 //    var dados = [String:[String]]()
 
-    var medicamento:Medicamento = Medicamento()
+    var medicamento = Medicamento.medicamentoSharedInstance
     var items = [[String]]()
     @IBOutlet weak var imgMedicamento: UIImageView!
     let section = ["Dados Medicamento", "Medicamentos em Atraso"]
@@ -29,6 +29,22 @@ class DetalhamentoMedicamentoTableViewController: UIViewController, UITableViewD
         super.viewDidLoad()
 //        barraNavegacao()
         
+        
+        
+       
+    }
+    override func viewWillAppear(animated: Bool) {
+        let userDefautls = NSUserDefaults.standardUserDefaults()
+        var posicaoArray = -1
+        if let posicaoArrayMedicamento = userDefautls.stringForKey("posicaoMedicamento"){
+           posicaoArray = Int(posicaoArrayMedicamento)!
+        }else{
+            print("DEU RUIM")
+        }
+        let user = Usuario.sharedInstance
+        medicamento = user.medicamento[posicaoArray]
+        print("===========================")
+        print(medicamento.dosagemMedicamento.intervaloDose,"  Intervalo")
         let arrayAtrasos = ["23/10/2016 ás 12:30",
                             "24/10/2014 ás 00:30",
                             "24/10/2016 ás 12:30",
@@ -40,12 +56,12 @@ class DetalhamentoMedicamentoTableViewController: UIViewController, UITableViewD
                             "24/10/2016 ás 12:30"]
         
         imgMedicamento.image = medicamento.fotoMedicamento
-         items = [["Inicio em :     23/10/2016 13:30",
+        items = [["Inicio em :     23/10/2016 13:30",
             "Intervalo:      \(medicamento.dosagemMedicamento.intervaloDose):00 Horas",
             "Período:        \(medicamento.dosagemMedicamento.periodoTratamento) Dias",
             "Dosagem:       \(medicamento.dosagemMedicamento.quantidade) \(tipoMedicamentoApresentacaoDosagem(medicamento.dosagemMedicamento.tipoMedicamento))"]]
-                  
-                     items.append(arrayAtrasos)
+        
+        items.append(arrayAtrasos)
 
     }
 //    func barraNavegacao(){

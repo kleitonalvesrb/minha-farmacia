@@ -62,10 +62,10 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         self.navigationItem.title = "Cadastro"
 //        //
-//        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
-//        button.image = UIImage(named: "back.png")
-//        self.navigationItem.leftBarButtonItem = button
-//        self.navigationItem.leftBarButtonItem?.style
+        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
+        button.image = UIImage(named: "back.png")
+        self.navigationItem.leftBarButtonItem = button
+        self.navigationItem.leftBarButtonItem?.style
     }
     
     override func viewWillAppear(animated: Bool) {

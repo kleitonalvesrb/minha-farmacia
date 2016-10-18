@@ -295,7 +295,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
                 self.novoNome = util.trocaEspacoBranco(nome.text!, trocarPor: "+")
                 self.atualizarNome = true
                 self.tableView.userInteractionEnabled = false
-                self.atualizaNomeUsuarioServidor(nome.text!, email: self.user.email)
+                self.atualizaNomeUsuarioServidor(self.novoNome, email: self.user.email)
                 self.tableView.reloadData()
             }else{
                 print("nao pode trocar")
@@ -324,8 +324,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         let dicTrocaNome = ["email":email,
                             "novoNome":nome]
         
-//        let util = Util()
-//        util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: false, comIndicador: self.activityInfo, comInvisibilidade: false, comAnimacao: true)
+        let util = Util()
+        util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: false, comIndicador: self.activityInfo, comInvisibilidade: false, comAnimacao: true)
         let url = UrlWS()
         print(url.urlAtualizarNomeUsuario(email, comNovoNome: nome))
         Alamofire.request(.PUT, url.urlAtualizarNomeUsuario(email, comNovoNome: nome), parameters:dicTrocaNome , encoding: .JSON, headers: nil).responseJSON { (response) in
@@ -341,8 +341,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
                 print("400")
                 self.geraAlerta("Ops!", mensagem: "Houve um erro interno, tente novamente mais tarde")
             }
-//            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
-//            self.tableView.userInteractionEnabled = true
+            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
+            self.tableView.userInteractionEnabled = true
             
         }
     }

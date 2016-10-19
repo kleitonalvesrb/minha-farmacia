@@ -19,6 +19,7 @@ class Usuario: NSObject {
     var foto:UIImage!
     var sexo:String!
     var medicamento = [Medicamento]()
+    var receitas = [Receita]()
     
     static let sharedInstance = Usuario()
     

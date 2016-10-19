@@ -10,12 +10,13 @@ import UIKit
 
 class UrlWS: NSObject {
     
-    private let host = "minhafarmacia-env.us-west-2.elasticbeanstalk.com"
-    //private let host = "192.168.15.4"
-    //private let porta = "8080/WebService"
-    private let porta = "80"
+    //private let host = "minhafarmacia-env.us-west-2.elasticbeanstalk.com"
+    private let host = "192.168.15.3"
+    private let porta = "8080/WebService"
+    //private let porta = "80"
     private let rota = "/cliente/"
     private let rotaMedicamento = "/medicamento/"
+    private let rotaReceita = "/receita/"
     
     func urlAtualizarSenhaUsuario(email:String, comNovaSenha senha:String)->String{
         return "http://\(host):\(porta)\(rota)atualizar-senha/\(email)-\(senha)"
@@ -31,6 +32,9 @@ class UrlWS: NSObject {
     func urlInsereMedicamentoUsuario(email: String) -> String{
         
             return "http://\(host):\(porta)\(rotaMedicamento)atualizar/\(email)"
+    }
+    func urlInsereReceitaUsuario(email:String) ->String{
+        return "http://\(host):\(porta)\(rotaReceita)atualizar/\(email)"
     }
     /**
         http://localhost:8080/WebService/medicamento/busca-medicamento/user-email/kleiton@gmail.com

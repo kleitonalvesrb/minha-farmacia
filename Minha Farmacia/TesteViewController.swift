@@ -189,17 +189,17 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     }else{
                         self.user.idFacebook = "Não Informado"
                     }
-                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
-                       print("---------> dataString \(dataString)")
-                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")
-                        print("---------> tratado \(dateString)")
-
-                        let dateFormatter = NSDateFormatter() //Instância do date Formatter
-                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                        let date:NSDate
-                        date = dateFormatter.dateFromString(dateString)!
-                        self.user.dataNascimento = date
-                    }
+//                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
+//                       print("---------> dataString \(dataString)")
+//                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")
+//                        print("---------> tratado \(dateString)")
+//
+//                        let dateFormatter = NSDateFormatter() //Instância do date Formatter
+//                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+//                        let date:NSDate
+//                        date = dateFormatter.dateFromString(dateString)!
+//                        self.user.dataNascimento = date
+//                    }
                     if let senha = JSON.objectForKey("senha") as? String{
                         self.user.senha = senha
                     }
@@ -273,9 +273,11 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
       no ws pendido a recuperação da senha
      */
     @IBAction func recuperarSenha(sender: AnyObject) {
-        let alert = UIAlertController(title: "Recuperar Senha", message: "Digite o email cadastrado", preferredStyle: .Alert)
-        let recuperaSenha = UIAlertAction(title: "Recuperar", style: .Default) { (_) in
-            let emailText = alert.textFields![0] as UITextField
+        let conexao = VerificarConexao()
+        if conexao.isConnectedToNetwork(){
+            let alert = UIAlertController(title: "Recuperar Senha", message: "Digite o email cadastrado", preferredStyle: .Alert)
+            let recuperaSenha = UIAlertAction(title: "Recuperar", style: .Default) { (_) in
+                let emailText = alert.textFields![0] as UITextField
                 // realizar a requisição com o email informado
                 if emailText.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
                     let dicEmail = ["email":emailText.text!]
@@ -306,15 +308,19 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         }
         
         
-        alert.addTextFieldWithConfigurationHandler { (textField) in
-            textField.placeholder = "E-mail"
-            textField.keyboardType = .EmailAddress
-        }
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .Destructive) { (_) in }
-        alert.addAction(recuperaSenha)
-        alert.addAction(cancelAction)
+            alert.addTextFieldWithConfigurationHandler { (textField) in
+                textField.placeholder = "E-mail"
+                textField.keyboardType = .EmailAddress
+            }
+            let cancelAction = UIAlertAction(title: "Cancelar", style: .Destructive) { (_) in }
+            alert.addAction(recuperaSenha)
+            alert.addAction(cancelAction)
         
-        self.presentViewController(alert, animated: true, completion: nil)
+            self.presentViewController(alert, animated: true, completion: nil)
+        }else{
+            showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
+
+        }
         
     }
     

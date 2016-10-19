@@ -87,6 +87,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         // Dispose of any resources that can be recreated.
     }
     
+    
     /*Retirar o teclado*/
     func dismissKeyboard(){
         self.view.endEditing(true)

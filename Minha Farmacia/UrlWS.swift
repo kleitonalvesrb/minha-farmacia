@@ -42,7 +42,9 @@ class UrlWS: NSObject {
     func urlBuscaMedicamentoUsuario(email: String) -> String{
         return "http://\(host):\(porta)\(rotaMedicamento)busca-medicamento/email-user/\(email)"
     }
-    
+    func urlBuscaReceitaUsuario(email: String) ->String{
+        return "http://\(host):\(porta)\(rotaReceita)busca-receita/email-user/\(email)"
+    }
     /**
         //"http://192.168.0.12:8080/WebService/cliente/login/\(email)-\(senha)
      */

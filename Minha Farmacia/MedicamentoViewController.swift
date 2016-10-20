@@ -102,6 +102,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
        user.medicamento.removeAll()
         let url = UrlWS()
         
+        
         Alamofire.request(.GET, url.urlBuscaMedicamentoUsuario(user.email)).responseJSON { (response) in
             if let JSON = response.result.value{
                 if JSON.count != nil{
@@ -241,7 +242,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         }
         return cell
     }
-    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0{
             performSegueWithIdentifier("cadastrarMedicamento", sender: self)

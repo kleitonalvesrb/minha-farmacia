@@ -22,7 +22,7 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
         let imgPlus = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
-        grabPhotos()
+//        grabPhotos()
     }
 
     override func didReceiveMemoryWarning() {

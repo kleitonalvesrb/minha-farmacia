@@ -2062,10 +2062,15 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Re-8U-A34">
+                                <rect key="frame" x="67" y="385" width="215" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Mais" image="more_borda_3030.png" selectedImage="more_preenchido_3030.png" id="t9z-uo-7N9"/>
+                    <tabBarItem key="tabBarItem" title="Mais" image="icoMore" selectedImage="icoMoreSelecionado" id="t9z-uo-7N9"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQ1-yz-xAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2076,7 +2081,7 @@
         <scene sceneID="u9i-n3-dFc">
             <objects>
                 <navigationController storyboardIdentifier="navRemedios" automaticallyAdjustsScrollViewInsets="NO" id="gSm-N2-W28" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Remedios" image="medicamento_borda_3030.png" selectedImage="remedio_3030.png" id="h5r-kr-YS5"/>
+                    <tabBarItem key="tabBarItem" title="Remedios" image="icoRemedio" selectedImage="icoRemedioSelecionado" id="h5r-kr-YS5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UV1-kb-Dar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2114,7 +2119,7 @@
         <scene sceneID="XLO-Jv-vfh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GzX-ja-lvo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Receitas" image="receitas_3030.png" selectedImage="receitasPreenchido_3030.png" id="wLK-ea-Jvl"/>
+                    <tabBarItem key="tabBarItem" title="Receitas" image="icoReceita" selectedImage="icoReceitaSelecionado" id="wLK-ea-Jvl"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LJ9-LL-P2z">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2137,15 +2142,15 @@
         <image name="drugs.png" width="256" height="256"/>
         <image name="flash_borda.png" width="26" height="26"/>
         <image name="homem.png" width="128" height="128"/>
-        <image name="icoImagePerfil" width="25" height="25"/>
-        <image name="icoImagePerfilSelect" width="25" height="25"/>
-        <image name="medicamento_borda_3030.png" width="32" height="32"/>
-        <image name="more_borda_3030.png" width="30" height="30"/>
-        <image name="more_preenchido_3030.png" width="30" height="30"/>
+        <image name="icoImagePerfil" width="28" height="28"/>
+        <image name="icoImagePerfilSelect" width="28" height="28"/>
+        <image name="icoMore" width="28" height="28"/>
+        <image name="icoMoreSelecionado" width="28" height="28"/>
+        <image name="icoReceita" width="28" height="28"/>
+        <image name="icoReceitaSelecionado" width="28" height="28"/>
+        <image name="icoRemedio" width="28" height="28"/>
+        <image name="icoRemedioSelecionado" width="28" height="28"/>
         <image name="mulher.png" width="128" height="128"/>
-        <image name="receitasPreenchido_3030.png" width="30" height="30"/>
-        <image name="receitas_3030.png" width="30" height="30"/>
-        <image name="remedio_3030.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="0mc-wf-GZF"/>

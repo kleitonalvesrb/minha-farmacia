@@ -133,6 +133,18 @@ class Util: NSObject {
         return base64String
     }
     /**
+        Converte uma imagem e data para salvar no banco de dados
+     */
+    func convertImageToNSData(image: UIImage) -> NSData{
+        return UIImageJPEGRepresentation(image, 0)!
+    }
+    /**
+        Converte nsdata em imagem
+     */
+    func convertNSDataToImage(imageData: NSData)->UIImage{
+        return UIImage(data: imageData)!
+    }
+    /**
         Retorna o valor real em ML
      */
     func valorQuantidadeDoseMlAndGotas(qtd: String) -> Double{

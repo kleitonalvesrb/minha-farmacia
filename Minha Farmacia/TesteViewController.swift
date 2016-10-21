@@ -36,7 +36,11 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         
-        print("\(usuarioDao.verificaUserLogado(contexto)) <------")
+        if usuarioDao.verificaUserLogado(contexto) {
+            print(usuarioDao.recuperaDadosUsuario(contexto).nome)
+        }else{
+            print("Nao tem nenhum usuario cadastrado")
+        }
         
         configuraNavBar()
         
@@ -217,19 +221,22 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     }else{
                         self.user.foto = UIImage(named: "homem.png")
                     }
-                   
+                    
+                    /*
+                     Salvar usuario no banco
+                     */
+                    let udao = UsuarioDAO()
+                    let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let contexto: NSManagedObjectContext = appDel.managedObjectContext
+                    
+                    udao.salvaUsuario(contexto, usuario: self.user)
                     self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                    
+                   
 
                     self.performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
-//                   
-//                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//                    
-//                    let resultViewController = storyBoard.instantiateViewControllerWithIdentifier("ListaMedicamentos") as! MedicamentoViewController
-//                    
-//                    let navController = UINavigationController(rootViewController: resultViewController) // Creating a navigation controller with resultController at the root of the navigation stack.
-//                    self.presentViewController(navController, animated:true, completion: nil)
-                    
+       
                     
 
                 }else{
@@ -242,10 +249,6 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
 
         }
-    }
-    func t (i: AnyObject){
-        
-        print(i)
     }
     
 

@@ -256,7 +256,6 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
      */
     func redirecionTelaMedicamentos() -> Void {
         
-        print("-------------AKI-------------")
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         

@@ -10,12 +10,9 @@ import UIKit
 
 class DetalhaReceitaViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
 
-        // Do any additional setup after loading the view.
-    }
-
+    @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var imgReceita: UIImageView!
     @IBOutlet weak var descricao: UITextView!
     @IBOutlet weak var dataCadastro: UILabel!
@@ -23,7 +20,16 @@ class DetalhaReceitaViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func viewDidAppear(animated: Bool) {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if self.view.frame.height > 665{
+            scroll.scrollEnabled = false
+        }
+        
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(animated: Bool) {
         let userDefautls = NSUserDefaults.standardUserDefaults()
         var posicaoArray = -1
         if let posicaoArrayMedicamento = userDefautls.stringForKey("posicaoReceita"){

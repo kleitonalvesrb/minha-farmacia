@@ -10,10 +10,10 @@ import UIKit
 
 class UrlWS: NSObject {
     
-    private let host = "minhafarmacia-env.us-west-2.elasticbeanstalk.com"
-    private let porta = "80"
-//    private let host = "172.16.2.134"
-//    private let porta = "8080/WebService"
+//    private let host = "minhafarmacia-env.us-west-2.elasticbeanstalk.com"
+//    private let porta = "80"
+    private let host = "192.168.15.5"
+    private let porta = "8080/WebService"
     private let rota = "/cliente/"
     private let rotaMedicamento = "/medicamento/"
     private let rotaReceita = "/receita/"

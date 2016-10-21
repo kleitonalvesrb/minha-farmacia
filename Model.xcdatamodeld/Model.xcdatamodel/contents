@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Xcode 7.0">
+    <entity name="Medicamento" syncable="YES">
+        <attribute name="cod_barra" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="foto" optional="YES" attributeType="Binary" storedInTruthFile="YES" syncable="YES"/>
+    </entity>
+    <entity name="Usuario" syncable="YES">
+        <attribute name="dataNascimento" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="foto" optional="YES" attributeType="Binary" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="senha" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Medicamento" positionX="-54" positionY="27" width="128" height="75"/>
+        <element name="Usuario" positionX="-308" positionY="-54" width="128" height="120"/>
+    </elements>
+</model>

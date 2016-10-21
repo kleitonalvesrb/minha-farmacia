@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import AVFoundation
 import ParseFacebookUtilsV4
+import CoreData
 class TesteViewController: UIViewController, UITextFieldDelegate{
     
     
@@ -31,6 +32,11 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let usuarioDao = UsuarioDAO()
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        
+        print("\(usuarioDao.verificaUserLogado(contexto)) <------")
         
         configuraNavBar()
         

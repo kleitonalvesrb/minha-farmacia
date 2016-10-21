@@ -72,6 +72,7 @@
 		6382F0D21D65008F00958E54 /* CadastrarMedicamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0D11D65008F00958E54 /* CadastrarMedicamentoViewController.swift */; };
 		6382F0D91D652AF300958E54 /* ReceitaCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0D81D652AF300958E54 /* ReceitaCollectionViewCell.swift */; };
 		6382F0DB1D652B5700958E54 /* ReceitaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0DA1D652B5700958E54 /* ReceitaViewController.swift */; };
+		638AE9BC1DBA54B500F76A20 /* UsuarioDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638AE9BB1DBA54B500F76A20 /* UsuarioDAO.swift */; };
 		6393CA671D551904003B3E71 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393CA661D551904003B3E71 /* Alamofire.framework */; };
 		6393CA681D55190E003B3E71 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6393CA661D551904003B3E71 /* Alamofire.framework */; };
 		6393CA691D55190E003B3E71 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6393CA661D551904003B3E71 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -186,6 +187,7 @@
 		6382F0D11D65008F00958E54 /* CadastrarMedicamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CadastrarMedicamentoViewController.swift; path = ../CadastrarMedicamentoViewController.swift; sourceTree = "<group>"; };
 		6382F0D81D652AF300958E54 /* ReceitaCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceitaCollectionViewCell.swift; sourceTree = "<group>"; };
 		6382F0DA1D652B5700958E54 /* ReceitaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceitaViewController.swift; sourceTree = "<group>"; };
+		638AE9BB1DBA54B500F76A20 /* UsuarioDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsuarioDAO.swift; sourceTree = "<group>"; };
 		6393CA661D551904003B3E71 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		6393CA6D1D55312B003B3E71 /* Usuario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
 		6393CA6F1D55B2A2003B3E71 /* homem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homem.png; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		630C3C6D1D4AA5D800312CC5 /* Minha Farmacia */ = {
 			isa = PBXGroup;
 			children = (
+				638AE9BA1DBA549100F76A20 /* objDAO */,
 				63E111461DB2D2F2005D319D /* Perfil */,
 				63F27D131D99D8270082B7A3 /* Dosagem */,
 				631136F61D68C92B004BA4B8 /* TelaLoginViewController.swift */,
@@ -407,6 +410,14 @@
 				6362F85D1DB9DEA6008E2BAB /* DetalhaReceitaViewController.swift */,
 			);
 			name = Receita;
+			sourceTree = "<group>";
+		};
+		638AE9BA1DBA549100F76A20 /* objDAO */ = {
+			isa = PBXGroup;
+			children = (
+				638AE9BB1DBA54B500F76A20 /* UsuarioDAO.swift */,
+			);
+			name = objDAO;
 			sourceTree = "<group>";
 		};
 		63A4EB5D1D4ABFE7007C6B20 /* frameworks */ = {
@@ -590,6 +601,7 @@
 				633557EC1DB4545500A72FD7 /* TestePerilViewController.swift in Sources */,
 				630C3C771D4AA5D800312CC5 /* Minha_Farmacia.xcdatamodeld in Sources */,
 				631661431DB6C4B700A6BAE7 /* CadastroReceitaViewController.swift in Sources */,
+				638AE9BC1DBA54B500F76A20 /* UsuarioDAO.swift in Sources */,
 				639DEFCB1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift in Sources */,
 				63C15F731DB6A74D00C8DB46 /* VerificarConexao.swift in Sources */,
 				630C3C6F1D4AA5D800312CC5 /* AppDelegate.swift in Sources */,

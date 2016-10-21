@@ -8,10 +8,10 @@
 
 import UIKit
 
-class DetalhaReceitaViewController: UIViewController {
+class DetalhaReceitaViewController: UIViewController,UIScrollViewDelegate {
 
     
-
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var imgReceita: UIImageView!
     @IBOutlet weak var descricao: UITextView!
@@ -23,6 +23,8 @@ class DetalhaReceitaViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.scroll.minimumZoomScale = 1.0
+        self.scroll.maximumZoomScale = 6.0
         if self.view.frame.height > 665{
             scroll.scrollEnabled = false
         }
@@ -48,8 +50,22 @@ class DetalhaReceitaViewController: UIViewController {
         let util = Util()
         print(util.formataDataPadrao(receita.dataCadastro))
         dataCadastro.text = util.formataPadraoCompleto("\(receita.dataCadastro)")
+        
+//        
+//        self.myUIScrollView.maximumZoomScale = 5.0
+//        self.myUIScrollView.minimumZoomScale = 0.5
+//        self.myUIScrollView.delegate = self
+//        
+//        self.myUIScrollView.addSubview(imgReceita)
     }
-
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView?
+    {
+        return self.imgReceita
+    }
+//    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+//        return imgReceita
+//        
+//    }
     /*
     // MARK: - Navigation
 

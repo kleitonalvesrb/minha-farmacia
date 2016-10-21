@@ -1098,19 +1098,45 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ler-nb-MGx">
+                                <rect key="frame" x="106" y="277" width="162" height="112"/>
+                                <color key="backgroundColor" red="0.08235294118" green="0.66274509800000003" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="9lj-G2-hud"/>
+                                    <constraint firstAttribute="width" constant="162" id="ZFD-1H-095"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qvx-bP-hiK">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="QHu-Vq-0Ot"/>
+                                    <constraint firstAttribute="height" constant="37" id="X8I-0O-VPs"/>
+                                </constraints>
+                                <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="9yj-UX-wY0" secondAttribute="trailing" id="2Ih-yZ-9FF"/>
+                            <constraint firstItem="qvx-bP-hiK" firstAttribute="centerY" secondItem="lha-4m-cMv" secondAttribute="centerY" id="6GG-E9-Aiz"/>
+                            <constraint firstItem="qvx-bP-hiK" firstAttribute="centerX" secondItem="lha-4m-cMv" secondAttribute="centerX" id="DzD-Lc-m4x"/>
                             <constraint firstItem="0pG-88-FqB" firstAttribute="top" secondItem="9yj-UX-wY0" secondAttribute="bottom" id="Qfh-jA-f1I"/>
+                            <constraint firstItem="Ler-nb-MGx" firstAttribute="centerY" secondItem="lha-4m-cMv" secondAttribute="centerY" id="S0g-Hc-xyJ"/>
                             <constraint firstItem="9yj-UX-wY0" firstAttribute="leading" secondItem="lha-4m-cMv" secondAttribute="leading" id="gZK-Z7-JMc"/>
+                            <constraint firstItem="Ler-nb-MGx" firstAttribute="centerX" secondItem="lha-4m-cMv" secondAttribute="centerX" id="oej-5k-XOl"/>
                             <constraint firstItem="9yj-UX-wY0" firstAttribute="top" secondItem="537-aH-nVM" secondAttribute="bottom" id="whT-j3-Kj7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ql0-bz-LhG"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="activity" destination="qvx-bP-hiK" id="tU0-nY-w6r"/>
                         <outlet property="collectionView" destination="9yj-UX-wY0" id="Yn6-LR-Lig"/>
+                        <outlet property="lblInfo" destination="Ler-nb-MGx" id="45W-6V-1Zw"/>
                         <segue destination="gOZ-RL-Za0" kind="show" identifier="cadastraReceita" id="72Y-jH-T1P"/>
                         <segue destination="sEU-yj-5He" kind="show" identifier="detalhaReceita" id="enS-fJ-aTE"/>
                     </connections>

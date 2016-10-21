@@ -11,6 +11,8 @@ import Photos
 import Alamofire
 class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var lblInfo: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
     var nomes = [String]()
@@ -23,6 +25,9 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
     }
     
     func configuracaoTableView(){
+        let util = Util()
+        util.configuraLabelInformacao(lblInfo, comInvisibilidade: false, comIndicador: activity, comInvisibilidade: false, comAnimacao: true)
+
         self.collectionView.delegate = self
         collectionView.dataSource = self
         buscaReceitaServidor()
@@ -80,7 +85,8 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
             }else{
                 self.showAlert("Ops!", msg: "Tivemos problema com a conexão, tente novamente mais tarde", titleBtn: "ok")
             }
-        
+            let util = Util()
+            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activity, comInvisibilidade: true, comAnimacao: false)
         }
     }
     /**

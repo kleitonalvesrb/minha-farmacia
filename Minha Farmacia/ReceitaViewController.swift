@@ -13,7 +13,7 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
 
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
-    var nomes = ["Kleiton","Anna","Meg","Diná","Arnaldo"]
+    var nomes = [String]()
     var user = Usuario.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,26 +78,12 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
                         let dic = JSON["receita"]!
                         self.user.receitas.append(self.populaReceita(dic!))
                     }
+                    let util = Util()
                     for r in self.user.receitas{
                         self.imgArray.append(r.fotoReceita)
-                        self.nomes.append("Leia Mais")
+                        self.nomes.append(util.formataDataPadrao(r.dataCadastro))
                     }
                     self.collectionView.reloadData()
-                    // aqui
-//
-//                        
-//                        for i in medicamentos{
-//                            self.user.medicamento.append(self.populaMedicamento(i))
-//                        }//fecha o for
-//                    }else{
-//                        let dic = JSON["medicamento"]!
-//                        self.user.medicamento.append(self.populaMedicamento(dic!))
-//                    }
-//                    for remedio in self.user.medicamento{
-//                        self.imgArray.append(remedio.fotoMedicamento)
-//                        self.nomes.append(remedio.nome)
-//                    }
-//                    self.collectionView.reloadData()
                 }
             }else{
                 self.showAlert("Ops!", msg: "Tivemos problema com a conexão, tente novamente mais tarde", titleBtn: "ok")
@@ -120,7 +106,7 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
             
         }
         if let dataCadastro = receita["dataCadastroReceita"] as? String{
-            print("TRATAR A DATA AQUI \(dataCadastro)")
+            receitaAux.dataCadastro = util.formataDataCadastroReceita(dataCadastro)
         }
         return receitaAux
         

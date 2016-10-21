@@ -275,7 +275,7 @@
 		630C3C6D1D4AA5D800312CC5 /* Minha Farmacia */ = {
 			isa = PBXGroup;
 			children = (
-				63E111461DB2D2F2005D319D /* Outros */,
+				63E111461DB2D2F2005D319D /* Perfil */,
 				63F27D131D99D8270082B7A3 /* Dosagem */,
 				631136F61D68C92B004BA4B8 /* TelaLoginViewController.swift */,
 				631136EF1D681BEC004BA4B8 /* Objetos */,
@@ -422,14 +422,14 @@
 			name = frameworks;
 			sourceTree = "<group>";
 		};
-		63E111461DB2D2F2005D319D /* Outros */ = {
+		63E111461DB2D2F2005D319D /* Perfil */ = {
 			isa = PBXGroup;
 			children = (
 				63E111471DB2D30C005D319D /* TrocaViewController.swift */,
 				633557EB1DB4545500A72FD7 /* TestePerilViewController.swift */,
 				6309E0261DB45CCC001E1B98 /* TableViewCellPerfil.swift */,
 			);
-			name = Outros;
+			name = Perfil;
 			sourceTree = "<group>";
 		};
 		63F27D131D99D8270082B7A3 /* Dosagem */ = {

@@ -47,6 +47,31 @@ class Util: NSObject {
        return dateFormatter.stringFromDate(date!)
  
     }
+    /**
+        método responsavel por tratar a data de cadastro da receita, recebe como string e retorna dd/mm/yyyy hh:mm
+     */
+    func formataDataCadastroReceita(dataString: String) ->NSDate{
+    
+       var dataCadastro = dataString[dataString.startIndex.advancedBy(0)...dataString.startIndex.advancedBy(18)]
+        
+        dataCadastro = dataCadastro.stringByReplacingOccurrencesOfString("T", withString: " ")
+        
+        
+        let dateFormatter = NSDateFormatter() //Instância do date Formatter
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.dateFromString(dataCadastro)!
+        
+    }
+    func formataPadraoCompleto(str: String)->String{
+        print("----> \(str)")
+        let dateFormatter = NSDateFormatter() //Instância do date Formatter
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
+        let date: NSDate!
+        date = dateFormatter.dateFromString(str)
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        return dateFormatter.stringFromDate(date)
+
+    }
     
     func qtdDiasEntreDuasDatas(dataInicio: NSDate, ate dataFim:NSDate) -> Int{
 //        let start = "1995-03-01"

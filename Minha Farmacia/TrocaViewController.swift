@@ -9,7 +9,7 @@
 import UIKit
 
 class TrocaViewController: UIViewController {
-
+    var tipoDeMsg = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,7 +22,11 @@ class TrocaViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     override func viewWillAppear(animated: Bool) {
-        geraAlerta("Sucesso", mensagem: "Medicamento salvo com sucesso")
+        if tipoDeMsg == 1{
+            geraAlerta("Sucesso", mensagem: "Receita Salva com sucesso")
+        }else{
+            geraAlerta("Sucesso", mensagem: "Medicamento salvo com sucesso")
+        }
     }
     func redirecionar(){
         performSegueWithIdentifier("tabbar", sender: self)

@@ -248,6 +248,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
 
 
         }else{
+            
             let userDefautls = NSUserDefaults.standardUserDefaults()
             userDefautls.setInteger((indexPath.row) - 1, forKey: "posicaoMedicamento")
             medicamento = user.medicamento[(indexPath.row) - 1]

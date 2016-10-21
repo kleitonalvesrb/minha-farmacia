@@ -16,12 +16,17 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
     @IBOutlet weak var btnEscolherFoto: UIButton!
     @IBOutlet weak var imgReceita: UIImageView!
     @IBOutlet weak var campoDescricao: UITextView!
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    @IBOutlet weak var lblInfo: UILabel!
     @IBOutlet weak var btnSalvar: UIButton!
     var setFoto = false
     var user = Usuario.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let util = Util()
+        util.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: activity, comInvisibilidade: true, comAnimacao: false)
+        
         btnSalvar.layer.cornerRadius = 5
         btnEscolherFoto.layer.cornerRadius = 5
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard)))
@@ -83,8 +88,11 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
         acao do botao que ira salvar os dados
      */
     @IBAction func salvar(sender: AnyObject) {
-        
+        let util = Util()
         if setFoto{
+            util.configuraLabelInformacao(lblInfo, comInvisibilidade: false, comIndicador: activity, comInvisibilidade: false, comAnimacao: true)
+            scroll.userInteractionEnabled = false
+            btnSalvar.userInteractionEnabled = false
             salvarReceitaServidor()
         }else{
             geraAlerta("Ops", mensagem: "Você precisa cadastrar uma foto \(NSDate())")
@@ -96,11 +104,25 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
      */
     func salvarReceitaServidor(){
         let url = UrlWS()
+        let util = Util()
         Alamofire.request(.PUT, url.urlInsereReceitaUsuario("kleiton"), parameters: criaDicReceita() as? [String : AnyObject], encoding: .JSON, headers: nil).responseJSON{(response) in
             if response.response?.statusCode == 200{
-                self.geraAlerta("Sucesso", mensagem: "Receita salva com sucesso")
+                self.redireciona()
             }
+            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activity, comInvisibilidade: true, comAnimacao: false)
+            self.scroll.userInteractionEnabled = true
+            self.btnSalvar.userInteractionEnabled = true
+
         }
+    }
+    func redireciona(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("nextView") as! TrocaViewController
+        nextViewController.tipoDeMsg = 1
+        self.presentViewController(nextViewController, animated:false, completion:nil)
+
+        
     }
     func criaDicReceita() -> AnyObject{
         

@@ -15,20 +15,22 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
     var imgArray = [UIImage]()
     var nomes = [String]()
     var user = Usuario.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        //Configurando a primeira imagem
-        let imgPlus = UIImageView()
-        imgPlus.image = UIImage(named: "plus2.png")
-        imgArray.append(imgPlus.image!)
-        buscaReceitaServidor()
+        configuracaoTableView()
 //        grabPhotos()
     }
     
-
+    func configuracaoTableView(){
+        self.collectionView.delegate = self
+        collectionView.dataSource = self
+        buscaReceitaServidor()
+        
+        let imgPlus:UIImageView = UIImageView()
+        imgPlus.image = UIImage(named: "plus2.png")
+        imgArray.append(imgPlus.image!)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,54 +42,45 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
         self.navigationItem.title = "Receitas"
         
     }
-    
-    func grabPhotos(){
-        let imgManager = PHImageManager.defaultManager()
-        let requestOptions = PHImageRequestOptions()
-        requestOptions.synchronous = true
-        requestOptions.deliveryMode = .HighQualityFormat
-        let fetchOption = PHFetchOptions()
-        fetchOption.sortDescriptors = [NSSortDescriptor(key: "creationDate",ascending: false)]
-        if let fetchResult:PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: fetchOption){
-            if fetchResult.count > 0{
-                for i in 0..<fetchResult.count{
-                    imgManager.requestImageForAsset(fetchResult.objectAtIndex(i) as! PHAsset, targetSize: CGSize(width: 200, height: 200), contentMode: .AspectFit, options: requestOptions, resultHandler: { (image, error) in
-                        self.imgArray.append(image!)
-                    })
-                }
-                
-            }else{
-                print("voce nao tem fotos")
-                collectionView?.reloadData()
-            }
-        }
-    }
-    /**
-     
-     */
+
+
     func buscaReceitaServidor(){
+        user.receitas.removeAll()
         let url = UrlWS();
         Alamofire.request(.GET, url.urlBuscaReceitaUsuario(user.email)).responseJSON { (response) in
             if let JSON = response.result.value{
                 if response.response?.statusCode == 200{
-                    if let receitas:NSArray = (JSON["receita"] as? NSArray){
-                        for r in receitas{
-                            self.user.receitas.append(self.populaReceita(r))
+                    if JSON.count != nil{
+                        
+                        if let receitas:NSArray = (JSON["receita"] as? NSArray){
+                            print("QTD -> \(receitas.count)")
+                            for r in receitas{
+                                self.user.receitas.append(self.populaReceita(r))
+                            }
+                        }else{
+                            let dic = JSON["receita"]!
+                            self.user.receitas.append(self.populaReceita(dic!))
                         }
-                    }else{
-                        let dic = JSON["receita"]!
-                        self.user.receitas.append(self.populaReceita(dic!))
+                        let util = Util()
+                        print("AKI -> \(self.user.receitas.count)")
+                        print("qtd array alo -> \(self.imgArray.count)")
+                        for receita in self.user.receitas{
+                            self.imgArray.append(receita.fotoReceita)
+                            self.nomes.append(util.formataDataPadrao(receita.dataCadastro))
+                        }
+                        print("tamanho do arrray ---->\(self.imgArray.count)")
+
+                        self.collectionView.reloadData()
                     }
-                    let util = Util()
-                    for r in self.user.receitas{
-                        self.imgArray.append(r.fotoReceita)
-                        self.nomes.append(util.formataDataPadrao(r.dataCadastro))
-                    }
+                    print("tamanho do arrray ---->\(self.imgArray.count)")
+
                     self.collectionView.reloadData()
+
                 }
             }else{
                 self.showAlert("Ops!", msg: "Tivemos problema com a conexão, tente novamente mais tarde", titleBtn: "ok")
             }
+        
         }
     }
     /**
@@ -140,7 +133,7 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
      */
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ReceitaCollectionViewCell
-        
+            print("tamanho do arrray ---->\(imgArray.count)")
         if indexPath.row == 0{
             cell.img.image = imgArray[indexPath.row]
             cell.lblData.hidden = true
@@ -159,7 +152,10 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
             performSegueWithIdentifier("cadastraReceita", sender: self)
 
         }else{
-            print("Receitas")
+            let userDefautls = NSUserDefaults.standardUserDefaults()
+            userDefautls.setInteger((indexPath.row) - 1, forKey: "posicaoReceita")
+//            medicamento = user.medicamento[(indexPath.row) - 1]
+            performSegueWithIdentifier("detalhaReceita", sender: self)
         }
     }
     /**

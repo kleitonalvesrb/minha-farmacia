@@ -9,6 +9,7 @@
 import UIKit
 
 class Medicamento: NSObject {
+    var id: Int!
     var fotoMedicamento: UIImage!
     var codBarras:String!
     var nome:String!

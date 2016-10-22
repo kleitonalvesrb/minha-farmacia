@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import Alamofire
+import CoreData
 class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
@@ -51,6 +52,8 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
        util.configuraLabelInformacao(lblInfo, comInvisibilidade: false , comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
     }
     func configuracaoTableView(){
+        
+      
         self.collectionView.delegate = self
         collectionView.dataSource = self
         buscaMedicamentos()
@@ -106,20 +109,35 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         Alamofire.request(.GET, url.urlBuscaMedicamentoUsuario(user.email)).responseJSON { (response) in
             if let JSON = response.result.value{
                 if JSON.count != nil{
+                    let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    let contexto: NSManagedObjectContext = appDel.managedObjectContext
+                    let mdao = MedicamentoDAO()
+                    var medic = Medicamento()
+                    print(mdao.recuperarMedicamentos(contexto))
                     if let medicamentos:NSArray = (JSON["medicamento"] as? NSArray){
-                        
-
+                       
                         for i in medicamentos{
-                            self.user.medicamento.append(self.populaMedicamento(i))
+                            medic = self.populaMedicamento(i)
+                            self.user.medicamento.append(medic)
+                            if !mdao.verificaExistenciaMedicamento(contexto){
+                                mdao.gravarMedicamento(contexto, medicamento: medic)
+                            }
+                            
                         }//fecha o for
                     }else{
                         let dic = JSON["medicamento"]!
-                        self.user.medicamento.append(self.populaMedicamento(dic!))
+                        medic = self.populaMedicamento(dic!)
+                        self.user.medicamento.append(medic)
+                        if !mdao.verificaExistenciaMedicamento(contexto){
+                            mdao.gravarMedicamento(contexto, medicamento: medic)
+                        }
                     }
                     for remedio in self.user.medicamento{
                         self.imgArray.append(remedio.fotoMedicamento)
                         self.nomes.append(remedio.nome)
                     }
+                    
+                    
                     self.collectionView.reloadData()
                 }else{
                     print("deu ruim em algo")
@@ -133,7 +151,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
      */
     func populaMedicamento(medicamento: AnyObject)  -> Medicamento{
         let medicamentoAux = Medicamento()
-        
+        if let idMedicamento = medicamento["id"] as? Int{
+            medicamentoAux.id = idMedicamento
+        }
         if let apresentacao = medicamento["apresentacao"] as? String{
             medicamentoAux.apresentacao = apresentacao
         }

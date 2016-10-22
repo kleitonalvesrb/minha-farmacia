@@ -28,6 +28,7 @@
 		6318397A1D693D4F008BBB18 /* barcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 631839791D693D4F008BBB18 /* barcode.png */; };
 		631C142E1D4D1CE60041675F /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631C142D1D4D1CE60041675F /* Util.swift */; };
 		631CDDBB1DAD6F8400564BD8 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 631CDDBA1DAD6F8400564BD8 /* camera.png */; };
+		631F70B31DBAB95700AC17DE /* MedicamentoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631F70B21DBAB95700AC17DE /* MedicamentoDAO.swift */; };
 		632726691D64EAB800580E18 /* medicamento.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726661D64EAB800580E18 /* medicamento.png */; };
 		6327266A1D64EAB800580E18 /* perfil.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726671D64EAB800580E18 /* perfil.png */; };
 		6327266B1D64EAB800580E18 /* receita.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726681D64EAB800580E18 /* receita.png */; };
@@ -143,6 +144,7 @@
 		631839791D693D4F008BBB18 /* barcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barcode.png; sourceTree = "<group>"; };
 		631C142D1D4D1CE60041675F /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		631CDDBA1DAD6F8400564BD8 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		631F70B21DBAB95700AC17DE /* MedicamentoDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicamentoDAO.swift; sourceTree = "<group>"; };
 		632726661D64EAB800580E18 /* medicamento.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medicamento.png; sourceTree = "<group>"; };
 		632726671D64EAB800580E18 /* perfil.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = perfil.png; sourceTree = "<group>"; };
 		632726681D64EAB800580E18 /* receita.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receita.png; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				638AE9BB1DBA54B500F76A20 /* UsuarioDAO.swift */,
+				631F70B21DBAB95700AC17DE /* MedicamentoDAO.swift */,
 			);
 			name = objDAO;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				63E1114A1DB312E7005D319D /* PerfilViewController.swift in Sources */,
 				63046D501D82EC79003E1A5D /* DosagemViewController.swift in Sources */,
 				6308A1CB1D4C66A10042BE2C /* TesteViewController.swift in Sources */,
+				631F70B31DBAB95700AC17DE /* MedicamentoDAO.swift in Sources */,
 				631136F71D68C92B004BA4B8 /* TelaLoginViewController.swift in Sources */,
 				6382F0CC1D64EF7E00958E54 /* MedicamentoViewController.swift in Sources */,
 				6362F85E1DB9DEA6008E2BAB /* DetalhaReceitaViewController.swift in Sources */,

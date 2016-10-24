@@ -35,12 +35,12 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         let usuarioDao = UsuarioDAO()
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
-        
-        if usuarioDao.verificaUserLogado(contexto) {
-            print(usuarioDao.recuperaDadosUsuario(contexto).nome)
-        }else{
-            print("Nao tem nenhum usuario cadastrado")
-        }
+
+//        if usuarioDao.verificaUserLogado(contexto) {
+//            print(usuarioDao.recuperaDadosUsuario(contexto).nome)
+//        }else{
+//            print("Nao tem nenhum usuario cadastrado")
+//        }
         
         configuraNavBar()
         
@@ -199,17 +199,17 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     }else{
                         self.user.idFacebook = "Não Informado"
                     }
-//                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
-//                       print("---------> dataString \(dataString)")
-//                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")
-//                        print("---------> tratado \(dateString)")
-//
-//                        let dateFormatter = NSDateFormatter() //Instância do date Formatter
-//                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//                        let date:NSDate
-//                        date = dateFormatter.dateFromString(dateString)!
-//                        self.user.dataNascimento = date
-//                    }
+                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
+                       print("---------> dataString \(dataString)")
+                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")
+                        print("---------> tratado \(dateString)")
+
+                        let dateFormatter = NSDateFormatter() //Instância do date Formatter
+                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                        let date:NSDate
+                        date = dateFormatter.dateFromString(dateString)!
+                        self.user.dataNascimento = date
+                    }
                     if let senha = JSON.objectForKey("senha") as? String{
                         self.user.senha = senha
                     }
@@ -229,7 +229,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     let contexto: NSManagedObjectContext = appDel.managedObjectContext
                     
-                    udao.salvaUsuario(contexto, usuario: self.user)
+                                       //udao.salvaUsuario(contexto, usuario: self.user)
                     self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     

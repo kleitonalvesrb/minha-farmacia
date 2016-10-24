@@ -105,7 +105,7 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
     func salvarReceitaServidor(){
         let url = UrlWS()
         let util = Util()
-        Alamofire.request(.PUT, url.urlInsereReceitaUsuario("kleiton"), parameters: criaDicReceita() as? [String : AnyObject], encoding: .JSON, headers: nil).responseJSON{(response) in
+        Alamofire.request(.PUT, url.urlInsereReceitaUsuario(user.email), parameters: criaDicReceita() as? [String : AnyObject], encoding: .JSON, headers: nil).responseJSON{(response) in
             if response.response?.statusCode == 200{
                 self.redireciona()
             }

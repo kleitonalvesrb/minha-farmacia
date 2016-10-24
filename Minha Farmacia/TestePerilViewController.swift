@@ -388,7 +388,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         conteudo.append(user.email)
         conteudo.append("******")
         conteudo.append(user.sexo)
-        conteudo.append(util.formataDataPadrao(dataNascimento)+" \(qtdDias/365) Anos")
+        conteudo.append("data")
+//        conteudo.append(util.formataDataPadrao(dataNascimento)+" \(qtdDias/365) Anos")
         conteudo.append("facebook")
         conteudo.append("Logout")
         

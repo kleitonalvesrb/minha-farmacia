@@ -53,7 +53,11 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
        
         habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
     }
-
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        videoPreviewLayer?.connection.enabled = true
+        captureSession?.stopRunning()
+    }
     @IBAction func btnFlash(sender: AnyObject) {
         alteraImagemBotaoFlash(imagem: "flash_preenchido.png")
         if !isPowerFlash{

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Automatic">
+    <entity name="Dosagem" syncable="YES">
+        <attribute name="data_inicio" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dosagem" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_remedio_dosagem" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="intervalo_dose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="periodo_tratamento" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="quantidade" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="tipo_medicamento" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Medicamento" syncable="YES">
         <attribute name="apresentacao" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="classe_terapeutica" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,5 +32,6 @@
     <elements>
         <element name="Medicamento" positionX="-36" positionY="72" width="128" height="165"/>
         <element name="Usuario" positionX="-36" positionY="9" width="128" height="165"/>
+        <element name="Dosagem" positionX="-27" positionY="108" width="128" height="150"/>
     </elements>
 </model>

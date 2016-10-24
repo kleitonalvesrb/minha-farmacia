@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import Alamofire
+import CoreData
 class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
@@ -37,7 +38,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         configuraLabelInfo()
    
         configuracaoTableView()
-        configuraLabelInfo()
         apresentacaoAlertaNovoMedicamento()
     }
     func apresentacaoAlertaNovoMedicamento(){
@@ -51,13 +51,33 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
        util.configuraLabelInformacao(lblInfo, comInvisibilidade: false , comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
     }
     func configuracaoTableView(){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let mDao = MedicamentoDAO()
+        
         self.collectionView.delegate = self
         collectionView.dataSource = self
-        buscaMedicamentos()
+        
         
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
+        
+        if !mDao.verificaExistenciaMedicamento(contexto){
+            configuraLabelInfo()
+            buscaMedicamentosServidor()
+        }else{
+            let medicamentosAux = mDao.recuperarMedicamentos(contexto)
+            let util = Util()
+            user.medicamento = medicamentosAux
+            for remedio in self.user.medicamento{
+                self.imgArray.append(remedio.fotoMedicamento)
+                self.nomes.append(remedio.nome)
+            }
+            util.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: activityInfo, comInvisibilidade: true, comAnimacao: false)
+        }
+        
+        
     }
     
     
@@ -95,9 +115,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     }
 
     /**
-        O método irá buscar os dados do medicamento que estão na base de dados
+        O método irá buscar os dados do medicamento que estão na base de dados no servidor
      */
-    func buscaMedicamentos(){
+    func buscaMedicamentosServidor(){
         print("verificar a linha de baixo caso ocorra erro de sumir os medicamentos")
        user.medicamento.removeAll()
         let url = UrlWS()
@@ -117,6 +137,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                         self.user.medicamento.append(self.populaMedicamento(dic!))
                     }
                     for remedio in self.user.medicamento{
+                        self.salvaMedicamentoBaseLocal(remedio)
                         self.imgArray.append(remedio.fotoMedicamento)
                         self.nomes.append(remedio.nome)
                     }
@@ -128,7 +149,18 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             }
          self.util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
         }
-    }/**
+    }
+    /**
+        Método responsável por inserir medicamento na base de dados local
+     
+     */
+    func salvaMedicamentoBaseLocal(medicamento: Medicamento){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let mDao = MedicamentoDAO()
+        mDao.gravarMedicamento(contexto, medicamento: medicamento)
+    }
+    /**
         popula Medicamento com os dados do Servidor
      */
     func populaMedicamento(medicamento: AnyObject)  -> Medicamento{

@@ -476,7 +476,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                     </textField>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mulher.png" translatesAutoresizingMaskIntoConstraints="NO" id="b1D-3t-UW1">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Users.png" translatesAutoresizingMaskIntoConstraints="NO" id="b1D-3t-UW1">
                                         <rect key="frame" x="71" y="356" width="240" height="226"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="226" id="veg-u9-TMH"/>
@@ -1281,7 +1281,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o8O-Vm-DZP">
                                 <rect key="frame" x="0.0" y="30" width="375" height="606"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Treatment Plan Filled-50.png" translatesAutoresizingMaskIntoConstraints="NO" id="hwR-tp-VlY">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Prescriptions.png" translatesAutoresizingMaskIntoConstraints="NO" id="hwR-tp-VlY">
                                         <rect key="frame" x="72" y="40" width="220" height="220"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="220" id="HoO-eh-5yf"/>
@@ -1595,7 +1595,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5AB-DA-9Td">
                                 <rect key="frame" x="0.0" y="22" width="375" height="748"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drugs.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rvj-yK-HJt">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Medications.png" translatesAutoresizingMaskIntoConstraints="NO" id="Rvj-yK-HJt">
                                         <rect key="frame" x="64" y="63" width="247" height="202"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="202" id="W3t-wL-WnE"/>
@@ -2329,10 +2329,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Treatment Plan Filled-50.png" width="50" height="50"/>
+        <image name="Medications.png" width="849" height="853"/>
+        <image name="Prescriptions.png" width="849" height="851"/>
+        <image name="Users.png" width="849" height="855"/>
         <image name="barcode.png" width="48" height="48"/>
         <image name="delete26.png" width="26" height="26"/>
-        <image name="drugs.png" width="256" height="256"/>
         <image name="flash_borda.png" width="26" height="26"/>
         <image name="homem.png" width="128" height="128"/>
         <image name="icoImagePerfil" width="28" height="28"/>
@@ -2343,9 +2344,8 @@
         <image name="icoReceitaSelecionado" width="28" height="28"/>
         <image name="icoRemedio" width="28" height="28"/>
         <image name="icoRemedioSelecionado" width="28" height="28"/>
-        <image name="mulher.png" width="128" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0mc-wf-GZF"/>
+        <segue reference="HqM-wA-IY4"/>
     </inferredMetricsTieBreakers>
 </document>

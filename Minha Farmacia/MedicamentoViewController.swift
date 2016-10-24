@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import Alamofire
+import CoreData
 class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     @IBOutlet weak var collectionView: UICollectionView!
     var imgArray = [UIImage]()
@@ -26,8 +27,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     
     var medicamento = Medicamento.medicamentoSharedInstance
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,9 +34,8 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.title = "Remédios"
         self.navigationController?.navigationBar.topItem?.title = "Remédios"
         configuraLabelInfo()
-   
+        
         configuracaoTableView()
-        configuraLabelInfo()
         apresentacaoAlertaNovoMedicamento()
     }
     func apresentacaoAlertaNovoMedicamento(){
@@ -48,21 +46,41 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     }
     
     func configuraLabelInfo(){
-       util.configuraLabelInformacao(lblInfo, comInvisibilidade: false , comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
+        util.configuraLabelInformacao(lblInfo, comInvisibilidade: false , comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
     }
     func configuracaoTableView(){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let mDao = MedicamentoDAO()
+        
         self.collectionView.delegate = self
         collectionView.dataSource = self
-        buscaMedicamentos()
+        
         
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
+        /// recupear os medicamentos da base local ou do servidor
+        if !mDao.verificaExistenciaMedicamento(contexto){
+            configuraLabelInfo()
+            buscaMedicamentosServidor()
+        }else{
+            let medicamentosAux = mDao.recuperarMedicamentos(contexto)
+            let util = Util()
+            user.medicamento = medicamentosAux
+            for remedio in self.user.medicamento{
+                self.imgArray.append(remedio.fotoMedicamento)
+                self.nomes.append(remedio.nome)
+            }
+            util.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: activityInfo, comInvisibilidade: true, comAnimacao: false)
+        }
+        
+        
     }
     
     
-   
- 
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         let navigationBarAppearace = UINavigationBar.appearance()
@@ -75,7 +93,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.navigationController?.navigationBar.hidden = false
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         self.navigationItem.hidesBackButton = true
-
+        
         self.navigationItem.title = "Medicamentos"
     }
     func goBack(){
@@ -93,13 +111,13 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.presentViewController(alerta, animated: true, completion: nil)
         
     }
-
+    
     /**
-        O método irá buscar os dados do medicamento que estão na base de dados
+     O método irá buscar os dados do medicamento que estão na base de dados no servidor
      */
-    func buscaMedicamentos(){
+    func buscaMedicamentosServidor(){
         print("verificar a linha de baixo caso ocorra erro de sumir os medicamentos")
-       user.medicamento.removeAll()
+        user.medicamento.removeAll()
         let url = UrlWS()
         
         
@@ -108,7 +126,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                 if JSON.count != nil{
                     if let medicamentos:NSArray = (JSON["medicamento"] as? NSArray){
                         
-
+                        
                         for i in medicamentos{
                             self.user.medicamento.append(self.populaMedicamento(i))
                         }//fecha o for
@@ -117,6 +135,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                         self.user.medicamento.append(self.populaMedicamento(dic!))
                     }
                     for remedio in self.user.medicamento{
+                        self.salvaMedicamentoBaseLocal(remedio)
                         self.imgArray.append(remedio.fotoMedicamento)
                         self.nomes.append(remedio.nome)
                     }
@@ -126,15 +145,26 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                 }
                 
             }
-         self.util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
+            self.util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
         }
-    }/**
-        popula Medicamento com os dados do Servidor
+    }
+    /**
+     Método responsável por inserir medicamento na base de dados local
+     
+     */
+    func salvaMedicamentoBaseLocal(medicamento: Medicamento){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let mDao = MedicamentoDAO()
+        mDao.gravarMedicamento(contexto, medicamento: medicamento)
+    }
+    /**
+     popula Medicamento com os dados do Servidor
      */
     func populaMedicamento(medicamento: AnyObject)  -> Medicamento{
         
         let medicamentoAux = Medicamento()
-//        print(medicamento)
+        //        print(medicamento)
         if let idMedicamento = medicamento["id"] as? String{
             medicamentoAux.id = Int(idMedicamento)
             print(medicamentoAux.id,"<-------- id")
@@ -167,10 +197,10 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         let dicDosagem = medicamento["dosagem"]!
         medicamentoAux.dosagemMedicamento = populaDosagemMedicamento(dicDosagem!)
         return medicamentoAux
-
+        
     }
     /**
-        Popula uma entidade Dosagem com os dados que vem do Servidor
+     Popula uma entidade Dosagem com os dados que vem do Servidor
      */
     func populaDosagemMedicamento(dosagem: AnyObject) -> DosagemMedicamento{
         let dosagemAux = DosagemMedicamento()
@@ -188,7 +218,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         }
         print("FALTA ACERTAR A DATA NO SERVIDOR E BANCO DE DADOS")
         print("----------")
-      
+        
         return dosagemAux
     }
     func grabPhotos(){
@@ -212,29 +242,29 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             }
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     /**
-        Números de sessoes no collection view
+     Números de sessoes no collection view
      */
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
     /**
-        Numero de celulas
+     Numero de celulas
      */
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imgArray.count
     }
     /**
-        Configurar cada celula
+     Configurar cada celula
      */
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MedicamentoCollectionViewCell
-       
+        
         if indexPath.row == 0{
             cell.img.image = imgArray[indexPath.row]
             cell.labelFundo.hidden = true
@@ -250,26 +280,26 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0{
             performSegueWithIdentifier("cadastrarMedicamento", sender: self)
-
-
+            
+            
         }else{
             
             let userDefautls = NSUserDefaults.standardUserDefaults()
             userDefautls.setInteger((indexPath.row) - 1, forKey: "posicaoMedicamento")
             medicamento = user.medicamento[(indexPath.row) - 1]
             performSegueWithIdentifier("detalhamentoRemedio", sender: self)
-
+            
         }
     }
-   
+    
     /**
-        tirar a barra de status do iphone
+     tirar a barra de status do iphone
      */
     override func prefersStatusBarHidden() -> Bool {
         return false
     }
     /**
-        Definir o tamanho das celulas e a quantidade
+     Definir o tamanho das celulas e a quantidade
      */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
@@ -279,7 +309,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         
     }
     /**
-        Definir o espacamento entre as celular
+     Definir o espacamento entre as celular
      */
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1.0
@@ -287,20 +317,21 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 1.0
     }
-  
+    
     /*if let destination = segue.destinationViewController as? RequestViewController{
      destination.requestLocation = locations[(tableView.indexPathForSelectedRow?.row)!]
      destination.requestUserName = userNames[(tableView.indexPathForSelectedRow?.row)!]
      }*/
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 
 }

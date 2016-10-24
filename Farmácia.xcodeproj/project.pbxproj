@@ -92,6 +92,7 @@
 		63DD76651DBEB12200B1E051 /* Medications.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DD76621DBEB12200B1E051 /* Medications.png */; };
 		63DD76661DBEB12200B1E051 /* Users.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DD76631DBEB12200B1E051 /* Users.png */; };
 		63DD76681DBEBF8600B1E051 /* delete26.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DD76671DBEBF8600B1E051 /* delete26.png */; };
+		63DD766A1DBEC85200B1E051 /* MedicamentoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DD76691DBEC85200B1E051 /* MedicamentoDAO.swift */; };
 		63DF3B3B1DA6FA3E00896F34 /* logo_mf_transparente.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DF3B3A1DA6FA3E00896F34 /* logo_mf_transparente.png */; };
 		63E111481DB2D30C005D319D /* TrocaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E111471DB2D30C005D319D /* TrocaViewController.swift */; };
 		63E1114A1DB312E7005D319D /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E111491DB312E7005D319D /* PerfilViewController.swift */; };
@@ -199,6 +200,7 @@
 		63DD76621DBEB12200B1E051 /* Medications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Medications.png; sourceTree = "<group>"; };
 		63DD76631DBEB12200B1E051 /* Users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Users.png; sourceTree = "<group>"; };
 		63DD76671DBEBF8600B1E051 /* delete26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete26.png; sourceTree = "<group>"; };
+		63DD76691DBEC85200B1E051 /* MedicamentoDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicamentoDAO.swift; sourceTree = "<group>"; };
 		63DF3B3A1DA6FA3E00896F34 /* logo_mf_transparente.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_mf_transparente.png; sourceTree = "<group>"; };
 		63E111471DB2D30C005D319D /* TrocaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrocaViewController.swift; sourceTree = "<group>"; };
 		63E111491DB312E7005D319D /* PerfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				638AE9BB1DBA54B500F76A20 /* UsuarioDAO.swift */,
+				63DD76691DBEC85200B1E051 /* MedicamentoDAO.swift */,
 			);
 			name = objDAO;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				63E1114A1DB312E7005D319D /* PerfilViewController.swift in Sources */,
 				63046D501D82EC79003E1A5D /* DosagemViewController.swift in Sources */,
 				6308A1CB1D4C66A10042BE2C /* TesteViewController.swift in Sources */,
+				63DD766A1DBEC85200B1E051 /* MedicamentoDAO.swift in Sources */,
 				631136F71D68C92B004BA4B8 /* TelaLoginViewController.swift in Sources */,
 				6382F0CC1D64EF7E00958E54 /* MedicamentoViewController.swift in Sources */,
 				6362F85E1DB9DEA6008E2BAB /* DetalhaReceitaViewController.swift in Sources */,

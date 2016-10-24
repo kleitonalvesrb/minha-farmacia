@@ -199,17 +199,17 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     }else{
                         self.user.idFacebook = "Não Informado"
                     }
-                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
-                       print("---------> dataString \(dataString)")
-                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")
-                        print("---------> tratado \(dateString)")
-
-                        let dateFormatter = NSDateFormatter() //Instância do date Formatter
-                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-                        let date:NSDate
-                        date = dateFormatter.dateFromString(dateString)!
-                        self.user.dataNascimento = date
-                    }
+//                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
+//                       print("---------> dataString \(dataString)")
+//                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")
+//                        print("---------> tratado \(dateString)")
+//
+//                        let dateFormatter = NSDateFormatter() //Instância do date Formatter
+//                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+//                        let date:NSDate
+//                        date = dateFormatter.dateFromString(dateString)!
+//                        self.user.dataNascimento = date
+//                    }
                     if let senha = JSON.objectForKey("senha") as? String{
                         self.user.senha = senha
                     }

@@ -132,8 +132,13 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         popula Medicamento com os dados do Servidor
      */
     func populaMedicamento(medicamento: AnyObject)  -> Medicamento{
-        let medicamentoAux = Medicamento()
         
+        let medicamentoAux = Medicamento()
+//        print(medicamento)
+        if let idMedicamento = medicamento["id"] as? String{
+            medicamentoAux.id = Int(idMedicamento)
+            print(medicamentoAux.id,"<-------- id")
+        }
         if let apresentacao = medicamento["apresentacao"] as? String{
             medicamentoAux.apresentacao = apresentacao
         }

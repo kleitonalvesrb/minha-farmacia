@@ -15,6 +15,7 @@ class MedicamentoDAO: NSObject {
     func gravarMedicamento(contexto: NSManagedObjectContext,medicamento: Medicamento){
         let medic = NSEntityDescription.insertNewObjectForEntityForName("Medicamento", inManagedObjectContext: contexto)
         let util = Util()
+        let dosagemDao = DosagemDAO()
         medic.setValue(medicamento.id, forKey: "id_medicamento")
         medic.setValue(medicamento.apresentacao, forKey: "apresentacao")
         medic.setValue(medicamento.classeTerapeutica, forKey: "classe_terapeutica")
@@ -26,6 +27,7 @@ class MedicamentoDAO: NSObject {
         
         do{
             try contexto.save()
+            dosagemDao.gravaDadoDosagemMedicamento(contexto, dosagem: medicamento.dosagemMedicamento, idMedicamento: medicamento.id)
             print("medicamento salvo")
         }catch{
             print("Erro ao salvar o medicamento")
@@ -54,6 +56,7 @@ class MedicamentoDAO: NSObject {
         request.returnsObjectsAsFaults = false
         var arrayMedicamento = [Medicamento]()
         let util = Util()
+        let dosagemDao = DosagemDAO()
         let medicamento = Medicamento()
         do{
             let results = try contexto.executeFetchRequest(request)
@@ -66,6 +69,7 @@ class MedicamentoDAO: NSObject {
                 medicamento.nome = result.valueForKey("nome") as? String
                 medicamento.principioAtivo = result.valueForKey("principio_ativo") as? String
                 medicamento.fotoMedicamento = util.convertNSDataToImage(result.valueForKey("foto_medicamento") as! NSData)
+                medicamento.dosagemMedicamento = dosagemDao.buscaDosagemMedicamento(contexto, idMedicamento: medicamento.id)
                 arrayMedicamento.append(medicamento)
             }
             print("Leus os medicamentos")

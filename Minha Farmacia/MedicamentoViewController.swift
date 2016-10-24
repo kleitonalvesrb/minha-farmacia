@@ -62,7 +62,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         let imgPlus:UIImageView = UIImageView()
         imgPlus.image = UIImage(named: "plus2.png")
         imgArray.append(imgPlus.image!)
-        
+        /// recupear os medicamentos da base local ou do servidor
         if !mDao.verificaExistenciaMedicamento(contexto){
             configuraLabelInfo()
             buscaMedicamentosServidor()

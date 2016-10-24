@@ -98,7 +98,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         O método irá buscar os dados do medicamento que estão na base de dados
      */
     func buscaMedicamentos(){
-       // print("aki na busca")
+        print("verificar a linha de baixo caso ocorra erro de sumir os medicamentos")
        user.medicamento.removeAll()
         let url = UrlWS()
         

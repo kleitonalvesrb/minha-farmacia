@@ -228,8 +228,10 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     let udao = UsuarioDAO()
                     let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     let contexto: NSManagedObjectContext = appDel.managedObjectContext
+                    if !udao.verificaUserLogado(contexto){
+                        udao.salvaUsuario(contexto, usuario: self.user)
+                    }
                     
-                                       //udao.salvaUsuario(contexto, usuario: self.user)
                     self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     

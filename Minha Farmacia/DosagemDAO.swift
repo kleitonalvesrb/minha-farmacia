@@ -29,7 +29,9 @@ class DosagemDAO: NSObject {
             print("erro ao salvar a dosagem")
         }
     }
-    
+    /**
+        busca a dosagem pelo id do medicamento
+     */
     func buscaDosagemMedicamento(contexto: NSManagedObjectContext, idMedicamento: Int) -> DosagemMedicamento{
         let request = NSFetchRequest(entityName: "Dosagem")
         request.returnsObjectsAsFaults = false
@@ -50,4 +52,5 @@ class DosagemDAO: NSObject {
         }
         return dosagem
     }
+    
 }

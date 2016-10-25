@@ -56,7 +56,7 @@ class DetalhamentoMedicamentoTableViewController: UIViewController, UITableViewD
                             "24/10/2016 ás 12:30"]
         
         imgMedicamento.image = medicamento.fotoMedicamento
-        items = [["Inicio em :     23/10/2016 13:30",
+        items = [["Inicio em :    \(medicamento.dosagemMedicamento.dataInicio)",
             "Intervalo:      \(medicamento.dosagemMedicamento.intervaloDose):00 Horas",
             "Período:        \(medicamento.dosagemMedicamento.periodoTratamento) Dias",
             "Dosagem:       \(medicamento.dosagemMedicamento.quantidade) \(tipoMedicamentoApresentacaoDosagem(medicamento.dosagemMedicamento.tipoMedicamento))"]]

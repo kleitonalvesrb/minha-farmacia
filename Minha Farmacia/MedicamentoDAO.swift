@@ -80,6 +80,9 @@ class MedicamentoDAO: NSObject {
         }
         return arrayMedicamento
     }
+    /**
+        verifica se existe o medicamento com o id informado
+     */
     func verificaMedicamentoId(contexto: NSManagedObjectContext, id : Int) -> Bool{
         let request = NSFetchRequest(entityName: "Medicamento")
         request.returnsObjectsAsFaults = false
@@ -90,6 +93,35 @@ class MedicamentoDAO: NSObject {
         }catch{
                 print("erro ao verificar")
         }
-    return false
+        return false
+    }
+    func buscaMedicamentoNaoSicronizados(contexto: NSManagedObjectContext) -> Array<Medicamento>{
+        let request = NSFetchRequest(entityName: "Medicamento")
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format: "sicronizado = %@", NSNumber(bool: false))
+        
+        var arrayMedicamento = [Medicamento]()
+        let util = Util()
+        let dosagemDao = DosagemDAO()
+        
+        do{
+            let results  = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                let medicamento = Medicamento()
+                medicamento.id = result.valueForKey("id_medicamento") as! Int
+                medicamento.apresentacao = result.valueForKey("apresentacao") as? String
+                medicamento.classeTerapeutica = result.valueForKey("classe_terapeutica") as? String
+                medicamento.codBarras = result.valueForKey("cod_barras") as? String
+                medicamento.laboratorio = result.valueForKey("laboratorio") as? String
+                medicamento.nome = result.valueForKey("nome") as? String
+                medicamento.principioAtivo = result.valueForKey("principio_ativo") as? String
+                medicamento.fotoMedicamento = util.convertNSDataToImage(result.valueForKey("foto_medicamento") as! NSData)
+                medicamento.dosagemMedicamento = dosagemDao.buscaDosagemMedicamento(contexto, idMedicamento: medicamento.id)
+                arrayMedicamento.append(medicamento)
+            }
+        }catch{
+            print("erro ao buscar medicamentos nao sicronizados")
+        }
+        return arrayMedicamento
     }
 }

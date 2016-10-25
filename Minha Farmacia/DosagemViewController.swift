@@ -143,6 +143,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         
     }
     func salvaMedicamentoLocal(medic : Medicamento, sicronizado: Bool){
+//        self.geraAlerta("Data", mensagem: "\(medic.dosagemMedicamento.dataInicio)")
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         let mDao = MedicamentoDAO()
@@ -187,6 +188,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             
             print(dateFormatter.stringFromDate(unwrappedDate))
             print("--->",unwrappedDate)
+            dosagem.dataInicio = unwrappedDate
             criaNotificacoes(dateStr4,comFormato: dateFormatter, comIntervalo: util.valorIntervalo(campoIntervalo.text!), totalDias: util.valorTempoDias(campoPeriodo.text!))
         }else{
             print("tratar erro ")
@@ -217,7 +219,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             let fireDate:NSDate = cal.dateByAddingComponents(dateCom, toDate: theDate!, options: NSCalendarOptions())!
             
             let notification:UILocalNotification = UILocalNotification()
-            notification.alertBody = "Está na Hora de visitar sua farmácia! "
+            notification.alertBody = "Está na Hora do seu remédio! "
             notification.fireDate = fireDate
             notification.soundName = UILocalNotificationDefaultSoundName;
             notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1

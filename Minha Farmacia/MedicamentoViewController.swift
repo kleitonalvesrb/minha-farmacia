@@ -77,14 +77,89 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                 self.imgArray.append(remedio.fotoMedicamento)
                 self.nomes.append(remedio.nome)
             }
+            if mDao.buscaMedicamentoNaoSicronizados(contexto).count != 0{
+                acaoSicronizarMedicamentoServidor("Sicronizar", msg: "Você tem medicamentos que não estão sicronizados, deseja sicronizar agora?", contexto: contexto)
+            }else{
+                geraAlerta("Não", mensagem: "Não tem nada")
+            }
             util.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: activityInfo, comInvisibilidade: true, comAnimacao: false)
         }
         
         
     }
     
-    
-    
+    /**
+        método responsavel por pegar o desejo do usuario e sicronizar os dados
+     */
+    func acaoSicronizarMedicamentoServidor(title:String, msg: String, contexto:NSManagedObjectContext){
+        // Create the alert controller
+        let alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .Alert)
+        
+        // Create the actions
+        let okAction = UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default) {
+            UIAlertAction in
+            let mDao = MedicamentoDAO()
+            let medicamentos = mDao.buscaMedicamentoNaoSicronizados(contexto)
+            for m in medicamentos{
+                self.criaDicMedicamento(m)
+            }
+            
+        }
+        let cancelAction = UIAlertAction(title: "Mais tarde", style: UIAlertActionStyle.Destructive) {
+            UIAlertAction in
+        }
+        
+        // Add the actions
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the controller
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    /**
+     Cria dicionario de medicamentos
+     */
+    func criaDicMedicamento(medicamentoAux: Medicamento) -> NSDictionary{
+        let util = Util()
+        let dicMedicamento = ["codigoBarras": medicamentoAux.codBarras,
+                              "nomeProduto": medicamentoAux.nome,
+                              "principioAtivo" : medicamentoAux.principioAtivo,
+                              "apresentacao": medicamentoAux.apresentacao,
+                              "laboratorio": medicamentoAux.laboratorio,
+                              "classeTerapeutica" : medicamentoAux.classeTerapeutica,
+                              "fotoMedicamentoString" : util.convertImageToString(medicamentoAux.fotoMedicamento)]
+        criaDicDosagem(medicamentoAux.dosagemMedicamento)
+//
+//        let dicMedicamento = ["codigoBarras": medicamentoAux.codBarras,
+//                              "nomeProduto": medicamentoAux.nome,
+//                              "principioAtivo":medicamentoAux.principioAtivo,
+//                              "apresentacao":medicamentoAux.apresentacao,
+//                              "laboratorio":medicamentoAux.laboratorio,
+//                              "classeTerapeutica":medicamentoAux.classeTerapeutica,
+//                              "fotoMedicamentoString":util.convertImageToString(medicamentoAux.fotoMedicamento),
+//                              "dosagem": criaDicDosagem(medicamentoAux.dosagemMedicamento)]
+//        
+       return dicMedicamento
+    }
+    /**
+     Cria dicionario de dosagem
+     */
+    func criaDicDosagem(dosagem: DosagemMedicamento) {
+        let util = Util()
+        print(dosagem.dataInicio)
+        print(dosagem.intervaloDose)
+        print(dosagem.dosagem)
+        print(dosagem.tipoMedicamento)
+//        
+//        let dicDosagem = ["quantidade":trataQtdDosagemMedicamento(dosagem.text!, util: util),
+//                          "tipo": campoSwitchMedicamento.text!,
+//                          "dataInicioString":campoDataInicio.text!,
+//                          "periodo":util.valorTempoDias(campoPeriodo.text!),
+//                          "intervalo":util.valorIntervalo(campoIntervalo.text!)]
+//        
+//        return dicDosagem;
+    }
+
     
     
     override func viewWillAppear(animated: Bool) {
@@ -172,7 +247,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         //        print(medicamento)
         if let idMedicamento = medicamento["id"] as? String{
             medicamentoAux.id = Int(idMedicamento)
-            print(medicamentoAux.id,"<-------- id")
         }
         if let apresentacao = medicamento["apresentacao"] as? String{
             medicamentoAux.apresentacao = apresentacao
@@ -221,9 +295,23 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         if let tipo = dosagem["tipo"] as? String{
             dosagemAux.tipoMedicamento = tipo
         }
-        print("FALTA ACERTAR A DATA NO SERVIDOR E BANCO DE DADOS")
-        print("----------")
-        
+        if let dataString = dosagem["dataInicio"] as? String{
+            var dataCadastro = dataString[dataString.startIndex.advancedBy(0)...dataString.startIndex.advancedBy(15)]
+            dataCadastro = dataCadastro.stringByReplacingOccurrencesOfString("T", withString: " ")
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+            dateFormatter.locale = NSLocale.currentLocale()
+            dateFormatter.timeZone = NSTimeZone.localTimeZone()
+            let date2:NSDate!
+            date2 = dateFormatter.dateFromString(dataCadastro)
+            dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+            
+            if let unwrappedDate = date2 {
+                dosagemAux.dataInicio = unwrappedDate
+                print("---->",dateFormatter.stringFromDate(unwrappedDate))
+            }
+            
+        }
         return dosagemAux
     }
     func grabPhotos(){

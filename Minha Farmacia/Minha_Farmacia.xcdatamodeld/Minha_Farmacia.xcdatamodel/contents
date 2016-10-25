@@ -18,6 +18,7 @@
         <attribute name="laboratorio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nome" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="principio_ativo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sicronizado" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
     <entity name="Usuario" syncable="YES">
         <attribute name="data_nascimento" optional="YES" attributeType="Date" syncable="YES"/>
@@ -31,7 +32,7 @@
     </entity>
     <elements>
         <element name="Dosagem" positionX="-27" positionY="108" width="128" height="150"/>
-        <element name="Medicamento" positionX="-36" positionY="72" width="128" height="165"/>
+        <element name="Medicamento" positionX="-36" positionY="72" width="128" height="180"/>
         <element name="Usuario" positionX="-36" positionY="9" width="128" height="165"/>
     </elements>
 </model>

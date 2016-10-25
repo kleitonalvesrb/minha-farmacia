@@ -126,21 +126,23 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         if util.isVazio(campoIntervalo.text!) || util.isVazio(campoPeriodo.text!) || util.isVazio(campoDataInicio.text!) || util.isVazio(campoDosagem.text!){
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informado!")
         }else{
-            lblInfor.hidden = false
-            activityInfo.hidden = false
-            activityInfo.startAnimating()
+            util.configuraLabelInformacao(lblInfor, comInvisibilidade: false, comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
+            
             populaMedicamentoWithDosagem()
             if verficaConexao.isConnectedToNetwork(){
-                salvaMedicamentoLocal(medicamento)
+                print("nao deve passar por aqui")
+                salvaMedicamentoLocal(medicamento,sicronizado: true)
                 salvarMedicamentoDosagemServidor()
             }else{
                 print("salvar em outra tabela")
-                salvaMedicamentoLocal(medicamento)
+                salvaMedicamentoLocal(medicamento,sicronizado: false)
+               util.configuraLabelInformacao(lblInfor, comInvisibilidade: true, comIndicador: activityInfo, comInvisibilidade: true, comAnimacao: false)
+                self.redirecionTelaMedicamentos()
             }
         }
         
     }
-    func salvaMedicamentoLocal(medic : Medicamento){
+    func salvaMedicamentoLocal(medic : Medicamento, sicronizado: Bool){
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         let mDao = MedicamentoDAO()
@@ -149,7 +151,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             rand  = Int(arc4random_uniform(1000000))
         }while(mDao.verificaMedicamentoId(contexto, id: rand))
         medic.id = rand
-        mDao.gravarMedicamento(contexto, medicamento: medic)
+        mDao.gravarMedicamento(contexto, medicamento: medic,sicronizado: sicronizado)
     }
     
     /**
@@ -259,10 +261,8 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters:criaDicMedicamento() as? [String : AnyObject] , encoding: .JSON, headers: nil).responseJSON { (response) in
             
             if response.response?.statusCode == 200{
-               
-                self.lblInfor.hidden = true
-                self.activityInfo.hidden = true
-                self.activityInfo.stopAnimating()
+               let util = Util()
+                util.configuraLabelInformacao(self.lblInfor, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
                 self.redirecionTelaMedicamentos()
             }else{
                 self.geraAlerta("Ops", mensagem: "Não foi possível cadastrar o medicamento, tente novamente mais tarde")

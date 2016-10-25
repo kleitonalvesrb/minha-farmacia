@@ -12,7 +12,7 @@ class MedicamentoDAO: NSObject {
     /**
      Método responsável por armazenar os dados do medicamento do usuario no banco de dados
      */
-    func gravarMedicamento(contexto: NSManagedObjectContext,medicamento: Medicamento){
+    func gravarMedicamento(contexto: NSManagedObjectContext,medicamento: Medicamento, sicronizado: Bool){
         let medic = NSEntityDescription.insertNewObjectForEntityForName("Medicamento", inManagedObjectContext: contexto)
         let util = Util()
         let dosagemDao = DosagemDAO()
@@ -23,6 +23,8 @@ class MedicamentoDAO: NSObject {
         medic.setValue(medicamento.laboratorio, forKey: "laboratorio")
         medic.setValue(medicamento.nome, forKey: "nome")
         medic.setValue(medicamento.principioAtivo, forKey: "principio_ativo")
+        medic.setValue(sicronizado, forKey: "sicronizado")
+        
         medic.setValue(util.convertImageToNSData(medicamento.fotoMedicamento), forKey: "foto_medicamento")
         
         do{

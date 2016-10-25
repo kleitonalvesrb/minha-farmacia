@@ -161,7 +161,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         let mDao = MedicamentoDAO()
-        mDao.gravarMedicamento(contexto, medicamento: medicamento)
+        mDao.gravarMedicamento(contexto, medicamento: medicamento, sicronizado: true)
     }
     /**
      popula Medicamento com os dados do Servidor

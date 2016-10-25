@@ -67,8 +67,13 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         }else{
             let medicamentosAux = mDao.recuperarMedicamentos(contexto)
             let util = Util()
+            user.medicamento.removeAll()
             user.medicamento = medicamentosAux
-            for remedio in self.user.medicamento{
+            
+           
+            for remedio in medicamentosAux{
+//                print(remedio.nome)
+//                print(remedio.codBarras)
                 self.imgArray.append(remedio.fotoMedicamento)
                 self.nomes.append(remedio.nome)
             }

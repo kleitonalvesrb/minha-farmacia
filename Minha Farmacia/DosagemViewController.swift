@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var lblInfor: UILabel!
     @IBOutlet weak var activityInfo: UIActivityIndicatorView!
@@ -121,6 +122,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     
     @IBAction func salvar(sender: AnyObject) {
         let util = Util()
+        let verficaConexao = VerificarConexao()
         if util.isVazio(campoIntervalo.text!) || util.isVazio(campoPeriodo.text!) || util.isVazio(campoDataInicio.text!) || util.isVazio(campoDosagem.text!){
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informado!")
         }else{
@@ -128,10 +130,28 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             activityInfo.hidden = false
             activityInfo.startAnimating()
             populaMedicamentoWithDosagem()
-            salvarMedicamentoDosagemServidor()
+            if verficaConexao.isConnectedToNetwork(){
+                salvaMedicamentoLocal(medicamento)
+                salvarMedicamentoDosagemServidor()
+            }else{
+                print("salvar em outra tabela")
+                salvaMedicamentoLocal(medicamento)
+            }
         }
         
     }
+    func salvaMedicamentoLocal(medic : Medicamento){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let mDao = MedicamentoDAO()
+        var rand:Int
+        repeat{
+            rand  = Int(arc4random_uniform(1000000))
+        }while(mDao.verificaMedicamentoId(contexto, id: rand))
+        medic.id = rand
+        mDao.gravarMedicamento(contexto, medicamento: medic)
+    }
+    
     /**
         Atribui os dados da dosagem do medicamento ao medicamento cadastrado na tela anterior
      */

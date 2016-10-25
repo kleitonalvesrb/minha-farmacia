@@ -32,9 +32,11 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let usuarioDao = UsuarioDAO()
-        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+     
+        
+//        let usuarioDao = UsuarioDAO()
+//        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let contexto: NSManagedObjectContext = appDel.managedObjectContext
 
 //        if usuarioDao.verificaUserLogado(contexto) {
 //            print(usuarioDao.recuperaDadosUsuario(contexto).nome)

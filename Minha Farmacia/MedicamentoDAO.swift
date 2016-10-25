@@ -51,16 +51,16 @@ class MedicamentoDAO: NSObject {
     /**
      método responsavel por buscar todos os medicamentos que estao salvos no banco
      */
-    func recuperarMedicamentos(contexto: NSManagedObjectContext) ->[Medicamento]{
+    func recuperarMedicamentos(contexto: NSManagedObjectContext) ->Array<Medicamento>{
         let request = NSFetchRequest(entityName: "Medicamento")
         request.returnsObjectsAsFaults = false
         var arrayMedicamento = [Medicamento]()
         let util = Util()
         let dosagemDao = DosagemDAO()
-        let medicamento = Medicamento()
         do{
             let results = try contexto.executeFetchRequest(request)
             for result in results as! [NSManagedObject]{
+                let medicamento = Medicamento()
                 medicamento.id = result.valueForKey("id_medicamento") as! Int
                 medicamento.apresentacao = result.valueForKey("apresentacao") as? String
                 medicamento.classeTerapeutica = result.valueForKey("classe_terapeutica") as? String
@@ -77,5 +77,17 @@ class MedicamentoDAO: NSObject {
             print("Erro ao buscar os medicamentos")
         }
         return arrayMedicamento
+    }
+    func verificaMedicamentoId(contexto: NSManagedObjectContext, id : Int) -> Bool{
+        let request = NSFetchRequest(entityName: "Medicamento")
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format: "id_medicamento = %i", id)
+        do {
+            let results = try contexto.executeFetchRequest(request)
+            return results.count != 0
+        }catch{
+                print("erro ao verificar")
+        }
+    return false
     }
 }

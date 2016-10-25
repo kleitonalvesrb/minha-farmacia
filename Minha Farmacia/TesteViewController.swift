@@ -29,7 +29,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     // padrao da url
     let urlPadrao = UrlWS()
     let utilidades = Util()
-    
+    //
     override func viewDidLoad() {
         super.viewDidLoad()
      

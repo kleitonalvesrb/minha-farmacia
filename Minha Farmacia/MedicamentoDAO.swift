@@ -43,7 +43,6 @@ class MedicamentoDAO: NSObject {
         request.returnsObjectsAsFaults = false
         do{
             let results = try contexto.executeFetchRequest(request)
-            print("->\(results)")
             return results.count != 0
         }catch{
             print("deu ruim")
@@ -95,6 +94,9 @@ class MedicamentoDAO: NSObject {
         }
         return false
     }
+    /**
+        busca os medicamentos que nao foram sicronizados
+     */
     func buscaMedicamentoNaoSicronizados(contexto: NSManagedObjectContext) -> Array<Medicamento>{
         let request = NSFetchRequest(entityName: "Medicamento")
         request.returnsObjectsAsFaults = false
@@ -123,5 +125,26 @@ class MedicamentoDAO: NSObject {
             print("erro ao buscar medicamentos nao sicronizados")
         }
         return arrayMedicamento
+    }
+    func atualizaMedicamentoSicronizado(contexto:NSManagedObjectContext){
+        let request = NSFetchRequest(entityName: "Medicamento")
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format: "sicronizado = %@", NSNumber(bool: false))
+        
+                do{
+            let results  = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                result.setValue(true, forKey: "sicronizado")
+                do{
+                    try contexto.save()
+                    print("atualizou")
+                }catch{
+                    print("erro")
+                }
+            }
+        }catch{
+            print("erro ao atualizar")
+        }
+        
     }
 }

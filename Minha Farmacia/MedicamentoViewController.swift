@@ -77,10 +77,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                 self.imgArray.append(remedio.fotoMedicamento)
                 self.nomes.append(remedio.nome)
             }
-            if mDao.buscaMedicamentoNaoSicronizados(contexto).count != 0{
+            let verificaConexao = VerificarConexao()
+            if mDao.buscaMedicamentoNaoSicronizados(contexto).count != 0 && verificaConexao.isConnectedToNetwork(){
                 acaoSicronizarMedicamentoServidor("Sicronizar", msg: "Você tem medicamentos que não estão sicronizados, deseja sicronizar agora?", contexto: contexto)
-            }else{
-                geraAlerta("Não", mensagem: "Não tem nada")
             }
             util.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: activityInfo, comInvisibilidade: true, comAnimacao: false)
         }
@@ -93,15 +92,35 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
      */
     func acaoSicronizarMedicamentoServidor(title:String, msg: String, contexto:NSManagedObjectContext){
         // Create the alert controller
-        let alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
         
         // Create the actions
         let okAction = UIAlertAction(title: "Sim", style: UIAlertActionStyle.Default) {
             UIAlertAction in
+            let util = Util()
+            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: false, comIndicador: self.activityInfo, comInvisibilidade: false, comAnimacao: true)
+            
             let mDao = MedicamentoDAO()
             let medicamentos = mDao.buscaMedicamentoNaoSicronizados(contexto)
+            let qtdUp = medicamentos.count
+            var flagUp = 0
+            let url = UrlWS()
             for m in medicamentos{
-                self.criaDicMedicamento(m)
+                Alamofire.request(.PUT,url.urlInsereMedicamentoUsuario(self.user.email),parameters: self.criaDicMedicamento(m) as? [String : AnyObject],encoding: .JSON).responseJSON { (response) in
+                    
+                    if response.response?.statusCode == 200{
+                        flagUp += 1
+                        if flagUp == qtdUp{
+                            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
+                            self.geraAlerta("Sucesso", mensagem: "Seus medicamentos foram sicronizados com sucesso")
+                            mDao.atualizaMedicamentoSicronizado(contexto)
+                        }
+//                        self.redirecionTelaMedicamentos()
+                    }else{
+                        self.geraAlerta("Ops", mensagem: "Não foi possível cadastrar o medicamento, tente novamente mais tarde")
+                    }
+                    
+                }
             }
             
         }
@@ -116,6 +135,13 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         // Present the controller
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    
+    /**
+     Salva medicamento e dosagem no servidor Web
+     */
+    
+    
     /**
      Cria dicionario de medicamentos
      */
@@ -127,9 +153,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                               "apresentacao": medicamentoAux.apresentacao,
                               "laboratorio": medicamentoAux.laboratorio,
                               "classeTerapeutica" : medicamentoAux.classeTerapeutica,
-                              "fotoMedicamentoString" : util.convertImageToString(medicamentoAux.fotoMedicamento)]
-        criaDicDosagem(medicamentoAux.dosagemMedicamento)
-//
+                              "fotoMedicamentoString" : util.convertImageToString(medicamentoAux.fotoMedicamento),
+                              "dosagem":criaDicDosagem(medicamentoAux.dosagemMedicamento)]
+        //
 //        let dicMedicamento = ["codigoBarras": medicamentoAux.codBarras,
 //                              "nomeProduto": medicamentoAux.nome,
 //                              "principioAtivo":medicamentoAux.principioAtivo,
@@ -144,13 +170,19 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     /**
      Cria dicionario de dosagem
      */
-    func criaDicDosagem(dosagem: DosagemMedicamento) {
+    func criaDicDosagem(dosagem: DosagemMedicamento)->NSDictionary {
         let util = Util()
         print(dosagem.dataInicio)
         print(dosagem.intervaloDose)
         print(dosagem.dosagem)
         print(dosagem.tipoMedicamento)
-//        
+        let dicDosagem = ["quantidade":dosagem.quantidade,
+                          "tipo":dosagem.tipoMedicamento,
+                          "dataInicioString" : "+\(dosagem.dataInicio)",
+                          "periodo": dosagem.periodoTratamento,
+                          "intervalo":dosagem.intervaloDose]
+        return dicDosagem
+//
 //        let dicDosagem = ["quantidade":trataQtdDosagemMedicamento(dosagem.text!, util: util),
 //                          "tipo": campoSwitchMedicamento.text!,
 //                          "dataInicioString":campoDataInicio.text!,

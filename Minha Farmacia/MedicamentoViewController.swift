@@ -62,9 +62,11 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         imgArray.append(imgPlus.image!)
         /// recupear os medicamentos da base local ou do servidor
         if !mDao.verificaExistenciaMedicamento(contexto){
+            print("buscar no servidor")
             configuraLabelInfo()
             buscaMedicamentosServidor()
         }else{
+            print("buscar na base local")
             let medicamentosAux = mDao.recuperarMedicamentos(contexto)
             let util = Util()
             user.medicamento.removeAll()
@@ -246,7 +248,16 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                         let dic = JSON["medicamento"]!
                         self.user.medicamento.append(self.populaMedicamento(dic!))
                     }
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss z0000"
+                    dateFormatter.locale = NSLocale.currentLocale()
+                    dateFormatter.timeZone = NSTimeZone.localTimeZone()
                     for remedio in self.user.medicamento{
+                        
+                        print(remedio.dosagemMedicamento.dataInicio,"<-------")
+                        
+                        self.criaNotificacoes("\(remedio.dosagemMedicamento.dataInicio)", comFormato: dateFormatter, comIntervalo: remedio.dosagemMedicamento.intervaloDose, totalDias: remedio.dosagemMedicamento.periodoTratamento,idMedicamento: remedio.id)
+                        
                         self.salvaMedicamentoBaseLocal(remedio)
                         self.imgArray.append(remedio.fotoMedicamento)
                         self.nomes.append(remedio.nome)
@@ -263,7 +274,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     /**
      Cria as notificaçoes com base na data de inicio, intervalo entre as doses e o periodo total de tratamento
      */
-    func criaNotificacoes(dataInicio: String,comFormato dateFormatter: NSDateFormatter, comIntervalo intervalo:Int, totalDias qtdDias:Int){
+    func criaNotificacoes(dataInicio: String,comFormato dateFormatter: NSDateFormatter, comIntervalo intervalo:Int, totalDias qtdDias:Int,idMedicamento: Int){
         /**
          Array q ira armazenar os horarios dos medicamentos
          */
@@ -297,14 +308,14 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                     let notificacao = Notificacao()
                     notificacao.confirmado = 0
                     notificacao.dataNotificacao = date
-                    let id = "\(medicamento.id)\(i)"
+                    let id = "\(idMedicamento)\(i)"
                     notificacao.id = Int(id)
                     
                     //NotificacaoDAO().salvarNotificacao(contexto, notificacao: notificacao, idMedicamento: medicamento.id)
                     arrayNotificacao.append(notificacao)
                     
                     
-                    LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: medicamento.id, numeroDose: i)
+                    LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: idMedicamento, numeroDose: i)
                 }else{
                     print("nao foi gerado nenhuma notificacao para a data \(date)")
                 }

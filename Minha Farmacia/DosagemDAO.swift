@@ -24,6 +24,10 @@ class DosagemDAO: NSObject {
         dos.setValue(dosagem.quantidade, forKey: "quantidade")
         dos.setValue(dosagem.dataInicio, forKey: "data_inicio")
         dos.setValue(dosagem.id, forKey: "id_dosagem")
+        
+        for i in dosagem.notificacoes{
+            NotificacaoDAO().gravaNotificacao(contexto, notificacao: i, idDosagem: dosagem.id)
+        }
         do{
             try contexto.save()
         }catch{
@@ -48,6 +52,7 @@ class DosagemDAO: NSObject {
                 dosagem.quantidade = result.valueForKey("quantidade") as? Double
                 dosagem.dataInicio = result.valueForKey("data_inicio") as? NSDate
                 dosagem.id = result.valueForKey("id_dosagem") as? Int
+                dosagem.notificacoes = NotificacaoDAO().buscaNotificacaoIdDosagem(contexto, idDosagem: dosagem.id)
              }
         }catch{
             print("erro ao buscar dosagem indicada")

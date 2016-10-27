@@ -38,14 +38,18 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         print("qtd ---->\(eventArray.count)<-----")
         for i in eventArray{
             print(i)
-           // UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
+           //UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
         }
 //        let usuarioDao = UsuarioDAO()
-//        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let contexto: NSManagedObjectContext = appDel.managedObjectContext
-//        for m in MedicamentoDAO().recuperarMedicamentos(contexto){
-//            print("Id remedio \(m.id) ID dosagem \(m.dosagemMedicamento.id)")
-//        }
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        for m in MedicamentoDAO().recuperarMedicamentos(contexto){
+            print("Id remedio \(m.id) ID dosagem \(m.dosagemMedicamento.id)")
+            for n in m.dosagemMedicamento.notificacoes{
+                print("Notificacoes ->\(n.id)")
+                print("Data => \(n.dataNotificacao)")
+            }
+        }
         
 //        if usuarioDao.verificaUserLogado(contexto) {
 //            print(usuarioDao.recuperaDadosUsuario(contexto).nome)

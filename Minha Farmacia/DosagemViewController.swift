@@ -191,7 +191,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             print(dateFormatter.stringFromDate(unwrappedDate))
             print("--->",unwrappedDate)
             dosagem.dataInicio = unwrappedDate
-            criaNotificacoes(dateStr4,comFormato: dateFormatter, comIntervalo: util.valorIntervalo(campoIntervalo.text!), totalDias: util.valorTempoDias(campoPeriodo.text!))
+           dosagem.notificacoes =  criaNotificacoes(dateStr4,comFormato: dateFormatter, comIntervalo: util.valorIntervalo(campoIntervalo.text!), totalDias: util.valorTempoDias(campoPeriodo.text!),idDosagem: dosagem.id)
         }else{
             print("tratar erro ")
         }
@@ -201,11 +201,12 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     }/**
         Cria as notificaçoes com base na data de inicio, intervalo entre as doses e o periodo total de tratamento
      */
-    func criaNotificacoes(dataInicio: String,comFormato dateFormatter: NSDateFormatter, comIntervalo intervalo:Int, totalDias qtdDias:Int){
+    func criaNotificacoes(dataInicio: String,comFormato dateFormatter: NSDateFormatter, comIntervalo intervalo:Int, totalDias qtdDias:Int, idDosagem: Int) -> Array<Notificacao>{
        /**
          Array q ira armazenar os horarios dos medicamentos
          */
         var arrayDataNotificacao = [NSDate]()
+        var arrayNotificacaoes = [Notificacao]()
         /**
             data criada é a data criada referente a data inicial do tratamento do 
             medicamento
@@ -226,8 +227,12 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             let date = calendar.dateByAddingUnit(.Second, value: proximaDose, toDate: dateCriada!, options: [])
             if LocalNotificationHelper().checkNotificationEnabled() == true {
                 if diferencaMinEntreDuasDatas(date!, data2: NSDate()) <= 3 {
-                    print("GEROU NOTIFICACAO PARA",date!)
-                    arrayDataNotificacao.append(date!)
+                    let notif = Notificacao()
+                    notif.confirmado = 0
+                    notif.dataNotificacao = date
+                    notif.id = Int("\(idDosagem)\(i)")
+                    arrayNotificacaoes.append(notif)
+                    
                     LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: medicamento.id, numeroDose: i)
                 }else{
                     print("nao foi gerado nenhuma notificacao para a data \(date)")
@@ -238,6 +243,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 displayNotificationsDisabled()
             }
         }
+        return arrayNotificacaoes
     }
     /**
         Atribui um id para o medicamento

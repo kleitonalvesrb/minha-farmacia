@@ -315,6 +315,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
      */
     func populaDosagemMedicamento(dosagem: AnyObject) -> DosagemMedicamento{
         let dosagemAux = DosagemMedicamento()
+        if let id = Int((dosagem["id"] as? String)!){
+            dosagemAux.id = id
+        }
         if let intervalo = Int((dosagem["intervalo"] as? String)!){
             dosagemAux.intervaloDose = intervalo
         }

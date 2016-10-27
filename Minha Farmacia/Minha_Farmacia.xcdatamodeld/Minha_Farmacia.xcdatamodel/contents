@@ -3,6 +3,7 @@
     <entity name="Dosagem" syncable="YES">
         <attribute name="data_inicio" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="dosagem" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id_dosagem" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="id_remedio_dosagem" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="intervalo_dose" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="periodo_tratamento" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -31,7 +32,7 @@
         <attribute name="sexo" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Dosagem" positionX="-27" positionY="108" width="128" height="150"/>
+        <element name="Dosagem" positionX="-27" positionY="108" width="128" height="165"/>
         <element name="Medicamento" positionX="-36" positionY="72" width="128" height="180"/>
         <element name="Usuario" positionX="-36" positionY="9" width="128" height="165"/>
     </elements>

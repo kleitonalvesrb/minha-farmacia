@@ -9,11 +9,21 @@
 import UIKit
 
 class DosagemMedicamento: NSObject {
+    var id:Int!
     var tipoMedicamento: String!
     var dosagem: String!
     var intervaloDose: Int!
     var periodoTratamento: Int!
     var quantidade:Double!
     var dataInicio:NSDate!
+    /**
+        Data e hora da proxima dose
+     */
+    var proximaDose:NSDate!
+    /**
+        Array de notificacão para essa dose
+     */
+    var notificacoes = [Notificacao]()
+    
 
 }

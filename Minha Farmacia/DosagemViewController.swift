@@ -166,6 +166,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         dosagem.intervaloDose = util.valorIntervalo(campoIntervalo.text!)
         dosagem.periodoTratamento = util.valorTempoDias(campoPeriodo.text!)
         dosagem.tipoMedicamento = campoSwitchMedicamento.text!
+        dosagem.id = criaIdDosagem()
         
         // Initialize Date string
         let dateString2 = campoDataInicio.text!
@@ -250,6 +251,17 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
             rand  = Int(arc4random_uniform(1000000))
         }while(mDao.verificaMedicamentoId(contexto, id: rand))
         medicamento.id = rand
+    }
+    private func criaIdDosagem()-> Int{
+        let appDel: AppDelegate  = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto : NSManagedObjectContext = appDel.managedObjectContext
+        let dosagemDao = DosagemDAO()
+        var rand:Int
+        repeat{
+            rand  = Int(arc4random_uniform(1000000))
+        }while(dosagemDao.verificaDosagemId(contexto, id: rand))
+        return rand
+        
     }
     /**
         retorna a diferança em minutos entre duas datas

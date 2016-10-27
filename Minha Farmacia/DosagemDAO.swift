@@ -23,6 +23,7 @@ class DosagemDAO: NSObject {
         dos.setValue(dosagem.periodoTratamento, forKey: "periodo_tratamento")
         dos.setValue(dosagem.quantidade, forKey: "quantidade")
         dos.setValue(dosagem.dataInicio, forKey: "data_inicio")
+        dos.setValue(dosagem.id, forKey: "id_dosagem")
         do{
             try contexto.save()
         }catch{
@@ -46,11 +47,28 @@ class DosagemDAO: NSObject {
                 dosagem.periodoTratamento = result.valueForKey("periodo_tratamento") as? Int
                 dosagem.quantidade = result.valueForKey("quantidade") as? Double
                 dosagem.dataInicio = result.valueForKey("data_inicio") as? NSDate
+                dosagem.id = result.valueForKey("id_dosagem") as? Int
              }
         }catch{
             print("erro ao buscar dosagem indicada")
         }
         return dosagem
     }
+    /**
+     verifica se existe o medicamento com o id informado
+     */
+    func verificaDosagemId(contexto: NSManagedObjectContext, id : Int) -> Bool{
+        let request = NSFetchRequest(entityName: "Dosagem")
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format: "id_dosagem = %i", id)
+        do {
+            let results = try contexto.executeFetchRequest(request)
+            return results.count != 0
+        }catch{
+            print("erro ao verificar")
+        }
+        return false
+    }
+
     
 }

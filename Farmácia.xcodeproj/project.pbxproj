@@ -32,6 +32,7 @@
 		6327266B1D64EAB800580E18 /* receita.png in Resources */ = {isa = PBXBuildFile; fileRef = 632726681D64EAB800580E18 /* receita.png */; };
 		63340C191DB5EA47001BA556 /* logo_mf_transparente.png in Resources */ = {isa = PBXBuildFile; fileRef = 63340C181DB5EA47001BA556 /* logo_mf_transparente.png */; };
 		633557EC1DB4545500A72FD7 /* TestePerilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633557EB1DB4545500A72FD7 /* TestePerilViewController.swift */; };
+		633C92121DC23497006B4179 /* Notificacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C92111DC23497006B4179 /* Notificacao.swift */; };
 		6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */; };
 		6362F85E1DB9DEA6008E2BAB /* DetalhaReceitaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6362F85D1DB9DEA6008E2BAB /* DetalhaReceitaViewController.swift */; };
 		63737CAF1DB16A880020E2C4 /* 1476235384_more.png in Resources */ = {isa = PBXBuildFile; fileRef = 63737C9C1DB16A880020E2C4 /* 1476235384_more.png */; };
@@ -143,6 +144,7 @@
 		632726681D64EAB800580E18 /* receita.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = receita.png; sourceTree = "<group>"; };
 		63340C181DB5EA47001BA556 /* logo_mf_transparente.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_mf_transparente.png; sourceTree = "<group>"; };
 		633557EB1DB4545500A72FD7 /* TestePerilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestePerilViewController.swift; sourceTree = "<group>"; };
+		633C92111DC23497006B4179 /* Notificacao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notificacao.swift; sourceTree = "<group>"; };
 		6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaCadastroViewController.swift; sourceTree = "<group>"; };
 		6362F85D1DB9DEA6008E2BAB /* DetalhaReceitaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalhaReceitaViewController.swift; sourceTree = "<group>"; };
 		63737C9C1DB16A880020E2C4 /* 1476235384_more.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1476235384_more.png; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				631136F01D681C00004BA4B8 /* Medicamento.swift */,
 				63046D511D83B9E8003E1A5D /* DosagemMedicamento.swift */,
 				63C15F771DB6BEAB00C8DB46 /* Receita.swift */,
+				633C92111DC23497006B4179 /* Notificacao.swift */,
 			);
 			name = Objetos;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				63E1114A1DB312E7005D319D /* PerfilViewController.swift in Sources */,
 				63046D501D82EC79003E1A5D /* DosagemViewController.swift in Sources */,
 				6308A1CB1D4C66A10042BE2C /* TesteViewController.swift in Sources */,
+				633C92121DC23497006B4179 /* Notificacao.swift in Sources */,
 				63DD766A1DBEC85200B1E051 /* MedicamentoDAO.swift in Sources */,
 				631136F71D68C92B004BA4B8 /* TelaLoginViewController.swift in Sources */,
 				6382F0CC1D64EF7E00958E54 /* MedicamentoViewController.swift in Sources */,

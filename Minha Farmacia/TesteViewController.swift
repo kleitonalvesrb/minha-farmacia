@@ -37,7 +37,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         let eventArray:NSArray = app.scheduledLocalNotifications!;
         print("qtd ---->\(eventArray.count)<-----")
         for i in eventArray{
-            print(i.alertBody)
+            print(i)
+           // UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
         }
 //        let usuarioDao = UsuarioDAO()
 //        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

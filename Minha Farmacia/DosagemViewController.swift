@@ -60,6 +60,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         btnSalvar.layer.masksToBounds = true
         btnSalvar.layer.cornerRadius = 5
         imgMedicamento.image = medicamento.fotoMedicamento
+        atribuiIdMedicamento()
         
 //        self.navigationController?.navigationBar.hidden = true
         
@@ -147,11 +148,11 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         let mDao = MedicamentoDAO()
-        var rand:Int
-        repeat{
-            rand  = Int(arc4random_uniform(1000000))
-        }while(mDao.verificaMedicamentoId(contexto, id: rand))
-        medic.id = rand
+//        var rand:Int
+//        repeat{
+//            rand  = Int(arc4random_uniform(1000000))
+//        }while(mDao.verificaMedicamentoId(contexto, id: rand))
+//        medic.id = rand
         mDao.gravarMedicamento(contexto, medicamento: medic,sicronizado: sicronizado)
     }
     
@@ -217,59 +218,50 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         let min:Int = 60 // quantidade de segundos por min
         let hr:Int = 60 // quantidade de min por hora
         //i respresenta a proxima dose
+        
+        print("----->\(medicamento.id) <---------")
         for i in 1 ... qtdDoses{
             let proximaDose = min * hr * intervalo * i
             let date = calendar.dateByAddingUnit(.Second, value: proximaDose, toDate: dateCriada!, options: [])
             if LocalNotificationHelper().checkNotificationEnabled() == true {
-                arrayDataNotificacao.append(date!)
-                LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: medicamento.id, numeroDose: i)
+                if diferencaMinEntreDuasDatas(date!, data2: NSDate()) <= 3 {
+                    print("GEROU NOTIFICACAO PARA",date!)
+                    arrayDataNotificacao.append(date!)
+                    LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: medicamento.id, numeroDose: i)
+                }else{
+                    print("nao foi gerado nenhuma notificacao para a data \(date)")
+                }
 //                LocalNotificationHelper().scheduleLocal("Oi tcc minha farmácia", alertDate: date!)
             }else {
                 // Se as notificações locais estão desativados, exibir o pop-up de alerta e repor o interruptor para OFF                sender.setOn(false, animated: true)
                 displayNotificationsDisabled()
             }
-
-
-            
         }
+    }
+    /**
+        Atribui um id para o medicamento
+     */
+   private func atribuiIdMedicamento(){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let mDao = MedicamentoDAO()
+        var rand:Int
+        repeat{
+            rand  = Int(arc4random_uniform(1000000))
+        }while(mDao.verificaMedicamentoId(contexto, id: rand))
+        medicamento.id = rand
+    }
+    /**
+        retorna a diferança em minutos entre duas datas
+     */
+    private func diferencaMinEntreDuasDatas(data1:NSDate, data2:NSDate) -> Int{
+        let cal = NSCalendar.currentCalendar()
         
-//        for i in 1 ... qtdDoses{
-//            
-//            let theDate = dateFormatter.dateFromString(dataInicio)
-//            let dateCom = NSDateComponents()
-//            dateCom.second = 60 * 60 * intervalo * i
-//            
-//            if i != 1{
-//                
-//                theDate!.dateByAddingTimeInterval(60*60*Double(intervalo) * Double(i))
-//            }
-//            
-//            let cal = NSCalendar.currentCalendar()
-//            let fireDate:NSDate = cal.dateByAddingComponents(dateCom, toDate: theDate!, options: NSCalendarOptions())!
-//            
-//            let notification:UILocalNotification = UILocalNotification()
-//            notification.alertBody = "Está na Hora do seu remédio! "
-//            notification.fireDate = fireDate
-//            notification.soundName = UILocalNotificationDefaultSoundName;
-//            notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-//            arrayDataNotificacao.append(fireDate)
-//            
-//             UIApplication.sharedApplication().scheduleLocalNotification(notification)
-//          
-//            let app:UIApplication = UIApplication.sharedApplication();
-//            let eventArray:NSArray = app.scheduledLocalNotifications!;
-//            print("qtd ---->\(eventArray.count)<-----")
-//            for i in eventArray{
-//                print(i.absolutePath)
-//            }
-//            
-//        }
-//        for d in arrayDataNotificacao{
-//            print("-> \(d)")
-//        }
-//        print("Quantidade de notificacao por remedio ->",arrayDataNotificacao.count)
-//        
         
+        let unit:NSCalendarUnit = .Minute
+        let components = cal.components(unit, fromDate: data1, toDate: data2, options: .MatchFirst)
+        
+        return components.minute
     }
     /**
         Realiza calculo para saber a quantidade de vezes a pessoa deverá tomar o medicamento, com isso

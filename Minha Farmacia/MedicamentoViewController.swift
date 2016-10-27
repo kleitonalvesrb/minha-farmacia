@@ -80,7 +80,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             let verificaConexao = VerificarConexao()
             if mDao.buscaMedicamentoNaoSicronizados(contexto).count != 0 && verificaConexao.isConnectedToNetwork(){
                 acaoSicronizarMedicamentoServidor("Sicronizar", msg: "Você tem medicamentos que não estão sicronizados, deseja sicronizar agora?", contexto: contexto)
-            }
+            }//
             util.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: activityInfo, comInvisibilidade: true, comAnimacao: false)
         }
         

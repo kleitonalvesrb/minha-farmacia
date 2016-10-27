@@ -200,42 +200,75 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         Cria as notificaçoes com base na data de inicio, intervalo entre as doses e o periodo total de tratamento
      */
     func criaNotificacoes(dataInicio: String,comFormato dateFormatter: NSDateFormatter, comIntervalo intervalo:Int, totalDias qtdDias:Int){
-       
+       /**
+         Array q ira armazenar os horarios dos medicamentos
+         */
         var arrayDataNotificacao = [NSDate]()
-        var dateCriada = dateFormatter.dateFromString(dataInicio)
+        /**
+            data criada é a data criada referente a data inicial do tratamento do 
+            medicamento
+         */
+        let dateCriada = dateFormatter.dateFromString(dataInicio)
         let qtdDoses = calculaQtdVezes(qtdDias, comIntervalo: intervalo)
-        for i in 1 ... qtdDoses{
-            
-            let theDate = dateFormatter.dateFromString(dataInicio)
-            let dateCom = NSDateComponents()
-            dateCom.second = 60 * 60 * intervalo * i
-            
-            if i != 1{
-                
-                theDate!.dateByAddingTimeInterval(60*60*Double(intervalo) * Double(i))
-            }
-            
-            let cal = NSCalendar.currentCalendar()
-            let fireDate:NSDate = cal.dateByAddingComponents(dateCom, toDate: theDate!, options: NSCalendarOptions())!
-            
-            let notification:UILocalNotification = UILocalNotification()
-            notification.alertBody = "Está na Hora do seu remédio! "
-            notification.fireDate = fireDate
-            notification.soundName = UILocalNotificationDefaultSoundName;
-            notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
-            arrayDataNotificacao.append(fireDate)
-            
-             UIApplication.sharedApplication().scheduleLocalNotification(notification)
-            // print("cal -> \(cal)")
-            //        print("dateCom  -> \(dateCom)")
-            //        print("fireDate -> \(fireDate)")
-            //        print("data \(NSDate())")
-        }
-        for d in arrayDataNotificacao{
-            print("-> \(d)")
-        }
-        print("Quantidade de notificacao por remedio ->",arrayDataNotificacao.count)
         
+        
+        let calendar = NSCalendar.currentCalendar()
+
+        let min:Int = 60 // quantidade de segundos por min
+        let hr:Int = 60 // quantidade de min por hora
+        //i respresenta a proxima dose
+        for i in 1 ... qtdDoses{
+            let proximaDose = min * hr * intervalo * i
+            let date = calendar.dateByAddingUnit(.Second, value: proximaDose, toDate: dateCriada!, options: [])
+            if LocalNotificationHelper().checkNotificationEnabled() == true {
+                arrayDataNotificacao.append(date!)
+                LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: medicamento.id, numeroDose: i)
+//                LocalNotificationHelper().scheduleLocal("Oi tcc minha farmácia", alertDate: date!)
+            }else {
+                // Se as notificações locais estão desativados, exibir o pop-up de alerta e repor o interruptor para OFF                sender.setOn(false, animated: true)
+                displayNotificationsDisabled()
+            }
+
+
+            
+        }
+        
+//        for i in 1 ... qtdDoses{
+//            
+//            let theDate = dateFormatter.dateFromString(dataInicio)
+//            let dateCom = NSDateComponents()
+//            dateCom.second = 60 * 60 * intervalo * i
+//            
+//            if i != 1{
+//                
+//                theDate!.dateByAddingTimeInterval(60*60*Double(intervalo) * Double(i))
+//            }
+//            
+//            let cal = NSCalendar.currentCalendar()
+//            let fireDate:NSDate = cal.dateByAddingComponents(dateCom, toDate: theDate!, options: NSCalendarOptions())!
+//            
+//            let notification:UILocalNotification = UILocalNotification()
+//            notification.alertBody = "Está na Hora do seu remédio! "
+//            notification.fireDate = fireDate
+//            notification.soundName = UILocalNotificationDefaultSoundName;
+//            notification.applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+//            arrayDataNotificacao.append(fireDate)
+//            
+//             UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//          
+//            let app:UIApplication = UIApplication.sharedApplication();
+//            let eventArray:NSArray = app.scheduledLocalNotifications!;
+//            print("qtd ---->\(eventArray.count)<-----")
+//            for i in eventArray{
+//                print(i.absolutePath)
+//            }
+//            
+//        }
+//        for d in arrayDataNotificacao{
+//            print("-> \(d)")
+//        }
+//        print("Quantidade de notificacao por remedio ->",arrayDataNotificacao.count)
+//        
         
     }
     /**
@@ -543,5 +576,20 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         scroll.contentSize = CGSizeMake(0, self.view.frame.height + valorX)
         scroll.setContentOffset(CGPointMake(0, valorX), animated: true)
 
+    }
+    
+    
+    private func displayNotificationsDisabled() {
+        let alertController = UIAlertController(
+            title: "Notificações desabilitada para o App Minha Farmácia",
+            message: "Ative as notificações em Configurações -> Notificações -> Minha Farmácia",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alertController.addAction(UIAlertAction(
+            title: "OK",
+            style: UIAlertActionStyle.Default,
+            handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }

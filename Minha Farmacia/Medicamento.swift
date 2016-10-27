@@ -18,7 +18,7 @@ class Medicamento: NSObject {
     var laboratorio:String!
     var classeTerapeutica:String!
     var dosagemMedicamento: DosagemMedicamento!
-    
+    var notificacoes = [Notificacao]()
     static let medicamentoSharedInstance = Medicamento()
 
     

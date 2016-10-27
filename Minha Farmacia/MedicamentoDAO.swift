@@ -27,6 +27,10 @@ class MedicamentoDAO: NSObject {
         
         medic.setValue(util.convertImageToNSData(medicamento.fotoMedicamento), forKey: "foto_medicamento")
         
+        for n in medicamento.notificacoes{
+            NotificacaoDAO().salvarNotificacao(contexto, notificacao: n, idMedicamento: medicamento.id)
+        }
+        
         do{
             try contexto.save()
             dosagemDao.gravaDadoDosagemMedicamento(contexto, dosagem: medicamento.dosagemMedicamento, idMedicamento: medicamento.id)
@@ -71,6 +75,7 @@ class MedicamentoDAO: NSObject {
                 medicamento.principioAtivo = result.valueForKey("principio_ativo") as? String
                 medicamento.fotoMedicamento = util.convertNSDataToImage(result.valueForKey("foto_medicamento") as! NSData)
                 medicamento.dosagemMedicamento = dosagemDao.buscaDosagemMedicamento(contexto, idMedicamento: medicamento.id)
+                medicamento.notificacoes = NotificacaoDAO().buscaNotificacaoIdMedicamento(contexto, idMedicamento: medicamento.id)
                 arrayMedicamento.append(medicamento)
             }
             print("Leus os medicamentos")

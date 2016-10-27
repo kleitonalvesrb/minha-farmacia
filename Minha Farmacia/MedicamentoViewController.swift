@@ -261,6 +261,80 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         }
     }
     /**
+     Cria as notificaçoes com base na data de inicio, intervalo entre as doses e o periodo total de tratamento
+     */
+    func criaNotificacoes(dataInicio: String,comFormato dateFormatter: NSDateFormatter, comIntervalo intervalo:Int, totalDias qtdDias:Int){
+        /**
+         Array q ira armazenar os horarios dos medicamentos
+         */
+        var arrayDataNotificacao = [NSDate]()
+        var arrayNotificacao = [Notificacao]()
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        /**
+         data criada é a data criada referente a data inicial do tratamento do
+         medicamento
+         */
+        let dateCriada = dateFormatter.dateFromString(dataInicio)
+        let qtdDoses = calculaQtdVezes(qtdDias, comIntervalo: intervalo)
+        
+        
+        let calendar = NSCalendar.currentCalendar()
+        
+        let min:Int = 60 // quantidade de segundos por min
+        let hr:Int = 60 // quantidade de min por hora
+        //i respresenta a proxima dose
+        let user = Usuario.sharedInstance
+        
+        
+        for i in 1 ... qtdDoses{
+            let proximaDose = min * hr * intervalo * i
+            let date = calendar.dateByAddingUnit(.Second, value: proximaDose, toDate: dateCriada!, options: [])
+            if LocalNotificationHelper().checkNotificationEnabled() == true {
+                if diferencaMinEntreDuasDatas(date!, data2: NSDate()) <= 3 {
+                    
+                    let notificacao = Notificacao()
+                    notificacao.confirmado = 0
+                    notificacao.dataNotificacao = date
+                    let id = "\(medicamento.id)\(i)"
+                    notificacao.id = Int(id)
+                    
+                    //NotificacaoDAO().salvarNotificacao(contexto, notificacao: notificacao, idMedicamento: medicamento.id)
+                    arrayNotificacao.append(notificacao)
+                    
+                    
+                    LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: medicamento.id, numeroDose: i)
+                }else{
+                    print("nao foi gerado nenhuma notificacao para a data \(date)")
+                }
+                //                LocalNotificationHelper().scheduleLocal("Oi tcc minha farmácia", alertDate: date!)
+            }else {
+                // Se as notificações locais estão desativados, exibir o pop-up de alerta e repor o interruptor para OFF                sender.setOn(false, animated: true)
+                displayNotificationsDisabled()
+            }
+        }
+        medicamento.notificacoes = arrayNotificacao
+    }
+    
+    
+    /**
+     Realiza calculo para saber a quantidade de vezes a pessoa deverá tomar o medicamento, com isso
+     possibilitará a criação das notificações nos horarios corretos
+     */
+    func calculaQtdVezes(qtdDias:Int, comIntervalo intervalo:Int) -> Int{
+        var qtdInt:Int = (qtdDias * 24)/intervalo
+        let qtdDouble:Double = (Double(qtdDias) * 24)/Double(intervalo)
+        if Double(qtdInt) == qtdDouble{
+            return qtdInt
+        }else{
+            qtdInt += 1
+            return qtdInt
+        }
+    }
+
+
+    /**
      Método responsável por inserir medicamento na base de dados local
      
      */
@@ -443,6 +517,35 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         return 1.0
     }
     
+    
+    
+    /**
+     retorna a diferança em minutos entre duas datas
+     */
+    private func diferencaMinEntreDuasDatas(data1:NSDate, data2:NSDate) -> Int{
+        let cal = NSCalendar.currentCalendar()
+        
+        
+        let unit:NSCalendarUnit = .Minute
+        let components = cal.components(unit, fromDate: data1, toDate: data2, options: .MatchFirst)
+        
+        return components.minute
+    }
+    
+    private func displayNotificationsDisabled() {
+        let alertController = UIAlertController(
+            title: "Notificações desabilitada para o App Minha Farmácia",
+            message: "Ative as notificações em Configurações -> Notificações -> Minha Farmácia",
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alertController.addAction(UIAlertAction(
+            title: "OK",
+            style: UIAlertActionStyle.Default,
+            handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+
     /*if let destination = segue.destinationViewController as? RequestViewController{
      destination.requestLocation = locations[(tableView.indexPathForSelectedRow?.row)!]
      destination.requestUserName = userNames[(tableView.indexPathForSelectedRow?.row)!]

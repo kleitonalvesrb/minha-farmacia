@@ -205,6 +205,10 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
          Array q ira armazenar os horarios dos medicamentos
          */
         var arrayDataNotificacao = [NSDate]()
+        var arrayNotificacao = [Notificacao]()
+        
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
         /**
             data criada é a data criada referente a data inicial do tratamento do 
             medicamento
@@ -218,15 +222,25 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         let min:Int = 60 // quantidade de segundos por min
         let hr:Int = 60 // quantidade de min por hora
         //i respresenta a proxima dose
+        let user = Usuario.sharedInstance
+
         
-        print("----->\(medicamento.id) <---------")
         for i in 1 ... qtdDoses{
             let proximaDose = min * hr * intervalo * i
             let date = calendar.dateByAddingUnit(.Second, value: proximaDose, toDate: dateCriada!, options: [])
             if LocalNotificationHelper().checkNotificationEnabled() == true {
                 if diferencaMinEntreDuasDatas(date!, data2: NSDate()) <= 3 {
-                    print("GEROU NOTIFICACAO PARA",date!)
-                    arrayDataNotificacao.append(date!)
+                    
+                    let notificacao = Notificacao()
+                    notificacao.confirmado = 0
+                    notificacao.dataNotificacao = date
+                    let id = "\(medicamento.id)\(i)"
+                    notificacao.id = Int(id)
+                    
+                    //NotificacaoDAO().salvarNotificacao(contexto, notificacao: notificacao, idMedicamento: medicamento.id)
+                    arrayNotificacao.append(notificacao)
+                    
+                    
                     LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: medicamento.id, numeroDose: i)
                 }else{
                     print("nao foi gerado nenhuma notificacao para a data \(date)")
@@ -237,6 +251,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 displayNotificationsDisabled()
             }
         }
+        medicamento.notificacoes = arrayNotificacao
     }
     /**
         Atribui um id para o medicamento
@@ -569,7 +584,6 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
         scroll.setContentOffset(CGPointMake(0, valorX), animated: true)
 
     }
-    
     
     private func displayNotificationsDisabled() {
         let alertController = UIAlertController(

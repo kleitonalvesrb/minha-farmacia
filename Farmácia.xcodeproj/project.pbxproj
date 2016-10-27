@@ -99,6 +99,8 @@
 		63E1114A1DB312E7005D319D /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E111491DB312E7005D319D /* PerfilViewController.swift */; };
 		63E1114C1DB31B58005D319D /* CellPerfilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E1114B1DB31B58005D319D /* CellPerfilTableViewCell.swift */; };
 		63FA4DBB1DC1835C00FC07B9 /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FA4DBA1DC1835C00FC07B9 /* LocalNotificationHelper.swift */; };
+		63FA4DBD1DC1A37300FC07B9 /* Notificacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FA4DBC1DC1A37300FC07B9 /* Notificacao.swift */; };
+		63FA4DBF1DC1A55400FC07B9 /* NotificacaoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FA4DBE1DC1A55400FC07B9 /* NotificacaoDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -209,6 +211,8 @@
 		63E111491DB312E7005D319D /* PerfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
 		63E1114B1DB31B58005D319D /* CellPerfilTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellPerfilTableViewCell.swift; sourceTree = "<group>"; };
 		63FA4DBA1DC1835C00FC07B9 /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
+		63FA4DBC1DC1A37300FC07B9 /* Notificacao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notificacao.swift; sourceTree = "<group>"; };
+		63FA4DBE1DC1A55400FC07B9 /* NotificacaoDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificacaoDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,6 +300,7 @@
 				631136F01D681C00004BA4B8 /* Medicamento.swift */,
 				63046D511D83B9E8003E1A5D /* DosagemMedicamento.swift */,
 				63C15F771DB6BEAB00C8DB46 /* Receita.swift */,
+				63FA4DBC1DC1A37300FC07B9 /* Notificacao.swift */,
 			);
 			name = Objetos;
 			sourceTree = "<group>";
@@ -400,6 +405,7 @@
 				638AE9BB1DBA54B500F76A20 /* UsuarioDAO.swift */,
 				63DD76691DBEC85200B1E051 /* MedicamentoDAO.swift */,
 				63DD766B1DBECB8500B1E051 /* DosagemDAO.swift */,
+				63FA4DBE1DC1A55400FC07B9 /* NotificacaoDAO.swift */,
 			);
 			name = objDAO;
 			sourceTree = "<group>";
@@ -583,6 +589,7 @@
 				63E1114A1DB312E7005D319D /* PerfilViewController.swift in Sources */,
 				63046D501D82EC79003E1A5D /* DosagemViewController.swift in Sources */,
 				6308A1CB1D4C66A10042BE2C /* TesteViewController.swift in Sources */,
+				63FA4DBD1DC1A37300FC07B9 /* Notificacao.swift in Sources */,
 				63DD766A1DBEC85200B1E051 /* MedicamentoDAO.swift in Sources */,
 				631136F71D68C92B004BA4B8 /* TelaLoginViewController.swift in Sources */,
 				6382F0CC1D64EF7E00958E54 /* MedicamentoViewController.swift in Sources */,
@@ -596,6 +603,7 @@
 				639DEFCB1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift in Sources */,
 				63C15F731DB6A74D00C8DB46 /* VerificarConexao.swift in Sources */,
 				630C3C6F1D4AA5D800312CC5 /* AppDelegate.swift in Sources */,
+				63FA4DBF1DC1A55400FC07B9 /* NotificacaoDAO.swift in Sources */,
 				63046D521D83B9E8003E1A5D /* DosagemMedicamento.swift in Sources */,
 				6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */,
 				63E111481DB2D30C005D319D /* TrocaViewController.swift in Sources */,

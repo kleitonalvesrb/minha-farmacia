@@ -20,6 +20,12 @@
         <attribute name="principio_ativo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sicronizado" optional="YES" attributeType="Boolean" syncable="YES"/>
     </entity>
+    <entity name="Notificacao" syncable="YES">
+        <attribute name="confirmado" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <attribute name="data_notificacao" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id_medicamento" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="id_notificacao" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="Usuario" syncable="YES">
         <attribute name="data_nascimento" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
@@ -34,5 +40,6 @@
         <element name="Dosagem" positionX="-27" positionY="108" width="128" height="150"/>
         <element name="Medicamento" positionX="-36" positionY="72" width="128" height="180"/>
         <element name="Usuario" positionX="-36" positionY="9" width="128" height="165"/>
+        <element name="Notificacao" positionX="-27" positionY="108" width="128" height="105"/>
     </elements>
 </model>

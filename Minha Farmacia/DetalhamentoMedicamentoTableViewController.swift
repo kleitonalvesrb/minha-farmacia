@@ -9,10 +9,7 @@
 import UIKit
 
 class DetalhamentoMedicamentoTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-//    let frutas = ["Abacate","Amora","Banana","Beterraba","Carambola","Ameixa","Uva","Roma","Rucula","Pitanga","Manga","Caja","Morango","Melancia","Melao","Abobora"]
-//    var frutaAlfabetica = [String:[String]]()
-//  
-//    var dados = [String:[String]]()
+
 
     var medicamento = Medicamento.medicamentoSharedInstance
     var items = [[String]]()

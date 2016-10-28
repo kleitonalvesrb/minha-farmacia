@@ -1551,12 +1551,13 @@
                         <outlet property="collectionView" destination="I0x-vF-epu" id="NDL-KT-AU2"/>
                         <outlet property="lblInfo" destination="eUp-rp-zxk" id="cXL-dW-fCZ"/>
                         <segue destination="yEv-pj-dzz" kind="show" identifier="cadastrarMedicamento" id="APn-zV-bfs"/>
-                        <segue destination="RW9-CP-cui" kind="show" identifier="detalhamentoRemedio" id="l82-Bh-PHD"/>
+                        <segue destination="RW9-CP-cui" kind="show" identifier="detalhamentoRemedio1" id="l82-Bh-PHD"/>
+                        <segue destination="1Au-Us-C2f" kind="show" identifier="detalhamentoRemedio" id="y4s-Ye-Cn0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gm2-li-pz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-795.5" y="1885.5"/>
+            <point key="canvasLocation" x="-843.5" y="1891.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gy2-bR-0mU">
@@ -2037,6 +2038,95 @@
             </objects>
             <point key="canvasLocation" x="5178.5" y="851"/>
         </scene>
+        <!--Table Detalha Medicamento View Controller-->
+        <scene sceneID="kff-N5-ewR">
+            <objects>
+                <viewController id="1Au-Us-C2f" customClass="TableDetalhaMedicamentoViewController" customModule="Minha_Farmacia" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="v9G-pa-sXo"/>
+                        <viewControllerLayoutGuide type="bottom" id="3ty-7k-uG5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xnO-9V-VlH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X57-OD-azZ">
+                                <rect key="frame" x="77" y="72" width="220" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="VCs-GD-a7X"/>
+                                    <constraint firstAttribute="height" constant="200" id="xZY-gO-S51"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="49" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tdd-xq-iL7">
+                                <rect key="frame" x="-4" y="280" width="383" height="338"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="49" id="x5f-LZ-KTG" customClass="CellDetalhamentoTableViewCell" customModule="Minha_Farmacia" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="383" height="49"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x5f-LZ-KTG" id="8Ed-dw-yn1">
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="48.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cx6-iN-DZC">
+                                                    <rect key="frame" x="8" y="0.0" width="367" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="eIT-Mc-QPf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRW-Yr-TN6">
+                                                    <rect key="frame" x="8" y="23" width="367" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="tgI-Dl-auQ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cx6-iN-DZC" firstAttribute="trailing" secondItem="8Ed-dw-yn1" secondAttribute="trailingMargin" id="9pA-OU-YaM"/>
+                                                <constraint firstItem="QRW-Yr-TN6" firstAttribute="trailing" secondItem="8Ed-dw-yn1" secondAttribute="trailingMargin" id="AKU-lS-xfx"/>
+                                                <constraint firstItem="cx6-iN-DZC" firstAttribute="leading" secondItem="8Ed-dw-yn1" secondAttribute="leadingMargin" id="N7F-gA-vAQ"/>
+                                                <constraint firstItem="QRW-Yr-TN6" firstAttribute="leading" secondItem="8Ed-dw-yn1" secondAttribute="leadingMargin" id="i3f-UD-0dX"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="QRW-Yr-TN6" secondAttribute="bottom" constant="-3.5" id="iMk-Wu-UHa"/>
+                                                <constraint firstItem="cx6-iN-DZC" firstAttribute="top" secondItem="8Ed-dw-yn1" secondAttribute="topMargin" constant="-8" id="lO5-4t-9NL"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblConteudo" destination="QRW-Yr-TN6" id="vi6-Be-fgK"/>
+                                            <outlet property="lblTitulo" destination="cx6-iN-DZC" id="toR-H5-S7x"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="1Au-Us-C2f" id="VxN-oL-3I7"/>
+                                    <outlet property="delegate" destination="1Au-Us-C2f" id="l3T-7k-reT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Tdd-xq-iL7" firstAttribute="top" secondItem="X57-OD-azZ" secondAttribute="bottom" constant="8" id="3kU-u1-7vX"/>
+                            <constraint firstItem="X57-OD-azZ" firstAttribute="top" secondItem="v9G-pa-sXo" secondAttribute="bottom" constant="8" id="N6x-e4-YNt"/>
+                            <constraint firstItem="3ty-7k-uG5" firstAttribute="top" secondItem="Tdd-xq-iL7" secondAttribute="bottom" id="kpb-mt-pzC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tdd-xq-iL7" secondAttribute="trailing" constant="-20" id="nuV-zK-XfG"/>
+                            <constraint firstItem="Tdd-xq-iL7" firstAttribute="leading" secondItem="xnO-9V-VlH" secondAttribute="leadingMargin" constant="-20" id="off-mA-rcY"/>
+                            <constraint firstItem="X57-OD-azZ" firstAttribute="centerX" secondItem="xnO-9V-VlH" secondAttribute="centerX" id="sWf-7H-GM6"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="imgMedicamento" destination="X57-OD-azZ" id="hC7-Ce-PXG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fE7-Bc-mT1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1566.5" y="3023.5"/>
+        </scene>
         <!--Remedio-->
         <scene sceneID="m6l-C3-yK8">
             <objects>
@@ -2101,7 +2191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="woq-Q2-bpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1059.5" y="2756.5"/>
+            <point key="canvasLocation" x="-1001.5" y="2872.5"/>
         </scene>
         <!--Dosagem-->
         <scene sceneID="vez-Sy-bsj">

@@ -96,6 +96,8 @@
 		63DD76681DBEBF8600B1E051 /* delete26.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DD76671DBEBF8600B1E051 /* delete26.png */; };
 		63DD766A1DBEC85200B1E051 /* MedicamentoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DD76691DBEC85200B1E051 /* MedicamentoDAO.swift */; };
 		63DD766C1DBECB8500B1E051 /* DosagemDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DD766B1DBECB8500B1E051 /* DosagemDAO.swift */; };
+		63DF2C371DC3088900ACFBB4 /* pontual.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DF2C351DC3088900ACFBB4 /* pontual.png */; };
+		63DF2C381DC3088900ACFBB4 /* atraso.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DF2C361DC3088900ACFBB4 /* atraso.png */; };
 		63DF3B3B1DA6FA3E00896F34 /* logo_mf_transparente.png in Resources */ = {isa = PBXBuildFile; fileRef = 63DF3B3A1DA6FA3E00896F34 /* logo_mf_transparente.png */; };
 		63E111481DB2D30C005D319D /* TrocaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E111471DB2D30C005D319D /* TrocaViewController.swift */; };
 		63E1114A1DB312E7005D319D /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E111491DB312E7005D319D /* PerfilViewController.swift */; };
@@ -208,6 +210,8 @@
 		63DD76671DBEBF8600B1E051 /* delete26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete26.png; sourceTree = "<group>"; };
 		63DD76691DBEC85200B1E051 /* MedicamentoDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicamentoDAO.swift; sourceTree = "<group>"; };
 		63DD766B1DBECB8500B1E051 /* DosagemDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DosagemDAO.swift; sourceTree = "<group>"; };
+		63DF2C351DC3088900ACFBB4 /* pontual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pontual.png; sourceTree = "<group>"; };
+		63DF2C361DC3088900ACFBB4 /* atraso.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atraso.png; sourceTree = "<group>"; };
 		63DF3B3A1DA6FA3E00896F34 /* logo_mf_transparente.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo_mf_transparente.png; sourceTree = "<group>"; };
 		63E111471DB2D30C005D319D /* TrocaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrocaViewController.swift; sourceTree = "<group>"; };
 		63E111491DB312E7005D319D /* PerfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
@@ -429,6 +433,8 @@
 		63DD765E1DBEB0CB00B1E051 /* icones_apresentado */ = {
 			isa = PBXGroup;
 			children = (
+				63DF2C351DC3088900ACFBB4 /* pontual.png */,
+				63DF2C361DC3088900ACFBB4 /* atraso.png */,
 				63DD76671DBEBF8600B1E051 /* delete26.png */,
 				63DD76611DBEB12200B1E051 /* Prescriptions.png */,
 				63DD76621DBEB12200B1E051 /* Medications.png */,
@@ -540,7 +546,9 @@
 				63D507351DA33601008FB1C3 /* pintado26.png in Resources */,
 				631136EE1D666EBE004BA4B8 /* back.png in Resources */,
 				631154DF1D60392A009C18DA /* negado.png in Resources */,
+				63DF2C381DC3088900ACFBB4 /* atraso.png in Resources */,
 				631154DE1D60392A009C18DA /* ok.png in Resources */,
+				63DF2C371DC3088900ACFBB4 /* pontual.png in Resources */,
 				6382F0CE1D64F6C200958E54 /* plus.png in Resources */,
 				6318397A1D693D4F008BBB18 /* barcode.png in Resources */,
 				6393CA721D55B2A2003B3E71 /* mulher.png in Resources */,

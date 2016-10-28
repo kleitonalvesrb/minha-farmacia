@@ -451,12 +451,28 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             cell.img.contentMode = .Center
             
         }else{
-          let next =   verificaProximaDoseMedicamento(user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes)
-            cell.img.image = imgArray[indexPath.row]
+            let dataAtual = NSDate()
+            let next =   verificaProximaDoseMedicamento(user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes,dataAtual: dataAtual)
+            let last = verificaDoseAnterior(user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes, dataAtual: dataAtual)
+            
+            let pendente = verificaPendenciasAteDataAtual(user.medicamento[indexPath.row - 1].dosagemMedicamento.id, dataAtual: dataAtual)
+            
+            
+            
+            
+            cell.img.image = imgArray[indexPath.row] // coloca a foto na celula
             if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
-                cell.labelData.text = "Concluido"
+//                cell.layer.borderWidth = 4
+//                cell.layer.borderColor = UIColor.redColor().CGColor
+                cell.imgIndicativaPontual.image = UIImage(named: "pontual.png")
+                cell.labelData.text = "Concluido" // coloca concluido no medicamento q ja passou por todo o tratamento
             }else{
-                cell.labelData.text = Util().formataDataHoraPadrao(next)
+                if pendente{
+                    cell.imgIndicativaAtraso.image = UIImage(named: "atraso.png")
+                }else{
+                    cell.imgIndicativaAtraso.image = UIImage(named: "pontual.png")
+                }
+                cell.labelData.text = Util().formataDataHoraPadrao(next) //coloca a proxima data da dose
             }
         }
         return cell
@@ -464,8 +480,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     /**
         Esse método irá procurar e encontrar qual a proxima notificacao do medicamento
      */
-    func verificaProximaDoseMedicamento(notificacoes:[Notificacao]) -> NSDate{
-        let dataAtual = NSDate()
+    func verificaProximaDoseMedicamento(notificacoes:[Notificacao], dataAtual:NSDate) -> NSDate{
         var nextNotification : NSDate = NSDate()
         for n in notificacoes{
             let diferenca = diferencaMinEntreDuasDatas(dataAtual, data2: n.dataNotificacao)
@@ -476,6 +491,41 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         }
         return nextNotification
     }
+    /**
+        Retorna true quando a dosagem nao esta confirmada
+     */
+    func verificaPendenciasAteDataAtual(idDosagem: Int, dataAtual:NSDate) -> Bool{
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let notificacoes = NotificacaoDAO().buscaNotificacaoIdDosagem(contexto, idDosagem: idDosagem)
+        for i in notificacoes{
+            if diferencaMinEntreDuasDatas(dataAtual, data2: i.dataNotificacao) <= 0 {
+                if i.confirmado != 1{
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    /**
+     Esse método irá procurar e encontrar qual a notificacao anteriro
+     */
+    func verificaDoseAnterior(notificacoes:[Notificacao], dataAtual:NSDate) -> NSDate{
+        var nextNotification : NSDate = NSDate()
+        var i:Int = 0
+        for n in notificacoes{
+            let diferenca = diferencaMinEntreDuasDatas(dataAtual, data2: n.dataNotificacao)
+            if diferenca > 0 {
+                if ((i - 1) >= 0){
+                    nextNotification = notificacoes[i - 1].dataNotificacao
+                }
+                break
+            }
+         i += 1
+        }
+        return nextNotification
+    }
+
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0{

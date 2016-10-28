@@ -12,5 +12,7 @@ class MedicamentoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var labelFundo: UILabel!
     @IBOutlet weak var labelData: UILabel!
+    @IBOutlet weak var imgIndicativaPontual: UIImageView!
+    @IBOutlet weak var imgIndicativaAtraso: UIImageView!
     
 }

@@ -1193,7 +1193,7 @@
                                                 <rect key="frame" x="1" y="1" width="319" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7B4-B5-qIt">
@@ -1202,7 +1202,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="TEy-Vp-nOJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxI-c0-djH">
@@ -1211,7 +1211,7 @@
                                                     <constraint firstAttribute="width" constant="266" id="8vD-4g-0Yv"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1461,8 +1461,8 @@
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eT7-TY-yxs">
-                                                    <rect key="frame" x="34" y="87" width="72" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eT7-TY-yxs">
+                                                    <rect key="frame" x="8" y="86.5" width="126" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1471,8 +1471,8 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="eT7-TY-yxs" firstAttribute="leading" secondItem="dep-RK-MS2" secondAttribute="leadingMargin" constant="26" id="5iH-i7-QjN"/>
-                                            <constraint firstItem="eT7-TY-yxs" firstAttribute="centerX" secondItem="WE5-aD-SBw" secondAttribute="centerX" constant="-1" id="6jr-yq-RSn"/>
+                                            <constraint firstItem="eT7-TY-yxs" firstAttribute="leading" secondItem="dep-RK-MS2" secondAttribute="leadingMargin" id="5iH-i7-QjN"/>
+                                            <constraint firstItem="eT7-TY-yxs" firstAttribute="centerX" secondItem="WE5-aD-SBw" secondAttribute="centerX" id="6jr-yq-RSn"/>
                                             <constraint firstItem="WdG-1J-hD9" firstAttribute="centerX" secondItem="dep-RK-MS2" secondAttribute="centerX" id="7zO-Yo-iOt"/>
                                             <constraint firstItem="WdG-1J-hD9" firstAttribute="width" secondItem="dep-RK-MS2" secondAttribute="width" id="81s-i5-PJB"/>
                                             <constraint firstItem="WE5-aD-SBw" firstAttribute="width" secondItem="dep-RK-MS2" secondAttribute="width" id="94B-Ea-kTF"/>

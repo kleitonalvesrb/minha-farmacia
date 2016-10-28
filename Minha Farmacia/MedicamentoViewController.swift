@@ -451,11 +451,32 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             cell.img.contentMode = .Center
             
         }else{
+          let next =   verificaProximaDoseMedicamento(user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes)
             cell.img.image = imgArray[indexPath.row]
-            cell.labelData.text = nomes[indexPath.row - 1]
+            if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
+                cell.labelData.text = "Concluido"
+            }else{
+                cell.labelData.text = Util().formataDataHoraPadrao(next)
+            }
         }
         return cell
     }
+    /**
+        Esse método irá procurar e encontrar qual a proxima notificacao do medicamento
+     */
+    func verificaProximaDoseMedicamento(notificacoes:[Notificacao]) -> NSDate{
+        let dataAtual = NSDate()
+        var nextNotification : NSDate = NSDate()
+        for n in notificacoes{
+            let diferenca = diferencaMinEntreDuasDatas(dataAtual, data2: n.dataNotificacao)
+            if diferenca > 0 {
+                nextNotification = n.dataNotificacao
+                break
+            }
+        }
+        return nextNotification
+    }
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0{
             performSegueWithIdentifier("cadastrarMedicamento", sender: self)

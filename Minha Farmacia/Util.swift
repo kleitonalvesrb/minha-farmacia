@@ -48,6 +48,19 @@ class Util: NSObject {
  
     }
     /**
+     método responsavel por formatar a data no padrao para apresentar ao usuario
+     */
+    func formataDataHoraPadrao(data: NSDate) -> String{
+        
+        let dateString = "\(data)"
+        let dateFormatter = NSDateFormatter() //Instância do date Formatter
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
+        let date = dateFormatter.dateFromString(dateString)
+        dateFormatter.dateFormat = "dd/MM HH:mm"
+        return dateFormatter.stringFromDate(date!)
+        
+    }
+    /**
         método responsavel por tratar a data de cadastro da receita, recebe como string e retorna dd/mm/yyyy hh:mm
      */
     func formataDataCadastroReceita(dataString: String) ->NSDate{

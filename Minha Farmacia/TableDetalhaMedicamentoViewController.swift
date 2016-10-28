@@ -21,6 +21,7 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
     var arrayTitulos = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Detalhamento"
 
         // Do any additional setup after loading the view.
     }
@@ -183,7 +184,21 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         //return objectArray[section].sectionName
         return arrayDadosMedicamento[section].nomeSecao
     }
-
+    /*
+        Método responsavel por trocar a a fonte do cabeçalho da sessao
+     
+     */
+    func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        let title = UILabel()
+        title.font = UIFont(name: "Futura", size: 20)!
+        title.textColor = UIColor(red: 53.0/255.0, green: 168.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+        
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font=title.font
+        header.textLabel?.textColor=title.textColor
+        header.textLabel?.center.x = self.view.frame.width
+    }
     /*
     // MARK: - Navigation
 

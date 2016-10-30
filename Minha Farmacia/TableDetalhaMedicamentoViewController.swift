@@ -19,6 +19,7 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
     }
     var arrayDadosMedicamento = [DadosMedicamento]()
     var arrayTitulos = [String]()
+    var arrayNotificacoesAtrasadas = [Notificacao]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Detalhamento"
@@ -49,7 +50,7 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
      */
     func populaArrayDadosMedicamento()-> Array<String>{
         var arrayDados = [String]()
-        arrayDados.append("\(medicamento.dosagemMedicamento.dataInicio)")
+        arrayDados.append("\(Util().formataPadraoCompleto("\(medicamento.dosagemMedicamento.dataInicio)"))")
         arrayDados.append("\(medicamento.dosagemMedicamento.intervaloDose) Hora(s)")
         arrayDados.append("\(medicamento.dosagemMedicamento.periodoTratamento) Dia(s) ")
         arrayDados.append("\(medicamento.dosagemMedicamento.quantidade) \(tipoMedicamentoApresentacaoDosagem(medicamento.dosagemMedicamento.tipoMedicamento))")
@@ -94,7 +95,8 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         let dataAtual = NSDate()
         for n in notificacoes{
             if diferencaMinEntreDuasDatas(dataAtual, data2: n.dataNotificacao) <= 0{
-                horarioNotificacaoAtrasoString.append("\(n.dataNotificacao)")
+                arrayNotificacoesAtrasadas.append(n)
+                horarioNotificacaoAtrasoString.append(Util().formataPadraoCompleto("\(n.dataNotificacao)"))
             }
         }
         return horarioNotificacaoAtrasoString
@@ -207,6 +209,23 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         header.textLabel?.font=title.font
         header.textLabel?.textColor=title.textColor
         header.textLabel?.center.x = self.view.frame.width
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1{
+            let data = arrayNotificacoesAtrasadas[indexPath.item].dataNotificacao
+            showAlert("Atraso", msg: " Confirmar que tomou o medicamento na data \(Util().formataPadraoCompleto("\(data)"))", titleBtn: "ok")
+        }
+    }
+    
+    /**
+     Apresenta alerta na tela
+     */
+    func showAlert(title: String, msg: String, titleBtn: String){
+        let alerta = UIAlertController(title: title, message:msg, preferredStyle: .Alert)
+        alerta.addAction(UIAlertAction(title: titleBtn, style: .Default, handler: { (action) in
+            //self.dismissViewControllerAnimated(true, completion: nil)
+        }))
+        self.presentViewController(alerta, animated: true, completion: nil)
     }
     /*
     // MARK: - Navigation

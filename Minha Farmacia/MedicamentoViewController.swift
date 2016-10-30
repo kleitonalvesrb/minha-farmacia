@@ -35,7 +35,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.navigationController?.navigationBar.topItem?.title = "Remédios"
         configuraLabelInfo()
         
-        configuracaoTableView()
         apresentacaoAlertaNovoMedicamento()
     }
     func apresentacaoAlertaNovoMedicamento(){
@@ -55,6 +54,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         
         self.collectionView.delegate = self
         collectionView.dataSource = self
+
         
         
         let imgPlus:UIImageView = UIImageView()
@@ -77,12 +77,14 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                 self.imgArray.append(remedio.fotoMedicamento)
                 self.nomes.append(remedio.nome)
             }
+            //collectionView.reloadData()
             let verificaConexao = VerificarConexao()
             if mDao.buscaMedicamentoNaoSicronizados(contexto).count != 0 && verificaConexao.isConnectedToNetwork(){
                 acaoSicronizarMedicamentoServidor("Sicronizar", msg: "Você tem medicamentos que não estão sicronizados, deseja sicronizar agora?", contexto: contexto)
             }//
             util.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: activityInfo, comInvisibilidade: true, comAnimacao: false)
         }
+       // self.collectionView.reloadData()
         
         
     }
@@ -195,10 +197,10 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     
     
     override func viewWillAppear(animated: Bool) {
+        configuracaoTableView() //configura a collecion
         let navigationBarAppearace = UINavigationBar.appearance()
         
         navigationBarAppearace.translucent = false
-        
         
         
         navigationBarAppearace.barTintColor = UIColor(red: 53.0/255.0, green: 168.0/255.0, blue: 176.0/255.0, alpha: 1.0)
@@ -207,6 +209,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.navigationItem.hidesBackButton = true
         
         self.navigationItem.title = "Medicamentos"
+        collectionView.reloadData()
     }
     func goBack(){
         dismissViewControllerAnimated(true, completion: nil)
@@ -251,11 +254,10 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                         self.imgArray.append(remedio.fotoMedicamento)
                         self.nomes.append(remedio.nome)
                     }
-                    self.collectionView.reloadData()
                 }else{
                     print("deu ruim em algo")
                 }
-                
+             self.collectionView.reloadData()
             }
             self.util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
         }
@@ -443,7 +445,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
      */
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MedicamentoCollectionViewCell
-        
         if indexPath.row == 0{
             cell.img.image = imgArray[indexPath.row]
             cell.labelFundo.hidden = true
@@ -453,7 +454,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         }else{
             let dataAtual = NSDate()
             let next =   verificaProximaDoseMedicamento(user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes,dataAtual: dataAtual)
-            let last = verificaDoseAnterior(user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes, dataAtual: dataAtual)
             
             let pendente = verificaPendenciasAteDataAtual(user.medicamento[indexPath.row - 1].dosagemMedicamento.id, dataAtual: dataAtual)
             
@@ -462,15 +462,17 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             
             cell.img.image = imgArray[indexPath.row] // coloca a foto na celula
             if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
-//                cell.layer.borderWidth = 4
-//                cell.layer.borderColor = UIColor.redColor().CGColor
-                cell.imgIndicativaPontual.image = UIImage(named: "pontual.png")
+                if pendente {
+                    cell.imgIndicativaAtraso.image = UIImage(named: "atraso.png")
+                }else{
+                    cell.imgIndicativaPontual.image = UIImage(named: "pontual.png")
+                }
                 cell.labelData.text = "Concluido" // coloca concluido no medicamento q ja passou por todo o tratamento
             }else{
                 if pendente{
                     cell.imgIndicativaAtraso.image = UIImage(named: "atraso.png")
                 }else{
-                    cell.imgIndicativaAtraso.image = UIImage(named: "pontual.png")
+                    cell.imgIndicativaPontual.image = UIImage(named: "pontual.png")
                 }
                 cell.labelData.text = Util().formataDataHoraPadrao(next) //coloca a proxima data da dose
             }

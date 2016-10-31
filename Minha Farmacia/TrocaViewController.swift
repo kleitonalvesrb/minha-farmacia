@@ -10,8 +10,11 @@ import UIKit
 
 class TrocaViewController: UIViewController {
     var tipoDeMsg = 0
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        indicator.hidden = true
         
         // performSegueWithIdentifier("tabbar", sender: self)
         // Do any additional setup after loading the view.
@@ -24,6 +27,16 @@ class TrocaViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         if tipoDeMsg == 1{
             geraAlerta("Sucesso", mensagem: "Receita Salva com sucesso")
+        }else if tipoDeMsg ==  3{
+            indicator.hidden = false
+            indicator.startAnimating()
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), (1 * Int64(NSEC_PER_SEC)) / 2)
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.indicator.stopAnimating()
+                self.indicator.hidden = true
+                self.redirecionar()
+            }
+
         }else{
             geraAlerta("Sucesso", mensagem: "Medicamento salvo com sucesso")
         }

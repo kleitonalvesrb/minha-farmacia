@@ -209,7 +209,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.navigationItem.hidesBackButton = true
         
         self.navigationItem.title = "Medicamentos"
-        collectionView.reloadData()
+        //collectionView.reloadData()
     }
     func goBack(){
         dismissViewControllerAnimated(true, completion: nil)
@@ -453,7 +453,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             
         }else{
             let dataAtual = NSDate()
-            let next =   verificaProximaDoseMedicamento(user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes,dataAtual: dataAtual)
+            let arr = user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes
+            
+            let next =   verificaProximaDoseMedicamento(arr,dataAtual: dataAtual)
             
             let pendente = verificaPendenciasAteDataAtual(user.medicamento[indexPath.row - 1].dosagemMedicamento.id, dataAtual: dataAtual)
             
@@ -461,6 +463,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             
             
             cell.img.image = imgArray[indexPath.row] // coloca a foto na celula
+            print("=============")
             if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
                 if pendente {
                     cell.imgIndicativaAtraso.image = UIImage(named: "atraso.png")
@@ -625,6 +628,14 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
+    @IBAction func addItem(sender: AnyObject) {
+        print("clicou")
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("nextView") as! TrocaViewController
+        nextViewController.tipoDeMsg = 3
+        self.presentViewController(nextViewController, animated:false, completion:nil)
+    }
     
 
 }

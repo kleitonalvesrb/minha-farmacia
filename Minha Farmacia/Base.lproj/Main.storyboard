@@ -1433,8 +1433,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I0x-vF-epu">
-                                <rect key="frame" x="-4" y="21" width="383" height="659"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="I0x-vF-epu">
+                                <rect key="frame" x="-4" y="65" width="383" height="566"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l4p-C3-Rgn">
                                     <size key="itemSize" width="142" height="114"/>
@@ -1545,7 +1545,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vLP-z8-mLe">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Q1N-8A-nmd"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Q1N-8A-nmd">
+                            <connections>
+                                <action selector="addItem:" destination="MKv-OB-zz1" id="Fgv-fe-g0d"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -1593,9 +1597,23 @@
                     <view key="view" contentMode="scaleToFill" id="o62-FX-x6e">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rG7-XR-5ZC">
+                                <rect key="frame" x="275.5" y="274.5" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="cAS-KJ-49x"/>
+                                    <constraint firstAttribute="height" constant="50" id="y3e-nU-TYY"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" red="0.24313725489999999" green="0.70980392160000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="rG7-XR-5ZC" firstAttribute="centerY" secondItem="o62-FX-x6e" secondAttribute="centerY" id="CHf-7t-GQP"/>
+                            <constraint firstItem="rG7-XR-5ZC" firstAttribute="centerX" secondItem="o62-FX-x6e" secondAttribute="centerX" id="uNA-cY-YYB"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="indicator" destination="rG7-XR-5ZC" id="NYM-lL-fE0"/>
                         <segue destination="k70-Sf-U1J" kind="show" identifier="tabbar" animates="NO" id="0mc-wf-GZF"/>
                     </connections>
                 </viewController>
@@ -2458,6 +2476,6 @@
         <image name="icoRemedioSelecionado" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HqM-wA-IY4"/>
+        <segue reference="0mc-wf-GZF"/>
     </inferredMetricsTieBreakers>
 </document>

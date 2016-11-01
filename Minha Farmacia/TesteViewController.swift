@@ -32,27 +32,37 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
         
-        
-        
+
         
         let app:UIApplication = UIApplication.sharedApplication();
         let eventArray:NSArray = app.scheduledLocalNotifications!;
         print("qtd ---->\(eventArray.count)<-----")
-        for i in eventArray{
-            print(i)
-           //UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
+        
+        if UsuarioDAO().verificaUserLogado(contexto){
+            user = UsuarioDAO().recuperaDadosUsuario(contexto)
+
+            Util().configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade: false, comAnimacao: true)
         }
-//        let usuarioDao = UsuarioDAO()
-        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let contexto: NSManagedObjectContext = appDel.managedObjectContext
-        for m in MedicamentoDAO().recuperarMedicamentos(contexto){
-            print("Id remedio \(m.id) ID dosagem \(m.dosagemMedicamento.id)")
-            for n in m.dosagemMedicamento.notificacoes{
-                print("Notificacoes ->\(n.id)")
-                print("Data => \(n.dataNotificacao)")
-            }
-        }
+        
+        
+        
+//        for i in eventArray{
+//            print(i)
+//           //UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
+//        }
+////        let usuarioDao = UsuarioDAO()
+//        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+//        for m in MedicamentoDAO().recuperarMedicamentos(contexto){
+//            print("Id remedio \(m.id) ID dosagem \(m.dosagemMedicamento.id)")
+//            for n in m.dosagemMedicamento.notificacoes{
+//                print("Notificacoes ->\(n.id)")
+//                print("Data => \(n.dataNotificacao)")
+//            }
+//        }
         
 //        if usuarioDao.verificaUserLogado(contexto) {
 //            print(usuarioDao.recuperaDadosUsuario(contexto).nome)
@@ -187,10 +197,16 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         //pegaDadosFacebook()
         
     }
+    override func viewDidAppear(animated: Bool) {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        if UsuarioDAO().verificaUserLogado(contexto){
+            performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
+        }
+    }
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{
         
-//        Alamofire.request(.POST, "").authenticate(user: <#T##String#>, password: <#T##String#>)
         
         
         

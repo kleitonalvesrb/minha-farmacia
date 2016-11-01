@@ -302,7 +302,15 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
      */
     func salvarMedicamentoDosagemServidor(){
         let url = UrlWS()
-        let user = Usuario.sharedInstance
+        var user = Usuario()
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        if UsuarioDAO().verificaUserLogado(contexto){
+            user = UsuarioDAO().recuperaDadosUsuario(contexto)
+
+        }
+
+
         Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters:criaDicMedicamento() as? [String : AnyObject] , encoding: .JSON, headers: nil).responseJSON { (response) in
             
             if response.response?.statusCode == 200{

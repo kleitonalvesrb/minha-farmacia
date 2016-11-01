@@ -632,11 +632,12 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
 
     @IBAction func addItem(sender: AnyObject) {
         print("clicou")
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("nextView") as! TrocaViewController
-        nextViewController.tipoDeMsg = 3
-        self.presentViewController(nextViewController, animated:false, completion:nil)
+        self.collectionView.reloadData()
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        
+//        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("nextView") as! TrocaViewController
+//        nextViewController.tipoDeMsg = 3
+//        self.presentViewController(nextViewController, animated:false, completion:nil)
     }
     
 

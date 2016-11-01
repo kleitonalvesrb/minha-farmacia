@@ -235,25 +235,31 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         if indexPath.section == 1{
             let confirmar = UITableViewRowAction(style: .Normal, title: "Já Tomei") { action, index in
-                let data = Util().formataPadraoCompleto("\(self.arrayNotificacoesAtrasadas[indexPath.row].dataNotificacao)")
-                self.confirmarTomou(self.arrayNotificacoesAtrasadas[indexPath.row].id,
-                                    data: data)
-                
-//                self.showAlert("Confirar", msg: "\(self.arrayNotificacoesAtrasadas[indexPath.row].id)", titleBtn: "ok")
-//                self.confirmaTomouDoseMedicamento((self.arrayNotificacoesAtrasadas[indexPath.row].id))
+                var arr = self.arrayDadosMedicamento[indexPath.section].valores
+                self.arrayDadosMedicamento[indexPath.section].valores = nil
+                arr.removeAtIndex(indexPath.row)
+                self.arrayDadosMedicamento[indexPath.section].valores = arr
+                var arrayPath = [NSIndexPath]()
+                arrayPath.append(indexPath)
+                self.confirmaTomouDoseMedicamento((self.arrayNotificacoesAtrasadas[indexPath.row].id))
+
+                self.arrayNotificacoesAtrasadas.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths(arrayPath, withRowAnimation: UITableViewRowAnimation.Left)
+
+//                print(self.arrayNotificacoesAtrasadas.count)
 //                self.arrayNotificacoesAtrasadas.removeAtIndex(indexPath.row)
-//                self.tableView.reloadData()
+//                print(self.arrayNotificacoesAtrasadas.count)
+//                var arrayPath = [NSIndexPath]()
+//                arrayPath.append(indexPath)
+//                print(arrayPath.count)
+//                tableView.deleteRowsAtIndexPaths(arrayPath, withRowAnimation: UITableViewRowAnimation.Left)
+                //self.tableView.deleteRows(at: [indexPath], with: .left)
             }
             
             confirmar.backgroundColor = UIColor.blueColor()
             return [confirmar]
         }
-        //        if titulos[indexPath.row].lowercaseString == "Nome".lowercaseString{
-        //            let alterar = UITableViewRowAction(style: .Normal, title: "Alterar") { action, index in
-        //                self.alteraNomeUsuario(indexPath.row)
-        //            }
-        //            alterar.backgroundColor = UIColor.blueColor()
-        //            return [alterar]
+
         return nil
     }
     func confirmaTomouDoseMedicamento(idNotificacao: Int){
@@ -261,8 +267,6 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         NotificacaoDAO().confirmaDosagem(contexto, idNotificacao: idNotificacao)
-        
-
     }
 
     

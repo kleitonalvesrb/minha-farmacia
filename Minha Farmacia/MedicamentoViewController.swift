@@ -31,8 +31,8 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         super.viewDidLoad()
         
         
-        self.title = "Remédios"
-        self.navigationController?.navigationBar.topItem?.title = "Remédios"
+        self.title = "Medicamentos"
+        self.navigationController?.navigationBar.topItem?.title = "Medicamentos"
         configuraLabelInfo()
         
         apresentacaoAlertaNovoMedicamento()

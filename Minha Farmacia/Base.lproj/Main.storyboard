@@ -2503,11 +2503,11 @@
             </objects>
             <point key="canvasLocation" x="1418.5" y="267.5"/>
         </scene>
-        <!--Remedios-->
+        <!--Medicamentos-->
         <scene sceneID="u9i-n3-dFc">
             <objects>
-                <navigationController storyboardIdentifier="navRemedios" automaticallyAdjustsScrollViewInsets="NO" id="gSm-N2-W28" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Remedios" image="icoRemedio" selectedImage="icoRemedioSelecionado" id="h5r-kr-YS5"/>
+                <navigationController storyboardIdentifier="navRemedios" title="Medicamentos" automaticallyAdjustsScrollViewInsets="NO" id="gSm-N2-W28" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Medicamentos" image="icoRemedio" selectedImage="icoRemedioSelecionado" id="h5r-kr-YS5"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UV1-kb-Dar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

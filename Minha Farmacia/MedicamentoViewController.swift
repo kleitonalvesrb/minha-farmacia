@@ -48,6 +48,8 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         util.configuraLabelInformacao(lblInfo, comInvisibilidade: false , comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
     }
     func configuracaoTableView(){
+        imgArray.removeAll()
+        nomes.removeAll()
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         let mDao = MedicamentoDAO()

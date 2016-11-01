@@ -14,6 +14,9 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     var captureSession:AVCaptureSession?
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
+    var input: AVCaptureDeviceInput!
+    var captureMetadataOutput : AVCaptureMetadataOutput!
+    
     
     //@IBOutlet weak var messageLabel: UILabel!
     // Added to support different barcodes
@@ -55,8 +58,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        videoPreviewLayer?.connection.enabled = true
-        captureSession?.stopRunning()
+
     }
     @IBAction func btnFlash(sender: AnyObject) {
         alteraImagemBotaoFlash(imagem: "flash_preenchido.png")
@@ -102,8 +104,15 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
         retiraTabBar(false)
         apresentaBarraNavegacao(false)
-
-        videoPreviewLayer?.hidden = true
+        if input != nil {
+            captureSession?.removeInput(input)
+        }
+        if captureMetadataOutput != nil {
+            captureSession?.removeOutput(captureMetadataOutput)
+        }
+        captureSession?.stopRunning()
+        //videoPreviewLayer?.hidden = true
+        qrCodeFrameView?.removeFromSuperview()
         qrCodeFrameView?.hidden = true
         
         
@@ -256,7 +265,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         
         do {
             // Get an instance of the AVCaptureDeviceInput class using the previous device object.
-            let input = try AVCaptureDeviceInput(device: captureDevice)
+            input = try AVCaptureDeviceInput(device: captureDevice)
             
             // Initialize the captureSession object.
             captureSession = AVCaptureSession()
@@ -264,7 +273,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
             captureSession?.addInput(input)
             
             // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
-            let captureMetadataOutput = AVCaptureMetadataOutput()
+            captureMetadataOutput = AVCaptureMetadataOutput()
             captureSession?.addOutput(captureMetadataOutput)
             
             // Set delegate and use the default dispatch queue to execute the call back

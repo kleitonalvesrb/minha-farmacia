@@ -15,4 +15,9 @@ class MedicamentoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imgIndicativaPontual: UIImageView!
     @IBOutlet weak var imgIndicativaAtraso: UIImageView!
     
+    override func prepareForReuse() {
+        imgIndicativaAtraso.image = nil
+        img.image = UIImage(named: "Medications")
+        imgIndicativaPontual.image = nil
+    }
 }

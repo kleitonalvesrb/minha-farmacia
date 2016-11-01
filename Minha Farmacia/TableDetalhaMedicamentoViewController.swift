@@ -195,6 +195,7 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         //return objectArray[section].sectionName
         return arrayDadosMedicamento[section].nomeSecao
     }
+ 
     /*
         Método responsavel por trocar a a fonte do cabeçalho da sessao
      
@@ -211,6 +212,17 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         header.textLabel?.center.x = self.view.frame.width
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0{
+            if arrayTitulos[indexPath.row].lowercaseString == "Descrição Técnica".lowercaseString {
+                let userDefautls = NSUserDefaults.standardUserDefaults()
+                let user = Usuario.sharedInstance
+                let id = user.medicamento[indexPath.row].id
+                userDefautls.setInteger(id, forKey: "posicaoMedicamentoDescTec")
+                        
+                
+                performSegueWithIdentifier("segueDescTec", sender: self)
+            }
+        }
         if indexPath.section == 1{
             let data = arrayNotificacoesAtrasadas[indexPath.item].dataNotificacao
             showAlert("Atraso", msg: " Confirmar que tomou o medicamento na data \(Util().formataPadraoCompleto("\(data)"))", titleBtn: "ok")

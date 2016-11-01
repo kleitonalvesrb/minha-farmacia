@@ -94,6 +94,37 @@ class MedicamentoDAO: NSObject {
         }
         return false
     }
+    
+    /**
+     verifica se existe o medicamento com o id informado
+     */
+    func buscaMedicamentoId(contexto: NSManagedObjectContext, id : Int) -> Medicamento{
+        let request = NSFetchRequest(entityName: "Medicamento")
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format: "id_medicamento = %i", id)
+        let medicamento = Medicamento()
+        let util = Util()
+        let dosagemDao = DosagemDAO()
+        do {
+            let results = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                medicamento.id = result.valueForKey("id_medicamento") as! Int
+                medicamento.apresentacao = result.valueForKey("apresentacao") as? String
+                medicamento.classeTerapeutica = result.valueForKey("classe_terapeutica") as? String
+                medicamento.codBarras = result.valueForKey("cod_barras") as? String
+                medicamento.laboratorio = result.valueForKey("laboratorio") as? String
+                medicamento.nome = result.valueForKey("nome") as? String
+                medicamento.principioAtivo = result.valueForKey("principio_ativo") as? String
+                medicamento.fotoMedicamento = util.convertNSDataToImage(result.valueForKey("foto_medicamento") as! NSData)
+                medicamento.dosagemMedicamento = dosagemDao.buscaDosagemMedicamento(contexto, idMedicamento: medicamento.id)
+            }
+
+        }catch{
+            print("erro ao verificar")
+        }
+        return medicamento
+    }
+
     /**
         busca os medicamentos que nao foram sicronizados
      */

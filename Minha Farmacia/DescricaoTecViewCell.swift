@@ -1,18 +1,17 @@
 //
-//  TableViewCellPerfil.swift
+//  DescricaoTecViewCell.swift
 //  Farmácia
 //
-//  Created by Kleiton Batista on 16/10/16.
+//  Created by Kleiton Batista on 31/10/16.
 //  Copyright © 2016 Kleiton Batista. All rights reserved.
 //
 
 import UIKit
 
-class TableViewCellPerfil: UITableViewCell {
+class DescricaoTecViewCell: UITableViewCell {
 
-    @IBOutlet weak var labelTitulo: UILabel!
-    @IBOutlet weak var labelConteudo: UILabel!
-    
+    @IBOutlet weak var lblTitulo: UILabel!
+    @IBOutlet weak var lblConteudo: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

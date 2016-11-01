@@ -460,12 +460,11 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             let next =   verificaProximaDoseMedicamento(arr,dataAtual: dataAtual)
             
             let pendente = verificaPendenciasAteDataAtual(user.medicamento[indexPath.row - 1].dosagemMedicamento.id, dataAtual: dataAtual)
-            
+            print("---->\(diferencaMinEntreDuasDatas(NSDate(), data2: next))<-------")
             
             
             
             cell.img.image = imgArray[indexPath.row] // coloca a foto na celula
-            print("=============")
             if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
                 if pendente {
                     cell.imgIndicativaAtraso.image = UIImage(named: "red_marker.png")
@@ -596,10 +595,10 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         let cal = NSCalendar.currentCalendar()
         
         
-        let unit:NSCalendarUnit = .Minute
+        let unit:NSCalendarUnit = .Second
         let components = cal.components(unit, fromDate: data1, toDate: data2, options: .MatchFirst)
         
-        return components.minute
+        return components.second
     }
     /**
      Realiza calculo para saber a quantidade de vezes a pessoa deverá tomar o medicamento, com isso

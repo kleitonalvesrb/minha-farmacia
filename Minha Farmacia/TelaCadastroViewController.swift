@@ -20,7 +20,6 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     @IBOutlet weak var campoSenha: UITextField!
     @IBOutlet weak var campoEmail: UITextField!
     @IBOutlet weak var campoNome: UITextField!
-    @IBOutlet weak var btnEscolherImg: UIButton!
     
     let arraySexo = ["","Masculino", "Feminino"]
 
@@ -37,7 +36,6 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     override func viewDidLoad() {
         super.viewDidLoad()
         btnCadastrar.layer.cornerRadius = 5
-        btnEscolherImg.layer.cornerRadius = 5
 
         pickerSexo.dataSource = self
         pickerSexo.delegate = self
@@ -48,11 +46,21 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         campoEmail.delegate = self
         campoSenha.delegate = self
         campoDataNascimento.delegate = self
+        scroll.scrollEnabled = false
+        //667
+        if self.view.frame.height < 650{
+            scroll.scrollEnabled = true
+        }
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard)))
     
         utilidade.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: ActiviInfo, comInvisibilidade: true, comAnimacao: false)
 //        utilidade.configuraLabelInformacao(lblInfo, comVisibilidade: false, comIndicador: ActiviInfo, comVisibilidade: false, comStatus: false)
 
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        fotoPerfil.userInteractionEnabled = true
+        fotoPerfil.addGestureRecognizer(tapGestureRecognizer)
+        
+       
         configuracaoNavBar()
 
     }
@@ -240,7 +248,10 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         
     }
     /*+2*/
-   
+    func imageTapped(img: AnyObject)
+    {
+        formaDeCapturaFotoPerfil()
+    }
     @IBAction func escolherFoto(sender: AnyObject) {
         formaDeCapturaFotoPerfil()
     }

@@ -54,6 +54,10 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         isPowerFlash = false
         self.title = "Cadastro"
        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        imgRemedio.userInteractionEnabled = true
+        imgRemedio.addGestureRecognizer(tapGestureRecognizer)
+       
         habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
     }
     override func viewWillDisappear(animated: Bool) {
@@ -135,7 +139,10 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         self.tabBarController?.tabBar.hidden = inivisivel
 
     }
-    
+    func imageTapped(img: AnyObject)
+    {
+        escolherImg()
+    }
     @IBAction func escolherImgRemedio(sender: AnyObject) {
         escolherImg()
     }

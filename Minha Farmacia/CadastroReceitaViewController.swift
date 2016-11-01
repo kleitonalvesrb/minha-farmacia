@@ -29,6 +29,12 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
         
         btnSalvar.layer.cornerRadius = 5
         btnEscolherFoto.layer.cornerRadius = 5
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        imgReceita.userInteractionEnabled = true
+        imgReceita.addGestureRecognizer(tapGestureRecognizer)
+       
+        
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard)))
         
        
@@ -81,6 +87,18 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
     /**
         Acao do botao para escolher a foto
      */
+    func imageTapped(img: AnyObject)
+    {
+        formaDeCapturaFotoPerfil()
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard)))
+        
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CadastroReceitaViewController.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CadastroReceitaViewController.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+
+    }
     @IBAction func escolherFoto(sender: AnyObject) {
         formaDeCapturaFotoPerfil()
     }

@@ -41,11 +41,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         let eventArray:NSArray = app.scheduledLocalNotifications!;
         print("qtd ---->\(eventArray.count)<-----")
         
-        if UsuarioDAO().verificaUserLogado(contexto){
-            user = UsuarioDAO().recuperaDadosUsuario(contexto)
-
-            Util().configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade: false, comAnimacao: true)
-        }
+        
         
         
         
@@ -198,11 +194,11 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         
     }
     override func viewDidAppear(animated: Bool) {
-        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let contexto: NSManagedObjectContext = appDel.managedObjectContext
-        if UsuarioDAO().verificaUserLogado(contexto){
-            performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
-        }
+//        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+//        if UsuarioDAO().verificaUserLogado(contexto){
+//            performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
+//        }
     }
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{

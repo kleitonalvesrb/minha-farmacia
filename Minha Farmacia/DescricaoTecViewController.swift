@@ -105,8 +105,7 @@ class DescricaoTecViewController: UIViewController,UITableViewDataSource, UITabl
         }))
         self.presentViewController(alerta, animated: true, completion: nil)
     }
-
-    
+     
 
 
     /*

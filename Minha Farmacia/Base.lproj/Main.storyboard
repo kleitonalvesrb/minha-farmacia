@@ -2141,6 +2141,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imgMedicamento" destination="X57-OD-azZ" id="hC7-Ce-PXG"/>
+                        <outlet property="tableView" destination="Tdd-xq-iL7" id="J5W-sO-96h"/>
                         <segue destination="lMt-QF-YjI" kind="show" identifier="segueDescTec" id="pQq-UC-yFf"/>
                     </connections>
                 </viewController>

@@ -46,6 +46,26 @@ func buscaNotificacaoIdDosagem(contexto: NSManagedObjectContext, idDosagem: Int)
     }
     return notificacoes
 }
+    func confirmaDosagem(contexto: NSManagedObjectContext, idNotificacao:Int){
+        let request = NSFetchRequest(entityName: "Notificacao")
+        request.returnsObjectsAsFaults = false
+        request.predicate = NSPredicate(format: "id_notificacao = %i", idNotificacao)
+        do{
+            let results = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                result.setValue(1, forKey: "confirmado")
+                do{
+                    try contexto.save()
+                    print("confirmou o \(idNotificacao)")
+                }catch{
+                    print("erro ao salvar as alteracoes")
+                }
+            }
+        }catch{
+            print("erro ao buscar notificao correta")
+        }
+        
+    }
 
 
 }

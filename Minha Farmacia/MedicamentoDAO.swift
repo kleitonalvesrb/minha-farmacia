@@ -162,7 +162,7 @@ class MedicamentoDAO: NSObject {
         request.returnsObjectsAsFaults = false
         request.predicate = NSPredicate(format: "sicronizado = %@", NSNumber(bool: false))
         
-                do{
+        do{
             let results  = try contexto.executeFetchRequest(request)
             for result in results as! [NSManagedObject]{
                 result.setValue(true, forKey: "sicronizado")

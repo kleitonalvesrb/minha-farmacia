@@ -107,6 +107,8 @@
 		63E1114A1DB312E7005D319D /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E111491DB312E7005D319D /* PerfilViewController.swift */; };
 		63E1114C1DB31B58005D319D /* CellPerfilTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E1114B1DB31B58005D319D /* CellPerfilTableViewCell.swift */; };
 		63FA4DBB1DC1835C00FC07B9 /* LocalNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63FA4DBA1DC1835C00FC07B9 /* LocalNotificationHelper.swift */; };
+		63FAB27C1DC8234E002A6EF9 /* red_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 63FAB27A1DC8234E002A6EF9 /* red_marker.png */; };
+		63FAB27D1DC8234E002A6EF9 /* green_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 63FAB27B1DC8234E002A6EF9 /* green_marker.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -225,6 +227,8 @@
 		63E111491DB312E7005D319D /* PerfilViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
 		63E1114B1DB31B58005D319D /* CellPerfilTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellPerfilTableViewCell.swift; sourceTree = "<group>"; };
 		63FA4DBA1DC1835C00FC07B9 /* LocalNotificationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHelper.swift; sourceTree = "<group>"; };
+		63FAB27A1DC8234E002A6EF9 /* red_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red_marker.png; sourceTree = "<group>"; };
+		63FAB27B1DC8234E002A6EF9 /* green_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green_marker.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -441,6 +445,8 @@
 		63DD765E1DBEB0CB00B1E051 /* icones_apresentado */ = {
 			isa = PBXGroup;
 			children = (
+				63FAB27A1DC8234E002A6EF9 /* red_marker.png */,
+				63FAB27B1DC8234E002A6EF9 /* green_marker.png */,
 				63DF2C351DC3088900ACFBB4 /* pontual.png */,
 				63DF2C361DC3088900ACFBB4 /* atraso.png */,
 				63DD76671DBEBF8600B1E051 /* delete26.png */,
@@ -554,6 +560,7 @@
 				6327266A1D64EAB800580E18 /* perfil.png in Resources */,
 				6393CA741D55B397003B3E71 /* indefinido.png in Resources */,
 				63D507341DA33601008FB1C3 /* flash26.png in Resources */,
+				63FAB27D1DC8234E002A6EF9 /* green_marker.png in Resources */,
 				6382F0D01D64F96800958E54 /* plus2.png in Resources */,
 				63D507351DA33601008FB1C3 /* pintado26.png in Resources */,
 				631136EE1D666EBE004BA4B8 /* back.png in Resources */,
@@ -578,6 +585,7 @@
 				631136F31D681F84004BA4B8 /* remedio.png in Resources */,
 				63737CBA1DB16A880020E2C4 /* perfil_preenchido_3030.png in Resources */,
 				63340C191DB5EA47001BA556 /* logo_mf_transparente.png in Resources */,
+				63FAB27C1DC8234E002A6EF9 /* red_marker.png in Resources */,
 				637384CC1D6BCF7600DAB413 /* Catherine de Beaumont.ttf in Resources */,
 				63DD76641DBEB12200B1E051 /* Prescriptions.png in Resources */,
 				630C3C741D4AA5D800312CC5 /* Main.storyboard in Resources */,

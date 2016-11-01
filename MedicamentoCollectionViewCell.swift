@@ -17,7 +17,10 @@ class MedicamentoCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         imgIndicativaAtraso.image = nil
-        img.image = UIImage(named: "Medications")
+        self.img.contentMode = .ScaleToFill
+        self.labelFundo.hidden = false
+        self.labelData.hidden = false
+
         imgIndicativaPontual.image = nil
     }
 }

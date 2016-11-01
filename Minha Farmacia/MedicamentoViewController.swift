@@ -468,16 +468,16 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             print("=============")
             if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
                 if pendente {
-                    cell.imgIndicativaAtraso.image = UIImage(named: "atraso.png")
+                    cell.imgIndicativaAtraso.image = UIImage(named: "red_marker.png")
                 }else{
-                    cell.imgIndicativaPontual.image = UIImage(named: "pontual.png")
+                    cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png")
                 }
                 cell.labelData.text = "Concluido" // coloca concluido no medicamento q ja passou por todo o tratamento
             }else{
                 if pendente{
-                    cell.imgIndicativaAtraso.image = UIImage(named: "atraso.png")
+                    cell.imgIndicativaAtraso.image = UIImage(named: "red_marker.png")
                 }else{
-                    cell.imgIndicativaPontual.image = UIImage(named: "pontual.png")
+                    cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png  ")
                 }
                 cell.labelData.text = Util().formataDataHoraPadrao(next) //coloca a proxima data da dose
             }

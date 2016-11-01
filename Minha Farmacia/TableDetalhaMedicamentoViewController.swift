@@ -13,6 +13,7 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
     @IBOutlet weak var imgMedicamento: UIImageView!
     var medicamento = Medicamento()
     
+    @IBOutlet weak var tableView: UITableView!
     struct DadosMedicamento{
         var nomeSecao: String!
         var valores :[String]!
@@ -38,6 +39,9 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         Popula o array responsavel por apresentar os dados do medicamento do usuario na tabela dinamica
     */
     func populaDadosMedicamento(){
+        arrayNotificacoesAtrasadas.removeAll()
+        arrayTitulos.removeAll()
+        arrayDadosMedicamento.removeAll()
         medicamento = buscaMedicamento()
         let notificacoes = verificaNotificacaoNaoConfirmada(buscaNotificacoesDosagemMedicamento(medicamento.dosagemMedicamento.id))
         arrayDadosMedicamento = [DadosMedicamento(nomeSecao: "Dados do Medicamento", valores: populaArrayDadosMedicamento()),
@@ -228,6 +232,39 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
             showAlert("Atraso", msg: " Confirmar que tomou o medicamento na data \(Util().formataPadraoCompleto("\(data)"))", titleBtn: "ok")
         }
     }
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        if indexPath.section == 1{
+            let confirmar = UITableViewRowAction(style: .Normal, title: "Já Tomei") { action, index in
+                let data = Util().formataPadraoCompleto("\(self.arrayNotificacoesAtrasadas[indexPath.row].dataNotificacao)")
+                self.confirmarTomou(self.arrayNotificacoesAtrasadas[indexPath.row].id,
+                                    data: data)
+                
+//                self.showAlert("Confirar", msg: "\(self.arrayNotificacoesAtrasadas[indexPath.row].id)", titleBtn: "ok")
+//                self.confirmaTomouDoseMedicamento((self.arrayNotificacoesAtrasadas[indexPath.row].id))
+//                self.arrayNotificacoesAtrasadas.removeAtIndex(indexPath.row)
+//                self.tableView.reloadData()
+            }
+            
+            confirmar.backgroundColor = UIColor.blueColor()
+            return [confirmar]
+        }
+        //        if titulos[indexPath.row].lowercaseString == "Nome".lowercaseString{
+        //            let alterar = UITableViewRowAction(style: .Normal, title: "Alterar") { action, index in
+        //                self.alteraNomeUsuario(indexPath.row)
+        //            }
+        //            alterar.backgroundColor = UIColor.blueColor()
+        //            return [alterar]
+        return nil
+    }
+    func confirmaTomouDoseMedicamento(idNotificacao: Int){
+        print("---->\(idNotificacao)<----")
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        NotificacaoDAO().confirmaDosagem(contexto, idNotificacao: idNotificacao)
+        
+
+    }
+
     
     /**
      Apresenta alerta na tela
@@ -238,6 +275,36 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
             //self.dismissViewControllerAnimated(true, completion: nil)
         }))
         self.presentViewController(alerta, animated: true, completion: nil)
+    }
+    
+    func confirmarTomou(idNotificacao: Int, data: String){
+        let alerta = UIAlertController(title: "Confirmar", message: "Confirmar que tomou a dose \(data)", preferredStyle: .ActionSheet)
+        let confirmar = UIAlertAction(title: "Confirmar", style: .Default) { (alert: UIAlertAction!) in
+            self.confirmaTomouDoseMedicamento(idNotificacao)
+            self.removeNotificacaoArray(idNotificacao)
+            self.tableView.reloadData()
+        }
+  
+        let cancel = UIAlertAction(title: "Cancelar", style: .Cancel) { (alert: UIAlertAction!) in
+            //self.geraAlerta("Foto de Perfil", mensagem: "Tudo bem, você poderá escolher uma foto mais tarde!")
+        }
+        alerta.addAction(confirmar)
+       
+        alerta.addAction(cancel)
+        
+        self.presentViewController(alerta, animated: true, completion: nil)
+        
+    }
+    func removeNotificacaoArray(idNotificacao: Int){
+        var arrAux = [Notificacao]()
+        for i in arrayNotificacoesAtrasadas{
+            if i.id != idNotificacao{
+                arrAux.append(i)
+            }
+        }
+        arrayNotificacoesAtrasadas.removeAll()
+        arrayNotificacoesAtrasadas = arrAux
+        
     }
     /*
     // MARK: - Navigation

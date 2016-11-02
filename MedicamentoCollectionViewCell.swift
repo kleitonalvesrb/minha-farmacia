@@ -17,7 +17,7 @@ class MedicamentoCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         imgIndicativaAtraso.image = nil
-        self.img.contentMode = .ScaleToFill
+        self.img.contentMode = .ScaleAspectFill
         self.labelFundo.hidden = false
         self.labelData.hidden = false
 

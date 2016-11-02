@@ -302,13 +302,10 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
      */
     func salvarMedicamentoDosagemServidor(){
         let url = UrlWS()
-        var user = Usuario()
-        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let contexto: NSManagedObjectContext = appDel.managedObjectContext
-        if UsuarioDAO().verificaUserLogado(contexto){
-            user = UsuarioDAO().recuperaDadosUsuario(contexto)
-
-        }
+      let user = Usuario.sharedInstance
+//        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+      
 
 
         Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters:criaDicMedicamento() as? [String : AnyObject] , encoding: .JSON, headers: nil).responseJSON { (response) in
@@ -318,6 +315,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 util.configuraLabelInformacao(self.lblInfor, comInvisibilidade: true, comIndicador: self.activityInfo, comInvisibilidade: true, comAnimacao: false)
                 self.redirecionTelaMedicamentos()
             }else{
+                print(response.response?.statusCode)
                 self.geraAlerta("Ops", mensagem: "Não foi possível cadastrar o medicamento, tente novamente mais tarde")
             }
 

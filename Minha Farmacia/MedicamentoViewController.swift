@@ -467,16 +467,16 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             cell.img.image = imgArray[indexPath.row] // coloca a foto na celula
             if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
                 if pendente {
-                    cell.imgIndicativaAtraso.image = UIImage(named: "red_marker.png")
+                    cell.imgIndicativaPontual.image = UIImage(named: "red_marker.png")
                 }else{
                     cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png")
                 }
                 cell.labelData.text = "Concluido" // coloca concluido no medicamento q ja passou por todo o tratamento
             }else{
                 if pendente{
-                    cell.imgIndicativaAtraso.image = UIImage(named: "red_marker.png")
+                    cell.imgIndicativaPontual.image = UIImage(named: "red_marker.png")
                 }else{
-                    cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png  ")
+                    cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png")
                 }
                 cell.labelData.text = Util().formataDataHoraPadrao(next) //coloca a proxima data da dose
             }

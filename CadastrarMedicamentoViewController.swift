@@ -108,21 +108,13 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
         retiraTabBar(false)
         apresentaBarraNavegacao(false)
-        if input != nil {
-            captureSession?.removeInput(input)
-        }
-        if captureMetadataOutput != nil {
-            captureSession?.removeOutput(captureMetadataOutput)
-        }
-        captureSession?.stopRunning()
-        //videoPreviewLayer?.hidden = true
-        qrCodeFrameView?.removeFromSuperview()
+        
+        videoPreviewLayer?.hidden = true
         qrCodeFrameView?.hidden = true
         
         
         habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: false, comInvisibilidade: true)
-        desabilidaInteracaoUsuarioBotoes(interatividade: true)
-    }
+        desabilidaInteracaoUsuarioBotoes(interatividade: true)    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

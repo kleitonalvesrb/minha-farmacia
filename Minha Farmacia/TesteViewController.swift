@@ -147,7 +147,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     @IBAction func Cadastrar(sender: AnyObject) {
         let verificaConexao = VerificarConexao()
         if verificaConexao.isConnectedToNetwork(){
-            performSegueWithIdentifier("cadastrar", sender: self)
+//            performSegueWithIdentifier("cadastrar", sender: self)
         }else{
             showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
         }

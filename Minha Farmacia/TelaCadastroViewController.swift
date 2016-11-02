@@ -60,8 +60,9 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         fotoPerfil.userInteractionEnabled = true
         fotoPerfil.addGestureRecognizer(tapGestureRecognizer)
         
-       
-        configuracaoNavBar()
+        self.title = "Cadastro"
+
+        //configuracaoNavBar()
 
     }
     func configuracaoNavBar(){
@@ -69,15 +70,22 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         self.navigationItem.title = "Cadastro"
-//        //
-        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
-        button.image = UIImage(named: "back.png")
-        self.navigationItem.leftBarButtonItem = button
-        self.navigationItem.leftBarButtonItem?.style
+        let backButton = UIBarButtonItem()
+        backButton.image = UIImage()
+//        UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"myImage.png"]
+//            style:UIBarButtonItemStyleBordered
+//            target:self
+//            action:@selector(backButtonOverrideAction:)];
+      //  [self.navigationItem setLeftBarButtonItem:backButton];
+        ////        //
+//        let button = UIBarButtonItem(title: "Voltar", style: UIBarButtonItemStyle.Plain, target: self, action:#selector(TelaCadastroViewController.goBack))
+//        button.image = UIImage(named: "back.png")
+//        self.navigationItem.leftBarButtonItem = button
+//        self.navigationItem.leftBarButtonItem?.style
     }
     
     override func viewWillAppear(animated: Bool) {
-        configuracaoNavBar()
+       // configuracaoNavBar()
     }
 
      func goBack(){
@@ -202,6 +210,7 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
                 if response.result.isSuccess{
                     
                  self.populaUsuario()
+                 self.navigationController?.navigationBar.hidden = true
                  self.performSegueWithIdentifier("CadastroTelaMedicamento", sender: self)
                  
 //                self.utilidade.configuraLabelInformacao(self.lblInfo, comVisibilidade: false, comIndicador: self.ActiviInfo, comVisibilidade: false, comStatus: false)

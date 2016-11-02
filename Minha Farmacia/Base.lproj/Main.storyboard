@@ -110,6 +110,7 @@
                                 <state key="normal" title="Criar uma Conta"/>
                                 <connections>
                                     <action selector="Cadastrar:" destination="SY7-62-NQY" eventType="touchUpInside" id="Xk6-3c-4aV"/>
+                                    <segue destination="cXn-IC-sPd" kind="show" id="G0N-F0-vOf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yM4-qE-UcS">
@@ -182,13 +183,12 @@
                         <outlet property="email" destination="OFV-Em-Szl" id="26H-Ix-WYK"/>
                         <outlet property="info" destination="yM4-qE-UcS" id="C9D-e4-OZj"/>
                         <outlet property="senha" destination="rHu-Wv-AX8" id="STI-Qb-Kmt"/>
-                        <segue destination="A7k-kC-oOj" kind="show" identifier="cadastrar" id="HP7-0x-RRk"/>
                         <segue destination="k70-Sf-U1J" kind="show" identifier="LoginTelaMedicamento" id="Ukv-95-uiy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7D-n8-USo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-637.5" y="-1069.5"/>
+            <point key="canvasLocation" x="48.5" y="-1117.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="NbX-t0-ihY">
@@ -426,7 +426,7 @@
             </objects>
             <point key="canvasLocation" x="5549.5" y="330.5"/>
         </scene>
-        <!--Tela Cadastro View Controller-->
+        <!--Cadastro-->
         <scene sceneID="Q4H-mC-4t8">
             <objects>
                 <viewController id="z8F-Fm-bM8" customClass="TelaCadastroViewController" customModule="Minha_Farmacia" customModuleProvider="target" sceneMemberID="viewController">
@@ -578,7 +578,14 @@
                             <constraint firstItem="YFF-XG-Vaq" firstAttribute="top" secondItem="y0z-V9-ZrU" secondAttribute="bottom" constant="1" id="cK1-Dz-izd"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="4Ua-Bz-s4d"/>
+                    <navigationItem key="navigationItem" title="Cadastro" id="4Ua-Bz-s4d">
+                        <barButtonItem key="backBarButtonItem" title="Login" id="T1U-Rt-lSc"/>
+                        <barButtonItem key="leftBarButtonItem" title="Voltar" id="6Pv-9J-8ZA">
+                            <connections>
+                                <segue destination="SY7-62-NQY" kind="showDetail" id="bH1-lm-ojP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="NO"/>
@@ -595,13 +602,12 @@
                         <outlet property="imgInfoEmail" destination="e8C-Xv-TXV" id="pxT-Zw-jun"/>
                         <outlet property="lblInfo" destination="B1w-W5-Hak" id="Jd4-m2-vqh"/>
                         <outlet property="scroll" destination="YFF-XG-Vaq" id="JEH-RU-Cpd"/>
-                        <segue destination="SY7-62-NQY" kind="showDetail" identifier="voltarInicio" id="t5D-l8-woa"/>
                         <segue destination="k70-Sf-U1J" kind="show" identifier="CadastroTelaMedicamento" id="HqM-wA-IY4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txO-ou-WRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057.5" y="-1203.5"/>
+            <point key="canvasLocation" x="1869.5" y="-1203.5"/>
         </scene>
         <!--Perfil View Controller-->
         <scene sceneID="1HI-WT-2bJ">
@@ -2173,7 +2179,7 @@
                                                                 <constraint firstAttribute="height" constant="21" id="HjT-Ot-Or9"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1da-e6-d0m">
@@ -2182,7 +2188,7 @@
                                                                 <constraint firstAttribute="height" constant="21" id="s4v-BL-sXU"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -2546,23 +2552,23 @@
             </objects>
             <point key="canvasLocation" x="-2041.5" y="911.5"/>
         </scene>
-        <!--Login-->
-        <scene sceneID="sfd-Gt-VKM">
+        <!--Navigation Controller-->
+        <scene sceneID="rHm-xF-pvA">
             <objects>
-                <navigationController title="Login" automaticallyAdjustsScrollViewInsets="NO" id="A7k-kC-oOj" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cXn-IC-sPd" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8MY-WC-LIP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Mnb-Zb-jmI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="z8F-Fm-bM8" kind="relationship" relationship="rootViewController" id="9FR-vz-M0i"/>
+                        <segue destination="z8F-Fm-bM8" kind="relationship" relationship="rootViewController" id="jJS-b5-wG6"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nzr-WP-JPL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ews-2D-xHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="470.5" y="-1203.5"/>
+            <point key="canvasLocation" x="781" y="-1138"/>
         </scene>
     </scenes>
     <resources>
@@ -2583,6 +2589,6 @@
         <image name="icoRemedioSelecionado" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Ukv-95-uiy"/>
+        <segue reference="HqM-wA-IY4"/>
     </inferredMetricsTieBreakers>
 </document>

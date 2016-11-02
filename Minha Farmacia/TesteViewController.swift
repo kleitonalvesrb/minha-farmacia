@@ -35,7 +35,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         
-
+        self.title = "Login"
         
         let app:UIApplication = UIApplication.sharedApplication();
         let eventArray:NSArray = app.scheduledLocalNotifications!;

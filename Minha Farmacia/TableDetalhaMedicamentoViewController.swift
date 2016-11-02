@@ -219,8 +219,11 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         if indexPath.section == 0{
             if arrayTitulos[indexPath.row].lowercaseString == "Descrição Técnica".lowercaseString {
                 let userDefautls = NSUserDefaults.standardUserDefaults()
-                let user = Usuario.sharedInstance
-                let id = user.medicamento[indexPath.row].id
+//                let user = Usuario.sharedInstance
+//                let index = indexPath.row
+//                print(medicamento.id)
+//                let m = user.medicamento[index - 1]
+                let id = medicamento.id
                 userDefautls.setInteger(id, forKey: "posicaoMedicamentoDescTec")
                         
                 

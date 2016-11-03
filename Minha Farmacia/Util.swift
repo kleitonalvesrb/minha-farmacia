@@ -10,6 +10,54 @@ import UIKit
 import ParseFacebookUtilsV4
 
 class Util: NSObject {
+    func trataDataExtenso(dataString: String) -> NSDate{
+        var varString = dataString.stringByReplacingOccurrencesOfString("de", withString: "")
+        varString = varString.stringByReplacingOccurrencesOfString("  ", withString: " ")
+        let arr = varString.componentsSeparatedByString(" ")
+        let dataString = "\(arr[0])-\(getNumberOfMonth(arr[1]))-\(arr[2])"
+        return dateFormatter(dataString)
+        
+    }
+    func dateFormatter(dataCadastro: String) -> NSDate{
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.locale = NSLocale.currentLocale()
+        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+        var date2:NSDate!
+        date2 = dateFormatter.dateFromString(dataCadastro)
+        return date2
+    }
+    func getNumberOfMonth(month: String) -> Int{
+        switch month {
+        case "jan":
+            return 1
+        case "fev","feb":
+            return 2
+        case "mar":
+            return 3
+        case "abr","apr":
+            return 4
+        case "mai","may":
+            return 5
+        case "jun":
+            return 6
+        case "jul":
+            return 7
+        case "ago","aug":
+            return 8
+        case "set","sep":
+            return 9
+        case "out","oct":
+            return 10
+        case "nov":
+            return 11
+        case "dez","dec":
+            return 12
+        default:
+            return 0
+        }
+    }
+
     /**
      Método responsavel por receber uma string e retornar uma data
      */

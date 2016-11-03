@@ -34,7 +34,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
-        
+//       print(UsuarioDAO().recuperaDadosUsuario(contexto).nome)
         self.title = "Login"
         
         let app:UIApplication = UIApplication.sharedApplication();

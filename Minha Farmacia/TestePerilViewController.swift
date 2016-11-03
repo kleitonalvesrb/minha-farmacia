@@ -382,7 +382,9 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     func populaConteudo(){
         let util = Util()
         let dataNascimento:NSDate!
+        print(user.nome)
         dataNascimento = user.dataNascimento
+        print(user.dataNascimento,"<<<<<<<<<<<<<<<<<<")
         let qtdDias = util.qtdDiasEntreDuasDatas(user.dataNascimento, ate: NSDate())
         conteudo.append(user.nome)
         conteudo.append(user.email)

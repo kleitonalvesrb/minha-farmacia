@@ -30,7 +30,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         self.title = "Medicamentos"
         self.navigationController?.navigationBar.topItem?.title = "Medicamentos"
         configuraLabelInfo()
@@ -48,6 +47,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         util.configuraLabelInformacao(lblInfo, comInvisibilidade: false , comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
     }
     func configuracaoTableView(){
+        print("nome")
+        print(user.nome)
+
         imgArray.removeAll()
         nomes.removeAll()
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

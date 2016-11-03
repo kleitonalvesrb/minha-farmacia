@@ -40,8 +40,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         let app:UIApplication = UIApplication.sharedApplication();
         let eventArray:NSArray = app.scheduledLocalNotifications!;
         print("qtd ---->\(eventArray.count)<-----")
-        
-        
+        let uDao = UsuarioDAO()
+        print(uDao.recuperaDadosUsuario(contexto).nome)
         
         
         

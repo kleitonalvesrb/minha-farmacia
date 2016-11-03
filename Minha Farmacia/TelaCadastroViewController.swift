@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var scroll: UIScrollView!
 
@@ -198,7 +199,6 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
 //            utilidade.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: ActiviInfo, comIvisibilidade: true, comStatus: true)
             btnCadastrar.userInteractionEnabled = false
             let url = urlPadrao.urlCadastrarUsuario()
-            
             let usuario = ["nome": campoNome.text!,
                            "email": campoEmail.text!,
                            "senha": campoSenha.text!,
@@ -254,6 +254,12 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         user.sexo = campoSexo.text!
         user.idFacebook = ""
         user.foto = fotoPerfil.image!
+        user.dataNascimento = Util().trataDataExtenso(campoDataNascimento.text!)
+        user.senha = campoSenha.text!
+        user.id = 1
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        UsuarioDAO().salvaUsuario(contexto, usuario: user)
         
     }
     /*+2*/

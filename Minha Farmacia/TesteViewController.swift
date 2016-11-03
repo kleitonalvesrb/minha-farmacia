@@ -229,6 +229,19 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     }else{
                         self.user.idFacebook = "Não Informado"
                     }
+                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
+                        print(dataString)
+                        let dataCadastro = dataString[dataString.startIndex.advancedBy(0)...dataString.startIndex.advancedBy(9)]
+                        print(dataCadastro)
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                        dateFormatter.locale = NSLocale.currentLocale()
+                        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+                        var date2:NSDate!
+                        date2 = dateFormatter.dateFromString(dataCadastro)
+                        self.user.dataNascimento = date2
+                        print("--->\(self.user.dataNascimento)<-----")
+                    }
 //                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
 //                       print("---------> dataString \(dataString)")
 //                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")

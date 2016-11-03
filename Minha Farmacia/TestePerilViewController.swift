@@ -388,12 +388,29 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         conteudo.append(user.email)
         conteudo.append("******")
         conteudo.append(user.sexo)
-        conteudo.append("data")
+        let idade = qtdDias / 365
+        let dataNascimentoIdade = formataDataNascimento("\(user.dataNascimento)") + " \(idade) Anos"
+        conteudo.append(dataNascimentoIdade)
 //        conteudo.append(util.formataDataPadrao(dataNascimento)+" \(qtdDias/365) Anos")
         conteudo.append("facebook")
         conteudo.append("Logout")
         
         conteudo.append("")
+    }
+    func formataDataNascimento(dataString: String) -> String{
+        let dataCadastro = dataString[dataString.startIndex.advancedBy(0)...dataString.startIndex.advancedBy(9)]
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.locale = NSLocale.currentLocale()
+        dateFormatter.timeZone = NSTimeZone.localTimeZone()
+        var date2:NSDate!
+        date2 = dateFormatter.dateFromString(dataCadastro)
+        self.user.dataNascimento = date2
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        
+        return dateFormatter.stringFromDate(date2!)
+
+
     }
     @IBAction func trocarSenha(sender: AnyObject) {
         trocarSenhaUsuario(senhaAtual: textSenhaAntiga.text!, novaSenha: textNovaSenha.text!)

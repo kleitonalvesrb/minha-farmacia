@@ -13,7 +13,7 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
     var acrescimo:CGFloat!
     @IBOutlet weak var constraintFundo: NSLayoutConstraint!
 
-    @IBOutlet weak var btnEscolherFoto: UIButton!
+//    @IBOutlet weak var btnEscolherFoto: UIButton!
     @IBOutlet weak var imgReceita: UIImageView!
     @IBOutlet weak var campoDescricao: UITextView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
@@ -28,7 +28,7 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
         util.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: activity, comInvisibilidade: true, comAnimacao: false)
         
         btnSalvar.layer.cornerRadius = 5
-        btnEscolherFoto.layer.cornerRadius = 5
+//        btnEscolherFoto.layer.cornerRadius = 5
         
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         imgReceita.userInteractionEnabled = true
@@ -99,9 +99,9 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CadastroReceitaViewController.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
 
     }
-    @IBAction func escolherFoto(sender: AnyObject) {
-        formaDeCapturaFotoPerfil()
-    }
+//    @IBAction func escolherFoto(sender: AnyObject) {
+//        formaDeCapturaFotoPerfil()
+//    }
     /**
         acao do botao que ira salvar os dados
      */
@@ -199,6 +199,10 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
         self.dismissViewControllerAnimated(true, completion: nil)
         imgReceita.image = image
         setFoto = true
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CadastroReceitaViewController.keyboardWillShow), name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CadastroReceitaViewController.keyboardWillHide), name: UIKeyboardWillHideNotification, object: nil)
+
     }
 
     /*

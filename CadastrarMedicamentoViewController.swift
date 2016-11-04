@@ -30,7 +30,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     @IBOutlet weak var btnFlash: UIButton!
     var user = Usuario.sharedInstance
     @IBOutlet weak var lbl: UILabel!
-    @IBOutlet weak var btnEscolherImgRemedio: UIButton!
+//    @IBOutlet weak var btnEscolherImgRemedio: UIButton!
     @IBOutlet weak var imgRemedio: UIImageView!
     @IBOutlet weak var campoCodBarras: UITextField!
     @IBOutlet weak var campoProduto: UITextField!
@@ -50,7 +50,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         super.viewDidLoad()
         btnSalvar.layer.cornerRadius = 5
         btnLerCodBarras.layer.cornerRadius = 5
-        btnEscolherImgRemedio.layer.cornerRadius = 5
+//        btnEscolherImgRemedio.layer.cornerRadius = 5
         isPowerFlash = false
         self.title = "Cadastro"
        
@@ -135,9 +135,9 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     {
         escolherImg()
     }
-    @IBAction func escolherImgRemedio(sender: AnyObject) {
-        escolherImg()
-    }
+//    @IBAction func escolherImgRemedio(sender: AnyObject) {
+//        escolherImg()
+//    }
     @IBAction func lerCodBarras(sender: AnyObject) {
        // UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         alteraImagemBotaoFlash(imagem: "flash26.png")
@@ -155,7 +155,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         ler codigo de barras e escolher foto medicamento
      */
     func desabilidaInteracaoUsuarioBotoes(interatividade interativo:Bool){
-        btnEscolherImgRemedio.userInteractionEnabled = interativo
+//        btnEscolherImgRemedio.userInteractionEnabled = interativo
         btnLerCodBarras.userInteractionEnabled = interativo
     }
     

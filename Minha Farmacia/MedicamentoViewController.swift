@@ -12,8 +12,8 @@ import Alamofire
 import CoreData
 class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     @IBOutlet weak var collectionView: UICollectionView!
-    var imgArray = [UIImage]()
-    var nomes = [String]() //nomes dos medicamentos
+//    var imgArray = [UIImage]()
+//    var nomes = [String]() //nomes dos medicamentos
     let util = Util()
     
     var user = Usuario.sharedInstance
@@ -53,8 +53,8 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         util.configuraLabelInformacao(lblInfo, comInvisibilidade: false , comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
     }
     func configuracaoTableView(){
-        imgArray.removeAll()
-        nomes.removeAll()
+//        imgArray.removeAll()
+//        nomes.removeAll()
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         let mDao = MedicamentoDAO()
@@ -64,9 +64,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
 
         
         
-        let imgPlus:UIImageView = UIImageView()
-        imgPlus.image = UIImage(named: "plus2.png")
-        imgArray.append(imgPlus.image!)
+//        let imgPlus:UIImageView = UIImageView()
+//        imgPlus.image = UIImage(named: "plus2.png")
+//        imgArray.append(imgPlus.image!)
         /// recupear os medicamentos da base local ou do servidor
         if !mDao.verificaExistenciaMedicamento(contexto){
             configuraLabelInfo()
@@ -90,8 +90,8 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                     remedioAndamento.append(remedio)
                 }
                 
-                self.imgArray.append(remedio.fotoMedicamento)
-                self.nomes.append(remedio.nome)
+//                self.imgArray.append(remedio.fotoMedicamento)
+//                self.nomes.append(remedio.nome)
             }
             arrayDadosMedicamento = [DadosMedicamento(nomeSessao: "Andamento", arrayMedicamento: remedioAndamento),
                                      DadosMedicamento(nomeSessao: "Concluido", arrayMedicamento: remedioConcluido)]
@@ -268,10 +268,23 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                         let dic = JSON["medicamento"]!
                         self.user.medicamento.append(self.populaMedicamento(dic!))
                     }
+                    var remedioConcluido = [Medicamento]()
+                    var remedioAndamento = [Medicamento]()
+                    let dataAtual = NSDate()
+
                     for remedio in self.user.medicamento{
+                        let arr = remedio.dosagemMedicamento.notificacoes
+                        let next = self.verificaProximaDoseMedicamento(arr,dataAtual: dataAtual)
                         self.salvaMedicamentoBaseLocal(remedio)
-                        self.imgArray.append(remedio.fotoMedicamento)
-                        self.nomes.append(remedio.nome)
+                        if self.diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
+                            remedioConcluido.append(remedio)
+                        }else{
+                            remedioAndamento.append(remedio)
+                        }
+                        self.arrayDadosMedicamento = [DadosMedicamento(nomeSessao: "Andamento", arrayMedicamento: remedioAndamento),
+                            DadosMedicamento(nomeSessao: "Concluido", arrayMedicamento: remedioConcluido)]
+//                        self.imgArray.append(remedio.fotoMedicamento)
+//                        self.nomes.append(remedio.nome)
                     }
                 }else{
                     print("deu ruim em algo")
@@ -432,7 +445,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             if fetchResult.count > 0{
                 for i in 0..<fetchResult.count{
                     imgManager.requestImageForAsset(fetchResult.objectAtIndex(i) as! PHAsset, targetSize: CGSize(width: 200, height: 200), contentMode: .AspectFit, options: requestOptions, resultHandler: { (image, error) in
-                        self.imgArray.append(image!)
+//                        self.imgArray.append(image!)
                     })
                 }
                 
@@ -608,7 +621,6 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
 
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print(">>>>>>>>>>\(indexPath.row)<<<<<<<<<")
         print(arrayDadosMedicamento[indexPath.section].arrayMedicamento[indexPath.row].id)
         
         //idMedicamentoDetalhar

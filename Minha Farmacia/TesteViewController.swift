@@ -85,6 +85,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     
     override func viewWillAppear(animated: Bool) {
         configuraNavBar()
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+
     }
     
     func configuraNavBar(){

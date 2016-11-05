@@ -38,6 +38,7 @@
 		633D330C1DCE13F200E57AE8 /* blue_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 633D330B1DCE13F200E57AE8 /* blue_marker.png */; };
 		633D332D1DCE25D000E57AE8 /* MaisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D332C1DCE25D000E57AE8 /* MaisViewController.swift */; };
 		633D332F1DCE27F200E57AE8 /* MaisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D332E1DCE27F200E57AE8 /* MaisTableViewCell.swift */; };
+		633D33331DCE3B9A00E57AE8 /* logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 633D33321DCE3B9A00E57AE8 /* logo2.png */; };
 		635B227C1DC3EB5A0022E3DF /* TableDetalhaMedicamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635B227B1DC3EB5A0022E3DF /* TableDetalhaMedicamentoViewController.swift */; };
 		635B227E1DC3EEA50022E3DF /* CellDetalhamentoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635B227D1DC3EEA50022E3DF /* CellDetalhamentoTableViewCell.swift */; };
 		6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */; };
@@ -163,6 +164,7 @@
 		633D330B1DCE13F200E57AE8 /* blue_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_marker.png; sourceTree = "<group>"; };
 		633D332C1DCE25D000E57AE8 /* MaisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaisViewController.swift; sourceTree = "<group>"; };
 		633D332E1DCE27F200E57AE8 /* MaisTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaisTableViewCell.swift; sourceTree = "<group>"; };
+		633D33321DCE3B9A00E57AE8 /* logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo2.png; sourceTree = "<group>"; };
 		635B227B1DC3EB5A0022E3DF /* TableDetalhaMedicamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDetalhaMedicamentoViewController.swift; sourceTree = "<group>"; };
 		635B227D1DC3EEA50022E3DF /* CellDetalhamentoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDetalhamentoTableViewCell.swift; sourceTree = "<group>"; };
 		6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaCadastroViewController.swift; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 			isa = PBXGroup;
 			children = (
 				633D330B1DCE13F200E57AE8 /* blue_marker.png */,
+				633D33321DCE3B9A00E57AE8 /* logo2.png */,
 				63FAB27A1DC8234E002A6EF9 /* red_marker.png */,
 				63FAB27B1DC8234E002A6EF9 /* green_marker.png */,
 				63DF2C351DC3088900ACFBB4 /* pontual.png */,
@@ -592,6 +595,7 @@
 				6318397A1D693D4F008BBB18 /* barcode.png in Resources */,
 				6393CA721D55B2A2003B3E71 /* mulher.png in Resources */,
 				63737CB01DB16A880020E2C4 /* 1476235384_more3030.png in Resources */,
+				633D33331DCE3B9A00E57AE8 /* logo2.png in Resources */,
 				63737CB31DB16A880020E2C4 /* 1476235582_Doctors_2.png in Resources */,
 				63DD76661DBEB12200B1E051 /* Users.png in Resources */,
 				63737CBC1DB16A880020E2C4 /* perfil_borda_3030.png in Resources */,

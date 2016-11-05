@@ -6,14 +6,6 @@
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="Casablanca Noir Personal Use.ttf">
-            <string>CasablancaNoirPersonalUse-Regul</string>
-        </mutableArray>
-        <mutableArray key="Catherine de Beaumont.ttf">
-            <string>CatherinedeBeaumont</string>
-        </mutableArray>
-    </customFonts>
     <scenes>
         <!--Login-->
         <scene sceneID="cMU-fL-KmZ">
@@ -82,25 +74,6 @@
                                     <action selector="loginFacebook:" destination="SY7-62-NQY" eventType="touchUpInside" id="Lls-FK-NJA"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Minha    armácia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="weK-qg-cz2">
-                                <rect key="frame" x="57" y="30" width="261" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="3TY-vI-oP4"/>
-                                    <constraint firstAttribute="width" constant="261" id="6Wf-Eo-Ax8"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="CasablancaNoirPersonalUse-Regul" family="Casablanca Noir Personal Use" pointSize="44"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUW-tV-tkM">
-                                <rect key="frame" x="173" y="24" width="53" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="5SJ-FZ-xTh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="CatherinedeBeaumont" family="Catherine de Beaumont " pointSize="82"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mON-Hu-7wV">
                                 <rect key="frame" x="131" y="629" width="112" height="30"/>
                                 <constraints>
@@ -140,11 +113,13 @@
                                     <action selector="recuperarSenha:" destination="SY7-62-NQY" eventType="touchUpInside" id="Wi4-TX-Sfc"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-DC-Yij">
+                                <rect key="frame" x="6" y="20" width="363" height="84"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qZv-Jv-1gh" firstAttribute="centerY" secondItem="yM4-qE-UcS" secondAttribute="centerY" id="25s-U9-x3I"/>
-                            <constraint firstItem="gUW-tV-tkM" firstAttribute="centerX" secondItem="t8V-cH-ZZ3" secondAttribute="centerX" constant="12" id="2Mj-SO-p7L"/>
                             <constraint firstItem="OFV-Em-Szl" firstAttribute="leading" secondItem="t8V-cH-ZZ3" secondAttribute="leading" constant="20" id="3rb-hv-Ojr"/>
                             <constraint firstItem="0yj-UG-bKx" firstAttribute="top" secondItem="Ltk-hA-pbb" secondAttribute="bottom" constant="8" id="4hl-s5-p8U"/>
                             <constraint firstAttribute="trailing" secondItem="OFV-Em-Szl" secondAttribute="trailing" constant="20" id="9qz-Ga-nOX"/>
@@ -152,25 +127,25 @@
                             <constraint firstItem="yM4-qE-UcS" firstAttribute="centerY" secondItem="t8V-cH-ZZ3" secondAttribute="centerY" id="FSZ-D2-XT5"/>
                             <constraint firstAttribute="trailing" secondItem="Ltk-hA-pbb" secondAttribute="trailing" constant="20" id="KhW-5H-inV"/>
                             <constraint firstItem="mON-Hu-7wV" firstAttribute="centerX" secondItem="t8V-cH-ZZ3" secondAttribute="centerX" id="KvP-SC-IlB"/>
+                            <constraint firstItem="ajd-DC-Yij" firstAttribute="leading" secondItem="t8V-cH-ZZ3" secondAttribute="leadingMargin" constant="-10" id="N2k-sF-yzG"/>
                             <constraint firstItem="0yj-UG-bKx" firstAttribute="leading" secondItem="t8V-cH-ZZ3" secondAttribute="leading" constant="20" id="Pf2-zv-MiV"/>
                             <constraint firstItem="yM4-qE-UcS" firstAttribute="centerX" secondItem="t8V-cH-ZZ3" secondAttribute="centerX" id="R0l-Bt-Nm4"/>
                             <constraint firstItem="rHu-Wv-AX8" firstAttribute="leading" secondItem="t8V-cH-ZZ3" secondAttribute="leading" constant="20" id="ROi-Gh-vg4"/>
                             <constraint firstAttribute="trailing" secondItem="qHQ-sg-2RE" secondAttribute="trailing" constant="20" id="Vf2-N5-bfW"/>
-                            <constraint firstItem="gUW-tV-tkM" firstAttribute="top" secondItem="m2u-DJ-RYP" secondAttribute="bottom" constant="4" id="WH0-gU-wnX"/>
                             <constraint firstAttribute="trailing" secondItem="0yj-UG-bKx" secondAttribute="trailing" constant="20" id="ZuB-RU-EOx"/>
                             <constraint firstItem="OFV-Em-Szl" firstAttribute="top" secondItem="iF4-qW-ABJ" secondAttribute="bottom" constant="27" id="bEQ-4a-7HW"/>
                             <constraint firstItem="rHu-Wv-AX8" firstAttribute="top" secondItem="OFV-Em-Szl" secondAttribute="bottom" constant="20" id="cCt-YX-t36"/>
-                            <constraint firstItem="weK-qg-cz2" firstAttribute="top" secondItem="m2u-DJ-RYP" secondAttribute="bottom" constant="10" id="dDH-vf-gXg"/>
                             <constraint firstItem="iF4-qW-ABJ" firstAttribute="top" secondItem="t8V-cH-ZZ3" secondAttribute="topMargin" constant="-1" id="f2X-bM-KYZ"/>
                             <constraint firstItem="Ltk-hA-pbb" firstAttribute="top" secondItem="rHu-Wv-AX8" secondAttribute="bottom" constant="34" id="gNP-6V-72r"/>
                             <constraint firstItem="bZJ-PV-nET" firstAttribute="top" secondItem="mON-Hu-7wV" secondAttribute="bottom" constant="8" id="hGM-Wp-JAf"/>
                             <constraint firstItem="Ltk-hA-pbb" firstAttribute="leading" secondItem="t8V-cH-ZZ3" secondAttribute="leading" constant="20" id="iIs-hL-3PB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iF4-qW-ABJ" secondAttribute="trailing" constant="-24" id="iRv-WM-GFl"/>
                             <constraint firstAttribute="trailing" secondItem="rHu-Wv-AX8" secondAttribute="trailing" constant="20" id="oaB-4d-5FA"/>
+                            <constraint firstItem="ajd-DC-Yij" firstAttribute="top" secondItem="m2u-DJ-RYP" secondAttribute="bottom" id="u6s-JE-CgP"/>
+                            <constraint firstItem="OFV-Em-Szl" firstAttribute="top" secondItem="ajd-DC-Yij" secondAttribute="bottom" constant="27" id="vzj-6S-Gbe"/>
                             <constraint firstItem="qZv-Jv-1gh" firstAttribute="centerX" secondItem="yM4-qE-UcS" secondAttribute="centerX" id="wHn-F0-vJG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ajd-DC-Yij" secondAttribute="trailing" constant="-10" id="xAb-gd-oy1"/>
                             <constraint firstItem="iF4-qW-ABJ" firstAttribute="leading" secondItem="t8V-cH-ZZ3" secondAttribute="leadingMargin" constant="-24" id="xUC-cI-BpZ"/>
-                            <constraint firstItem="gUW-tV-tkM" firstAttribute="width" secondItem="weK-qg-cz2" secondAttribute="width" constant="-208" id="xfF-8S-VyT"/>
-                            <constraint firstItem="weK-qg-cz2" firstAttribute="centerX" secondItem="t8V-cH-ZZ3" secondAttribute="centerX" id="zvi-4T-pZg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="5W6-go-jZv"/>
@@ -2658,8 +2633,9 @@
         <image name="icoReceitaSelecionado" width="28" height="28"/>
         <image name="icoRemedio" width="28" height="28"/>
         <image name="icoRemedioSelecionado" width="28" height="28"/>
+        <image name="logo2.png" width="1477" height="505"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HqM-wA-IY4"/>
+        <segue reference="Ukv-95-uiy"/>
     </inferredMetricsTieBreakers>
 </document>

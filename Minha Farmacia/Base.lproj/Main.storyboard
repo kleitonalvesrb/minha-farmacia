@@ -1413,13 +1413,13 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="l4p-C3-Rgn">
                                     <size key="itemSize" width="142" height="114"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="39"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="dep-RK-MS2" customClass="MedicamentoCollectionViewCell" customModule="Minha_Farmacia" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="142" height="114"/>
+                                        <rect key="frame" x="0.0" y="39" width="142" height="114"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="142" height="114"/>
@@ -1485,6 +1485,29 @@
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="title" id="huY-5X-LP0" customClass="CollectionReusableView" customModule="Minha_Farmacia" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="383" height="39"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TkX-eb-bpm">
+                                            <rect key="frame" x="103" y="5" width="177" height="29"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="177" id="SXu-pB-Uu5"/>
+                                                <constraint firstAttribute="height" constant="29" id="yRs-1u-oRv"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                            <color key="textColor" red="0.20784313730000001" green="0.6588235294" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="TkX-eb-bpm" firstAttribute="centerX" secondItem="huY-5X-LP0" secondAttribute="centerX" id="UmT-T6-DJQ"/>
+                                        <constraint firstItem="TkX-eb-bpm" firstAttribute="centerY" secondItem="huY-5X-LP0" secondAttribute="centerY" id="Wav-IM-MhC"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="lblTitulo" destination="TkX-eb-bpm" id="pMM-Mt-7CB"/>
+                                    </connections>
+                                </collectionReusableView>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUp-rp-zxk">
                                 <rect key="frame" x="107" y="278" width="162" height="112"/>
@@ -1520,7 +1543,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="vLP-z8-mLe">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Q1N-8A-nmd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="rqa-Ck-xPK">
+                            <connections>
+                                <action selector="refresh:" destination="MKv-OB-zz1" id="zLM-cr-ur3"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Q1N-8A-nmd">
                             <connections>
                                 <action selector="addItem:" destination="MKv-OB-zz1" id="Fgv-fe-g0d"/>
                             </connections>
@@ -1538,7 +1566,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gm2-li-pz7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-843.5" y="1891.5"/>
+            <point key="canvasLocation" x="-881.5" y="1891.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Gy2-bR-0mU">

@@ -27,6 +27,11 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     
     var medicamento = Medicamento.medicamentoSharedInstance
 
+    struct DadosMedicamento {
+        var nomeSessao: String!
+        var arrayMedicamento: [Medicamento]!
+    }
+    var arrayDadosMedicamento = [DadosMedicamento]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,14 +76,26 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             let util = Util()
             user.medicamento.removeAll()
             user.medicamento = medicamentosAux
+            var remedioConcluido = [Medicamento]()
+            var remedioAndamento = [Medicamento]()
             
-           
+//            remedioAndamento.append(imgPlus.image!)
+           let dataAtual = NSDate()
             for remedio in medicamentosAux{
-//                print(remedio.nome)
-//                print(remedio.codBarras)
+                let arr = remedio.dosagemMedicamento.notificacoes
+                let next =   verificaProximaDoseMedicamento(arr,dataAtual: dataAtual)
+                if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
+                    remedioConcluido.append(remedio)
+                }else{
+                    remedioAndamento.append(remedio)
+                }
+                
                 self.imgArray.append(remedio.fotoMedicamento)
                 self.nomes.append(remedio.nome)
             }
+            arrayDadosMedicamento = [DadosMedicamento(nomeSessao: "Andamento", arrayMedicamento: remedioAndamento),
+                                     DadosMedicamento(nomeSessao: "Concluido", arrayMedicamento: remedioConcluido)]
+            
             //collectionView.reloadData()
             let verificaConexao = VerificarConexao()
             if mDao.buscaMedicamentoNaoSicronizados(contexto).count != 0 && verificaConexao.isConnectedToNetwork(){
@@ -434,53 +451,110 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
      Números de sessoes no collection view
      */
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
+        return arrayDadosMedicamento.count
     }
     /**
      Numero de celulas
      */
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imgArray.count
+//        return arrayPessoas[section].pessoas.count
+        return arrayDadosMedicamento[section].arrayMedicamento.count
+//        return imgArray.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView
+    {
+        
+        //1
+        switch kind {
+        //2
+        case UICollectionElementKindSectionHeader:
+            //3
+            let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "title", forIndexPath: indexPath) as! CollectionReusableView
+            headerView.lblTitulo.text = arrayDadosMedicamento[indexPath.section].nomeSessao
+            return headerView
+        default:
+            //4
+            assert(false, "Unexpected element kind")
+        }
+//        let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "title", forIndexPath: indexPath)
+//        
+//        //        view.backgroundColor = UIColor.blueColor();
+//        
+//            let label = UILabel(frame: view.bounds);
+//            label.text = arrayDadosMedicamento[indexPath.section].nomeSessao  //"Ola"//String(indexPath.section);
+////        label.font = UIFont(name: "helvetica", size: 25);
+//            label.textAlignment = .Center;
+//            view.addSubview(label);
+//      
+//        
+//        
+//        
+//        return view;
     }
     /**
      Configurar cada celula
      */
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MedicamentoCollectionViewCell
-        if indexPath.row == 0{
-            cell.img.image = imgArray[indexPath.row]
-            cell.labelFundo.hidden = true
-            cell.labelData.hidden = true
-            cell.img.contentMode = .Center
-            
-        }else{
-            let dataAtual = NSDate()
-            let arr = user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes
-            
-            let next =   verificaProximaDoseMedicamento(arr,dataAtual: dataAtual)
-            
-            let pendente = verificaPendenciasAteDataAtual(user.medicamento[indexPath.row - 1].dosagemMedicamento.id, dataAtual: dataAtual)
-            print("---->\(diferencaMinEntreDuasDatas(NSDate(), data2: next))<-------")
-            
-            
-            
-            cell.img.image = imgArray[indexPath.row] // coloca a foto na celula
-            if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
-                if pendente {
+        
+//        if  indexPath.section == 0 && indexPath.row == 0{
+//            cell.img.image = arrayDadosMedicamento[inde]
+////            cell.img.image = imgArray[indexPath.row]
+//            cell.labelFundo.hidden = true
+//            cell.labelData.hidden = true
+//            cell.img.contentMode = .Center
+//            
+//        }else{
+//            let dataAtual = NSDate()
+//            let arr = user.medicamento[indexPath.row - 1].dosagemMedicamento.notificacoes
+//            
+//            let next =   verificaProximaDoseMedicamento(arr,dataAtual: dataAtual)
+//            
+//            let pendente = verificaPendenciasAteDataAtual(user.medicamento[indexPath.row - 1].dosagemMedicamento.id, dataAtual: dataAtual)
+//            print("---->\(diferencaMinEntreDuasDatas(NSDate(), data2: next))<-------")
+//            
+
+        
+        let dataAtual = NSDate()
+        let arr = arrayDadosMedicamento[indexPath.section].arrayMedicamento[indexPath.row].dosagemMedicamento.notificacoes
+        let next =   verificaProximaDoseMedicamento(arr,dataAtual: dataAtual)
+        let pendente = verificaPendenciasAteDataAtual(arrayDadosMedicamento[indexPath.section].arrayMedicamento[indexPath.row].dosagemMedicamento.id, dataAtual: dataAtual)
+        
+        cell.img.image = arrayDadosMedicamento[indexPath.section].arrayMedicamento[indexPath.row].fotoMedicamento
+        if diferencaMinEntreDuasDatas(NSDate(), data2: next) != 0{
+            if pendente {
                     cell.imgIndicativaPontual.image = UIImage(named: "red_marker.png")
-                }else{
-                    cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png")
-                }
-                cell.labelData.text = "Concluido" // coloca concluido no medicamento q ja passou por todo o tratamento
             }else{
-                if pendente{
-                    cell.imgIndicativaPontual.image = UIImage(named: "red_marker.png")
-                }else{
                     cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png")
-                }
-                cell.labelData.text = Util().formataDataHoraPadrao(next) //coloca a proxima data da dose
             }
+            cell.labelData.text = Util().formataDataHoraPadrao(next)
+        }else{
+            if pendente {
+               cell.imgIndicativaPontual.image = UIImage(named: "red_marker.png")
+            }else{
+              cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png")
+            }
+
+            cell.labelData.text = "Concluido"
         }
+//            cell.img.image = imgArray[indexPath.row] // coloca a foto na celula
+//            if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
+//                if pendente {
+//                    cell.imgIndicativaPontual.image = UIImage(named: "red_marker.png")
+//                }else{
+//                    cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png")
+//                }
+//                cell.labelData.text = "Concluido" // coloca concluido no medicamento q ja passou por todo o tratamento
+//            }else{
+//                if pendente{
+//                    cell.imgIndicativaPontual.image = UIImage(named: "red_marker.png")
+//                }else{
+//                    cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png")
+//                }
+//                cell.labelData.text = Util().formataDataHoraPadrao(next) //coloca a proxima data da dose
+//            }
+//        }
         return cell
     }
     /**
@@ -534,18 +608,27 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
 
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0{
-            performSegueWithIdentifier("cadastrarMedicamento", sender: self)
-            
-            
-        }else{
-            
-            let userDefautls = NSUserDefaults.standardUserDefaults()
-            userDefautls.setInteger((indexPath.row) - 1, forKey: "posicaoMedicamento")
-            medicamento = user.medicamento[(indexPath.row) - 1]
-            performSegueWithIdentifier("detalhamentoRemedio", sender: self)
-            
-        }
+        print(">>>>>>>>>>\(indexPath.row)<<<<<<<<<")
+        print(arrayDadosMedicamento[indexPath.section].arrayMedicamento[indexPath.row].id)
+        
+        //idMedicamentoDetalhar
+        let userDefautls = NSUserDefaults.standardUserDefaults()
+        userDefautls.setInteger(arrayDadosMedicamento[indexPath.section].arrayMedicamento[indexPath.row].id, forKey: "idMedicamentoDetalhar")
+//        medicamento = user.medicamento[(indexPath.row) - 1]
+        performSegueWithIdentifier("detalhamentoRemedio", sender: self)
+        
+//        if indexPath.row == 0{
+//            performSegueWithIdentifier("cadastrarMedicamento", sender: self)
+//            
+//            
+//        }else{
+//            
+//            let userDefautls = NSUserDefaults.standardUserDefaults()
+//            userDefautls.setInteger((indexPath.row) - 1, forKey: "posicaoMedicamento")
+//            medicamento = user.medicamento[(indexPath.row) - 1]
+//            performSegueWithIdentifier("detalhamentoRemedio", sender: self)
+        
+//        }
     }
     
     /**
@@ -629,9 +712,19 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.presentViewController(alertController, animated: true, completion: nil)
     }
 
+    @IBAction func refresh(sender: AnyObject) {
+        print("atualizou")
+
+        self.collectionView.reloadData()
+//        tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .None)
+      
+
+    }
     @IBAction func addItem(sender: AnyObject) {
         print("clicou")
-        self.collectionView.reloadData()
+        performSegueWithIdentifier("cadastrarMedicamento", sender: self)
+
+//        self.collectionView.reloadData()
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 //        
 //        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("nextView") as! TrocaViewController

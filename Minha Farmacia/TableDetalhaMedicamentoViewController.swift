@@ -113,14 +113,17 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
      */
     func buscaMedicamento()->Medicamento{
         let userDefautls = NSUserDefaults.standardUserDefaults()
-        var posicaoArray = -1
-        if let posicaoArrayMedicamento = userDefautls.stringForKey("posicaoMedicamento"){
-            posicaoArray = Int(posicaoArrayMedicamento)!
+        var idMedicamento = -1
+        if let posicaoArrayMedicamento = userDefautls.stringForKey("idMedicamentoDetalhar"){
+            idMedicamento = Int(posicaoArrayMedicamento)!
         }else{
             print("DEU RUIM")
         }
-        let user = Usuario.sharedInstance
-        return user.medicamento[posicaoArray]
+//        let user = Usuario.sharedInstance
+//        return user.medicamento[posicaoArray]
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        return MedicamentoDAO().buscaMedicamentoId(contexto, id: idMedicamento)
     }
     /**
         Busca as notificacoes de uma dosagem especifica

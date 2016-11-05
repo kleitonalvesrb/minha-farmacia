@@ -23,4 +23,5 @@ class MedicamentoCollectionViewCell: UICollectionViewCell {
 
         imgIndicativaPontual.image = nil
     }
+    
 }

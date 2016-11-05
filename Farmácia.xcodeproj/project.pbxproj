@@ -35,6 +35,9 @@
 		633C92121DC23497006B4179 /* Notificacao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C92111DC23497006B4179 /* Notificacao.swift */; };
 		633C92141DC242D5006B4179 /* NotificacaoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633C92131DC242D5006B4179 /* NotificacaoDAO.swift */; };
 		633D330A1DCD97AE00E57AE8 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D33091DCD97AE00E57AE8 /* CollectionReusableView.swift */; };
+		633D330C1DCE13F200E57AE8 /* blue_marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 633D330B1DCE13F200E57AE8 /* blue_marker.png */; };
+		633D332D1DCE25D000E57AE8 /* MaisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D332C1DCE25D000E57AE8 /* MaisViewController.swift */; };
+		633D332F1DCE27F200E57AE8 /* MaisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D332E1DCE27F200E57AE8 /* MaisTableViewCell.swift */; };
 		635B227C1DC3EB5A0022E3DF /* TableDetalhaMedicamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635B227B1DC3EB5A0022E3DF /* TableDetalhaMedicamentoViewController.swift */; };
 		635B227E1DC3EEA50022E3DF /* CellDetalhamentoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635B227D1DC3EEA50022E3DF /* CellDetalhamentoTableViewCell.swift */; };
 		6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */; };
@@ -157,6 +160,9 @@
 		633C92111DC23497006B4179 /* Notificacao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notificacao.swift; sourceTree = "<group>"; };
 		633C92131DC242D5006B4179 /* NotificacaoDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificacaoDAO.swift; sourceTree = "<group>"; };
 		633D33091DCD97AE00E57AE8 /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
+		633D330B1DCE13F200E57AE8 /* blue_marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue_marker.png; sourceTree = "<group>"; };
+		633D332C1DCE25D000E57AE8 /* MaisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaisViewController.swift; sourceTree = "<group>"; };
+		633D332E1DCE27F200E57AE8 /* MaisTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaisTableViewCell.swift; sourceTree = "<group>"; };
 		635B227B1DC3EB5A0022E3DF /* TableDetalhaMedicamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDetalhaMedicamentoViewController.swift; sourceTree = "<group>"; };
 		635B227D1DC3EEA50022E3DF /* CellDetalhamentoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDetalhamentoTableViewCell.swift; sourceTree = "<group>"; };
 		6361CD911D5A660600F00C2B /* TelaCadastroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelaCadastroViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +288,7 @@
 		630C3C6D1D4AA5D800312CC5 /* Minha Farmacia */ = {
 			isa = PBXGroup;
 			children = (
+				633D332B1DCE25B900E57AE8 /* Mais */,
 				638AE9BA1DBA549100F76A20 /* objDAO */,
 				63E111461DB2D2F2005D319D /* Perfil */,
 				63F27D131D99D8270082B7A3 /* Dosagem */,
@@ -321,6 +328,15 @@
 				633C92111DC23497006B4179 /* Notificacao.swift */,
 			);
 			name = Objetos;
+			sourceTree = "<group>";
+		};
+		633D332B1DCE25B900E57AE8 /* Mais */ = {
+			isa = PBXGroup;
+			children = (
+				633D332C1DCE25D000E57AE8 /* MaisViewController.swift */,
+				633D332E1DCE27F200E57AE8 /* MaisTableViewCell.swift */,
+			);
+			name = Mais;
 			sourceTree = "<group>";
 		};
 		63737C9B1DB16A880020E2C4 /* ícones_prontos */ = {
@@ -448,6 +464,7 @@
 		63DD765E1DBEB0CB00B1E051 /* icones_apresentado */ = {
 			isa = PBXGroup;
 			children = (
+				633D330B1DCE13F200E57AE8 /* blue_marker.png */,
 				63FAB27A1DC8234E002A6EF9 /* red_marker.png */,
 				63FAB27B1DC8234E002A6EF9 /* green_marker.png */,
 				63DF2C351DC3088900ACFBB4 /* pontual.png */,
@@ -592,6 +609,7 @@
 				637384CC1D6BCF7600DAB413 /* Catherine de Beaumont.ttf in Resources */,
 				63DD76641DBEB12200B1E051 /* Prescriptions.png in Resources */,
 				630C3C741D4AA5D800312CC5 /* Main.storyboard in Resources */,
+				633D330C1DCE13F200E57AE8 /* blue_marker.png in Resources */,
 				63737CAF1DB16A880020E2C4 /* 1476235384_more.png in Resources */,
 				63737CB41DB16A880020E2C4 /* remedio_3030.png in Resources */,
 				63737CB51DB16A880020E2C4 /* 1476235589_Doctors_1.png in Resources */,
@@ -622,6 +640,7 @@
 				63046D501D82EC79003E1A5D /* DosagemViewController.swift in Sources */,
 				6308A1CB1D4C66A10042BE2C /* TesteViewController.swift in Sources */,
 				633C92121DC23497006B4179 /* Notificacao.swift in Sources */,
+				633D332D1DCE25D000E57AE8 /* MaisViewController.swift in Sources */,
 				63DD766A1DBEC85200B1E051 /* MedicamentoDAO.swift in Sources */,
 				631136F71D68C92B004BA4B8 /* TelaLoginViewController.swift in Sources */,
 				63BA76C11DC764F8005BE241 /* DescricaoTecViewController.swift in Sources */,
@@ -638,6 +657,7 @@
 				639DEFCB1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift in Sources */,
 				63C15F731DB6A74D00C8DB46 /* VerificarConexao.swift in Sources */,
 				630C3C6F1D4AA5D800312CC5 /* AppDelegate.swift in Sources */,
+				633D332F1DCE27F200E57AE8 /* MaisTableViewCell.swift in Sources */,
 				633C92141DC242D5006B4179 /* NotificacaoDAO.swift in Sources */,
 				63046D521D83B9E8003E1A5D /* DosagemMedicamento.swift in Sources */,
 				6361CD921D5A660600F00C2B /* TelaCadastroViewController.swift in Sources */,

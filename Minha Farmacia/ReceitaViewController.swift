@@ -32,9 +32,9 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
         collectionView.dataSource = self
         buscaReceitaServidor()
         
-        let imgPlus:UIImageView = UIImageView()
-        imgPlus.image = UIImage(named: "plus2.png")
-        imgArray.append(imgPlus.image!)
+//        let imgPlus:UIImageView = UIImageView()
+//        imgPlus.image = UIImage(named: "plus2.png")
+//        imgArray.append(imgPlus.image!)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -140,29 +140,29 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ReceitaCollectionViewCell
             print("tamanho do arrray ---->\(imgArray.count)")
-        if indexPath.row == 0{
+//        if indexPath.row == 0{
+//            cell.img.image = imgArray[indexPath.row]
+//            cell.lblData.hidden = true
+//            cell.lblFundo.hidden = true
+//            cell.img.contentMode = .Center
+//        }else{
             cell.img.image = imgArray[indexPath.row]
-            cell.lblData.hidden = true
-            cell.lblFundo.hidden = true
-            cell.img.contentMode = .Center
-        }else{
-            cell.img.image = imgArray[indexPath.row]
-            cell.lblData.text = nomes[indexPath.row - 1]
-        }
+            cell.lblData.text = nomes[indexPath.row]
+//        }
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0{
-            performSegueWithIdentifier("cadastraReceita", sender: self)
+//        if indexPath.row == 0{
+//            performSegueWithIdentifier("cadastraReceita", sender: self)
 
-        }else{
+//        }else{
             let userDefautls = NSUserDefaults.standardUserDefaults()
-            userDefautls.setInteger((indexPath.row) - 1, forKey: "posicaoReceita")
+            userDefautls.setInteger((indexPath.row), forKey: "posicaoReceita")
 //            medicamento = user.medicamento[(indexPath.row) - 1]
             performSegueWithIdentifier("detalhaReceita", sender: self)
-        }
+//        }
     }
     /**
      tirar a barra de status do iphone
@@ -180,6 +180,11 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
         return CGSize(width: width, height: width)
         
     }
+    @IBAction func addReceita(sender: AnyObject) {
+        performSegueWithIdentifier("cadastraReceita", sender: self)
+
+    }
+    @IBOutlet weak var addReceita: UIBarButtonItem!
     /**
      Definir o espacamento entre as celular
      */

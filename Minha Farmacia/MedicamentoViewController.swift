@@ -31,6 +31,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         var nomeSessao: String!
         var arrayMedicamento: [Medicamento]!
     }
+    
     var arrayDadosMedicamento = [DadosMedicamento]()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +90,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
                 }else{
                     remedioAndamento.append(remedio)
                 }
+                
                 
 //                self.imgArray.append(remedio.fotoMedicamento)
 //                self.nomes.append(remedio.nome)
@@ -192,7 +194,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
      Cria dicionario de dosagem
      */
     func criaDicDosagem(dosagem: DosagemMedicamento)->NSDictionary {
-        let util = Util()
+//        let util = Util()
         print(dosagem.dataInicio)
         print(dosagem.intervaloDose)
         print(dosagem.dosagem)
@@ -393,7 +395,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         /**
          Array q ira armazenar os horarios dos medicamentos
          */
-        var arrayDataNotificacao = [NSDate]()
+//        var arrayDataNotificacao = [NSDate]()
         var arrayNotificacaoes = [Notificacao]()
         /**
          data criada é a data criada referente a data inicial do tratamento do
@@ -504,6 +506,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
 //        
 //        
 //        return view;
+        
     }
     /**
      Configurar cada celula
@@ -546,7 +549,7 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
             if pendente {
                cell.imgIndicativaPontual.image = UIImage(named: "red_marker.png")
             }else{
-              cell.imgIndicativaPontual.image = UIImage(named: "green_marker.png")
+              cell.imgIndicativaPontual.image = UIImage(named: "blue_marker.png")
             }
 
             cell.labelData.text = "Concluido"

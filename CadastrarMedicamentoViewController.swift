@@ -399,7 +399,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
                         })
 
                     }else{//se nao encontrou nada na base de dados deve apresentar uma msg ao usuário
-                        self.showAlert("Não encontrado", msg: "Produto não encontrado na base", titleBtn: "OK")
+                        print("Não Produto não encontrado na base")
                     }
                    
                     

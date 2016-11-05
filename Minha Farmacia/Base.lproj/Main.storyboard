@@ -424,7 +424,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gMg-Hh-Agh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5549.5" y="330.5"/>
+            <point key="canvasLocation" x="6136.5" y="330.5"/>
         </scene>
         <!--Cadastro-->
         <scene sceneID="Q4H-mC-4t8">
@@ -1123,7 +1123,13 @@
                             <constraint firstItem="9yj-UX-wY0" firstAttribute="top" secondItem="537-aH-nVM" secondAttribute="bottom" id="whT-j3-Kj7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ql0-bz-LhG"/>
+                    <navigationItem key="navigationItem" id="ql0-bz-LhG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fGd-QF-uHY">
+                            <connections>
+                                <action selector="addReceita:" destination="SSW-3T-phx" id="TvZ-bk-INX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="activity" destination="qvx-bP-hiK" id="tU0-nY-w6r"/>
@@ -1443,10 +1449,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gQO-iQ-5xh">
-                                                    <rect key="frame" x="4" y="2" width="30" height="30"/>
+                                                    <rect key="frame" x="4" y="2" width="21" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="gMB-n0-nSK"/>
-                                                        <constraint firstAttribute="width" constant="30" id="mgT-5S-qPP"/>
+                                                        <constraint firstAttribute="height" constant="21" id="gMB-n0-nSK"/>
+                                                        <constraint firstAttribute="width" constant="21" id="mgT-5S-qPP"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4mh-SB-gAe">
@@ -1582,7 +1588,7 @@
                         <segue destination="gSm-N2-W28" kind="relationship" relationship="viewControllers" id="kh9-5H-0mH"/>
                         <segue destination="GzX-ja-lvo" kind="relationship" relationship="viewControllers" id="94u-Gb-e6h"/>
                         <segue destination="AZE-dz-s33" kind="relationship" relationship="viewControllers" id="HCM-PX-ac4"/>
-                        <segue destination="q2F-en-d13" kind="relationship" relationship="viewControllers" id="ZMa-fJ-PD5"/>
+                        <segue destination="5Pj-2e-Oyc" kind="relationship" relationship="viewControllers" id="ZMa-fJ-PD5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8EM-BL-pLU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2458,7 +2464,7 @@
         <!--Mais-->
         <scene sceneID="gII-Eo-zcf">
             <objects>
-                <viewController title="Mais" id="q2F-en-d13" sceneMemberID="viewController">
+                <viewController title="Mais" id="q2F-en-d13" customClass="MaisViewController" customModule="Minha_Farmacia" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YCi-q3-Ats"/>
                         <viewControllerLayoutGuide type="bottom" id="LNJ-vs-k5u"/>
@@ -2467,26 +2473,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46A-Qf-oDX">
-                                <rect key="frame" x="52" y="89" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Re-8U-A34">
-                                <rect key="frame" x="67" y="385" width="215" height="30"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="71" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="ikZ-N1-z7J">
+                                <rect key="frame" x="-12" y="25" width="399" height="593"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="71" id="XS2-pp-rmd" customClass="MaisTableViewCell" customModule="Minha_Farmacia" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="113.5" width="399" height="71"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XS2-pp-rmd" id="Gte-9c-QGt">
+                                            <rect key="frame" x="0.0" y="0.0" width="399" height="70.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wZg-hs-fSX">
+                                                    <rect key="frame" x="23" y="-1" width="358" height="70.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                    <color key="textColor" red="0.20784313730000001" green="0.6588235294" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wZg-hs-fSX" secondAttribute="trailing" constant="10" id="Pal-jX-h3A"/>
+                                                <constraint firstItem="wZg-hs-fSX" firstAttribute="leading" secondItem="Gte-9c-QGt" secondAttribute="leadingMargin" constant="15" id="SWJ-L1-KUQ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="wZg-hs-fSX" secondAttribute="bottom" constant="-7" id="icE-uS-vVp"/>
+                                                <constraint firstItem="wZg-hs-fSX" firstAttribute="top" secondItem="Gte-9c-QGt" secondAttribute="topMargin" constant="-9" id="kSK-v0-E3V"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblTItulo" destination="wZg-hs-fSX" id="D0b-cl-Dc9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="q2F-en-d13" id="rfl-Ni-8bV"/>
+                                    <outlet property="delegate" destination="q2F-en-d13" id="Ghs-fD-0Ig"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ikZ-N1-z7J" firstAttribute="leading" secondItem="VzU-D0-rbY" secondAttribute="leadingMargin" constant="-28" id="CXd-vy-cZZ"/>
+                            <constraint firstItem="LNJ-vs-k5u" firstAttribute="top" secondItem="ikZ-N1-z7J" secondAttribute="bottom" id="H7S-De-fGZ"/>
+                            <constraint firstItem="ikZ-N1-z7J" firstAttribute="top" secondItem="YCi-q3-Ats" secondAttribute="bottom" constant="-39" id="PRo-si-jbN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ikZ-N1-z7J" secondAttribute="trailing" constant="-28" id="keK-pd-UBH"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Mais" image="icoMore" selectedImage="icoMoreSelecionado" id="t9z-uo-7N9"/>
+                    <navigationItem key="navigationItem" id="iOk-DY-m39"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <segue destination="lmu-qM-LqU" kind="show" identifier="quemFaz" id="cbr-H7-Jb3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQ1-yz-xAb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1418.5" y="267.5"/>
+            <point key="canvasLocation" x="343.5" y="-20.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="R2W-hq-B60">
+            <objects>
+                <viewController id="lmu-qM-LqU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="axG-Wn-xCN"/>
+                        <viewControllerLayoutGuide type="bottom" id="uf1-fo-28h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NxU-2m-Q7y">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cXw-nP-nVe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="837.5" y="-20.5"/>
         </scene>
         <!--Medicamentos-->
         <scene sceneID="u9i-n3-dFc">
@@ -2562,6 +2621,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ews-2D-xHT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="781" y="-1138"/>
+        </scene>
+        <!--Mais-->
+        <scene sceneID="p7P-ly-vDr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Pj-2e-Oyc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Mais" image="icoMore" selectedImage="icoMoreSelecionado" id="t9z-uo-7N9"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="414-ST-lmH">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="q2F-en-d13" kind="relationship" relationship="rootViewController" id="6gu-nP-CGx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Vq-ZJ-zjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-243.5" y="-20.5"/>
         </scene>
     </scenes>
     <resources>

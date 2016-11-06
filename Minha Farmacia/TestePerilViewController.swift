@@ -392,7 +392,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         let dataNascimentoIdade = formataDataNascimento("\(user.dataNascimento)") + " \(idade) Anos"
         conteudo.append(dataNascimentoIdade)
         //        conteudo.append(util.formataDataPadrao(dataNascimento)+" \(qtdDias/365) Anos")
-        conteudo.append("facebook")
+        conteudo.append("Não conectado")
         conteudo.append("Logout")
         
         conteudo.append("")

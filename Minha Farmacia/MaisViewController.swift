@@ -35,6 +35,12 @@ class MaisViewController: UIViewController,UITableViewDataSource, UITableViewDel
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0{
             performSegueWithIdentifier("quemFaz", sender: self)
+        }else if indexPath.row == 1{
+            performSegueWithIdentifier("sobre", sender: self)
+        }else if indexPath.row == 2{
+            performSegueWithIdentifier("ajuda", sender: self)
+        }else if indexPath.row == 3{
+            performSegueWithIdentifier("contato", sender: self)
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

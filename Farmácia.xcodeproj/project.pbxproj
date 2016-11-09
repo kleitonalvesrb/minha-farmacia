@@ -81,6 +81,9 @@
 		6393CA711D55B2A2003B3E71 /* homem.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA6F1D55B2A2003B3E71 /* homem.png */; };
 		6393CA721D55B2A2003B3E71 /* mulher.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA701D55B2A2003B3E71 /* mulher.png */; };
 		6393CA741D55B397003B3E71 /* indefinido.png in Resources */ = {isa = PBXBuildFile; fileRef = 6393CA731D55B397003B3E71 /* indefinido.png */; };
+		639DC4DF1DD2C46900365A74 /* AjudaTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC4DE1DD2C46800365A74 /* AjudaTableViewController.swift */; };
+		639DC4E11DD2C47A00365A74 /* AjudaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC4E01DD2C47A00365A74 /* AjudaTableViewCell.swift */; };
+		639DC4E31DD2C50400365A74 /* ItensAjuda.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DC4E21DD2C50400365A74 /* ItensAjuda.swift */; };
 		639DEFCB1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639DEFCA1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift */; };
 		63A0EECC1DB1AC8000398056 /* flash_preenchido.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A0EECA1DB1AC8000398056 /* flash_preenchido.png */; };
 		63A0EECD1DB1AC8000398056 /* flash_borda.png in Resources */ = {isa = PBXBuildFile; fileRef = 63A0EECB1DB1AC8000398056 /* flash_borda.png */; };
@@ -213,6 +216,9 @@
 		6393CA6F1D55B2A2003B3E71 /* homem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homem.png; sourceTree = "<group>"; };
 		6393CA701D55B2A2003B3E71 /* mulher.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mulher.png; sourceTree = "<group>"; };
 		6393CA731D55B397003B3E71 /* indefinido.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indefinido.png; sourceTree = "<group>"; };
+		639DC4DE1DD2C46800365A74 /* AjudaTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AjudaTableViewController.swift; sourceTree = "<group>"; };
+		639DC4E01DD2C47A00365A74 /* AjudaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AjudaTableViewCell.swift; sourceTree = "<group>"; };
+		639DC4E21DD2C50400365A74 /* ItensAjuda.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItensAjuda.swift; sourceTree = "<group>"; };
 		639DEFCA1D955E4600819E64 /* DetalhamentoMedicamentoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetalhamentoMedicamentoViewController.swift; sourceTree = "<group>"; };
 		63A0EECA1DB1AC8000398056 /* flash_preenchido.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash_preenchido.png; sourceTree = "<group>"; };
 		63A0EECB1DB1AC8000398056 /* flash_borda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flash_borda.png; sourceTree = "<group>"; };
@@ -357,6 +363,9 @@
 				63B337B01DD1451F005C9872 /* QuemFazViewController.swift */,
 				63B337B21DD14539005C9872 /* QuemFazTableViewCell.swift */,
 				63EE0E411DD14A9C00EBB9F5 /* Desenvolvedor.swift */,
+				639DC4DE1DD2C46800365A74 /* AjudaTableViewController.swift */,
+				639DC4E01DD2C47A00365A74 /* AjudaTableViewCell.swift */,
+				639DC4E21DD2C50400365A74 /* ItensAjuda.swift */,
 			);
 			name = Mais;
 			sourceTree = "<group>";
@@ -668,7 +677,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6309E0271DB45CCC001E1B98 /* TableViewCellPerfil.swift in Sources */,
+				639DC4DF1DD2C46900365A74 /* AjudaTableViewController.swift in Sources */,
 				635B227E1DC3EEA50022E3DF /* CellDetalhamentoTableViewCell.swift in Sources */,
+				639DC4E31DD2C50400365A74 /* ItensAjuda.swift in Sources */,
+				639DC4E11DD2C47A00365A74 /* AjudaTableViewCell.swift in Sources */,
 				6393CA6E1D55312B003B3E71 /* Usuario.swift in Sources */,
 				63B337B31DD14539005C9872 /* QuemFazTableViewCell.swift in Sources */,
 				6382F0D21D65008F00958E54 /* CadastrarMedicamentoViewController.swift in Sources */,

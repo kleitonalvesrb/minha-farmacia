@@ -209,7 +209,12 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         }else if titulos[indexPath.row].lowercaseString == "Logout".lowercaseString{
             let logout = UITableViewRowAction(style: .Normal,title: "Logout"){action, index in
                 //UIControl().sendAction(Selector("suspend"), to: UIApplication.sharedApplication(), forEvent: nil)
-                exit(EXIT_SUCCESS)
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                
+                let telaLogin = storyBoard.instantiateViewControllerWithIdentifier("telaLogin") as! TesteViewController
+                self.presentViewController(telaLogin, animated:false, completion:nil)
+
+//                exit(EXIT_SUCCESS)
             }
             logout.backgroundColor = UIColor.redColor()
             return [logout]

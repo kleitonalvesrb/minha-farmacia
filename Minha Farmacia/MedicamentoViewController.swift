@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import Alamofire
 import CoreData
+
 class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     @IBOutlet weak var collectionView: UICollectionView!
 //    var imgArray = [UIImage]()

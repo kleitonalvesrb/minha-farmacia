@@ -2533,7 +2533,7 @@
                                     <constraint firstAttribute="height" constant="21" id="rhz-0G-7GM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Assunto" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8If-tL-Mi5">
@@ -2551,7 +2551,7 @@
                                     <constraint firstAttribute="width" constant="70" id="Lxo-9r-3XH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descrição" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZN-lM-By5">
@@ -2561,7 +2561,7 @@
                                     <constraint firstAttribute="width" constant="77" id="V00-zU-eOl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LRq-Fz-Dzn">
@@ -2633,26 +2633,6 @@
                     <view key="view" contentMode="scaleToFill" id="GnL-oU-oCf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="barcode.png" translatesAutoresizingMaskIntoConstraints="NO" id="8oi-xh-OvT">
-                                <rect key="frame" x="15" y="122" width="55" height="45"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="red_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="XLW-3S-yjQ">
-                                <rect key="frame" x="15" y="189" width="55" height="42"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="green_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="PyM-6N-LeA">
-                                <rect key="frame" x="15" y="262" width="55" height="42"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="blue_marker.png" translatesAutoresizingMaskIntoConstraints="NO" id="xsM-zI-sFs">
-                                <rect key="frame" x="15" y="324" width="55" height="42"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TgT-OY-hMa">
-                                <rect key="frame" x="78" y="122" width="277" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
@@ -2673,10 +2653,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Far-IJ-m11">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Far-IJ-m11">
                                 <rect key="frame" x="16" y="124" width="343" height="430"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">       O aplicativo Minha Farmácia foi desenvolvido na Universidade Católica de Brasília como trabalho de conclusão de curso, surgiu ao imaginarmos a dificuldade encontrada por diversas pessoas em gerenciar os seus medicamentos e lembrar de seus horários. O aplicativo tem como proposito guardar os dados de medicamento, dados técnicos que sera pego através da leitura do código de barras e dados do tratamento, como por exemplo, a quantidade que será ministrada, data em que se iniciara o tratamento e número de dias, com base nas informações será gerado notificações para que o usuário lembre de tomar seu medicamento. O aplicativo também conta com o armazenamento da receita, esta será salvo a foto juntamente com uma descrição opcional e a data de cadastro da mesma</mutableString>
+                                <mutableString key="text">     O aplicativo Minha Farmácia foi desenvolvido por alunos da graduação em Sistemas de Informação na Universidade Católica de Brasília como trabalho de conclusão de curso. A ideia surgiu ao observarmos a dificuldade encontrada por diversas pessoas, especialmente idosos e pessoas com doenças crônicas (realidade cada vez mais crescente no Brasil e de alta criticidade), em gerenciar os seus medicamentos e assim, tomá-los nos horários prescritos. O aplicativo tem como propósito facilitar o gerenciamento e a organização desses medicamentos de forma simples e prática. O usuário poderá salvar seus medicamentos através da captura de uma foto da embalagem/rótulo e, se assim preferir, prosseguir com a busca de dados técnicos sobre a sua composição e outras informações através da leitura do código de barras. Para o acompanhamento do tratamento, dados como a quantidade da substância que será administrada, a data em que se iniciará o tratamento e a sua duração em dias também serão armazenados. Com base nessas informações, serão geradas notificações para que o usuário seja alertado no horário programado para tomar o medicamento durante o período de tratamento. Na opção “Receitas”, o usuário poderá armazenar devidamente suas receitas médicas. Basta apenas capturar uma foto do documento e registrar alguma observação ou detalhe quanto à prescrição. Tanto o histórico de uso dos medicamentos quanto o de cadastro de receitas será mantido afim de serem realizadas consultas sempre que se fizer necessário. O diferencial do aplicativo Minha Farmácia está na sua praticidade visual, simplicidade e no foco à relação usuário-medicamento, através de uma interface limpa, fácil e intuitiva.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -2901,10 +2881,8 @@
         <image name="Prescriptions.png" width="849" height="851"/>
         <image name="Users.png" width="849" height="855"/>
         <image name="barcode.png" width="48" height="48"/>
-        <image name="blue_marker.png" width="128" height="129"/>
         <image name="delete26.png" width="26" height="26"/>
         <image name="flash_borda.png" width="26" height="26"/>
-        <image name="green_marker.png" width="128" height="129"/>
         <image name="homem.png" width="128" height="128"/>
         <image name="icoImagePerfil" width="28" height="28"/>
         <image name="icoImagePerfilSelect" width="28" height="28"/>
@@ -2916,7 +2894,6 @@
         <image name="icoRemedioSelecionado" width="28" height="28"/>
         <image name="linkedin.png" width="128" height="128"/>
         <image name="logo2.png" width="1477" height="505"/>
-        <image name="red_marker.png" width="128" height="129"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ukv-95-uiy"/>

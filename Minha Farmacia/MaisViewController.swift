@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class MaisViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+import MessageUI
+class MaisViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,MFMailComposeViewControllerDelegate {
     let titulos = ["Quem Faz?","Sobre","Ajuda","Contato"]
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,8 @@ class MaisViewController: UIViewController,UITableViewDataSource, UITableViewDel
         }else if indexPath.row == 2{
             performSegueWithIdentifier("ajuda", sender: self)
         }else if indexPath.row == 3{
-            performSegueWithIdentifier("contato", sender: self)
+//            performSegueWithIdentifier("contato", sender: self)
+            configuraEnvioEmail()
         }
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -55,6 +56,42 @@ class MaisViewController: UIViewController,UITableViewDataSource, UITableViewDel
         return cell
         
     }
+    func configuraEnvioEmail(){
+        let mailComposeViewController = configuredMailComposeViewController()
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        
+//        let imageData: NSData = UIImagePNGRepresentation(UIImage(named: "logo.png")!)!
+//        mailComposerVC.addAttachmentData(imageData, mimeType: "image/png", fileName: "logo.png")
+        
+        mailComposerVC.setToRecipients(["projetominhafarmacia@gmail.com"])
+        mailComposerVC.setSubject("Contato")
+//        mailComposerVC.setMessageBody("<h1>Ola pessoal</h1>", isHTML: true)
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate
+    
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+
 
     
 

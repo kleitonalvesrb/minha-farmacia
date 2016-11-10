@@ -187,6 +187,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             alteraNomeUsuario(indexPath.row)
         }else if titulos[indexPath.row].lowercaseString == "Sexo".lowercaseString{
             print("alterar Sexo")
+        }else if titulos[indexPath.row].lowercaseString == "Logout".lowercaseString{
+            self.confirmaIntencaoLogout()
         }
     }
     
@@ -210,38 +212,58 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         }else if titulos[indexPath.row].lowercaseString == "Logout".lowercaseString{
             let logout = UITableViewRowAction(style: .Normal,title: "Logout"){action, index in
                 
-                let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                let contexto: NSManagedObjectContext = appDel.managedObjectContext
-                
-                UsuarioDAO().deletaDadosUsuario(contexto)
-                MedicamentoDAO().deletaMedicamentos(contexto)
-                DosagemDAO().deletaDosagem(contexto)
-                NotificacaoDAO().deletaNotificacoes(contexto)
-                //UIControl().sendAction(Selector("suspend"), to: UIApplication.sharedApplication(), forEvent: nil)
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                
-                let telaLogin = storyBoard.instantiateViewControllerWithIdentifier("telaLogin") as! TesteViewController
-                self.presentViewController(telaLogin, animated:false, completion:nil)
-
+                self.confirmaIntencaoLogout()
 //                exit(EXIT_SUCCESS)
             }
             logout.backgroundColor = UIColor.redColor()
             return [logout]
         }
-        
-        
-        //        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
-        //            print("favorite button tapped")
-        //        }
-        //        favorite.backgroundColor = UIColor.orangeColor()
-        //
-        //        let share = UITableViewRowAction(style: .Normal, title: "Share") { action, index in
-        //            print("share button tapped")
-        //        }
-        //        share.backgroundColor = UIColor.lightGrayColor()
-        
-        //return [share, favorite, more]
         return nil
+    }
+    
+    func confirmaIntencaoLogout(){
+        
+        let alerta = UIAlertController(title: "Sair", message: "Ao sair todos os dados de medicamentos serão excluidos assim como suas notificações", preferredStyle: .ActionSheet)
+        
+        let confirmaSaida = UIAlertAction(title: "OK, Desejo sair", style: .Default) { (alert: UIAlertAction!) in
+            self.apagaDadosUsuario()
+            self.apagaNotificacoesFuturas()
+            self.redirecionaPaginaLogin()
+        }
+        let cancel = UIAlertAction(title: "Cancelar", style: .Cancel) { (alert: UIAlertAction!) in
+            //self.geraAlerta("Foto de Perfil", mensagem: "Tudo bem, você poderá escolher uma foto mais tarde!")
+        }
+        alerta.addAction(confirmaSaida)
+        alerta.addAction(cancel)
+        
+        self.presentViewController(alerta, animated: true, completion: nil)
+        
+    }
+    func apagaNotificacoesFuturas(){
+        let app:UIApplication = UIApplication.sharedApplication();
+        let eventArray:NSArray = app.scheduledLocalNotifications!;
+        print("qtd ---->\(eventArray.count)<-----")
+       
+        for i in eventArray{
+            UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
+        }
+
+    }
+    func redirecionaPaginaLogin(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let telaLogin = storyBoard.instantiateViewControllerWithIdentifier("telaLogin") as! TesteViewController
+        self.presentViewController(telaLogin, animated:false, completion:nil)
+    }
+    func apagaDadosUsuario(){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        
+        UsuarioDAO().deletaDadosUsuario(contexto)
+        MedicamentoDAO().deletaMedicamentos(contexto)
+        DosagemDAO().deletaDosagem(contexto)
+        NotificacaoDAO().deletaNotificacoes(contexto)
+        //UIControl().sendAction(Selector("suspend"), to: UIApplication.sharedApplication(), forEvent: nil)
         
     }
     

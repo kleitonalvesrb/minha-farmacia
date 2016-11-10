@@ -306,9 +306,9 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
 //        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        let contexto: NSManagedObjectContext = appDel.managedObjectContext
       
-
-
-        Alamofire.request(.PUT, url.urlInsereMedicamentoUsuario(user.email), parameters:criaDicMedicamento() as? [String : AnyObject] , encoding: .JSON, headers: nil).responseJSON { (response) in
+        let urlInserirMedicamento = url.urlInsereMedicamentoUsuario(user.email)
+        print(">>>>\(urlInserirMedicamento)<<<<<<")
+        Alamofire.request(.PUT, urlInserirMedicamento, parameters:criaDicMedicamento() as? [String : AnyObject] , encoding: .JSON, headers: nil).responseJSON { (response) in
             
             if response.response?.statusCode == 200{
                let util = Util()

@@ -72,6 +72,19 @@ class UsuarioDAO: NSObject {
         }
         return user
     }
+    func deletaDadosUsuario(contexto: NSManagedObjectContext){
+        let request = NSFetchRequest(entityName: "Usuario")
+        request.returnsObjectsAsFaults = false
+        do{
+            let results = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                contexto.deleteObject(result)
+                print("deletando usuario")
+            }
+        }catch{
+            print("Erro ao excluir dados do usuário")
+        }
+    }
     /*
      //        var user = NSEntityDescription.insertNewObjectForEntityForName("User", inManagedObjectContext: contexto)
      //        user.setValue("Arnaldo", forKey: "nome")

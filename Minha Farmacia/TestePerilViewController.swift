@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import CoreData
 class TestePerilViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     @IBOutlet weak var fotoPerfil: UIImageView!
     var user = Usuario.sharedInstance
@@ -208,6 +209,14 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             
         }else if titulos[indexPath.row].lowercaseString == "Logout".lowercaseString{
             let logout = UITableViewRowAction(style: .Normal,title: "Logout"){action, index in
+                
+                let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                let contexto: NSManagedObjectContext = appDel.managedObjectContext
+                
+                UsuarioDAO().deletaDadosUsuario(contexto)
+                MedicamentoDAO().deletaMedicamentos(contexto)
+                DosagemDAO().deletaDosagem(contexto)
+                NotificacaoDAO().deletaNotificacoes(contexto)
                 //UIControl().sendAction(Selector("suspend"), to: UIApplication.sharedApplication(), forEvent: nil)
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 

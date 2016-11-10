@@ -46,6 +46,22 @@ func buscaNotificacaoIdDosagem(contexto: NSManagedObjectContext, idDosagem: Int)
     }
     return notificacoes
 }
+    /**
+        Deleta as notificacoes salvas
+     */
+    func deletaNotificacoes(contexto: NSManagedObjectContext){
+        let request = NSFetchRequest(entityName: "Notificacao")
+        request.returnsObjectsAsFaults = false
+        do{
+            let results = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                contexto.deleteObject(result)
+                print("deletando notificacoes")
+            }
+        }catch{
+            print("erro ao deletar notificacoes")
+        }
+    }
     func confirmaDosagem(contexto: NSManagedObjectContext, idNotificacao:Int){
         let request = NSFetchRequest(entityName: "Notificacao")
         request.returnsObjectsAsFaults = false

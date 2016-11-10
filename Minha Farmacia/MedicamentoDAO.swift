@@ -94,7 +94,22 @@ class MedicamentoDAO: NSObject {
         }
         return false
     }
-    
+    /**
+        Método responsável por deletar todos os medicamentos salvos no celular
+     */
+    func deletaMedicamentos(contexto: NSManagedObjectContext){
+        let request = NSFetchRequest(entityName: "Medicamento")
+        request.returnsObjectsAsFaults = false
+        do{
+            let results = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                contexto.deleteObject(result)
+                print("deletando medicamento")
+            }
+        }catch{
+            print("Erro ao excluir dados dos medicamentos")
+        }
+    }
     /**
      verifica se existe o medicamento com o id informado
      */

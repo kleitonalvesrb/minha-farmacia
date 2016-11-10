@@ -60,6 +60,22 @@ class DosagemDAO: NSObject {
         return dosagem
     }
     /**
+        Método responsável por deletar os dados das dosagens
+     */
+    func deletaDosagem(contexto: NSManagedObjectContext){
+        let request = NSFetchRequest(entityName: "Dosagem")
+        request.returnsObjectsAsFaults = false
+        do{
+            let results = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                contexto.deleteObject(result)
+                print("deletando dosagem")
+            }
+        }catch{
+            print("Erro ao deletar dosagens")
+        }
+    }
+    /**
      verifica se existe o medicamento com o id informado
      */
     func verificaDosagemId(contexto: NSManagedObjectContext, id : Int) -> Bool{

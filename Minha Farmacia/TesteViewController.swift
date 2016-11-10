@@ -34,12 +34,23 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let usuarioDao = UsuarioDAO()
+
+        if usuarioDao.verificaUserLogado(contexto) {
+            email.text = usuarioDao.recuperaDadosUsuario(contexto).email
+            email.userInteractionEnabled = false
+            //                print()
+        }else{
+            print("Nao tem nenhum usuario cadastrado")
+        }
+        
+        
 //       print(UsuarioDAO().recuperaDadosUsuario(contexto).nome)
         self.title = "Login"
         
-        let app:UIApplication = UIApplication.sharedApplication();
-        let eventArray:NSArray = app.scheduledLocalNotifications!;
-        print("qtd ---->\(eventArray.count)<-----")
+//        let app:UIApplication = UIApplication.sharedApplication();
+//        let eventArray:NSArray = app.scheduledLocalNotifications!;
+//        print("qtd ---->\(eventArray.count)<-----")
         
         
         
@@ -49,7 +60,6 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //            //print(i)
 ////           UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
 //        }
-////        let usuarioDao = UsuarioDAO()
 //        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //        let contexto: NSManagedObjectContext = appDel.managedObjectContext
 //        for m in MedicamentoDAO().recuperarMedicamentos(contexto){
@@ -60,11 +70,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //            }
 //        }
         
-//        if usuarioDao.verificaUserLogado(contexto) {
-//            print(usuarioDao.recuperaDadosUsuario(contexto).nome)
-//        }else{
-//            print("Nao tem nenhum usuario cadastrado")
-//        }
+//
         
         configuraNavBar()
         

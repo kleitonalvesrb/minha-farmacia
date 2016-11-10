@@ -225,7 +225,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         
         let alerta = UIAlertController(title: "Sair", message: "Ao sair todos os dados de medicamentos serão excluidos assim como suas notificações", preferredStyle: .ActionSheet)
         
-        let confirmaSaida = UIAlertAction(title: "OK, Desejo sair", style: .Default) { (alert: UIAlertAction!) in
+        let confirmaSaida = UIAlertAction(title: "Desejo sair", style: .Default) { (alert: UIAlertAction!) in
             self.apagaDadosUsuario()
             self.apagaNotificacoesFuturas()
             self.redirecionaPaginaLogin()

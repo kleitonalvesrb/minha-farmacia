@@ -42,11 +42,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         }
         
         
-        populaArrayTitulos()
-        populaConteudo()
         
 
-        fotoPerfil.image = user.foto
 
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         fotoPerfil.userInteractionEnabled = true
@@ -55,6 +52,15 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TesteViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
+    }
+    override func viewWillAppear(animated: Bool) {
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        user = UsuarioDAO().recuperaDadosUsuario(contexto)
+        fotoPerfil.image = user.foto
+        populaArrayTitulos()
+        populaConteudo()
+
     }
    
     override func viewDidDisappear(animated: Bool) {
@@ -417,15 +423,20 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     }
     func populaConteudo(){
         let util = Util()
-        let dataNascimento:NSDate!
-        dataNascimento = user.dataNascimento
-        let qtdDias = util.qtdDiasEntreDuasDatas(user.dataNascimento, ate: NSDate())
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        
+
+        var dataNascimento:NSDate!
+        dataNascimento = UsuarioDAO().recuperaDadosUsuario(contexto).dataNascimento
+        print(">>>>>>>>>\(dataNascimento)<<<<<<<<<<")
+        let qtdDias = util.qtdDiasEntreDuasDatas(dataNascimento, ate: NSDate())
         conteudo.append(user.nome)
         conteudo.append(user.email)
         conteudo.append("******")
         conteudo.append(user.sexo)
         let idade = qtdDias / 365
-        let dataNascimentoIdade = formataDataNascimento("\(user.dataNascimento)") + " \(idade) Anos"
+        let dataNascimentoIdade = formataDataNascimento("\(dataNascimento)") + " \(idade) Anos"
         conteudo.append(dataNascimentoIdade)
         //        conteudo.append(util.formataDataPadrao(dataNascimento)+" \(qtdDias/365) Anos")
         conteudo.append("Não conectado")

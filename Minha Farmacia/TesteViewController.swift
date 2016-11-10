@@ -14,6 +14,7 @@ import CoreData
 class TesteViewController: UIViewController, UITextFieldDelegate{
     
     
+    @IBOutlet weak var btnOutraConta: UIButton!
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var senha: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -37,10 +38,25 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         let usuarioDao = UsuarioDAO()
 
         if usuarioDao.verificaUserLogado(contexto) {
-            email.text = usuarioDao.recuperaDadosUsuario(contexto).email
+            btnOutraConta.hidden = false
+            btnOutraConta.userInteractionEnabled = true
+            let usuario = usuarioDao.recuperaDadosUsuario(contexto)
+            user.nome = usuario.nome
+            user.email = usuario.email
+            user.dataNascimento = usuario.dataNascimento
+            user.id = usuario.id
+            user.foto = usuario.foto
+            user.idFacebook = usuario.idFacebook
+            user.medicamento = usuario.medicamento
+            user.receitas = usuario.receitas
+            user.senha = usuario.senha
+            user.sexo = usuario.sexo
+            email.text = user.email
             email.userInteractionEnabled = false
-            //                print()
         }else{
+            btnOutraConta.hidden = true
+            btnOutraConta.userInteractionEnabled = false
+
             print("Nao tem nenhum usuario cadastrado")
         }
         
@@ -89,6 +105,38 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 
     }
     
+    @IBAction func btnEntrarOutraConta(sender: AnyObject) {
+        self.apagaDadosUsuario()
+        self.apagaNotificacoesFuturas()
+        self.redirecionaPaginaLogin()
+    }
+    func apagaDadosUsuario(){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        
+        UsuarioDAO().deletaDadosUsuario(contexto)
+        MedicamentoDAO().deletaMedicamentos(contexto)
+        DosagemDAO().deletaDosagem(contexto)
+        NotificacaoDAO().deletaNotificacoes(contexto)
+        //UIControl().sendAction(Selector("suspend"), to: UIApplication.sharedApplication(), forEvent: nil)
+        
+    }
+    func apagaNotificacoesFuturas(){
+        let app:UIApplication = UIApplication.sharedApplication();
+        let eventArray:NSArray = app.scheduledLocalNotifications!;
+        print("qtd ---->\(eventArray.count)<-----")
+        
+        for i in eventArray{
+            UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
+        }
+        
+    }
+    func redirecionaPaginaLogin(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let telaLogin = storyBoard.instantiateViewControllerWithIdentifier("telaLogin") as! TesteViewController
+        self.presentViewController(telaLogin, animated:false, completion:nil)
+    }
     override func viewWillAppear(animated: Bool) {
         configuraNavBar()
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
@@ -175,20 +223,42 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
 //    @IBAction func login(sender: AnyObject) {
 //    }
     @IBAction func login(sender: AnyObject) {
-        let verficaConexao = VerificarConexao()
-        if verficaConexao.isConnectedToNetwork(){
-            let util = Util()
-            if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
-                showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
-            }else{
-                UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let usuarioDao = UsuarioDAO()
+        if !usuarioDao.verificaUserLogado(contexto){
+        
+            let verficaConexao = VerificarConexao()
+            if verficaConexao.isConnectedToNetwork(){
+                let util = Util()
+                if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
+                    showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
+                }else{
+                    UIApplication.sharedApplication().beginIgnoringInteractionEvents()
 
-                utilidades.configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade: false, comAnimacao: true)
+                    utilidades.configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade:     false, comAnimacao: true)
                 
-                fazLogin(email.text!, senha: senha.text!)
+                    fazLogin(email.text!, senha: senha.text!)
+                }
+            }else{
+                showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
             }
         }else{
-            showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
+            self.user = usuarioDao.recuperaDadosUsuario(contexto)
+            validaUsuario(user)
+        }
+    }
+    func validaUsuario(usuario : Usuario){
+        let util = Util()
+        if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
+            showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
+        }else{
+            if user.senha == senha.text!{
+                print("por aqui")
+                self.performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
+            }else{
+                showAlert("Ops!", msg: "A senha informada não corresponde", titleBtn: "Ok")
+            }
         }
     }
     

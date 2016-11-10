@@ -47,7 +47,7 @@
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="go" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ltk-hA-pbb">
-                                <rect key="frame" x="20" y="245" width="335" height="30"/>
+                                <rect key="frame" x="20" y="256" width="335" height="30"/>
                                 <color key="backgroundColor" red="0.24313725490196078" green="0.70980392156862748" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Z3Y-By-d6i"/>
@@ -61,7 +61,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0yj-UG-bKx">
-                                <rect key="frame" x="20" y="283" width="335" height="30"/>
+                                <rect key="frame" x="20" y="294" width="335" height="30"/>
                                 <color key="backgroundColor" red="0.24313725489999999" green="0.70980392160000005" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Lsa-jq-kHD"/>
@@ -103,7 +103,7 @@
                                 <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qHQ-sg-2RE">
-                                <rect key="frame" x="237" y="218" width="118" height="30"/>
+                                <rect key="frame" x="237" y="221" width="118" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="8Kb-Km-kus"/>
                                     <constraint firstAttribute="width" constant="118" id="GhI-ng-WjA"/>
@@ -116,14 +116,26 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2.png" translatesAutoresizingMaskIntoConstraints="NO" id="ajd-DC-Yij">
                                 <rect key="frame" x="6" y="20" width="363" height="84"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4G-eJ-2LN">
+                                <rect key="frame" x="20" y="221" width="82" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="6d3-0k-VJo"/>
+                                    <constraint firstAttribute="height" constant="30" id="BJ2-Ys-dIF"/>
+                                </constraints>
+                                <state key="normal" title="Outra conta"/>
+                                <connections>
+                                    <action selector="btnEntrarOutraConta:" destination="SY7-62-NQY" eventType="touchUpInside" id="59b-mj-eiF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qZv-Jv-1gh" firstAttribute="centerY" secondItem="yM4-qE-UcS" secondAttribute="centerY" id="25s-U9-x3I"/>
                             <constraint firstItem="OFV-Em-Szl" firstAttribute="leading" secondItem="t8V-cH-ZZ3" secondAttribute="leading" constant="20" id="3rb-hv-Ojr"/>
                             <constraint firstItem="0yj-UG-bKx" firstAttribute="top" secondItem="Ltk-hA-pbb" secondAttribute="bottom" constant="8" id="4hl-s5-p8U"/>
+                            <constraint firstItem="I4G-eJ-2LN" firstAttribute="leading" secondItem="t8V-cH-ZZ3" secondAttribute="leading" constant="20" id="7Fv-2v-qa1"/>
                             <constraint firstAttribute="trailing" secondItem="OFV-Em-Szl" secondAttribute="trailing" constant="20" id="9qz-Ga-nOX"/>
-                            <constraint firstItem="qHQ-sg-2RE" firstAttribute="top" secondItem="rHu-Wv-AX8" secondAttribute="bottom" constant="7" id="Cjk-vs-gYD"/>
+                            <constraint firstItem="qHQ-sg-2RE" firstAttribute="top" secondItem="rHu-Wv-AX8" secondAttribute="bottom" constant="10" id="Cjk-vs-gYD"/>
                             <constraint firstItem="yM4-qE-UcS" firstAttribute="centerY" secondItem="t8V-cH-ZZ3" secondAttribute="centerY" id="FSZ-D2-XT5"/>
                             <constraint firstAttribute="trailing" secondItem="Ltk-hA-pbb" secondAttribute="trailing" constant="20" id="KhW-5H-inV"/>
                             <constraint firstItem="mON-Hu-7wV" firstAttribute="centerX" secondItem="t8V-cH-ZZ3" secondAttribute="centerX" id="KvP-SC-IlB"/>
@@ -136,10 +148,11 @@
                             <constraint firstItem="OFV-Em-Szl" firstAttribute="top" secondItem="iF4-qW-ABJ" secondAttribute="bottom" constant="27" id="bEQ-4a-7HW"/>
                             <constraint firstItem="rHu-Wv-AX8" firstAttribute="top" secondItem="OFV-Em-Szl" secondAttribute="bottom" constant="20" id="cCt-YX-t36"/>
                             <constraint firstItem="iF4-qW-ABJ" firstAttribute="top" secondItem="t8V-cH-ZZ3" secondAttribute="topMargin" constant="-1" id="f2X-bM-KYZ"/>
-                            <constraint firstItem="Ltk-hA-pbb" firstAttribute="top" secondItem="rHu-Wv-AX8" secondAttribute="bottom" constant="34" id="gNP-6V-72r"/>
+                            <constraint firstItem="Ltk-hA-pbb" firstAttribute="top" secondItem="rHu-Wv-AX8" secondAttribute="bottom" constant="45" id="gNP-6V-72r"/>
                             <constraint firstItem="bZJ-PV-nET" firstAttribute="top" secondItem="mON-Hu-7wV" secondAttribute="bottom" constant="8" id="hGM-Wp-JAf"/>
                             <constraint firstItem="Ltk-hA-pbb" firstAttribute="leading" secondItem="t8V-cH-ZZ3" secondAttribute="leading" constant="20" id="iIs-hL-3PB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iF4-qW-ABJ" secondAttribute="trailing" constant="-24" id="iRv-WM-GFl"/>
+                            <constraint firstItem="I4G-eJ-2LN" firstAttribute="top" secondItem="rHu-Wv-AX8" secondAttribute="bottom" constant="10" id="lHT-4A-nv7"/>
                             <constraint firstAttribute="trailing" secondItem="rHu-Wv-AX8" secondAttribute="trailing" constant="20" id="oaB-4d-5FA"/>
                             <constraint firstItem="ajd-DC-Yij" firstAttribute="top" secondItem="m2u-DJ-RYP" secondAttribute="bottom" id="u6s-JE-CgP"/>
                             <constraint firstItem="OFV-Em-Szl" firstAttribute="top" secondItem="ajd-DC-Yij" secondAttribute="bottom" constant="27" id="vzj-6S-Gbe"/>
@@ -155,6 +168,7 @@
                         <outlet property="btnCadastrar" destination="mON-Hu-7wV" id="UZ9-Zl-xG9"/>
                         <outlet property="btnFacebook" destination="0yj-UG-bKx" id="mnz-nH-APG"/>
                         <outlet property="btnLogin" destination="Ltk-hA-pbb" id="fxw-gi-lUe"/>
+                        <outlet property="btnOutraConta" destination="I4G-eJ-2LN" id="Nmg-Av-vnS"/>
                         <outlet property="email" destination="OFV-Em-Szl" id="26H-Ix-WYK"/>
                         <outlet property="info" destination="yM4-qE-UcS" id="C9D-e4-OZj"/>
                         <outlet property="senha" destination="rHu-Wv-AX8" id="STI-Qb-Kmt"/>

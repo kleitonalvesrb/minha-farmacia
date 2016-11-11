@@ -212,8 +212,8 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         medicamento.laboratorio = campoLaboratorio.text
         medicamento.nome = campoProduto.text
         medicamento.principioAtivo = campoPrincipioAtivo.text
-        medicamento.fotoMedicamento = resizeImage(imgRemedio.image!, targetSize: CGSizeMake(250.0, 250.0))
-        let data = UIImageJPEGRepresentation(medicamento.fotoMedicamento, 0.25)
+        medicamento.fotoMedicamento = resizeImage(imgRemedio.image!, targetSize: CGSizeMake(217.0, 217.0))
+//        let data = UIImageJPEGRepresentation(medicamento.fotoMedicamento, 0.25)
 //        print(data?.length)
 //        print(medicamento.fotoMedicamento.size)
         user.medicamento.append(medicamento) //(2448.0, 3264.0)
@@ -395,48 +395,72 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
 */
     func buscarMedicamentoNet (barCode: String) -> Void{
         
-        let url = NSURL(string:"http://mobile-aceite.tcu.gov.br/mapa-da-saude/rest/remedios?codBarraEan=\(barCode)&quantidade=1")!
-      
-        let task = NSURLSession.sharedSession().dataTaskWithURL(url){(data, response, error) in
-            if let urlContent = data{
-                
-                do{
-                    let resultado = try NSJSONSerialization.JSONObjectWithData(urlContent, options: NSJSONReadingOptions.MutableContainers)
-                    
-                    
-                    let res:NSArray = (resultado as! NSArray)
-                    if res.count != 0 { // verifica se encontrou algo na base de dados
-                    //treahd
-                    
-                        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
-                    
-                        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
-                        dispatch_async(backgroundQueue, {
-                            print("This is run on the background queue")
-                            print("fazer aqui a validação")
-                        
-                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                self.campoApresentacao.text = res[0]["apresentacao"] as? String
-                            
-                                self.campoClasseTerapeutica.text = res[0]["classeTerapeutica"] as? String
-                                self.campoLaboratorio.text = res[0]["laboratorio"] as? String
-                                self.campoPrincipioAtivo.text = res[0]["principioAtivo"] as? String
-                                self.campoProduto.text = res[0]["produto"] as? String
-                            
-                            })
-                        })
-
-                    }else{//se nao encontrou nada na base de dados deve apresentar uma msg ao usuário
-                        print("Não Produto não encontrado na base")
+        let url = "http://mobile-aceite.tcu.gov.br/mapa-da-saude/rest/remedios?codBarraEan=\(barCode)&quantidade=1"
+        Alamofire.request(.GET, url,parameters: nil,encoding: .JSON).responseJSON { (response) in
+            if response.response?.statusCode == 200{
+                if let JSON = response.result.value{
+                    //                    print(JSON)
+                    //                    print(JSON[0]["apresentacao"] as? String)
+                    if JSON.count > 0{
+                        self.campoApresentacao.text = JSON[0]["apresentacao"] as? String
+                        self.campoClasseTerapeutica.text = JSON[0]["classeTerapeutica"] as? String
+                        self.campoLaboratorio.text = JSON[0]["laboratorio"] as? String
+                        self.campoPrincipioAtivo.text = JSON[0]["principioAtivo"] as? String
+                        self.campoProduto.text = JSON[0]["produto"] as? String
+                    }else{
+                        self.showAlert("Ops!", msg: "Produto não encontrado na base", titleBtn: "OK")
                     }
-                   
                     
-                }catch{
-                    print("nao encontrado")
+                    
                 }
+            }else{
+                self.showAlert("Ops!", msg: "Houve problema para buscar o medicamento, tente novamente mais tarde", titleBtn: "Ok")
+                print("deu merda \(response.response?.statusCode)")
             }
         }
-        task.resume()
+
+//        let url = NSURL(string:"http://mobile-aceite.tcu.gov.br/mapa-da-saude/rest/remedios?codBarraEan=\(barCode)&quantidade=1")!
+//      
+//        let task = NSURLSession.sharedSession().dataTaskWithURL(url){(data, response, error) in
+//            if let urlContent = data{
+//                
+//                do{
+//                    let resultado = try NSJSONSerialization.JSONObjectWithData(urlContent, options: NSJSONReadingOptions.MutableContainers)
+//                    
+//                    
+//                    let res:NSArray = (resultado as! NSArray)
+//                    if res.count != 0 { // verifica se encontrou algo na base de dados
+//                    //treahd
+//                    
+//                        let qualityOfServiceClass = QOS_CLASS_BACKGROUND
+//                    
+//                        let backgroundQueue = dispatch_get_global_queue(qualityOfServiceClass, 0)
+//                        dispatch_async(backgroundQueue, {
+//                            print("This is run on the background queue")
+//                            print("fazer aqui a validação")
+//                        
+//                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                                self.campoApresentacao.text = res[0]["apresentacao"] as? String
+//                            
+//                                self.campoClasseTerapeutica.text = res[0]["classeTerapeutica"] as? String
+//                                self.campoLaboratorio.text = res[0]["laboratorio"] as? String
+//                                self.campoPrincipioAtivo.text = res[0]["principioAtivo"] as? String
+//                                self.campoProduto.text = res[0]["produto"] as? String
+//                            
+//                            })
+//                        })
+//
+//                    }else{//se nao encontrou nada na base de dados deve apresentar uma msg ao usuário
+//                        print("Não Produto não encontrado na base")
+//                    }
+//                   
+//                    
+//                }catch{
+//                    print("nao encontrado")
+//                }
+//            }
+//        }
+//        task.resume()
     }
     func showAlert(title: String, msg: String, titleBtn: String){
         let alerta = UIAlertController(title: title, message:msg, preferredStyle: .Alert)

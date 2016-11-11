@@ -58,7 +58,7 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         arrayDados.append("\(medicamento.dosagemMedicamento.intervaloDose) Hora(s)")
         arrayDados.append("\(medicamento.dosagemMedicamento.periodoTratamento) Dia(s) ")
         arrayDados.append("\(medicamento.dosagemMedicamento.quantidade) \(tipoMedicamentoApresentacaoDosagem(medicamento.dosagemMedicamento.tipoMedicamento))")
-        if medicamento.codBarras.characters.count > 2{
+        if medicamento.codBarras.characters.count > 2 && medicamento.apresentacao.characters.count > 2{
             arrayDados.append("Detalhar")
         }
         return arrayDados
@@ -76,7 +76,7 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         arrayTitulos.append("Intervalo entre consumo")
         arrayTitulos.append("Periodo de Tratamento")
         arrayTitulos.append("Dosagem")
-        if medicamento.codBarras.characters.count > 2{
+        if medicamento.codBarras.characters.count > 2 && medicamento.apresentacao.characters.count > 2{
             arrayTitulos.append("Descrição Técnica")
         }
         return arrayTitulos
@@ -103,6 +103,7 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
                 horarioNotificacaoAtrasoString.append(Util().formataPadraoCompleto("\(n.dataNotificacao)"))
             }
         }
+        
         return horarioNotificacaoAtrasoString
     }
     
@@ -178,7 +179,7 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         
         if arrayDadosMedicamento[indexPath.section].nomeSecao.lowercaseString == "Dados do Medicamento".lowercaseString{
             //adc seta
-            if medicamento.codBarras.characters.count > 2 && arrayTitulos[indexPath.row].lowercaseString == "Descrição Técnica".lowercaseString{
+            if medicamento.codBarras.characters.count > 2 && medicamento.apresentacao.characters.count > 2 && arrayTitulos[indexPath.row].lowercaseString == "Descrição Técnica".lowercaseString{
                 cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
             }
             cell.lblTitulo.text = arrayTitulos[indexPath.row]

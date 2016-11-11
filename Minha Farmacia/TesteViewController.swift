@@ -1,3 +1,4 @@
+
 //
 //  TesteViewController.swift
 //  Farmácia
@@ -5,7 +6,6 @@
 //  Created by Kleiton Batista on 30/07/16.
 //  Copyright © 2016 Kleiton Batista. All rights reserved.
 //
-
 import UIKit
 import Alamofire
 import AVFoundation
@@ -14,6 +14,7 @@ import CoreData
 class TesteViewController: UIViewController, UITextFieldDelegate{
     
     
+    @IBOutlet weak var btnOutraConta: UIButton!
     @IBOutlet weak var scroll: UIScrollView!
     @IBOutlet weak var senha: UITextField!
     @IBOutlet weak var email: UITextField!
@@ -32,67 +33,116 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     //
     override func viewDidLoad() {
         super.viewDidLoad()
+        //        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        //        print(UIApplication.sharedApplication().applicationIconBadgeNumber)
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         let usuarioDao = UsuarioDAO()
-
+        
         if usuarioDao.verificaUserLogado(contexto) {
-            email.text = usuarioDao.recuperaDadosUsuario(contexto).email
+            btnOutraConta.hidden = false
+            btnOutraConta.userInteractionEnabled = true
+            let usuario = usuarioDao.recuperaDadosUsuario(contexto)
+            user.nome = usuario.nome
+            user.email = usuario.email
+            user.dataNascimento = usuario.dataNascimento
+            user.id = usuario.id
+            user.foto = usuario.foto
+            user.idFacebook = usuario.idFacebook
+            user.medicamento = usuario.medicamento
+            user.receitas = usuario.receitas
+            user.senha = usuario.senha
+            user.sexo = usuario.sexo
+            email.text = user.email
             email.userInteractionEnabled = false
-            //                print()
         }else{
+            btnOutraConta.hidden = true
+            btnOutraConta.userInteractionEnabled = false
+            
             print("Nao tem nenhum usuario cadastrado")
         }
         
         
-//       print(UsuarioDAO().recuperaDadosUsuario(contexto).nome)
+        //       print(UsuarioDAO().recuperaDadosUsuario(contexto).nome)
         self.title = "Login"
         
-//        let app:UIApplication = UIApplication.sharedApplication();
-//        let eventArray:NSArray = app.scheduledLocalNotifications!;
-//        print("qtd ---->\(eventArray.count)<-----")
+        //        let app:UIApplication = UIApplication.sharedApplication();
+        //        let eventArray:NSArray = app.scheduledLocalNotifications!;
+        //        print("qtd ---->\(eventArray.count)<-----")
         
         
         
         
         
-//        for i in eventArray{
-//            //print(i)
-////           UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
-//        }
-//        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let contexto: NSManagedObjectContext = appDel.managedObjectContext
-//        for m in MedicamentoDAO().recuperarMedicamentos(contexto){
-//            print("Id remedio \(m.id) ID dosagem \(m.dosagemMedicamento.id)")
-//            for n in m.dosagemMedicamento.notificacoes{
-//                print("Notificacoes ->\(n.id)")
-//                print("Data => \(n.dataNotificacao)")
-//            }
-//        }
+        //        for i in eventArray{
+        //            //print(i)
+        ////           UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
+        //        }
+        //        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        //        for m in MedicamentoDAO().recuperarMedicamentos(contexto){
+        //            print("Id remedio \(m.id) ID dosagem \(m.dosagemMedicamento.id)")
+        //            for n in m.dosagemMedicamento.notificacoes{
+        //                print("Notificacoes ->\(n.id)")
+        //                print("Data => \(n.dataNotificacao)")
+        //            }
+        //        }
         
-//
+        //
         
         configuraNavBar()
         
         btnLogin.layer.cornerRadius = 5
         btnFacebook.layer.cornerRadius = 5
         utilidades.configuraLabelInformacao(info, comInvisibilidade: true, comIndicador: activityIndicator, comInvisibilidade: true, comAnimacao: false)
-//        utilidades.configuraLabelInformacao(info, comVisibilidade: true, comIndicador: activityIndicator, comVisibilidade: true, comStatus: false)
-    
-       // scroll.scrollEnabled = false
+        //        utilidades.configuraLabelInformacao(info, comVisibilidade: true, comIndicador: activityIndicator, comVisibilidade: true, comStatus: false)
+        
+        // scroll.scrollEnabled = false
         self.senha.delegate = self
         self.email.delegate = self
         
         let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TesteViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-
+        
     }
     
+    @IBAction func btnEntrarOutraConta(sender: AnyObject) {
+        self.apagaDadosUsuario()
+        self.apagaNotificacoesFuturas()
+        self.redirecionaPaginaLogin()
+    }
+    func apagaDadosUsuario(){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        
+        UsuarioDAO().deletaDadosUsuario(contexto)
+        MedicamentoDAO().deletaMedicamentos(contexto)
+        DosagemDAO().deletaDosagem(contexto)
+        NotificacaoDAO().deletaNotificacoes(contexto)
+        //UIControl().sendAction(Selector("suspend"), to: UIApplication.sharedApplication(), forEvent: nil)
+        
+    }
+    func apagaNotificacoesFuturas(){
+        let app:UIApplication = UIApplication.sharedApplication();
+        let eventArray:NSArray = app.scheduledLocalNotifications!;
+        print("qtd ---->\(eventArray.count)<-----")
+        
+        for i in eventArray{
+            UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
+        }
+        
+    }
+    func redirecionaPaginaLogin(){
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let telaLogin = storyBoard.instantiateViewControllerWithIdentifier("telaLogin") as! TesteViewController
+        self.presentViewController(telaLogin, animated:false, completion:nil)
+    }
     override func viewWillAppear(animated: Bool) {
         configuraNavBar()
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
-
+        
     }
     
     func configuraNavBar(){
@@ -100,10 +150,10 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         self.navigationController?.navigationBar.hidden = true
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
     }
-//    override func viewDidAppear(animated: Bool) {
-//        self.navigationController?.navigationBar.hidden = true
-//
-//    }
+    //    override func viewDidAppear(animated: Bool) {
+    //        self.navigationController?.navigationBar.hidden = true
+    //
+    //    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -111,24 +161,24 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     func textFieldDidBeginEditing(textField: UITextField) {
         /*
          /*Verifica se é o tamanho de tela do Iphone 5 / 5s / SE*/
-        if self.view.frame.height == 568{
-            scroll.scrollEnabled = true // habilita o scroll
-            scroll.contentSize = CGSizeMake(0, self.view.frame.height + 90) // coloca o scroll do tamanho da view + 90
-            
-            if senha == textField{
-                scroll.scrollEnabled = true
-                scroll.setContentOffset(CGPointMake(0, 90), animated: true) // se clicar na senha sobe a view
-            }
-        }else if self.view.frame.height == 480{ /*Verificar se a tela é do iphone 4*/
-            scroll.scrollEnabled = true
-            scroll.contentSize = CGSizeMake(0, self.view.frame.height + 150)
-            
-            if senha == textField{
-                scroll.setContentOffset(CGPointMake(0, 150), animated: true)
-            }
-        }*/
+         if self.view.frame.height == 568{
+         scroll.scrollEnabled = true // habilita o scroll
+         scroll.contentSize = CGSizeMake(0, self.view.frame.height + 90) // coloca o scroll do tamanho da view + 90
+         
+         if senha == textField{
+         scroll.scrollEnabled = true
+         scroll.setContentOffset(CGPointMake(0, 90), animated: true) // se clicar na senha sobe a view
+         }
+         }else if self.view.frame.height == 480{ /*Verificar se a tela é do iphone 4*/
+         scroll.scrollEnabled = true
+         scroll.contentSize = CGSizeMake(0, self.view.frame.height + 150)
+         
+         if senha == textField{
+         scroll.setContentOffset(CGPointMake(0, 150), animated: true)
+         }
+         }*/
     }
-
+    
     func dismissKeyboard() ->Void{
         self.view.endEditing(true)
     }
@@ -137,7 +187,7 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         //scroll.setContentOffset(CGPointMake(0, 0), animated: true)
         //scroll.scrollEnabled = false
     }
-  
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
@@ -148,14 +198,14 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         }
         return true
     }
-  
+    
     /**
-        Botão cadastro, acao que leva para tela de cadastro
+     Botão cadastro, acao que leva para tela de cadastro
      */
     @IBAction func Cadastrar(sender: AnyObject) {
         let verificaConexao = VerificarConexao()
         if verificaConexao.isConnectedToNetwork(){
-//            performSegueWithIdentifier("cadastrar", sender: self)
+            //            performSegueWithIdentifier("cadastrar", sender: self)
         }else{
             showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
         }
@@ -171,42 +221,64 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         }))
         self.presentViewController(alerta, animated: true, completion: nil)
     }
-//
-//    @IBAction func login(sender: AnyObject) {
-//    }
+    //
+    //    @IBAction func login(sender: AnyObject) {
+    //    }
     @IBAction func login(sender: AnyObject) {
-        let verficaConexao = VerificarConexao()
-        if verficaConexao.isConnectedToNetwork(){
-            let util = Util()
-            if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
-                showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        let usuarioDao = UsuarioDAO()
+        if !usuarioDao.verificaUserLogado(contexto){
+            
+            let verficaConexao = VerificarConexao()
+            if verficaConexao.isConnectedToNetwork(){
+                let util = Util()
+                if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
+                    showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
+                }else{
+                    UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+                    
+                    utilidades.configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade:     false, comAnimacao: true)
+                    
+                    fazLogin(email.text!, senha: senha.text!)
+                }
             }else{
-                UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-
-                utilidades.configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade: false, comAnimacao: true)
-                
-                fazLogin(email.text!, senha: senha.text!)
+                showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
             }
         }else{
-            showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
+            self.user = usuarioDao.recuperaDadosUsuario(contexto)
+            validaUsuario(user)
+        }
+    }
+    func validaUsuario(usuario : Usuario){
+        let util = Util()
+        if (util.isVazio(email.text!) || util.isVazio(senha.text!)){
+            showAlert("Ops!", msg: "Os campos email e senha devem ser informados!", titleBtn: "OK")
+        }else{
+            if user.senha == senha.text!{
+                print("por aqui")
+                self.performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
+            }else{
+                showAlert("Ops!", msg: "A senha informada não corresponde", titleBtn: "Ok")
+            }
         }
     }
     
-//    @IBAction func loginFacebook(sender: AnyObject) {
-//    }
+    //    @IBAction func loginFacebook(sender: AnyObject) {
+    //    }
     @IBAction func loginFacebook(sender: AnyObject) {
-
-               //let permission = ["public_profile"]
+        
+        //let permission = ["public_profile"]
         //PFFacebookUtils.logInInBackgroundWithReadPermissions(permission)
         //pegaDadosFacebook()
         
     }
     override func viewDidAppear(animated: Bool) {
-//        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let contexto: NSManagedObjectContext = appDel.managedObjectContext
-//        if UsuarioDAO().verificaUserLogado(contexto){
-//            performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
-//        }
+        //        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        //        if UsuarioDAO().verificaUserLogado(contexto){
+        //            performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
+        //        }
     }
     /* Realiza login*/
     func fazLogin(email:String, senha:String) -> Void{
@@ -250,17 +322,17 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                         self.user.dataNascimento = date2
                         print("--->\(self.user.dataNascimento)<-----")
                     }
-//                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
-//                       print("---------> dataString \(dataString)")
-//                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")
-//                        print("---------> tratado \(dateString)")
-//
-//                        let dateFormatter = NSDateFormatter() //Instância do date Formatter
-//                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-//                        let date:NSDate
-//                        date = dateFormatter.dateFromString(dateString)!
-//                        self.user.dataNascimento = date
-//                    }
+                    //                    if let dataString = JSON.objectForKey("dataNascimento") as? String{
+                    //                       print("---------> dataString \(dataString)")
+                    //                        let dateString = dataString.stringByReplacingOccurrencesOfString("Z", withString: "")
+                    //                        print("---------> tratado \(dateString)")
+                    //
+                    //                        let dateFormatter = NSDateFormatter() //Instância do date Formatter
+                    //                        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                    //                        let date:NSDate
+                    //                        date = dateFormatter.dateFromString(dateString)!
+                    //                        self.user.dataNascimento = date
+                    //                    }
                     if let senha = JSON.objectForKey("senha") as? String{
                         self.user.senha = senha
                     }
@@ -286,25 +358,25 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                     self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
                     UIApplication.sharedApplication().endIgnoringInteractionEvents()
                     
-                   
-
-                    self.performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
-       
                     
-
+                    
+                    self.performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
+                    
+                    
+                    
                 }else{
                     
                     self.showAlert("Ops", msg: "Usuário ou Senha incorreto!", titleBtn: "ok")
                 }
             }
-
-               self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
+            
+            self.utilidades.configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
             UIApplication.sharedApplication().endIgnoringInteractionEvents()
-
+            
         }
     }
     
-
+    
     func tratarImagemUsuario(imgStr: String)-> UIImage{
         var image = UIImage()
         let util = Util()
@@ -328,11 +400,11 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
         print(date)
         return date
     }
-
+    
     /**
-        Recuperar senha
-        O metodo irá gerar um alert que irá receber o email do usuario e posteriormente irá fazer uma requisição 
-      no ws pendido a recuperação da senha
+     Recuperar senha
+     O metodo irá gerar um alert que irá receber o email do usuario e posteriormente irá fazer uma requisição
+     no ws pendido a recuperação da senha
      */
     @IBAction func recuperarSenha(sender: AnyObject) {
         let conexao = VerificarConexao()
@@ -365,11 +437,11 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
                         self.activityIndicator.stopAnimating()
                     })
                 }
-        
-        
-        }
-        
-        
+                
+                
+            }
+            
+            
             alert.addTextFieldWithConfigurationHandler { (textField) in
                 textField.placeholder = "E-mail"
                 textField.keyboardType = .EmailAddress
@@ -377,21 +449,21 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
             let cancelAction = UIAlertAction(title: "Cancelar", style: .Destructive) { (_) in }
             alert.addAction(recuperaSenha)
             alert.addAction(cancelAction)
-        
+            
             self.presentViewController(alert, animated: true, completion: nil)
         }else{
             showAlert("Sem Conexão", msg: "Para fazer login é necessário que tenha uma conexão! Verifique sua conexão e tente novamente", titleBtn: "OK")
-
+            
         }
         
     }
     
-        /*Pega os dados do facebook e salva no usuario corrente*/
+    /*Pega os dados do facebook e salva no usuario corrente*/
     func pegaDadosFacebook(){
-       
+        
         
     }
 }
-   
-    
+
+
 

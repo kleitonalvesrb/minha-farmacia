@@ -195,6 +195,8 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")
             
         }else{
+            apagaDadosUsuario()
+            apagaNotificacoesFuturas()
             utilidade.configuraLabelInformacao(lblInfo, comInvisibilidade: false, comIndicador: ActiviInfo, comInvisibilidade: false, comAnimacao: true)
 //            utilidade.configuraLabelInformacao(lblInfo, comInvisibilidade: true, comIndicador: ActiviInfo, comIvisibilidade: true, comStatus: true)
             btnCadastrar.userInteractionEnabled = false
@@ -249,6 +251,28 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             
         }
     }
+    func apagaDadosUsuario(){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        
+        UsuarioDAO().deletaDadosUsuario(contexto)
+        MedicamentoDAO().deletaMedicamentos(contexto)
+        DosagemDAO().deletaDosagem(contexto)
+        NotificacaoDAO().deletaNotificacoes(contexto)
+        //UIControl().sendAction(Selector("suspend"), to: UIApplication.sharedApplication(), forEvent: nil)
+        
+    }
+    func apagaNotificacoesFuturas(){
+        let app:UIApplication = UIApplication.sharedApplication();
+        let eventArray:NSArray = app.scheduledLocalNotifications!;
+        print("qtd ---->\(eventArray.count)<-----")
+        
+        for i in eventArray{
+            UIApplication.sharedApplication().cancelLocalNotification(i as! UILocalNotification)
+        }
+        
+    }
+
     func populaUsuario(){
         user.nome = campoNome.text!
         user.email = campoEmail.text!

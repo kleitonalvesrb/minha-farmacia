@@ -42,6 +42,12 @@ class LocalNotificationHelper: NSObject {
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.userInfo = ["idNotificacao": idUnicoNotificacao!]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+//        var notifications = [UILocalNotification]()
+//        notifications.append(notification)
+//        UIApplication.sharedApplication().scheduledLocalNotifications(alertDate)
+//        UIApplication.sharedApplication().applicationIconBadgeNumber = UIApplication.sharedApplication().applicationIconBadgeNumber + 1
+//                    UIApplication.sharedApplication().scheduledLocalNotifications()
+
 //        print("Notification set for taskTypeID: \(taskTypeId) at \(alertDate)")
     }
     

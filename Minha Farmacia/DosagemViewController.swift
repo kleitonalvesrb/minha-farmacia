@@ -122,6 +122,8 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
     }
     
     @IBAction func salvar(sender: AnyObject) {
+        let user = Usuario.sharedInstance
+        print("Quantidade de medicamentos --->\(user.medicamento.count)")
         let util = Util()
         let verficaConexao = VerificarConexao()
         if util.isVazio(campoIntervalo.text!) || util.isVazio(campoPeriodo.text!) || util.isVazio(campoDataInicio.text!) || util.isVazio(campoDosagem.text!){
@@ -234,6 +236,7 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                     arrayNotificacaoes.append(notif)
                     
                     LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: medicamento.id, numeroDose: i)
+                    
                 }else{
                     print("nao foi gerado nenhuma notificacao para a data \(date)")
                 }

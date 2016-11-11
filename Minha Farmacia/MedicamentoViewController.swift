@@ -34,9 +34,9 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
     }
     
     var arrayDadosMedicamento = [DadosMedicamento]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         self.title = "Medicamentos"
         self.navigationController?.navigationBar.topItem?.title = "Medicamentos"
@@ -64,39 +64,39 @@ class MedicamentoViewController: UIViewController, UICollectionViewDelegate,UICo
         self.collectionView.delegate = self
         collectionView.dataSource = self
 
-        
-        
-//        let imgPlus:UIImageView = UIImageView()
-//        imgPlus.image = UIImage(named: "plus2.png")
-//        imgArray.append(imgPlus.image!)
-        /// recupear os medicamentos da base local ou do servidor
         if !mDao.verificaExistenciaMedicamento(contexto){
             configuraLabelInfo()
             buscaMedicamentosServidor()
         }else{
-            let medicamentosAux = mDao.recuperarMedicamentos(contexto)
-            let util = Util()
-            user.medicamento.removeAll()
-            user.medicamento = medicamentosAux
-            var remedioConcluido = [Medicamento]()
-            var remedioAndamento = [Medicamento]()
+            var medicamentosAux = [Medicamento]()
+            if user.medicamento.count == 0{
+                 medicamentosAux = mDao.recuperarMedicamentos(contexto)
+                let util = Util()
+                user.medicamento.removeAll()
+                user.medicamento = medicamentosAux
+            }else{
+                medicamentosAux = user.medicamento
+            }
+                var remedioConcluido = [Medicamento]()
+                var remedioAndamento = [Medicamento]()
             
 //            remedioAndamento.append(imgPlus.image!)
-           let dataAtual = NSDate()
-            for remedio in medicamentosAux{
-                let arr = remedio.dosagemMedicamento.notificacoes
-                let next =   verificaProximaDoseMedicamento(arr,dataAtual: dataAtual)
-                if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
-                    remedioConcluido.append(remedio)
-                }else{
-                    remedioAndamento.append(remedio)
-                }
+                let dataAtual = NSDate()
+                for remedio in medicamentosAux{
+                    let arr = remedio.dosagemMedicamento.notificacoes
+                    let next =   verificaProximaDoseMedicamento(arr,dataAtual: dataAtual)
+                    if diferencaMinEntreDuasDatas(NSDate(), data2: next) == 0{
+                        remedioConcluido.append(remedio)
+                    }else{
+                        remedioAndamento.append(remedio)
+                    }
                 
                 
 //                self.imgArray.append(remedio.fotoMedicamento)
 //                self.nomes.append(remedio.nome)
-            }
-            arrayDadosMedicamento = [DadosMedicamento(nomeSessao: "Andamento", arrayMedicamento: remedioAndamento),
+                }
+                
+                arrayDadosMedicamento = [DadosMedicamento(nomeSessao: "Andamento", arrayMedicamento: remedioAndamento),
                                      DadosMedicamento(nomeSessao: "Concluido", arrayMedicamento: remedioConcluido)]
             
             //collectionView.reloadData()

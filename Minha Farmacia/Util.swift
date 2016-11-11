@@ -197,7 +197,7 @@ class Util: NSObject {
         Converte uma imagem e data para salvar no banco de dados
      */
     func convertImageToNSData(image: UIImage) -> NSData{
-        return UIImageJPEGRepresentation(image, 0)!
+        return UIImageJPEGRepresentation(image, 0.5)!
     }
     /**
         Converte nsdata em imagem

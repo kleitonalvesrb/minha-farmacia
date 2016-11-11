@@ -24,8 +24,10 @@ class MedicamentoDAO: NSObject {
         medic.setValue(medicamento.nome, forKey: "nome")
         medic.setValue(medicamento.principioAtivo, forKey: "principio_ativo")
         medic.setValue(sicronizado, forKey: "sicronizado")
-        
-        medic.setValue(util.convertImageToNSData(medicamento.fotoMedicamento), forKey: "foto_medicamento")
+        //3800
+        let imgData = util.convertImageToNSData(medicamento.fotoMedicamento)
+        print(imgData.length)
+        medic.setValue(imgData, forKey: "foto_medicamento")
         
         do{
             try contexto.save()
@@ -69,7 +71,9 @@ class MedicamentoDAO: NSObject {
                 medicamento.laboratorio = result.valueForKey("laboratorio") as? String
                 medicamento.nome = result.valueForKey("nome") as? String
                 medicamento.principioAtivo = result.valueForKey("principio_ativo") as? String
-                medicamento.fotoMedicamento = util.convertNSDataToImage(result.valueForKey("foto_medicamento") as! NSData)
+                let imgData = result.valueForKey("foto_medicamento") as! NSData
+                print(imgData.length)
+                medicamento.fotoMedicamento = util.convertNSDataToImage(imgData)
                 medicamento.dosagemMedicamento = dosagemDao.buscaDosagemMedicamento(contexto, idMedicamento: medicamento.id)
                 arrayMedicamento.append(medicamento)
             }

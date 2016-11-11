@@ -174,6 +174,31 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         
         
     }
+    func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let size = image.size
+        
+        let widthRatio  = targetSize.width  / image.size.width
+        let heightRatio = targetSize.height / image.size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSizeMake(size.width * heightRatio, size.height * heightRatio)
+        } else {
+            newSize = CGSizeMake(size.width * widthRatio,  size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRectMake(0, 0, newSize.width, newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        image.drawInRect(rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
     
     /**
         preenche um novo medicamento e o adc na lista de medicamentos do usuario
@@ -187,8 +212,11 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         medicamento.laboratorio = campoLaboratorio.text
         medicamento.nome = campoProduto.text
         medicamento.principioAtivo = campoPrincipioAtivo.text
-        medicamento.fotoMedicamento = imgRemedio.image
-        user.medicamento.append(medicamento)
+        medicamento.fotoMedicamento = resizeImage(imgRemedio.image!, targetSize: CGSizeMake(250.0, 250.0))
+        let data = UIImageJPEGRepresentation(medicamento.fotoMedicamento, 0.25)
+//        print(data?.length)
+//        print(medicamento.fotoMedicamento.size)
+        user.medicamento.append(medicamento) //(2448.0, 3264.0)
         let dicMedicamento = ["codigoBarras":campoCodBarras.text!,
                            "nomeProduto": campoProduto.text!,
                            "principioAtivo":campoPrincipioAtivo.text!,

@@ -178,6 +178,8 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         //cell.textLabel?.text = self.items[indexPath.section][indexPath.row]
         cell.labelConteudo.text = conteudo[indexPath.row]
         cell.labelTitulo.text = titulos[indexPath.row]
+        
+        
         return cell
         
     }
@@ -409,7 +411,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         titulos.append("Senha")
         titulos.append("Sexo")
         titulos.append("Data Nascimento")
-        titulos.append("Facebook")
+//        titulos.append("Facebook")
         titulos.append("Logout")
         
         
@@ -428,7 +430,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         let dataNascimentoIdade = formataDataNascimento("\(user.dataNascimento)") + " \(idade) Anos"
         conteudo.append(dataNascimentoIdade)
         //        conteudo.append(util.formataDataPadrao(dataNascimento)+" \(qtdDias/365) Anos")
-        conteudo.append("Não conectado")
+//        conteudo.append("Não conectado")
         conteudo.append("Logout")
         
         conteudo.append("")

@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 class MaisViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate,UIImagePickerControllerDelegate, UINavigationControllerDelegate,MFMailComposeViewControllerDelegate {
-    let titulos = ["Quem Faz?","Sobre","Ajuda","Contato"]
+    let titulos = ["Desenvolvedores","Sobre","Ajuda","Contato"]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Mais"

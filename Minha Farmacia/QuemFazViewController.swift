@@ -12,7 +12,7 @@ class QuemFazViewController:  UIViewController,UITableViewDataSource, UITableVie
     var desenvolvedores = [Desenvolvedor]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Quem faz"
+        self.title = "Desenvolvedores"
         
         // Do any additional setup after loading the view.
     }

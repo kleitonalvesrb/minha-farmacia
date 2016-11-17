@@ -202,12 +202,14 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         
         if valida.isVazio(campoNome.text!) || valida.isVazio(campoEmail.text!) || valida.isVazio(campoSenha.text!) ||
                         valida.isVazio(campoSexo.text!) || valida.isVazio(campoDataNascimento.text!) || !isValidEmail(campoEmail.text!){
+           
             if !isValidEmail(campoEmail.text!){
                 geraAlerta("Ops", mensagem: "O E-mail informado não esta em um padrão correto!")
 
             }else{
                 geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")
             }
+            
         }else{
             apagaDadosUsuario()
             apagaNotificacoesFuturas()
@@ -354,5 +356,32 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         self.dismissViewControllerAnimated(true, completion: nil)
         fotoPerfil.image = image
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange,
+                   replacementString string: String) -> Bool{
+        var maxLength = 50
+        var currentString: NSString!
+        var newString: NSString!
+        
+        if textField == campoNome{
+            maxLength = 50
+            currentString = campoNome.text!
+            newString = currentString.stringByReplacingCharactersInRange(range, withString: string)
+            return newString.length <= maxLength
+        }else if textField == campoEmail{
+            maxLength = 50
+            currentString = campoEmail.text!
+            newString = currentString.stringByReplacingCharactersInRange(range, withString: string)
+            return newString.length <= maxLength
+        }else if textField == campoSenha{
+            maxLength = 16
+            currentString = campoSenha.text!
+            newString = currentString.stringByReplacingCharactersInRange(range, withString: string)
+            return newString.length <= maxLength
+        }else{
+            newString = currentString.stringByReplacingCharactersInRange(range, withString: string)
+            return newString.length <= maxLength
+        }
     }
 }

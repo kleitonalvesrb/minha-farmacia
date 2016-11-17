@@ -10,6 +10,10 @@ import UIKit
 import ParseFacebookUtilsV4
 
 class Util: NSObject {
+    
+    func validaTamanhoCampo(){
+        
+    }
     func trataDataExtenso(dataString: String) -> NSDate{
         var varString = dataString.stringByReplacingOccurrencesOfString("de", withString: "")
         varString = varString.stringByReplacingOccurrencesOfString("  ", withString: " ")

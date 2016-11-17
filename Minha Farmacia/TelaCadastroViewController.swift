@@ -125,7 +125,19 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
             verificaDisponibilidadeEmail(campoEmail.text!)
            
         }
-    }/*
+    }
+    /**
+     Verifica se o padrao de email informado é valido
+     */
+    func isValidEmail(testStr:String) -> Bool {
+        // print("validate calendar: \(testStr)")
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluateWithObject(testStr)
+    }
+    
+    /*
         verifica a disponibilidade do email inserido, caso o email já tenha sido cadastrado
         uma mensagem de email já utilizado irá aparecer e um x irá aparecer no campo de email
         indicando que o mesmo está indisponivel, caso o email ainda não tenha sido cadastrado
@@ -189,11 +201,13 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         let valida = Util()
         
         if valida.isVazio(campoNome.text!) || valida.isVazio(campoEmail.text!) || valida.isVazio(campoSenha.text!) ||
-                        valida.isVazio(campoSexo.text!) || valida.isVazio(campoDataNascimento.text!){
-            
-            
-            geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")
-            
+                        valida.isVazio(campoSexo.text!) || valida.isVazio(campoDataNascimento.text!) || !isValidEmail(campoEmail.text!){
+            if !isValidEmail(campoEmail.text!){
+                geraAlerta("Ops", mensagem: "O E-mail informado não esta em um padrão correto!")
+
+            }else{
+                geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")
+            }
         }else{
             apagaDadosUsuario()
             apagaNotificacoesFuturas()

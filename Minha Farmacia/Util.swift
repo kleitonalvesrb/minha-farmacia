@@ -133,6 +133,21 @@ class Util: NSObject {
         return dateFormatter.stringFromDate(date)
 
     }
+    func getAnoNascimentoUserFacebook(idade: Int) -> NSDate{
+        
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day , .Month , .Year], fromDate: date)
+        
+        let year =  components.year
+        print("\(year - idade)")
+        let dataNascimentoString = "\(year - idade)-"+"01-01"
+        let dateFormatter = NSDateFormatter() //Instância do date Formatte
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dataNascimento: NSDate!
+        dataNascimento = dateFormatter.dateFromString(dataNascimentoString)
+        return dataNascimento
+    }
     
     func qtdDiasEntreDuasDatas(dataInicio: NSDate, ate dataFim:NSDate) -> Int{
 //        let start = "1995-03-01"

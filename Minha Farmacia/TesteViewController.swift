@@ -267,10 +267,103 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     //    @IBAction func loginFacebook(sender: AnyObject) {
     //    }
     @IBAction func loginFacebook(sender: AnyObject) {
+        var usuarioFacebook = Usuario()
+        Util().configuraLabelInformacao(info, comInvisibilidade: false, comIndicador: activityIndicator, comInvisibilidade: false, comAnimacao: true)
+        let permissions = ["public_profile"]
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(permissions) { (user: PFUser?, error: NSError?) in
+            if let erro = error{
+                print(erro)
+            }else{
+                if let _ = user{
+                    let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"id, name, gender, email, age_range"])
+                    graphRequest.startWithCompletionHandler { (connection, result, error) in
+                        if error != nil{
+                            print(error)
+                        }else if let resultados = result{
+                            
+                            
+                            let dados = resultados as! NSDictionary
+                            let userId = dados["id"] as! String
+                            let facebookProfilePictureUrl = "https://graph.facebook.com/\(userId)/picture?type=large"
+                            
+                            let idade = dados.valueForKey("age_range")?.valueForKey("min")
+                            
+//                            print("idade é \()")
+                            
+                            usuarioFacebook.email = dados.valueForKey("email") as? String
+                            usuarioFacebook.idFacebook = dados.valueForKey("id") as? String
+                            usuarioFacebook.nome = dados.valueForKey("name") as? String
+                            usuarioFacebook.sexo = (dados.valueForKey("gender") as? String)?.lowercaseString == "male".lowercaseString ? "Masculino" : "Feminino"
+                            usuarioFacebook.dataNascimento = Util().getAnoNascimentoUserFacebook(Int(idade! as! NSNumber))
+                            if let fbPicUrl = NSURL(string: facebookProfilePictureUrl){
+                                if let data = NSData(contentsOfURL: fbPicUrl){
+                                    usuarioFacebook.foto =  UIImage(data: data)
+                                    
+                                    print("Usuario: \(usuarioFacebook.nome)")
+                                    print("Email : \(usuarioFacebook.email)")
+                                    print("Sexo: \(usuarioFacebook.sexo)")
+                                    print("id: \(usuarioFacebook.idFacebook)")
+                                    print("DataNasciemtno: \(usuarioFacebook.dataNascimento)")
+                                    print("tamanho foto: \(data.length)")
+                                }
+                            }
+                            
+                            Alamofire.request(.GET, UrlWS().urlConsultaUsuarioCadastradoFacebook(usuarioFacebook.idFacebook), parameters: ["idFacebook":usuarioFacebook.idFacebook], encoding: .JSON, headers: nil).responseJSON { (response) in
+                                
+                                print(response.response?.statusCode)
+                                print(response.response?.statusCode)
+
+                                if response.response?.statusCode == 200{
+                                    Util().configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
+                                    self.showAlert("Resultado", msg: "Encontramos um perfil cadastrado em nossa base, podemos realizar o login", titleBtn: "ok")
+                                }else{
+                                    let usuario = ["nome": usuarioFacebook.nome,
+                                        "email": usuarioFacebook.email,
+                                        "senha": usuarioFacebook.idFacebook,
+                                        "sexo":usuarioFacebook.sexo,
+                                        "dataNascimentoString": "\(usuarioFacebook.dataNascimento)",
+                                        "foto":usuarioFacebook.convertImageToString(usuarioFacebook.foto),
+                                        "idFacebook":usuarioFacebook.idFacebook]
+                                    
+                                    Alamofire.request(.POST, UrlWS().urlCadastraUsuarioFacebook(), parameters: usuario, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
+                                        if response.result.isSuccess{
+                                            
+                                            self.populaUsuario(usuarioFacebook)
+                                            self.navigationController?.navigationBar.hidden = true
+                                            self.performSegueWithIdentifier("LoginTelaMedicamento", sender: self)
+
+                                        }else{
+                                            self.showAlert("Ops!", msg: "Tivemos um problema ao concluir cadastro, tente novamente mais tarde", titleBtn: "OK")
+                                        }
+                                    })
+                                    Util().configuraLabelInformacao(self.info, comInvisibilidade: true, comIndicador: self.activityIndicator, comInvisibilidade: true, comAnimacao: false)
+                                    
+                                }
+                                
+                            }
+                            
+                        }
+                    }
+                }else{
+                    print("nao quis")
+                }
+            }
+        }
+    }
+   
+    func populaUsuario(userFacebook: Usuario){
+        user.nome = userFacebook.nome
+        user.email = userFacebook.email
+        user.sexo = userFacebook.sexo
+        user.idFacebook = userFacebook.idFacebook
+        user.foto = userFacebook.foto
+        user.senha = userFacebook.idFacebook
+        user.dataNascimento = userFacebook.dataNascimento
+        user.id = 1
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        UsuarioDAO().salvaUsuario(contexto, usuario: user)
         
-        //let permission = ["public_profile"]
-        //PFFacebookUtils.logInInBackgroundWithReadPermissions(permission)
-        //pegaDadosFacebook()
         
     }
     override func viewDidAppear(animated: Bool) {

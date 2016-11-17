@@ -201,10 +201,17 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
         let valida = Util()
         
         if valida.isVazio(campoNome.text!) || valida.isVazio(campoEmail.text!) || valida.isVazio(campoSenha.text!) ||
-                        valida.isVazio(campoSexo.text!) || valida.isVazio(campoDataNascimento.text!) || !isValidEmail(campoEmail.text!){
+                        valida.isVazio(campoSexo.text!) || valida.isVazio(campoDataNascimento.text!) || !isValidEmail(campoEmail.text!) ||
+            !valida.validaTamanhoCampo(campoNome.text!, tamanhoMin: 3) || !valida.validaTamanhoCampo(campoSenha.text!, tamanhoMin: 6){
            
             if !isValidEmail(campoEmail.text!){
                 geraAlerta("Ops", mensagem: "O E-mail informado não esta em um padrão correto!")
+
+            }else if !valida.validaTamanhoCampo(campoNome.text!, tamanhoMin: 3){
+                geraAlerta("Ops", mensagem: "O nome de usuário deve ter no mínimo 3 Letras")
+
+            }else if !valida.validaTamanhoCampo(campoSenha.text!, tamanhoMin: 6) {
+                geraAlerta("Ops", mensagem: "A senha deve conter no mínimo 6 caracteres")
 
             }else{
                 geraAlerta("Ops", mensagem: "Todos os campos devem ser informados")

@@ -11,8 +11,8 @@ import ParseFacebookUtilsV4
 
 class Util: NSObject {
     
-    func validaTamanhoCampo(){
-        
+    func validaTamanhoCampo(str: String, tamanhoMin: Int) -> Bool{
+        return str.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).characters.count >= tamanhoMin
     }
     func trataDataExtenso(dataString: String) -> NSDate{
         var varString = dataString.stringByReplacingOccurrencesOfString("de", withString: "")
@@ -161,7 +161,7 @@ class Util: NSObject {
         return str.stringByReplacingOccurrencesOfString(" ", withString: caracter)
     }
     func isVazio(txt : String) -> Bool{
-            return txt == ""
+         return txt.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) == ""
     }
     /**
         Configura label de informação que será apresentada no momento que o usuario interagir com o app

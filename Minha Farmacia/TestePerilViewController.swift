@@ -205,8 +205,12 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         }else if titulos[indexPath.row].lowercaseString == "Senha".lowercaseString{
             let alterarSenha = UITableViewRowAction(style: .Normal,title: "Alterar Senha"){action, index in
                 //                self.alteraSenhaUsuario(indexPath.row)
-                self.tableView.userInteractionEnabled = false
-                self.viewTrocaSenha.hidden = false
+                if VerificarConexao().isConnectedToNetwork(){
+                    self.tableView.userInteractionEnabled = false
+                    self.viewTrocaSenha.hidden = false
+                }else{
+                    self.geraAlerta("Sem conexão!", mensagem: "Para trocar a senha é necessário que tenha conexão, tente novamente mais tarde!")
+                }
             }
             alterarSenha.backgroundColor = UIColor.redColor()
             return [alterarSenha]
@@ -289,27 +293,29 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
 
     func alteraSenhaUsuario(index:Int){
         let alerta = UIAlertController(title: "Alterar Senha", message: nil, preferredStyle: .Alert)
+        
         let trocarSenha = UIAlertAction(title: "Alterar", style: .Default, handler: { (_) in
-            let senhaAtual = alerta.textFields![0] as UITextField
-            let novaSenha = alerta.textFields![1] as UITextField
-            senhaAtual.tag =  1
-            novaSenha.tag = 2
+                let senhaAtual = alerta.textFields![0] as UITextField
+                let novaSenha = alerta.textFields![1] as UITextField
+                senhaAtual.tag =  1
+                novaSenha.tag = 2
             
-            if senhaAtual.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "" &&
-                novaSenha.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
-                if senhaAtual.text! == self.user.senha{
-                    if senhaAtual.text! != novaSenha.text{
-                        self.conteudo[index] = novaSenha.text!
-                        self.tableView.reloadData()
+                if senhaAtual.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != "" &&
+                        novaSenha.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
+                    if senhaAtual.text! == self.user.senha{
+                        if senhaAtual.text! != novaSenha.text{
+                            self.conteudo[index] = novaSenha.text!
+                            self.tableView.reloadData()
+                        }else{
+                            self.geraAlerta("Ops!", mensagem: "Você não pode utilizar a mesma senha")
+                        }
                     }else{
-                        self.geraAlerta("Ops!", mensagem: "Você não pode utilizar a mesma senha")
+                        self.geraAlerta("Ops!", mensagem: "Você deve informar a senha atual!")
                     }
                 }else{
-                    self.geraAlerta("Ops!", mensagem: "Você deve informar a senha atual!")
+                    self.geraAlerta("Ops!", mensagem: "Todos os campos devem ser preenchidos")
                 }
-            }else{
-                self.geraAlerta("Ops!", mensagem: "Todos os campos devem ser preenchidos")
-            }
+            
         })
         alerta.addTextFieldWithConfigurationHandler { (texteField) in
             if texteField.tag == 1{
@@ -463,34 +469,35 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         
     }
     func trocarSenhaUsuario(senhaAtual senhaAtual:String,  novaSenha:String) -> Void{
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+
         let util = Util()
-        
-        if !util.isVazio(senhaAtual.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())) && //
-            !util.isVazio(novaSenha.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())){ //verifica se os campos estao vazios
-            // os campos estão preenchidos
-            if senhaAtual == user.senha{ // verifica se foi informado a senha atual
-                if novaSenha != user.senha{ // verifica se a nova senha é igual a senha atual
-                    if novaSenha.characters.count >= 6 { // verifica se a senha possui mais de 6 letras
-                       //Aki
-                        self.tableView.userInteractionEnabled = false
-                        util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: false, comIndicador: self.activityInfo, comInvisibilidade: false, comAnimacao: true)
-                        
-                        self.alteraSenhaUsuarioServidor(self.user.email, comNovaSenha: novaSenha)
-                        dismissKeyboard()
-                        viewTrocaSenha.hidden = true
+            if !util.isVazio(senhaAtual.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())) && //
+                    !util.isVazio(novaSenha.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())){ //verifica se os campos estao vazios
+                // os campos estão preenchidos
+                if senhaAtual == user.senha{ // verifica se foi informado a senha atual
+                    if novaSenha != user.senha{ // verifica se a nova senha é igual a senha atual
+                        if novaSenha.characters.count >= 6 { // verifica se a senha possui mais de 6 letras
+                            //Aki
+                            self.tableView.userInteractionEnabled = false
+                            util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: false, comIndicador: self.activityInfo, comInvisibilidade: false, comAnimacao: true)
+                            UsuarioDAO().alteraSenhaUsuario(contexto, novaSenha: novaSenha)
+                            self.alteraSenhaUsuarioServidor(self.user.email, comNovaSenha: novaSenha)
+                            dismissKeyboard()
+                            viewTrocaSenha.hidden = true
+                        }else{
+                            geraAlerta("Ops!", mensagem: "A senha deve ter no mínimo 6 caracters") // acusa erro caso a senha tenha menos de 6 carcter
+                        }
                     }else{
-                        geraAlerta("Ops!", mensagem: "A senha deve ter no mínimo 6 caracters") // acusa erro caso a senha tenha menos de 6 carcter
+                        geraAlerta("Ops!", mensagem: "Para trocar a senha a nova senha deve ser diferente da senha atual") // acusa erro caso a nova senha seja igual a senha atual
                     }
                 }else{
-                    geraAlerta("Ops!", mensagem: "Para trocar a senha a nova senha deve ser diferente da senha atual") // acusa erro caso a nova senha seja igual a senha atual
+                    geraAlerta("Ops", mensagem: "A senha atual deve ser informada") // acusa erro caso a senha atual nao tenha sido informada
                 }
             }else{
-                geraAlerta("Ops", mensagem: "A senha atual deve ser informada") // acusa erro caso a senha atual nao tenha sido informada
+                geraAlerta("Ops!", mensagem: "Todos os campos deve ser preenchidos") // acusa erro casa no tenha preenchido todos os campos
             }
-        }else{
-            geraAlerta("Ops!", mensagem: "Todos os campos deve ser preenchidos") // acusa erro casa no tenha preenchido todos os campos
-        }
-        
     }
     /**
         Método responsavel por alterar a senha do usuario no servidor, recebe o email para 

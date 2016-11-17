@@ -25,6 +25,27 @@ class UsuarioDAO: NSObject {
         return false;
     }
     /**
+        Altera a senha do usuario
+     */
+    
+    func alteraSenhaUsuario(contexto: NSManagedObjectContext, novaSenha: String){
+        let request = NSFetchRequest(entityName: "Usuario")
+        request.returnsObjectsAsFaults = false
+        do {
+            let results = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                result.setValue(novaSenha, forKey: "senha")
+                do{
+                    try contexto.save()
+                }catch{
+                    print("erro ao tentar salvar os dados alterados")
+                }
+            }
+        }catch{
+            print("erro ao buscar o usuario para alterar")
+        }
+    }
+    /**
         Método responsavel por salvar os dados do usuario
      */
     func salvaUsuario(contexto : NSManagedObjectContext, usuario: Usuario){

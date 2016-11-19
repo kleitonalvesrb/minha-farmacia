@@ -25,6 +25,49 @@ class UsuarioDAO: NSObject {
         return false;
     }
     /**
+        Alterar o nome do usuario
+     */
+    func alteraNomeUsuario(contexto: NSManagedObjectContext, nome: String){
+        let request = NSFetchRequest(entityName: "Usuario")
+        request.returnsObjectsAsFaults = false
+        do{
+            let results = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                result.setValue(nome, forKey: "nome")
+                do{
+                    try contexto.save()
+                }catch{
+                    print("erro ao atualizar nome do usuario")
+                }
+            }
+        }catch{
+            print("Erro ao recuperar usuario")
+        }
+    }
+    /**
+      Altera a foto do usuario
+     */
+    func alterFotoUsuario(contexto: NSManagedObjectContext, fotoUsuario: UIImage){
+        let request = NSFetchRequest(entityName: "Usuario")
+        request.returnsObjectsAsFaults = false
+        do {
+            let results = try contexto.executeFetchRequest(request)
+            for result in results as! [NSManagedObject]{
+                result.setValue(Util().convertImageToNSData(fotoUsuario), forKey: "foto")
+                do{
+                    try contexto.save()
+                }catch{
+                    print("erro ao tentar salvar os dados alterados")
+                }
+            }
+        }catch{
+            print("erro ao buscar o usuario para alterar")
+        }
+    }
+
+    
+    
+    /**
         Altera a senha do usuario
      */
     

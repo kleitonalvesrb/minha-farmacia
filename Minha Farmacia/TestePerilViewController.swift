@@ -72,7 +72,11 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     }
     func imageTapped(img: AnyObject)
     {
-        formaDeCapturaFotoPerfil()
+        if VerificarConexao().isConnectedToNetwork(){
+            formaDeCapturaFotoPerfil()
+        }else{
+            self.geraAlerta("Sem conexão!", mensagem: "Para trocar a foto é necessário que tenha conexão, tente novamente mais tarde!")
+        }
     }
 
     func formaDeCapturaFotoPerfil(){
@@ -84,7 +88,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             self.definirFoto(false)
         }
         let remover = UIAlertAction(title: "Remover Foto", style: .Destructive) { (_) in
-            if let novaFotoPerfil = UIImage(named: "homem.png"){
+            if let novaFotoPerfil = UIImage(named: "Users.png"){
                 self.altraFotoPerfilServidor(novaFotoPerfil, email: self.user.email)
             }else{
                 self.geraAlerta("Ops!", mensagem: "Desculpe, houve um erro ao remover a foto do perfil")
@@ -131,6 +135,9 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         Método responsavel por alterar foto de perfil do usuario
      */
     func altraFotoPerfilServidor(image: UIImage, email:String){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+
         let util = Util()
         util.configuraLabelInformacao(lblInfo, comInvisibilidade: false, comIndicador: activityInfo, comInvisibilidade: false, comAnimacao: true)
         fotoPerfil.userInteractionEnabled = false
@@ -142,7 +149,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         Alamofire.request(.POST, url.urlAlterarFotoPerfil(), parameters: usuario,encoding: .JSON,headers: nil).responseJSON(completionHandler: { (response) in
             if response.response?.statusCode == 200{
                 self.fotoPerfil.image = image
-                print("200")
+                UsuarioDAO().alterFotoUsuario(contexto, fotoUsuario: image)
                 self.geraAlerta("Sucesso", mensagem: "Foto alterado com sucesso")
                 self.user.foto = image
             }else if response.response?.statusCode == 404{
@@ -197,7 +204,13 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         if titulos[indexPath.row].lowercaseString == "Nome".lowercaseString{
             let alterar = UITableViewRowAction(style: .Normal, title: "Alterar") { action, index in
-                self.alteraNomeUsuario(indexPath.row)
+                if VerificarConexao().isConnectedToNetwork(){
+                    self.alteraNomeUsuario(indexPath.row)
+                    
+                }else{
+                    self.geraAlerta("Sem conexão!", mensagem: "Para trocar o nome é necessário que tenha conexão, tente novamente mais tarde!")
+
+                }
             }
             alterar.backgroundColor = UIColor.blueColor()
             return [alterar]
@@ -345,14 +358,23 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             if nome.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()) != ""{
                 self.conteudo[index] = nome.text!
                 let util = Util()
-                self.novoNome = util.trocaEspacoBranco(nome.text!, trocarPor: "+")
-              //  self.novoNome = util.trocaCaracterInvalido(nome.text!, retirar: " ", trocarPor: "+")
-                self.atualizarNome = true
-                self.tableView.userInteractionEnabled = false
-                self.atualizaNomeUsuarioServidor(self.novoNome, email: self.user.email)
-                self.tableView.reloadData()
+                if util.validaTamanhoCampo(nome.text!, tamanhoMin: 3){
+                    if self.user.nome != nome.text!{
+                        self.novoNome = util.trocaEspacoBranco(nome.text!, trocarPor: "+")
+                        //  self.novoNome = util.trocaCaracterInvalido(nome.text!, retirar: " ", trocarPor: "+")
+                        self.atualizarNome = true
+                        self.tableView.userInteractionEnabled = false
+                        self.atualizaNomeUsuarioServidor(self.novoNome, email: self.user.email)
+                        self.tableView.reloadData()
+  
+                    }else{
+                        self.geraAlerta("Nome Igual", mensagem: "Nenhuma alteração foi feita, pois o nome informado é igual ao nome atual!")
+                    }
+                }else{
+                    self.geraAlerta("Ops!", mensagem: "O nome deve conter no mínimo 3 letras")
+                }
             }else{
-                print("nao pode trocar")
+                self.geraAlerta("Ops!", mensagem: "O nome deve conter no mínimo 3 letras")
             }
             
         })
@@ -375,6 +397,9 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
      que servira como identificador no servidor e o novo nome do usuario
      */
     func atualizaNomeUsuarioServidor(nome: String, email: String){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
+        
         let dicTrocaNome = ["email":email,
                             "novoNome":nome]
         
@@ -385,7 +410,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         Alamofire.request(.PUT, url.urlAtualizarNomeUsuario(email, comNovoNome: nome), parameters:dicTrocaNome , encoding: .JSON, headers: nil).responseJSON { (response) in
             
             if response.response?.statusCode == 200{
-                print("200")
+                UsuarioDAO().alteraNomeUsuario(contexto, nome: nome)
                 self.geraAlerta("Sucesso", mensagem: "Nome alterado com sucesso")
                 self.user.nome = nome
             }else if response.response?.statusCode == 404{
@@ -469,9 +494,6 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
         
     }
     func trocarSenhaUsuario(senhaAtual senhaAtual:String,  novaSenha:String) -> Void{
-        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let contexto: NSManagedObjectContext = appDel.managedObjectContext
-
         let util = Util()
             if !util.isVazio(senhaAtual.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())) && //
                     !util.isVazio(novaSenha.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())){ //verifica se os campos estao vazios
@@ -482,7 +504,6 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
                             //Aki
                             self.tableView.userInteractionEnabled = false
                             util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: false, comIndicador: self.activityInfo, comInvisibilidade: false, comAnimacao: true)
-                            UsuarioDAO().alteraSenhaUsuario(contexto, novaSenha: novaSenha)
                             self.alteraSenhaUsuarioServidor(self.user.email, comNovaSenha: novaSenha)
                             dismissKeyboard()
                             viewTrocaSenha.hidden = true
@@ -504,12 +525,15 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
      verificar o usuairo e a nova senha
      */
     func alteraSenhaUsuarioServidor(email: String, comNovaSenha novaSenha:String){
+        let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let contexto: NSManagedObjectContext = appDel.managedObjectContext
         let dicTrocaSenha = ["email":email,
                              "novaSenha":novaSenha]
         let url = UrlWS()
         Alamofire.request(.PUT,url.urlAtualizarSenhaUsuario(email, comNovaSenha: novaSenha), parameters: dicTrocaSenha, encoding: .JSON, headers: nil).responseJSON { (response) in
             if response.response?.statusCode == 200{
                 print("200")
+                UsuarioDAO().alteraSenhaUsuario(contexto, novaSenha: novaSenha)
                 self.geraAlerta("Sucesso", mensagem: "Senha alterado com sucesso")
                 self.user.senha = novaSenha
             }else if response.response?.statusCode == 404{

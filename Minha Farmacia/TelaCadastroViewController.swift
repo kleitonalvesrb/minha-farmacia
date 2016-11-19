@@ -246,32 +246,6 @@ class TelaCadastroViewController: UIViewController, UIPickerViewDelegate,UIPicke
                 self.btnCadastrar.userInteractionEnabled = true 
                 self.utilidade.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.ActiviInfo, comInvisibilidade: true, comAnimacao: false)
             })
-        
-                
-            
-            
-            
-//            Alamofire.request(.POST, "http://minhafarmacia-env.us-west-2.elasticbeanstalk.com/cliente/inserir", parameters: usuario, encoding: .JSON, headers: nil).responseJSON(completionHandler: { (response) in
-//                
-//                if response.result.isSuccess{
-//                    
-//                    //self.geraAlerta("Sucesso", mensagem: "Cadastro realizado com Sucesso")
-//                    self.populaUsuario()
-//                    self.performSegueWithIdentifier("cadastroTelaPrincipal", sender: self)
-//                    
-//                    
-//                }else{
-//                    print(response.description,"<-------")
-//                    self.geraAlerta("Falha", mensagem: "Não foi possível completar o cadastro, tente novamente mais tarde!")
-//                }
-//                self.btnCadastrar.userInteractionEnabled = true
-//                print(response.result)
-//                print(response.result.value)
-//            })
-
-            
-            
-            
         }
     }
     func apagaDadosUsuario(){

@@ -18,6 +18,9 @@ class MaisViewController: UIViewController,UITableViewDataSource, UITableViewDel
     }
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+//        self.navigationController.navigationBarAppearace.tintColor = UIColor.whiteColor()
+
 
     }
     override func didReceiveMemoryWarning() {

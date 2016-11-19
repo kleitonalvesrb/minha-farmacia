@@ -106,14 +106,18 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
         acao do botao que ira salvar os dados
      */
     @IBAction func salvar(sender: AnyObject) {
-        let util = Util()
-        if setFoto{
-            util.configuraLabelInformacao(lblInfo, comInvisibilidade: false, comIndicador: activity, comInvisibilidade: false, comAnimacao: true)
-            scroll.userInteractionEnabled = false
-            btnSalvar.userInteractionEnabled = false
-            salvarReceitaServidor()
+        if VerificarConexao().isConnectedToNetwork(){
+            let util = Util()
+            if setFoto{
+                util.configuraLabelInformacao(lblInfo, comInvisibilidade: false, comIndicador: activity, comInvisibilidade: false, comAnimacao: true)
+                scroll.userInteractionEnabled = false
+                btnSalvar.userInteractionEnabled = false
+                salvarReceitaServidor()
+            }else{
+                geraAlerta("Ops", mensagem: "Você precisa cadastrar uma foto)")
+            }
         }else{
-            geraAlerta("Ops", mensagem: "Você precisa cadastrar uma foto \(NSDate())")
+            self.geraAlerta("Sem conexão", mensagem: "Para cadastrar uma receita é necessário que tenha conexão!")
         }
         
     }

@@ -41,6 +41,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     @IBOutlet weak var btnLerCodBarras: UIButton!
     @IBOutlet weak var btnSalvar: UIButton!
     
+    var verificaEscolhaFoto = false
     var str:String = String()
     let i = 0
     
@@ -53,6 +54,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
 //        btnEscolherImgRemedio.layer.cornerRadius = 5
         isPowerFlash = false
         self.title = "Cadastro"
+        self.btnSalvar.userInteractionEnabled = false
        
         let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
         imgRemedio.userInteractionEnabled = true
@@ -62,6 +64,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        verificaEscolhaFoto = false
 
     }
     @IBAction func btnFlash(sender: AnyObject) {
@@ -139,16 +142,21 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
 //        escolherImg()
 //    }
     @IBAction func lerCodBarras(sender: AnyObject) {
-       // UIApplication.sharedApplication().beginIgnoringInteractionEvents()
-        alteraImagemBotaoFlash(imagem: "flash26.png")
-        desabilidaInteracaoUsuarioBotoes(interatividade: false)
-        retiraTabBar(true)
-        habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: true, comInvisibilidade: false)
-        apresentaBarraNavegacao(true)
         
-        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
+        if VerificarConexao().isConnectedToNetwork(){
+            // UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+            alteraImagemBotaoFlash(imagem: "flash26.png")
+            desabilidaInteracaoUsuarioBotoes(interatividade: false)
+            retiraTabBar(true)
+            habilitarAcaoBotoesVoltarEflashEvisibilidade(interatividade: true, comInvisibilidade: false)
+            apresentaBarraNavegacao(true)
+        
+            navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
 
-        lerCodigoBarras()
+            lerCodigoBarras()
+        }else{
+            self.showAlert("Sem conexão", msg: "Para realizar a leitura do código de barras é necessário que tenha conexão", titleBtn: "Ok")
+        }
     }
     /**
         Método responsável por controlar a interatividade do usuario com os botos 
@@ -204,27 +212,30 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
         preenche um novo medicamento e o adc na lista de medicamentos do usuario
      */
     @IBAction func salvar(sender: AnyObject) {
-        let util = Util()
+//        if verificaEscolhaFoto{
+            let util = Util()
        
-        medicamento.apresentacao = campoApresentacao.text
-        medicamento.classeTerapeutica = campoClasseTerapeutica.text
-        medicamento.codBarras = campoCodBarras.text
-        medicamento.laboratorio = campoLaboratorio.text
-        medicamento.nome = campoProduto.text
-        medicamento.principioAtivo = campoPrincipioAtivo.text
-        medicamento.fotoMedicamento = resizeImage(imgRemedio.image!, targetSize: CGSizeMake(217.0, 217.0))
+            medicamento.apresentacao = campoApresentacao.text
+            medicamento.classeTerapeutica = campoClasseTerapeutica.text
+            medicamento.codBarras = campoCodBarras.text
+            medicamento.laboratorio = campoLaboratorio.text
+            medicamento.nome = campoProduto.text
+            medicamento.principioAtivo = campoPrincipioAtivo.text
+            medicamento.fotoMedicamento = resizeImage(imgRemedio.image!, targetSize: CGSizeMake(217.0, 217.0))
 //        let data = UIImageJPEGRepresentation(medicamento.fotoMedicamento, 0.25)
 //        print(data?.length)
 //        print(medicamento.fotoMedicamento.size)
-        user.medicamento.append(medicamento) //(2448.0, 3264.0)
-        let dicMedicamento = ["codigoBarras":campoCodBarras.text!,
+            user.medicamento.append(medicamento) //(2448.0, 3264.0)
+            let dicMedicamento = ["codigoBarras":campoCodBarras.text!,
                            "nomeProduto": campoProduto.text!,
                            "principioAtivo":campoPrincipioAtivo.text!,
                            "apresentacao":campoApresentacao.text!,
                            "laboratorio":campoLaboratorio.text!,
                            "classeTerapeutica":campoClasseTerapeutica.text!,
                            "fotoMedicamentoString":util.convertImageToString(imgRemedio.image!)]
-        
+//        }else{
+//            self.showAlert("Ops!", msg: "É necessário escolher uma foto", titleBtn: "OK")
+//        }
         
         print("--------> Pegou a Açao do botao <-------")
         
@@ -278,6 +289,7 @@ class CadastrarMedicamentoViewController: UIViewController, UIImagePickerControl
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         self.dismissViewControllerAnimated(true, completion: nil)
         imgRemedio.image = image
+        btnSalvar.userInteractionEnabled = true
     }
     
     /**

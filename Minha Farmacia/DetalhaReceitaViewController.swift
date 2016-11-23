@@ -32,6 +32,9 @@ class DetalhaReceitaViewController: UIViewController,UIScrollViewDelegate {
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {
+//        let btnTrash =  UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: nil)
+        self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Trash, target: self, action: nil)
+        //        self.navigationItem.rightBarButtonItem.
         let userDefautls = NSUserDefaults.standardUserDefaults()
         var posicaoArray = -1
         if let posicaoArrayMedicamento = userDefautls.stringForKey("posicaoReceita"){

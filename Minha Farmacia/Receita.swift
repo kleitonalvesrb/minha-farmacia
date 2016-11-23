@@ -9,6 +9,7 @@
 import UIKit
 
 class Receita: NSObject {
+    var id:Int?
     var dataCadastro:NSDate!
     var fotoReceita:UIImage!
     var descricao:String!

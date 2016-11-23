@@ -30,7 +30,6 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
 
         self.collectionView.delegate = self
         collectionView.dataSource = self
-        buscaReceitaServidor()
         
 //        let imgPlus:UIImageView = UIImageView()
 //        imgPlus.image = UIImage(named: "plus2.png")
@@ -45,6 +44,11 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         
         self.navigationItem.title = "Receitas"
+        Util().configuraLabelInformacao(lblInfo, comInvisibilidade: false, comIndicador: activity, comInvisibilidade: false, comAnimacao: true)
+        collectionView.reloadData()
+        self.imgArray.removeAll()
+        self.nomes.removeAll()
+        buscaReceitaServidor()
         
     }
 
@@ -106,6 +110,9 @@ class ReceitaViewController: UIViewController,UICollectionViewDelegate,UICollect
         }
         if let dataCadastro = receita["dataCadastroReceita"] as? String{
             receitaAux.dataCadastro = util.formataDataCadastroReceita(dataCadastro)
+        }
+        if let id = receita["id"] as? String{
+            receitaAux.id = Int(id)
         }
         return receitaAux
         

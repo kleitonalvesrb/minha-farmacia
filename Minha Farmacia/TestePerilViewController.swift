@@ -78,6 +78,7 @@ class TestePerilViewController: UIViewController,UITableViewDataSource, UITableV
             self.geraAlerta("Sem conexão!", mensagem: "Para trocar a foto é necessário que tenha conexão, tente novamente mais tarde!")
         }
     }
+    
 
     func formaDeCapturaFotoPerfil(){
         let alerta = UIAlertController(title: "Escolher foto de Perfil", message: "", preferredStyle: .ActionSheet)

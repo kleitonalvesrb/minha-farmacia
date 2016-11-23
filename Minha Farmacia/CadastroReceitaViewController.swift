@@ -129,7 +129,8 @@ class CadastroReceitaViewController: UIViewController,UIImagePickerControllerDel
         let util = Util()
         Alamofire.request(.PUT, url.urlInsereReceitaUsuario(user.email), parameters: criaDicReceita() as? [String : AnyObject], encoding: .JSON, headers: nil).responseJSON{(response) in
             if response.response?.statusCode == 200{
-                self.redireciona()
+                self.navigationController?.popToRootViewControllerAnimated(true)
+//                self.redireciona()
             }
             util.configuraLabelInformacao(self.lblInfo, comInvisibilidade: true, comIndicador: self.activity, comInvisibilidade: true, comAnimacao: false)
             self.scroll.userInteractionEnabled = true

@@ -232,10 +232,10 @@ class DosagemViewController: UIViewController, UITextFieldDelegate, UIPickerView
                     notif.dataNotificacao = date
                     notif.id = Int("\(idDosagem)\(i)")
                     arrayNotificacaoes.append(notif)
-                    
+                    //aki
                     LocalNotificationHelper().scheduleLocal("", alertDate: date!, corpoNotificacao: "Hora do remédio", medicamentoId: medicamento.id, numeroDose: i)
                 }else{
-                    print("nao foi gerado nenhuma notificacao para a data \(date)")
+//                    print("nao foi gerado nenhuma notificacao para a data \(date)")
                 }
 //                LocalNotificationHelper().scheduleLocal("Oi tcc minha farmácia", alertDate: date!)
             }else {

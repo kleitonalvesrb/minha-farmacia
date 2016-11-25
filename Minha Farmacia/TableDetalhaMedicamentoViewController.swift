@@ -57,7 +57,8 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
         arrayDados.append("\(Util().formataPadraoCompleto("\(medicamento.dosagemMedicamento.dataInicio)"))")
         arrayDados.append("\(medicamento.dosagemMedicamento.intervaloDose) Hora(s)")
         arrayDados.append("\(medicamento.dosagemMedicamento.periodoTratamento) Dia(s) ")
-        arrayDados.append("\(medicamento.dosagemMedicamento.quantidade) \(tipoMedicamentoApresentacaoDosagem(medicamento.dosagemMedicamento.tipoMedicamento))")
+        arrayDados.append(apresentacaoQuantidadeMedicamento())
+//        arrayDados.append("\(medicamento.dosagemMedicamento.quantidade) \(tipoMedicamentoApresentacaoDosagem(medicamento.dosagemMedicamento.tipoMedicamento))")
         if medicamento.codBarras.characters.count > 2 && medicamento.apresentacao.characters.count > 2{
             arrayDados.append("Detalhar")
         }
@@ -80,6 +81,17 @@ class TableDetalhaMedicamentoViewController: UIViewController,UITableViewDataSou
             arrayTitulos.append("Descrição Técnica")
         }
         return arrayTitulos
+    }
+    
+    func apresentacaoQuantidadeMedicamento() -> String{
+        var apresentacaoQuantidade = ""
+        if medicamento.dosagemMedicamento.tipoMedicamento.lowercaseString == "Comprimido".lowercaseString{
+            apresentacaoQuantidade = Util().valorStringQuantidadeComprimido(medicamento.dosagemMedicamento.quantidade) + " \(tipoMedicamentoApresentacaoDosagem(medicamento.dosagemMedicamento.tipoMedicamento))"
+        }else{
+            
+            apresentacaoQuantidade = "\(medicamento.dosagemMedicamento.quantidade) " + tipoMedicamentoApresentacaoDosagem(medicamento.dosagemMedicamento.tipoMedicamento)
+        }
+        return apresentacaoQuantidade
     }
     func tipoMedicamentoApresentacaoDosagem(tipo: String) -> String{
         if medicamento.dosagemMedicamento.tipoMedicamento == "Xarope"{

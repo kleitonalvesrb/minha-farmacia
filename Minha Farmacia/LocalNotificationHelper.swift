@@ -36,12 +36,21 @@ class LocalNotificationHelper: NSObject {
         let id = "\(medicamentoId)\(numeroDose)"
         let idUnicoNotificacao = Int(id)
         let notification = UILocalNotification()
+//        UIApplication.registerUserNotificationSettings(UIUserNotificationSettings (forTypes: UIUserNotificationType.Alert, categories: nil))
+
         notification.fireDate = alertDate
         notification.alertBody = corpoNotificacao
+        //the following line is important to set badge number
+        notification.applicationIconBadgeNumber += notification.applicationIconBadgeNumber;
+        
+//        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         notification.alertAction = ""
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.userInfo = ["idNotificacao": idUnicoNotificacao!]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
+//        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+
 //        print("Notification set for taskTypeID: \(taskTypeId) at \(alertDate)")
     }
     

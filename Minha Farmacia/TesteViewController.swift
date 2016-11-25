@@ -33,8 +33,8 @@ class TesteViewController: UIViewController, UITextFieldDelegate{
     //
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-        //        print(UIApplication.sharedApplication().applicationIconBadgeNumber)
+//                UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+//                print(UIApplication.sharedApplication().applicationIconBadgeNumber)
         let appDel: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let contexto: NSManagedObjectContext = appDel.managedObjectContext
         let usuarioDao = UsuarioDAO()

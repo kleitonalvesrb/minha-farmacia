@@ -95,7 +95,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
-    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        let state : UIApplicationState = application.applicationState
+        if state == UIApplicationState.Active{
+            let alert = UIAlertView(title: "Lembrar", message: notification.alertBody, delegate: self, cancelButtonTitle: "OK")
+            alert.show()
+        }
+        NSNotificationCenter.defaultCenter().postNotificationName("reloadData", object: self)
+        application.applicationIconBadgeNumber = 0;
+
+    }
+  
+
     func uicolorFromHex(rgbValue:UInt32)->UIColor{
         let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
         let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
